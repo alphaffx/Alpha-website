@@ -2276,3 +2276,36 @@ a.store-card:hover {
   .store-grid { grid-template-columns: 1fr; }
   .store-block { margin-bottom: 34px; }
 }
+
+
+/* ============================================================
+   DISPLAY FONT  --  added 19 Sep 2026
+   ------------------------------------------------------------
+   Road Rage never actually loaded: fonts/road-rage.woff2 was
+   never downloaded, so the @font-face rule above pointed at a
+   missing file. PC visitors fell back to Impact; Android phones
+   have no Impact, so they fell all the way to a plain sans.
+   That is why the site looked different on a phone.
+
+   These faces load from Google Fonts on every device, so all
+   visitors now see the same headings. All are free for
+   commercial use.
+
+   TO TRY ANOTHER: comment out the live line and uncomment one
+   of the others. Only one may be active at a time.
+   ============================================================ */
+:root {
+  /* Heavy condensed - closest to the Impact look you had on PC */
+  --font-display: "Anton", "Impact", "Arial Narrow Bold", sans-serif;
+
+  /* Taller, cleaner caps */
+  /* --font-display: "Bebas Neue", "Impact", "Arial Narrow Bold", sans-serif; */
+
+  /* Wide and very heavy */
+  /* --font-display: "Archivo Black", "Impact", "Arial Black", sans-serif; */
+}
+
+/* Thai and Arabic headings: these display faces carry no Thai or
+   Arabic glyphs, so those characters skip down the stack to the
+   device's own sans automatically. Nothing to configure - it is
+   the same behaviour Road Rage would have had. */
