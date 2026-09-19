@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alpha | 3D Creator</title>
+  <meta name="description" content="Alpha is a 3D animator and creator bringing characters to life through 3D animation. View interactive 3D models and animation work.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Alpha | 3D Creator">
+  <meta property="og:description" content="3D Animator &amp; Creator bringing characters to life through 3D animation.">
+  <meta property="og:type" content="website">
+
+  <!-- Body typeface. Road Rage (display) is loaded from fonts/ in style.css -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+
+  <link rel="stylesheet" href="style.css">
+
+  <script src="i18n.js"></script>
+
+  <script
+    type="module"
+    src="https://unpkg.com/@google/model-viewer@4.3.1/dist/model-viewer.min.js">
+  </script>
+</head>
+
+<body>
+  <div class="glow glow-a" aria-hidden="true"></div>
+  <div class="glow glow-b" aria-hidden="true"></div>
+
+  <nav class="tabbar" aria-label="Main sections">
+    <div class="bar-left">
+      <button class="menu-btn" id="menuBtn" type="button"
+              aria-expanded="false" aria-controls="sideMenu"
+              aria-label="Open menu" data-i18n-attr="aria-label:menu.open">
+        <span class="menu-lines" aria-hidden="true"><i></i><i></i><i></i></span>
+      </button>
+      <span class="brand">ALPHA</span>
+    </div>
+
+    <div class="tabs" role="tablist">
+      <button class="tab is-active" role="tab" id="tab-home"    aria-controls="panel-home"    aria-selected="true"  data-i18n="nav.home">Home</button>
+      <button class="tab"           role="tab" id="tab-models"  aria-controls="panel-models"  aria-selected="false" data-i18n="nav.models">3D Models</button>
+      <button class="tab"           role="tab" id="tab-cc"      aria-controls="panel-cc"      aria-selected="false" data-i18n="nav.cc">Color Correction</button>
+      <button class="tab"           role="tab" id="tab-store"   aria-controls="panel-store"   aria-selected="false" data-i18n="nav.store">Store</button>
+      <button class="tab"           role="tab" id="tab-contact" aria-controls="panel-contact" aria-selected="false" data-i18n="nav.contact">Contact</button>
+    </div>
+  </nav>
+
+  <!-- ============ SIDE MENU ============ -->
+  <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
+
+  <aside class="drawer" id="sideMenu" aria-label="Menu" hidden>
+    <div class="drawer-head">
+      <span class="drawer-title" data-i18n="menu.title">Menu</span>
+      <button class="icon-btn" id="drawerClose" type="button"
+              aria-label="Close menu" data-i18n-attr="aria-label:menu.close">&#10005;</button>
+    </div>
+
+    <nav class="drawer-nav">
+      <button class="drawer-link" type="button" data-goto="home"    data-i18n="nav.home">Home</button>
+      <button class="drawer-link" type="button" data-goto="models"  data-i18n="nav.models">3D Models</button>
+      <button class="drawer-link" type="button" data-goto="cc"      data-i18n="nav.cc">Color Correction</button>
+      <button class="drawer-link" type="button" data-goto="store"   data-i18n="nav.store">Store</button>
+      <button class="drawer-link" type="button" data-goto="contact" data-i18n="nav.contact">Contact</button>
+    </nav>
+
+    <button class="drawer-settings" id="openSettings" type="button">
+      <span class="gear" aria-hidden="true">&#9881;</span>
+      <span data-i18n="set.open">Settings</span>
+    </button>
+  </aside>
+
+  <!-- ============ SETTINGS ============ -->
+  <div class="modal-backdrop" id="settingsBackdrop" hidden></div>
+
+  <div class="modal" id="settingsModal" role="dialog" aria-modal="true"
+       aria-labelledby="settingsTitle" hidden>
+    <div class="modal-head">
+      <h2 class="modal-title" id="settingsTitle" data-i18n="set.title">Settings</h2>
+      <button class="icon-btn" id="settingsClose" type="button"
+              aria-label="Close settings" data-i18n-attr="aria-label:set.close">&#10005;</button>
+    </div>
+
+    <div class="setting-block">
+      <span class="setting-label" data-i18n="set.language">Language</span>
+      <div class="lang-grid" id="langGrid" role="group"></div>
+    </div>
+
+    <label class="setting-row">
+      <span class="setting-text">
+        <span class="setting-label" data-i18n="set.autorotate">Auto-rotate models</span>
+        <span class="setting-desc" data-i18n="set.autorotateDesc">Spin the model on its own.</span>
+      </span>
+      <input type="checkbox" id="setAutoRotate" class="switch" checked>
+    </label>
+
+    <label class="setting-row">
+      <span class="setting-text">
+        <span class="setting-label" data-i18n="set.motion">Reduce motion</span>
+        <span class="setting-desc" data-i18n="set.motionDesc">Turn off fades and slide animations.</span>
+      </span>
+      <input type="checkbox" id="setReduceMotion" class="switch">
+    </label>
+
+    <label class="setting-row">
+      <span class="setting-text">
+        <span class="setting-label" data-i18n="set.data">Data saver</span>
+        <span class="setting-desc" data-i18n="set.dataDesc">Ask before loading large models.</span>
+      </span>
+      <input type="checkbox" id="setDataSaver" class="switch">
+    </label>
+  </div>
+
+  <main>
+
+    <!-- ============ HOME ============ -->
+    <section class="panel is-active" id="panel-home" role="tabpanel" aria-labelledby="tab-home">
+      <header class="hero">
+        <h1 class="title">ALPHA</h1>
+        <p class="tagline" data-i18n="hero.tagline">3D Animator &amp; Creator</p>
+        <p class="subtitle" data-i18n="hero.subtitle">Bringing characters to life through 3D animation.</p>
+        <div class="hero-actions">
+          <button class="button" data-goto="models" data-i18n="hero.cta1">View My Work</button>
+          <button class="button button-ghost" data-goto="contact" data-i18n="hero.cta2">Get in Touch</button>
+        </div>
+      </header>
+
+      <div class="cards">
+        <article class="card">
+          <span class="card-icon" aria-hidden="true">◈</span>
+          <h3 data-i18n="card1.title">Character Animation</h3>
+          <p data-i18n="card1.body">Rigging and animating characters with weight, timing and personality.</p>
+        </article>
+        <article class="card">
+          <span class="card-icon" aria-hidden="true">◐</span>
+          <h3 data-i18n="card2.title">Interactive 3D</h3>
+          <p data-i18n="card2.body">Real-time models you can spin, inspect and explore right in the browser.</p>
+        </article>
+        <article class="card">
+          <span class="card-icon" aria-hidden="true">▶</span>
+          <h3 data-i18n="card3.title">Short-Form Video</h3>
+          <p data-i18n="card3.body">Animation built for TikTok — fast, punchy and made to be rewatched.</p>
+        </article>
+      </div>
+
+      <!-- ---------- Tools ---------- -->
+      <section class="home-block">
+        <h2 class="block-title" data-i18n="tools.title">What I work with</h2>
+        <div class="tool-row">
+          <div class="tool">
+            <span class="tool-mark" aria-hidden="true">B</span>
+            <div class="tool-body">
+              <h3 class="tool-name">Blender</h3>
+              <p class="tool-desc" data-i18n="tools.blenderDesc">Modelling, rigging, texturing, animation and rendering — all of it done in Blender.</p>
+              <a class="tool-link" href="https://www.blender.org/download/" target="_blank" rel="noopener noreferrer">
+                <span data-i18n="tools.official">Official site</span> <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="tool">
+            <span class="tool-mark" aria-hidden="true">Ae</span>
+            <div class="tool-body">
+              <h3 class="tool-name">After Effects</h3>
+              <p class="tool-desc" data-i18n="tools.aeDesc">Colour grading, effects and final export — where the raw render becomes the finished clip.</p>
+              <a class="tool-link" href="https://www.adobe.com/products/aftereffects.html" target="_blank" rel="noopener noreferrer">
+                <span data-i18n="tools.official">Official site</span> <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ---------- About ---------- -->
+      <section class="home-block">
+        <h2 class="block-title" data-i18n="about.title">About me</h2>
+        <p class="about-body" data-i18n="about.body">I&#39;m ALPHA. I model, rig and animate 3D characters in Blender — mostly Free Fire characters built for short-form video. Every character on this site was made by me, and the free ones are yours to download and use in your own edits.</p>
+      </section>
+
+      <!-- ---------- Hire / contact ---------- -->
+      <section class="home-block home-hire">
+        <h2 class="block-title" data-i18n="home.hire">Work with me</h2>
+        <p class="about-body" data-i18n="home.hireDesc">Available for character animation, custom models and short-form video.</p>
+        <div class="hire-links">
+          <a class="hire-link" href="mailto:alphaffcollabs@gmail.com">
+            <span aria-hidden="true">✉</span> alphaffcollabs@gmail.com
+          </a>
+          <a class="hire-link" href="https://www.tiktok.com/@alphaff.freefire" target="_blank" rel="noopener noreferrer">
+            <span aria-hidden="true">♪</span> @alphaff.freefire
+          </a>
+          <a class="hire-link" href="https://youtube.com/@alpha.blender3d" target="_blank" rel="noopener noreferrer">
+            <span aria-hidden="true">▶</span> @alpha.blender3d
+          </a>
+          <a class="hire-link" href="https://www.instagram.com/alphaff.freefire/" target="_blank" rel="noopener noreferrer">
+            <span aria-hidden="true">◉</span> @alphaff.freefire
+          </a>
+        </div>
+      </section>
+    </section>
+
+    <!-- ============ 3D MODELS ============ -->
+    <section class="panel" id="panel-models" role="tabpanel" aria-labelledby="tab-models" hidden>
+      <div class="panel-head">
+        <h2 data-i18n="models.title">3D Models</h2>
+        <p data-i18n="models.sub">Drag to rotate, scroll to zoom. Open fullscreen for a closer look.</p>
+      </div>
+
+      <div class="library">
+      <aside class="library-list">
+
+      <div class="model-search">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <input id="modelSearch"
+               type="text"
+               class="search-input"
+               placeholder="Search models — just start typing"
+               autocomplete="off"
+               spellcheck="false"
+               aria-label="Search models"
+               aria-controls="modelPicker"
+               data-i18n-attr="placeholder:search.placeholder">
+        <button class="search-clear" id="searchClear" type="button"
+                aria-label="Clear search" data-i18n-attr="aria-label:search.clear" hidden>✕</button>
+      </div>
+
+      <p class="search-hint" id="searchHint" role="status" aria-live="polite" hidden></p>
+
+      <!-- Cards are generated from models/models.json -->
+      <section class="tier" id="tierFree">
+        <h3 class="tier-head">
+          <span data-i18n="models.free">Free models</span>
+          <span class="tier-count" id="freeCount"></span>
+        </h3>
+        <div class="model-list" id="gridFree" role="group" aria-label="Free models"></div>
+      </section>
+
+      </aside>
+
+      <div class="library-preview">
+
+      <div class="preview-sticky">
+
+      <div class="model-stage" id="modelStage">
+        <div class="model-backdrop" id="modelBackdrop"></div>
+
+        <model-viewer
+          id="mainModel"
+          alt="Interactive 3D model preview"
+          camera-controls
+          auto-rotate
+          touch-action="pan-y"
+          interaction-prompt="none"
+          reveal="auto"
+          environment-image="neutral"
+          tone-mapping="neutral"
+          exposure="1.25"
+          shadow-intensity="0.8"
+          shadow-softness="0.9"
+          class="hero-model">
+        </model-viewer>
+
+        <!-- Shown instead of auto-loading when data saver is on -->
+        <button class="model-load" id="modelLoad" type="button" hidden></button>
+
+        <button class="expand-btn" id="expandBtn" type="button"
+                aria-label="Open fullscreen view" data-i18n-attr="aria-label:viewer.fullscreen">
+          <span aria-hidden="true">⤢</span> <span data-i18n="viewer.fullscreen">Fullscreen</span>
+        </button>
+
+        <button class="close-btn" id="closeBtn" type="button"
+                aria-label="Close fullscreen view" data-i18n-attr="aria-label:viewer.close">&#10005;</button>
+      </div>
+
+      <p class="model-caption">
+        <strong id="captionName">—</strong> &middot; <span id="captionKind"></span>
+      </p>
+
+      </div><!-- /preview-sticky -->
+
+
+
+      </div><!-- /library-preview -->
+
+      <aside class="library-side">
+      <div class="downloads">
+        <p class="downloads-title" data-i18n="dl.title">Download this model</p>
+
+        <div class="downloads-row">
+          <a class="dl-card" id="dlGlb" download>
+            <span class="dl-format">GLB <span class="dl-size" id="glbSize"></span></span>
+            <span class="dl-desc" data-i18n="dl.glbDesc">Ready to view or drop into a game engine. Materials and textures included.</span>
+            <span class="dl-action" data-i18n="dl.action">Download &darr;</span>
+          </a>
+
+          <a class="dl-card" id="dlBlend" download>
+            <span class="dl-format">.blend <span class="dl-size" id="blendSize"></span></span>
+            <span class="dl-desc" data-i18n="dl.blendDesc">The full Blender source &mdash; rig, modifiers and node materials intact.</span>
+            <span class="dl-action" data-i18n="dl.action">Download &darr;</span>
+          </a>
+        </div>
+
+        <p class="downloads-note" data-i18n="dl.note">Free for personal use &middot; credit appreciated</p>
+      </div>
+      </aside>
+      </div><!-- /library -->
+    </section>
+
+    <!-- ============ COLOR CORRECTION ============ -->
+    <section class="panel" id="panel-cc" role="tabpanel" aria-labelledby="tab-cc" hidden>
+      <div class="panel-head">
+        <h2 data-i18n="cc.title">Color Correction</h2>
+        <p data-i18n="cc.sub">How I grade my Blender renders in After Effects.</p>
+      </div>
+
+      <!-- ---------- Before / after ---------- -->
+      <section class="cc-block">
+        <h3 class="tier-head"><span data-i18n="cc.ba">Before / After</span></h3>
+
+        <div class="ba" id="baWrap" hidden>
+          <img class="ba-img" id="baAfter" src="./media/cc-after.jpg" alt="" draggable="false">
+          <img class="ba-img ba-before" id="baBefore" src="./media/cc-before.jpg" alt="" draggable="false">
+          <span class="ba-tag ba-tag-start" data-i18n="cc.before">Raw render</span>
+          <span class="ba-tag ba-tag-end" data-i18n="cc.after">Graded</span>
+          <span class="ba-handle" id="baHandle" aria-hidden="true"></span>
+          <input class="ba-range" id="baRange" type="range" min="0" max="100" value="50"
+                 aria-label="Compare before and after">
+        </div>
+
+        <p class="ba-hint" id="baHint" data-i18n="cc.baHint" hidden>Drag the handle to compare</p>
+        <p class="tier-empty" id="baEmpty" data-i18n="cc.baEmpty">Comparison images are coming soon.</p>
+      </section>
+
+      <!-- ---------- Presets ---------- -->
+      <section class="cc-block">
+        <h3 class="tier-head">
+          <span data-i18n="cc.presets">Presets</span>
+          <span class="tier-count" id="presetCount"></span>
+        </h3>
+        <div class="preset-grid" id="presetGrid"></div>
+        <p class="tier-empty" id="presetEmpty" data-i18n="cc.presetsEmpty">Presets are coming soon.</p>
+      </section>
+    </section>
+
+    <!-- ============ STORE ============ -->
+    <section class="panel" id="panel-store" role="tabpanel" aria-labelledby="tab-store" hidden>
+      <div class="panel-head">
+        <h2 data-i18n="store.title">Store</h2>
+        <p data-i18n="store.sub">Premium models, presets and lessons.</p>
+      </div>
+
+      <section class="store-block">
+        <h3 class="tier-head"><span data-i18n="store.models">Premium 3D models</span>
+          <span class="tier-count" id="storeModelCount"></span></h3>
+        <div class="store-grid" id="storeModels"></div>
+        <p class="tier-empty" id="storeModelsEmpty" data-i18n="store.empty">Nothing here yet — check back soon.</p>
+      </section>
+
+      <section class="store-block">
+        <h3 class="tier-head"><span data-i18n="store.presets">Premium presets</span>
+          <span class="tier-count" id="storePresetCount"></span></h3>
+        <div class="store-grid" id="storePresets"></div>
+        <p class="tier-empty" id="storePresetsEmpty" data-i18n="store.empty">Nothing here yet — check back soon.</p>
+      </section>
+
+      <section class="store-block">
+        <h3 class="tier-head"><span data-i18n="store.other">Courses &amp; resources</span>
+          <span class="tier-count" id="storeOtherCount"></span></h3>
+        <div class="store-grid" id="storeOther"></div>
+        <p class="tier-empty" id="storeOtherEmpty" data-i18n="store.empty">Nothing here yet — check back soon.</p>
+      </section>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="panel" id="panel-contact" role="tabpanel" aria-labelledby="tab-contact" hidden>
+      <div class="panel-head">
+        <h2 data-i18n="contact.title">Get in Touch</h2>
+        <p data-i18n="contact.sub">Open for collaborations, commissions and animation work.</p>
+      </div>
+
+      <div class="contact-grid">
+        <a class="contact-card"
+           href="https://www.tiktok.com/@alphaff.freefire"
+           target="_blank"
+           rel="noopener noreferrer">
+          <span class="contact-icon" aria-hidden="true">♪</span>
+          <span class="contact-label">TikTok</span>
+          <span class="contact-value">@alphaff.freefire</span>
+        </a>
+
+        <a class="contact-card"
+           href="https://www.instagram.com/alphaff.freefire/"
+           target="_blank"
+           rel="noopener noreferrer">
+          <span class="contact-icon" aria-hidden="true">◉</span>
+          <span class="contact-label">Instagram</span>
+          <span class="contact-value">@alphaff.freefire</span>
+        </a>
+
+        <a class="contact-card"
+           href="https://youtube.com/@alpha.blender3d"
+           target="_blank"
+           rel="noopener noreferrer">
+          <span class="contact-icon" aria-hidden="true">▶</span>
+          <span class="contact-label">YouTube</span>
+          <span class="contact-value">@alpha.blender3d</span>
+        </a>
+
+        <a class="contact-card" href="mailto:alphaffcollabs@gmail.com">
+          <span class="contact-icon" aria-hidden="true">✉</span>
+          <span class="contact-label">Email</span>
+          <span class="contact-value">alphaffcollabs@gmail.com</span>
+        </a>
+      </div>
+
+      <p class="contact-note" data-i18n="contact.note">Fastest reply is usually on TikTok.</p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> Alpha &middot; <span data-i18n="footer.role">3D Animator &amp; Creator</span></p>
+  </footer>
+
+  <script>
+  (function () {
+    'use strict';
+
+    /* ============================================================
+       MODEL LIST
+       The real list comes from models/models.json, rewritten by the
+       watcher whenever the models folder changes. This built-in copy
+       is only a fallback for when that file cannot be read.
+       ============================================================ */
+    const FALLBACK_MODELS = [
+      { id: 'alpha', name: 'Alpha', kind: '', glb: '6.1 MB', blend: '6.6 MB', hasBlend: true, tier: 'free', price: '' }
+    ];
+
+    let MODELS = FALLBACK_MODELS.slice();
+    let manifestStamp = null;
+
+    const I18N = window.AlphaI18n;
+    const t = function (k, v) { return I18N ? I18N.t(k, v) : k; };
+
+    /* ---------- Elements ---------- */
+    const tabs        = Array.from(document.querySelectorAll('.tab'));
+    const search      = document.getElementById('modelSearch');
+    const searchClear = document.getElementById('searchClear');
+    const searchHint  = document.getElementById('searchHint');
+    const gridFree    = document.getElementById('gridFree');
+    const tierFree    = document.getElementById('tierFree');
+    const freeCount   = document.getElementById('freeCount');
+
+    const storeModels       = document.getElementById('storeModels');
+    const storePresets      = document.getElementById('storePresets');
+    const storeOther        = document.getElementById('storeOther');
+    const storeModelCount   = document.getElementById('storeModelCount');
+    const storePresetCount  = document.getElementById('storePresetCount');
+    const storeOtherCount   = document.getElementById('storeOtherCount');
+    const storeModelsEmpty  = document.getElementById('storeModelsEmpty');
+    const storePresetsEmpty = document.getElementById('storePresetsEmpty');
+    const storeOtherEmpty   = document.getElementById('storeOtherEmpty');
+    const stage       = document.getElementById('modelStage');
+    const viewer      = document.getElementById('mainModel');
+    const backdrop    = document.getElementById('modelBackdrop');
+    const expandBtn   = document.getElementById('expandBtn');
+    const closeBtn    = document.getElementById('closeBtn');
+    const loadBtn     = document.getElementById('modelLoad');
+    const captionName = document.getElementById('captionName');
+    const captionKind = document.getElementById('captionKind');
+    const dlGlb       = document.getElementById('dlGlb');
+    const dlBlend     = document.getElementById('dlBlend');
+    const glbSize     = document.getElementById('glbSize');
+    const blendSize   = document.getElementById('blendSize');
+
+    const menuBtn         = document.getElementById('menuBtn');
+    const drawer          = document.getElementById('sideMenu');
+    const drawerBackdrop  = document.getElementById('drawerBackdrop');
+    const drawerClose     = document.getElementById('drawerClose');
+    const openSettingsBtn = document.getElementById('openSettings');
+    const modal           = document.getElementById('settingsModal');
+    const modalBackdrop   = document.getElementById('settingsBackdrop');
+    const settingsClose   = document.getElementById('settingsClose');
+    const langGrid        = document.getElementById('langGrid');
+    const cbAutoRotate    = document.getElementById('setAutoRotate');
+    const cbReduceMotion  = document.getElementById('setReduceMotion');
+    const cbDataSaver     = document.getElementById('setDataSaver');
+
+    let currentId = null;
+    let currentModel = null;
+    let query = '';
+
+    /* ============================================================
+       SETTINGS
+       Stored per browser. Reads and writes are wrapped because
+       storage throws in private mode and some embedded browsers.
+       ============================================================ */
+    const SETTINGS_KEY = 'alpha.settings';
+
+    const settings = { autoRotate: true, reduceMotion: false, dataSaver: false };
+
+    function loadSettings() {
+      let raw = null;
+      try { raw = localStorage.getItem(SETTINGS_KEY); } catch (e) { return; }
+      if (!raw) return;
+      try {
+        const saved = JSON.parse(raw);
+        if (typeof saved.autoRotate   === 'boolean') settings.autoRotate   = saved.autoRotate;
+        if (typeof saved.reduceMotion === 'boolean') settings.reduceMotion = saved.reduceMotion;
+        if (typeof saved.dataSaver    === 'boolean') settings.dataSaver    = saved.dataSaver;
+      } catch (e) { /* corrupt value, keep defaults */ }
+    }
+
+    function saveSettings() {
+      try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings)); } catch (e) { /* blocked */ }
+    }
+
+    function applySettings() {
+      if (settings.autoRotate) viewer.setAttribute('auto-rotate', '');
+      else viewer.removeAttribute('auto-rotate');
+
+      document.documentElement.classList.toggle('reduce-motion', settings.reduceMotion);
+
+      cbAutoRotate.checked   = settings.autoRotate;
+      cbReduceMotion.checked = settings.reduceMotion;
+      cbDataSaver.checked    = settings.dataSaver;
+    }
+
+    cbAutoRotate.addEventListener('change', function () {
+      settings.autoRotate = cbAutoRotate.checked; saveSettings(); applySettings();
+    });
+
+    cbReduceMotion.addEventListener('change', function () {
+      settings.reduceMotion = cbReduceMotion.checked; saveSettings(); applySettings();
+    });
+
+    cbDataSaver.addEventListener('change', function () {
+      settings.dataSaver = cbDataSaver.checked;
+      saveSettings(); applySettings();
+      // Turning it off should load whatever is selected right away.
+      if (!settings.dataSaver && currentModel && !viewer.getAttribute('src')) loadNow();
+    });
+
+    /* ============================================================
+       MENU + MODAL
+       ============================================================ */
+    function openDrawer() {
+      drawer.hidden = false; drawerBackdrop.hidden = false;
+      requestAnimationFrame(function () { drawer.classList.add('is-open'); });
+      menuBtn.setAttribute('aria-expanded', 'true');
+      drawerClose.focus();
+    }
+
+    function closeDrawer() {
+      drawer.classList.remove('is-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      window.setTimeout(function () {
+        drawer.hidden = true; drawerBackdrop.hidden = true;
+      }, settings.reduceMotion ? 0 : 260);
+    }
+
+    function openModal() {
+      modal.hidden = false; modalBackdrop.hidden = false;
+      requestAnimationFrame(function () { modal.classList.add('is-open'); });
+      settingsClose.focus();
+    }
+
+    function closeModal() {
+      modal.classList.remove('is-open');
+      window.setTimeout(function () {
+        modal.hidden = true; modalBackdrop.hidden = true;
+      }, settings.reduceMotion ? 0 : 220);
+    }
+
+    menuBtn.addEventListener('click', function () {
+      if (drawer.hidden) openDrawer(); else closeDrawer();
+    });
+    drawerClose.addEventListener('click', closeDrawer);
+    drawerBackdrop.addEventListener('click', closeDrawer);
+
+    openSettingsBtn.addEventListener('click', function () { closeDrawer(); openModal(); });
+    settingsClose.addEventListener('click', closeModal);
+    modalBackdrop.addEventListener('click', closeModal);
+
+    /* ============================================================
+       LANGUAGE PICKER
+       ============================================================ */
+    function buildLangGrid() {
+      if (!I18N) return;
+      langGrid.innerHTML = '';
+      I18N.langs.forEach(function (l) {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'lang-btn' + (l.code === I18N.current ? ' is-active' : '');
+        b.textContent = l.name;
+        b.setAttribute('lang', l.code);
+        b.dataset.code = l.code;
+        b.addEventListener('click', function () { I18N.set(l.code); });
+        langGrid.appendChild(b);
+      });
+    }
+
+    document.addEventListener('alpha:langchange', function () {
+      buildLangGrid();
+      renderPicker();
+      if (currentModel) applyMeta(currentModel);
+      if (loadBtn.hidden === false && currentModel) {
+        loadBtn.textContent = t('data.load', { size: currentModel.glb || '' });
+      }
+      renderPresets(presets);
+      renderStore();
+    });
+
+    /* ============================================================
+       TABS
+       ============================================================ */
+    function activeTab() {
+      const a = tabs.filter(function (x) { return x.classList.contains('is-active'); })[0];
+      return a ? a.id.replace('tab-', '') : 'home';
+    }
+
+    function showPanel(name) {
+      tabs.forEach(function (tab) {
+        const isTarget = tab.id === 'tab-' + name;
+        const panel = document.getElementById(tab.getAttribute('aria-controls'));
+        tab.classList.toggle('is-active', isTarget);
+        tab.setAttribute('aria-selected', isTarget ? 'true' : 'false');
+        if (panel) {
+          panel.hidden = !isTarget;
+          panel.classList.toggle('is-active', isTarget);
+        }
+      });
+      window.scrollTo({ top: 0, behavior: settings.reduceMotion ? 'auto' : 'smooth' });
+
+      // the models tab gets a wider page than the rest of the site
+      document.body.classList.toggle('on-models', name === 'models');
+
+      // the panes only have a measurable height once the panel is visible
+      if (name === 'models') {
+        window.requestAnimationFrame(sizeLibrary);
+        window.setTimeout(sizeLibrary, 320);   // again after the scroll settles
+      }
+    }
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () { showPanel(tab.id.replace('tab-', '')); });
+    });
+
+    document.querySelectorAll('[data-goto]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        showPanel(btn.dataset.goto);
+        if (!drawer.hidden) closeDrawer();
+      });
+    });
+
+    /* ============================================================
+       SEARCH
+       ============================================================ */
+    function esc(s) {
+      return String(s).replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+      });
+    }
+
+    function isSubsequence(q, text) {
+      let i = 0;
+      for (let j = 0; j < text.length && i < q.length; j++) if (text[j] === q[i]) i++;
+      return i === q.length;
+    }
+
+    function matchScore(q, m) {
+      const name = String(m.name || '').toLowerCase();
+      const id   = String(m.id   || '').toLowerCase();
+      if (name === q || id === q)                         return 900;
+      if (name.indexOf(q) === 0 || id.indexOf(q) === 0)   return 800 - name.length;
+      const at = name.indexOf(q);
+      if (at > -1)                                        return 700 - at;
+      if (id.indexOf(q) > -1)                             return 690;
+      if (isSubsequence(q, name) || isSubsequence(q, id)) return 600;
+      return 0;
+    }
+
+    function distance(a, b) {
+      if (a === b) return 0;
+      if (!a.length) return b.length;
+      if (!b.length) return a.length;
+      let prev = [];
+      for (let j = 0; j <= b.length; j++) prev[j] = j;
+      for (let i = 1; i <= a.length; i++) {
+        const row = [i];
+        for (let j = 1; j <= b.length; j++) {
+          const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+          row[j] = Math.min(row[j - 1] + 1, prev[j] + 1, prev[j - 1] + cost);
+        }
+        prev = row;
+      }
+      return prev[b.length];
+    }
+
+    function rank(raw) {
+      const q = String(raw || '').trim().toLowerCase();
+      if (!q) return { mode: 'all', items: MODELS.slice() };
+
+      const hits = MODELS
+        .map(function (m) { return { m: m, s: matchScore(q, m) }; })
+        .filter(function (x) { return x.s > 0; })
+        .sort(function (a, b) { return b.s - a.s; })
+        .map(function (x) { return x.m; });
+
+      if (hits.length) return { mode: 'match', items: hits };
+
+      const near = MODELS
+        .map(function (m) {
+          return { m: m, d: Math.min(distance(q, String(m.name).toLowerCase()),
+                                     distance(q, String(m.id).toLowerCase())) };
+        })
+        .sort(function (a, b) { return a.d - b.d; })
+        .slice(0, 3)
+        .map(function (x) { return x.m; });
+
+      return { mode: 'closest', items: near };
+    }
+
+    function highlight(name, raw) {
+      const q = String(raw || '').trim().toLowerCase();
+      if (!q) return esc(name);
+      const at = String(name).toLowerCase().indexOf(q);
+      if (at < 0) return esc(name);
+      return esc(name.slice(0, at)) +
+             '<mark>' + esc(name.slice(at, at + q.length)) + '</mark>' +
+             esc(name.slice(at + q.length));
+    }
+
+    function isPaid(m) { return m.tier === 'paid'; }
+
+    function cardFor(m) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'model-card' + (m.id === currentId ? ' is-active' : '');
+      btn.dataset.id = m.id;
+
+      const name = document.createElement('span');
+      name.className = 'model-card-name';
+      name.innerHTML = highlight(m.name, query);
+      btn.appendChild(name);
+
+      if (isPaid(m)) {
+        const tag = document.createElement('span');
+        tag.className = 'model-card-badge';
+        tag.textContent = m.price ? m.price : t('badge.paid');
+        btn.appendChild(tag);
+      }
+
+      btn.addEventListener('click', function () {
+        selectModel(m.id);
+        // The library sits above the viewer, so bring the model into view
+        // instead of leaving the visitor looking at the card they clicked.
+        try {
+          stage.scrollIntoView({
+            behavior: settings.reduceMotion ? 'auto' : 'smooth',
+            block: 'center'
+          });
+        } catch (e) { stage.scrollIntoView(); }
+      });
+      return btn;
+    }
+
+    function fill(grid, list) {
+      grid.innerHTML = '';
+      list.forEach(function (m) { grid.appendChild(cardFor(m)); });
+    }
+
+    function renderPicker() {
+      const res = rank(query);
+      const searching = !!query.trim();
+
+      // Premium models live in the Store now, not in this list.
+      const free = res.items.filter(function (m) { return !isPaid(m); });
+
+      fill(gridFree, free);
+
+      const totalFree = MODELS.filter(function (m) { return !isPaid(m); }).length;
+      freeCount.textContent = searching ? free.length + ' / ' + totalFree : String(totalFree);
+      tierFree.hidden = searching && free.length === 0;
+
+      searchClear.hidden = !query;
+
+      const typed = query.trim();
+      if (res.mode === 'closest') {
+        searchHint.hidden = false;
+        searchHint.textContent = t('search.noMatch', { q: typed });
+      } else if (res.mode === 'match' && typed) {
+        searchHint.hidden = false;
+        searchHint.textContent = t('search.count', { n: res.items.length, m: MODELS.length });
+      } else {
+        searchHint.hidden = true;
+        searchHint.textContent = '';
+      }
+    }
+
+    search.addEventListener('input', function () { query = search.value; renderPicker(); });
+
+    search.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const first = document.querySelector('#panel-models .model-card');
+        if (first) { selectModel(first.dataset.id); search.blur(); }
+      } else if (e.key === 'Escape') {
+        clearSearch();
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        const first = document.querySelector('#panel-models .model-card');
+        if (first) first.focus();
+      }
+    });
+
+    function clearSearch() { query = ''; search.value = ''; renderPicker(); }
+
+    searchClear.addEventListener('click', function () { clearSearch(); search.focus(); });
+
+    document.addEventListener('keydown', function (e) {
+      if (activeTab() !== 'models') return;
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+      if (stage.classList.contains('expanded')) return;
+      if (!drawer.hidden || !modal.hidden) return;
+
+      const tag = (document.activeElement && document.activeElement.tagName) || '';
+      if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+
+      if (e.key.length === 1 && /\S/.test(e.key)) search.focus();
+    });
+
+    /* ============================================================
+       MODEL SWITCHING
+       ============================================================ */
+    let swapTimer = null;
+    let safetyTimer = null;
+
+    // Several files are named with spaces ("le chris.glb"), so the name has
+    // to be encoded or the request 404s on a stricter server.
+    function fileFor(m, ext) { return './models/' + encodeURIComponent(m.id) + ext; }
+    function srcFor(m) { return fileFor(m, '.glb'); }
+
+    function applyMeta(m) {
+      captionName.textContent = m.name;
+      captionKind.textContent = m.kind ? m.kind : t('viewer.kind');
+      viewer.setAttribute('alt', m.name);
+
+      const locked = isPaid(m);
+
+      dlGlb.href = locked ? '#' : srcFor(m);
+      dlGlb.setAttribute('download', m.id + '.glb');
+      glbSize.textContent = locked ? t('dl.locked') : (m.glb || '');
+
+      const hasBlend = m.hasBlend !== false;
+      dlBlend.href = (hasBlend && !locked) ? fileFor(m, '.blend') : '#';
+      dlBlend.setAttribute('download', m.id + '.blend');
+      blendSize.textContent = locked ? t('dl.locked')
+                            : (hasBlend ? (m.blend || '') : t('dl.missing'));
+
+      dlBlend.classList.toggle('is-missing', !hasBlend && !locked);
+      dlGlb.classList.toggle('is-locked', locked);
+      dlBlend.classList.toggle('is-locked', locked);
+      dlGlb.setAttribute('aria-disabled', locked ? 'true' : 'false');
+      dlBlend.setAttribute('aria-disabled', (locked || !hasBlend) ? 'true' : 'false');
+    }
+
+    function finishSwap() {
+      window.clearTimeout(safetyTimer);
+      viewer.classList.remove('is-swapping');
+    }
+
+    function showLoadButton(m) {
+      window.clearTimeout(swapTimer);
+      window.clearTimeout(safetyTimer);
+      viewer.classList.remove('is-swapping');
+      viewer.removeAttribute('src');
+      loadBtn.hidden = false;
+      loadBtn.textContent = t('data.load', { size: m.glb || '' });
+    }
+
+    function loadNow() {
+      if (!currentModel) return;
+      loadBtn.hidden = true;
+      viewer.setAttribute('src', srcFor(currentModel));
+    }
+
+    loadBtn.addEventListener('click', loadNow);
+
+    function selectModel(id, force) {
+      if (id === currentId && !force) return;
+      const m = MODELS.filter(function (x) { return x.id === id; })[0];
+      if (!m || isPaid(m)) return;
+
+      const isFirst = currentId === null;
+      currentId = id;
+      currentModel = m;
+      applyMeta(m);
+      renderPicker();
+
+      if (settings.dataSaver) { showLoadButton(m); return; }
+
+      loadBtn.hidden = true;
+
+      if (isFirst || settings.reduceMotion) {
+        viewer.setAttribute('src', srcFor(m));
+        return;
+      }
+
+      viewer.classList.add('is-swapping');
+      window.clearTimeout(swapTimer);
+      window.clearTimeout(safetyTimer);
+
+      swapTimer = window.setTimeout(function () {
+        viewer.setAttribute('src', srcFor(m));
+        safetyTimer = window.setTimeout(finishSwap, 8000);
+      }, 300);
+    }
+
+    /* ============================================================
+       AUTOMATIC MATERIAL FIX
+       These character exports arrive with metalness switched on, and
+       in most of them the colour texture is also wired in as the
+       roughness map, so the character renders as chrome. This runs on
+       every model as it loads, including ones added in future.
+       ============================================================ */
+    const MATERIAL_FIX = { enabled: true, metallic: 0, roughness: 0.6 };
+
+    function sameImage(a, b) {
+      if (!a || !b) return false;
+      try {
+        if (a === b) return true;
+        if (a.texture && b.texture && a.texture === b.texture) return true;
+        const sa = a.texture && a.texture.source;
+        const sb = b.texture && b.texture.source;
+        if (sa && sb) {
+          if (sa === sb) return true;
+          if (sa.uri && sb.uri && sa.uri === sb.uri) return true;
+          if (sa.name && sb.name && sa.name === sb.name) return true;
+        }
+      } catch (e) { /* fall through */ }
+      return false;
+    }
+
+    function fixMaterials() {
+      if (!MATERIAL_FIX.enabled) return;
+      let model = null;
+      try { model = viewer.model; } catch (e) { return; }
+      if (!model || !model.materials || !model.materials.length) return;
+
+      model.materials.forEach(function (mat) {
+        try {
+          if (typeof mat.ensureLoaded === 'function') mat.ensureLoaded();
+          const pbr = mat.pbrMetallicRoughness;
+          if (!pbr) return;
+
+          if (typeof pbr.setMetallicFactor === 'function') {
+            pbr.setMetallicFactor(MATERIAL_FIX.metallic);
+          }
+
+          const baseInfo = pbr.baseColorTexture;
+          const mrInfo   = pbr.metallicRoughnessTexture;
+
+          if (mrInfo && mrInfo.texture && sameImage(baseInfo, mrInfo)) {
+            if (typeof mrInfo.setTexture === 'function') mrInfo.setTexture(null);
+            if (typeof pbr.setRoughnessFactor === 'function') {
+              pbr.setRoughnessFactor(MATERIAL_FIX.roughness);
+            }
+          }
+        } catch (e) { /* one odd material must not stop the others */ }
+      });
+    }
+
+    viewer.addEventListener('load', function () { fixMaterials(); finishSwap(); refit(); });
+    viewer.addEventListener('error', finishSwap);
+
+    // Premium models can be previewed but not downloaded yet.
+    [dlGlb, dlBlend].forEach(function (el) {
+      el.addEventListener('click', function (e) {
+        if (el.classList.contains('is-locked') || el.classList.contains('is-missing')) {
+          e.preventDefault();
+        }
+      });
+    });
+
+    /* ============================================================
+       FULLSCREEN
+       ============================================================ */
+    let fitTimer = null;
+
+    function refit() {
+      if (typeof viewer.updateFraming !== 'function') return;
+      let orbit = null;
+      try {
+        if (typeof viewer.getCameraOrbit === 'function') orbit = viewer.getCameraOrbit();
+      } catch (e) { /* not ready */ }
+
+      viewer.updateFraming().then(function () {
+        viewer.cameraOrbit = orbit
+          ? orbit.theta + 'rad ' + orbit.phi + 'rad 105%'
+          : 'auto auto 105%';
+      }).catch(function () { /* ignore */ });
+    }
+
+    function scheduleRefit() {
+      window.clearTimeout(fitTimer);
+      fitTimer = window.setTimeout(refit, 140);
+    }
+
+    function isExpanded() { return stage.classList.contains('expanded'); }
+
+    function expandModel() {
+      if (isExpanded()) return;
+      stage.classList.add('expanded');
+      document.body.style.overflow = 'hidden';
+      viewer.setAttribute('touch-action', 'none');
+      scheduleRefit();
+    }
+
+    function collapseModel() {
+      if (!isExpanded()) return;
+      stage.classList.remove('expanded');
+      document.body.style.overflow = '';
+      viewer.setAttribute('touch-action', 'pan-y');
+      scheduleRefit();
+    }
+
+    expandBtn.addEventListener('click', expandModel);
+    closeBtn.addEventListener('click', collapseModel);
+    backdrop.addEventListener('click', collapseModel);
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      if (isExpanded()) { collapseModel(); return; }
+      if (!modal.hidden)  { closeModal();  return; }
+      if (!drawer.hidden) { closeDrawer(); }
+    });
+
+    let pressing = false, downX = 0, downY = 0, dragged = false;
+
+    viewer.addEventListener('pointerdown', function (e) {
+      pressing = true; dragged = false; downX = e.clientX; downY = e.clientY;
+    });
+
+    viewer.addEventListener('pointermove', function (e) {
+      if (!pressing) return;
+      if (Math.abs(e.clientX - downX) > 6 || Math.abs(e.clientY - downY) > 6) dragged = true;
+    });
+
+    window.addEventListener('pointerup', function () { pressing = false; });
+
+    viewer.addEventListener('click', function () {
+      if (!dragged && !isExpanded() && viewer.getAttribute('src')) expandModel();
+    });
+
+    window.addEventListener('resize', scheduleRefit);
+
+    /* ============================================================
+       LIBRARY HEIGHT
+
+       The two panes scroll independently, which needs a real pixel
+       height. It is measured rather than hard-coded so it survives
+       the heading wrapping, a different font, or a themed tab bar.
+       ============================================================ */
+    const library = document.querySelector('.library');
+
+    function sizeLibrary() {
+      if (!library) return;
+
+      if (window.innerWidth <= 900) {   // phones keep normal page scrolling
+        library.style.height = '';
+        return;
+      }
+
+      library.style.height = 'auto';
+      const top = library.getBoundingClientRect().top;
+      const available = window.innerHeight - top - 24;   // 24px breathing room
+      library.style.height = Math.max(380, available) + 'px';
+    }
+
+    window.addEventListener('resize', sizeLibrary);
+
+    /* ============================================================
+       COLOUR CORRECTION TAB
+
+       Before/after images live in media/ and presets in presets/.
+       Both are optional: if the files are not there yet the section
+       shows its "coming soon" note instead of a broken image.
+       ============================================================ */
+    const baWrap   = document.getElementById('baWrap');
+    const baBefore = document.getElementById('baBefore');
+    const baAfter  = document.getElementById('baAfter');
+    const baHandle = document.getElementById('baHandle');
+    const baRange  = document.getElementById('baRange');
+    const baHint   = document.getElementById('baHint');
+    const baEmpty  = document.getElementById('baEmpty');
+
+    const presetGrid  = document.getElementById('presetGrid');
+    const presetCount = document.getElementById('presetCount');
+    const presetEmpty = document.getElementById('presetEmpty');
+
+    function setCompare(v) {
+      const pct = Math.max(0, Math.min(100, Number(v)));
+      // clip-path keeps both images at full container size, so they stay
+      // aligned however the box is resized.
+      baBefore.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
+      baHandle.style.insetInlineStart = pct + '%';
+    }
+
+    baRange.addEventListener('input', function () { setCompare(baRange.value); });
+
+    function showCompare() {
+      baWrap.hidden = false;
+      baHint.hidden = false;
+      baEmpty.hidden = true;
+      setCompare(baRange.value);
+    }
+
+    // Both images have to load before the comparison means anything.
+    (function initCompare() {
+      let ready = 0, failed = false;
+      function done() {
+        ready++;
+        if (!failed && ready === 2) showCompare();
+      }
+      function fail() { failed = true; baWrap.hidden = true; baEmpty.hidden = false; }
+
+      [baBefore, baAfter].forEach(function (img) {
+        if (img.complete) { (img.naturalWidth ? done : fail)(); return; }
+        img.addEventListener('load', done);
+        img.addEventListener('error', fail);
+      });
+    })();
+
+    function renderPresets(all) {
+      // paid presets are shown in the Store instead
+      const list = all.filter(function (p) { return p.tier !== 'paid'; });
+      presetGrid.innerHTML = '';
+
+      list.forEach(function (p) {
+        const a = document.createElement('a');
+        a.className = 'preset-card';
+        a.href = './presets/' + encodeURIComponent(p.file);
+        a.setAttribute('download', p.file);
+
+        const name = document.createElement('span');
+        name.className = 'preset-name';
+        name.textContent = p.name || p.file;
+        a.appendChild(name);
+
+        if (p.desc) {
+          const d = document.createElement('span');
+          d.className = 'preset-desc';
+          d.textContent = p.desc;
+          a.appendChild(d);
+        }
+
+        const foot = document.createElement('span');
+        foot.className = 'preset-foot';
+        foot.textContent = (p.size || '') + '  ' + t('dl.action');
+        a.appendChild(foot);
+
+        presetGrid.appendChild(a);
+      });
+
+      presetCount.textContent = list.length ? String(list.length) : '';
+      presetEmpty.hidden = list.length > 0;
+    }
+
+    let presets = [];
+
+    function loadPresets() {
+      return fetch('./presets/presets.json', { cache: 'no-store' })
+        .then(function (r) { if (!r.ok) throw new Error('none'); return r.json(); })
+        .then(function (d) {
+          presets = (Array.isArray(d.presets) ? d.presets : [])
+            .filter(function (p) { return p && p.file; })
+            .map(function (p) {
+              p.tier = String(p.tier || 'free').toLowerCase() === 'paid' ? 'paid' : 'free';
+              return p;
+            });
+          renderPresets(presets);
+          renderStore();
+        })
+        .catch(function () { presets = []; renderPresets(presets); renderStore(); });
+    }
+
+    /* ============================================================
+       STORE
+
+       Everything paid lives here: premium models and presets are
+       whatever is marked "tier":"paid" in their own manifest, plus
+       anything listed by hand in store.json (courses, lessons, and
+       anything else that isn't a file in models/ or presets/).
+       ============================================================ */
+    let storeExtras = [];
+
+    function storeCard(opts) {
+      const el = document.createElement(opts.url ? 'a' : 'div');
+      el.className = 'store-card' + (opts.url ? '' : ' is-soon');
+      if (opts.url) {
+        el.href = opts.url;
+        el.target = '_blank';
+        el.rel = 'noopener noreferrer';
+      }
+
+      const head = document.createElement('div');
+      head.className = 'store-card-head';
+
+      const name = document.createElement('span');
+      name.className = 'store-card-name';
+      name.textContent = opts.title;
+      head.appendChild(name);
+
+      const price = document.createElement('span');
+      price.className = 'store-card-price';
+      price.textContent = opts.price || t('badge.paid');
+      head.appendChild(price);
+
+      el.appendChild(head);
+
+      if (opts.desc) {
+        const d = document.createElement('p');
+        d.className = 'store-card-desc';
+        d.textContent = opts.desc;
+        el.appendChild(d);
+      }
+
+      const foot = document.createElement('span');
+      foot.className = 'store-card-foot';
+      foot.textContent = opts.url ? t('store.view') : t('store.soon');
+      el.appendChild(foot);
+
+      return el;
+    }
+
+    function fillStore(grid, empty, count, items) {
+      grid.innerHTML = '';
+      items.forEach(function (it) { grid.appendChild(storeCard(it)); });
+      empty.hidden = items.length > 0;
+      count.textContent = items.length ? String(items.length) : '';
+    }
+
+    function renderStore() {
+      fillStore(storeModels, storeModelsEmpty, storeModelCount,
+        MODELS.filter(isPaid).map(function (m) {
+          return { title: m.name, desc: m.kind || '', price: m.price, url: m.url || '' };
+        }));
+
+      fillStore(storePresets, storePresetsEmpty, storePresetCount,
+        presets.filter(function (p) { return p.tier === 'paid'; }).map(function (p) {
+          return { title: p.name || p.file, desc: p.desc || '', price: p.price, url: p.url || '' };
+        }));
+
+      fillStore(storeOther, storeOtherEmpty, storeOtherCount,
+        storeExtras.map(function (x) {
+          return { title: x.title || '', desc: x.desc || '', price: x.price, url: x.url || '' };
+        }));
+    }
+
+    function loadStoreExtras() {
+      return fetch('./store.json', { cache: 'no-store' })
+        .then(function (r) { if (!r.ok) throw new Error('none'); return r.json(); })
+        .then(function (d) {
+          storeExtras = Array.isArray(d.items) ? d.items.filter(function (x) { return x && x.title; }) : [];
+        })
+        .catch(function () { storeExtras = []; })
+        .then(function () { renderStore(); });
+    }
+
+    /* ============================================================
+       MANIFEST
+       ============================================================ */
+    function normalise(raw) {
+      return raw
+        .filter(function (m) { return m && m.id; })
+        .map(function (m) {
+          const kind = String(m.kind || '');
+          return {
+            id:       String(m.id),
+            name:     String(m.name || m.id),
+            // "3D model" is the watcher's default, so let it translate
+            kind:     /^3d model$/i.test(kind) ? '' : kind,
+            glb:      String(m.glb || ''),
+            blend:    String(m.blend || ''),
+            hasBlend: m.hasBlend !== false,
+            // anything not explicitly marked "paid" is free
+            tier:     String(m.tier || 'free').toLowerCase() === 'paid' ? 'paid' : 'free',
+            price:    String(m.price || '')
+          };
+        });
+    }
+
+    function loadManifest() {
+      return fetch('./models/models.json', { cache: 'no-store' })
+        .then(function (res) { if (!res.ok) throw new Error('no manifest'); return res.json(); })
+        .then(function (data) {
+          const list = normalise(Array.isArray(data.models) ? data.models : []);
+          if (!list.length) return false;
+          const stamp = String(data.generated || '') + '|' +
+                        list.map(function (m) { return m.id + ':' + m.glb + ':' + m.tier; }).join(',');
+          if (stamp === manifestStamp) return false;
+          manifestStamp = stamp;
+          MODELS = list;
+          return true;
+        })
+        .catch(function () { return false; });
+    }
+
+    function firstFree() {
+      return MODELS.filter(function (m) { return !isPaid(m); })[0];
+    }
+
+    function applyModelList() {
+      const current = MODELS.filter(function (m) { return m.id === currentId; })[0];
+      const first = firstFree();
+      if ((!current || isPaid(current)) && first) selectModel(first.id, true);
+      else renderPicker();
+      renderStore();
+    }
+
+    /* ============================================================
+       INIT
+       ============================================================ */
+    loadSettings();
+    if (I18N) I18N.init();
+    applySettings();
+    buildLangGrid();
+
+    loadPresets();
+    loadStoreExtras();
+
+    loadManifest().then(function () {
+      renderPicker();
+      renderStore();
+      const first = firstFree();
+      if (first) selectModel(first.id);
+
+      window.setInterval(function () {
+        if (document.hidden) return;
+        loadManifest().then(function (changed) { if (changed) applyModelList(); });
+      }, 5000);
+    });
+
+    sizeLibrary();
+    window.setTimeout(sizeLibrary, 300);
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  })();
+  </script>
+</body>
+</html>

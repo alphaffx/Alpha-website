@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alpha | 3D Creator</title>
+  <meta name="description" content="Alpha is a 3D animator and creator bringing characters to life through 3D animation. View interactive 3D models and animation work.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Alpha | 3D Creator">
+  <meta property="og:description" content="3D Animator &amp; Creator bringing characters to life through 3D animation.">
+  <meta property="og:type" content="website">
+
+  <link rel="stylesheet" href="style.css">
+
+  <script
+    type="module"
+    src="https://unpkg.com/@google/model-viewer@4.3.1/dist/model-viewer.min.js">
+  </script>
+</head>
+
+<body>
+  <div class="glow glow-a" aria-hidden="true"></div>
+  <div class="glow glow-b" aria-hidden="true"></div>
+
+  <nav class="tabbar" aria-label="Main sections">
+    <span class="brand">ALPHA</span>
+    <div class="tabs" role="tablist">
+      <button class="tab is-active" role="tab" id="tab-home"    aria-controls="panel-home"    aria-selected="true">Home</button>
+      <button class="tab"           role="tab" id="tab-models"  aria-controls="panel-models"  aria-selected="false">3D Models</button>
+      <button class="tab"           role="tab" id="tab-contact" aria-controls="panel-contact" aria-selected="false">Contact</button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ============ HOME ============ -->
+    <section class="panel is-active" id="panel-home" role="tabpanel" aria-labelledby="tab-home">
+      <header class="hero">
+        <p class="eyebrow">Portfolio</p>
+        <h1 class="title">ALPHA</h1>
+        <p class="tagline">3D Animator &amp; Creator</p>
+        <p class="subtitle">Bringing characters to life through 3D animation.</p>
+        <div class="hero-actions">
+          <button class="button" data-goto="models">View My Work</button>
+          <button class="button button-ghost" data-goto="contact">Get in Touch</button>
+        </div>
+      </header>
+
+      <div class="cards">
+        <article class="card">
+          <span class="card-icon" aria-hidden="true">◈</span>
+          <h3>Character Animation</h3>
+          <p>Rigging and animating characters with weight, timing and personality.</p>
+        </article>
+        <article class="card">
+          <span class="card-icon" aria-hidden="true">◐</span>
+          <h3>Interactive 3D</h3>
+          <p>Real-time models you can spin, inspect and explore right in the browser.</p>
+        </article>
+        <article class="card">
+          <span class="card-icon" aria-hidden="true">▶</span>
+          <h3>Short-Form Video</h3>
+          <p>Animation built for TikTok — fast, punchy and made to be rewatched.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ 3D MODELS ============ -->
+    <section class="panel" id="panel-models" role="tabpanel" aria-labelledby="tab-models" hidden>
+      <div class="panel-head">
+        <h2>3D Models</h2>
+        <p>Drag to rotate, scroll to zoom. Open fullscreen for a closer look.</p>
+      </div>
+
+      <div class="model-search">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <input id="modelSearch"
+               type="text"
+               class="search-input"
+               placeholder="Search models — just start typing"
+               autocomplete="off"
+               spellcheck="false"
+               aria-label="Search models"
+               aria-controls="modelPicker">
+        <button class="search-clear" id="searchClear" type="button" aria-label="Clear search" hidden>✕</button>
+      </div>
+
+      <p class="search-hint" id="searchHint" role="status" aria-live="polite" hidden></p>
+
+      <!-- Buttons are generated from models/models.json -->
+      <div class="model-picker" id="modelPicker" role="group" aria-label="Choose a model"></div>
+
+      <div class="model-stage" id="modelStage">
+        <div class="model-backdrop" id="modelBackdrop"></div>
+
+        <model-viewer
+          id="mainModel"
+          alt="Interactive 3D model preview"
+          camera-controls
+          auto-rotate
+          shadow-intensity="1"
+          touch-action="pan-y"
+          interaction-prompt="none"
+          reveal="auto"
+          class="hero-model">
+        </model-viewer>
+
+        <button class="expand-btn" id="expandBtn" type="button" aria-label="Open fullscreen view">
+          <span aria-hidden="true">⤢</span> Fullscreen
+        </button>
+
+        <button class="close-btn" id="closeBtn" type="button" aria-label="Close fullscreen view">&#10005;</button>
+      </div>
+
+      <p class="model-caption">
+        <strong id="captionName">—</strong> &middot; <span id="captionKind"></span>
+      </p>
+
+      <div class="downloads">
+        <p class="downloads-title">Download this model</p>
+
+        <div class="downloads-row">
+          <a class="dl-card" id="dlGlb" download>
+            <span class="dl-format">GLB <span class="dl-size" id="glbSize"></span></span>
+            <span class="dl-desc">Ready to view or drop into a game engine. Materials and textures included.</span>
+            <span class="dl-action">Download &darr;</span>
+          </a>
+
+          <a class="dl-card" id="dlBlend" download>
+            <span class="dl-format">.blend <span class="dl-size" id="blendSize"></span></span>
+            <span class="dl-desc">The full Blender source &mdash; rig, modifiers and node materials intact.</span>
+            <span class="dl-action">Download &darr;</span>
+          </a>
+        </div>
+
+        <p class="downloads-note">Free for personal use &middot; credit appreciated</p>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="panel" id="panel-contact" role="tabpanel" aria-labelledby="tab-contact" hidden>
+      <div class="panel-head">
+        <h2>Get in Touch</h2>
+        <p>Open for collaborations, commissions and animation work.</p>
+      </div>
+
+      <div class="contact-grid">
+        <a class="contact-card"
+           href="https://www.tiktok.com/@alphaff.freefire"
+           target="_blank"
+           rel="noopener noreferrer">
+          <span class="contact-icon" aria-hidden="true">♪</span>
+          <span class="contact-label">TikTok</span>
+          <span class="contact-value">@alphaff.freefire</span>
+        </a>
+
+        <a class="contact-card"
+           href="https://www.instagram.com/alphaff.freefire/"
+           target="_blank"
+           rel="noopener noreferrer">
+          <span class="contact-icon" aria-hidden="true">◉</span>
+          <span class="contact-label">Instagram</span>
+          <span class="contact-value">@alphaff.freefire</span>
+        </a>
+
+        <a class="contact-card"
+           href="https://youtube.com/@alpha.blender3d"
+           target="_blank"
+           rel="noopener noreferrer">
+          <span class="contact-icon" aria-hidden="true">▶</span>
+          <span class="contact-label">YouTube</span>
+          <span class="contact-value">@alpha.blender3d</span>
+        </a>
+
+        <a class="contact-card" href="mailto:alphaffcollabs@gmail.com">
+          <span class="contact-icon" aria-hidden="true">✉</span>
+          <span class="contact-label">Email</span>
+          <span class="contact-value">alphaffcollabs@gmail.com</span>
+        </a>
+      </div>
+
+      <p class="contact-note">Fastest reply is usually on TikTok.</p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> Alpha &middot; 3D Animator &amp; Creator</p>
+  </footer>
+
+  <script>
+  (function () {
+    'use strict';
+
+    /* ============================================================
+       MODEL LIST
+
+       The real list comes from models/models.json, which the
+       watcher script regenerates whenever you add or remove files.
+       This built-in copy is only a fallback for when that file
+       cannot be read — for example when index.html is opened
+       directly from the folder instead of through a local server.
+       ============================================================ */
+    const FALLBACK_MODELS = [
+      { id: 'adam',  name: 'Adam',  kind: '3D model', glb: '594 KB', blend: '701 KB', hasBlend: true },
+      { id: 'alpha', name: 'Alpha', kind: '3D model', glb: '6.0 MB', blend: '6.6 MB', hasBlend: true },
+      { id: 'miaou', name: 'Miaou', kind: '3D model', glb: '2.9 MB', blend: '3.5 MB', hasBlend: true }
+    ];
+
+    let MODELS = FALLBACK_MODELS.slice();
+    let manifestStamp = null;
+
+    /* ---------- Elements ---------- */
+    const tabs        = Array.from(document.querySelectorAll('.tab'));
+    const search      = document.getElementById('modelSearch');
+    const searchClear = document.getElementById('searchClear');
+    const searchHint  = document.getElementById('searchHint');
+    const picker      = document.getElementById('modelPicker');
+    const stage       = document.getElementById('modelStage');
+    const viewer      = document.getElementById('mainModel');
+    const backdrop    = document.getElementById('modelBackdrop');
+    const expandBtn   = document.getElementById('expandBtn');
+    const closeBtn    = document.getElementById('closeBtn');
+    const captionName = document.getElementById('captionName');
+    const captionKind = document.getElementById('captionKind');
+    const dlGlb       = document.getElementById('dlGlb');
+    const dlBlend     = document.getElementById('dlBlend');
+    const glbSize     = document.getElementById('glbSize');
+    const blendSize   = document.getElementById('blendSize');
+
+    let currentId = null;
+    let query     = '';
+
+    /* ============================================================
+       TABS
+       ============================================================ */
+    function activeTab() {
+      const t = tabs.filter(function (x) { return x.classList.contains('is-active'); })[0];
+      return t ? t.id.replace('tab-', '') : 'home';
+    }
+
+    function showPanel(name) {
+      tabs.forEach(function (tab) {
+        const isTarget = tab.id === 'tab-' + name;
+        const panel = document.getElementById(tab.getAttribute('aria-controls'));
+        tab.classList.toggle('is-active', isTarget);
+        tab.setAttribute('aria-selected', isTarget ? 'true' : 'false');
+        if (panel) {
+          panel.hidden = !isTarget;
+          panel.classList.toggle('is-active', isTarget);
+        }
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () { showPanel(tab.id.replace('tab-', '')); });
+    });
+
+    document.querySelectorAll('[data-goto]').forEach(function (btn) {
+      btn.addEventListener('click', function () { showPanel(btn.dataset.goto); });
+    });
+
+    /* ============================================================
+       SEARCH
+
+       Scoring, best first:
+         exact name or id         -> 900
+         starts with the query    -> 800
+         contains the query       -> 700
+         letters appear in order  -> 600   ("mu" finds "Miaou")
+       If nothing scores at all we fall back to edit distance and
+       offer the closest names instead of an empty list.
+       ============================================================ */
+
+    function esc(s) {
+      return String(s).replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+      });
+    }
+
+    function isSubsequence(q, text) {
+      let i = 0;
+      for (let j = 0; j < text.length && i < q.length; j++) {
+        if (text[j] === q[i]) i++;
+      }
+      return i === q.length;
+    }
+
+    function matchScore(q, m) {
+      const name = String(m.name || '').toLowerCase();
+      const id   = String(m.id   || '').toLowerCase();
+      if (name === q || id === q)                         return 900;
+      if (name.indexOf(q) === 0 || id.indexOf(q) === 0)   return 800 - name.length;
+      const at = name.indexOf(q);
+      if (at > -1)                                        return 700 - at;
+      if (id.indexOf(q) > -1)                             return 690;
+      if (isSubsequence(q, name) || isSubsequence(q, id)) return 600;
+      return 0;
+    }
+
+    /* Levenshtein distance: how many single-character edits turn one
+       string into the other. Used only for the "did you mean" case. */
+    function distance(a, b) {
+      if (a === b) return 0;
+      if (!a.length) return b.length;
+      if (!b.length) return a.length;
+      let prev = [];
+      for (let j = 0; j <= b.length; j++) prev[j] = j;
+      for (let i = 1; i <= a.length; i++) {
+        const row = [i];
+        for (let j = 1; j <= b.length; j++) {
+          const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+          row[j] = Math.min(row[j - 1] + 1, prev[j] + 1, prev[j - 1] + cost);
+        }
+        prev = row;
+      }
+      return prev[b.length];
+    }
+
+    function rank(raw) {
+      const q = String(raw || '').trim().toLowerCase();
+      if (!q) return { mode: 'all', items: MODELS.slice() };
+
+      const hits = MODELS
+        .map(function (m) { return { m: m, s: matchScore(q, m) }; })
+        .filter(function (x) { return x.s > 0; })
+        .sort(function (a, b) { return b.s - a.s; })
+        .map(function (x) { return x.m; });
+
+      if (hits.length) return { mode: 'match', items: hits };
+
+      const near = MODELS
+        .map(function (m) {
+          return {
+            m: m,
+            d: Math.min(distance(q, String(m.name).toLowerCase()),
+                        distance(q, String(m.id).toLowerCase()))
+          };
+        })
+        .sort(function (a, b) { return a.d - b.d; })
+        .slice(0, 3)
+        .map(function (x) { return x.m; });
+
+      return { mode: 'closest', items: near };
+    }
+
+    function highlight(name, raw) {
+      const q = String(raw || '').trim().toLowerCase();
+      if (!q) return esc(name);
+      const at = String(name).toLowerCase().indexOf(q);
+      if (at < 0) return esc(name);
+      return esc(name.slice(0, at)) +
+             '<mark>' + esc(name.slice(at, at + q.length)) + '</mark>' +
+             esc(name.slice(at + q.length));
+    }
+
+    function renderPicker() {
+      const res = rank(query);
+
+      picker.innerHTML = '';
+      res.items.forEach(function (m) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'model-chip' + (m.id === currentId ? ' is-active' : '');
+        btn.dataset.id = m.id;
+        btn.innerHTML = highlight(m.name, query);
+        btn.addEventListener('click', function () { selectModel(m.id); });
+        picker.appendChild(btn);
+      });
+
+      searchClear.hidden = !query;
+
+      const typed = query.trim();
+      if (res.mode === 'closest') {
+        searchHint.hidden = false;
+        searchHint.innerHTML = 'No model called &ldquo;' + esc(typed) +
+                               '&rdquo; &mdash; did you mean one of these?';
+      } else if (res.mode === 'match' && typed) {
+        searchHint.hidden = false;
+        searchHint.textContent = res.items.length + ' of ' + MODELS.length +
+                                 ' models — press Enter to open the first';
+      } else {
+        searchHint.hidden = true;
+        searchHint.textContent = '';
+      }
+    }
+
+    search.addEventListener('input', function () {
+      query = search.value;
+      renderPicker();
+    });
+
+    search.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const first = picker.querySelector('.model-chip');
+        if (first) { selectModel(first.dataset.id); search.blur(); }
+      } else if (e.key === 'Escape') {
+        clearSearch();
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        const first = picker.querySelector('.model-chip');
+        if (first) first.focus();
+      }
+    });
+
+    function clearSearch() {
+      query = '';
+      search.value = '';
+      renderPicker();
+    }
+
+    searchClear.addEventListener('click', function () { clearSearch(); search.focus(); });
+
+    /* Start typing anywhere on the models tab and the search box takes over. */
+    document.addEventListener('keydown', function (e) {
+      if (activeTab() !== 'models') return;
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+      if (stage.classList.contains('expanded')) return;
+
+      const tag = (document.activeElement && document.activeElement.tagName) || '';
+      if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+
+      if (e.key.length === 1 && /\S/.test(e.key)) search.focus();
+    });
+
+    /* ============================================================
+       MODEL SWITCHING
+       ============================================================ */
+    let swapTimer = null;
+    let safetyTimer = null;
+
+    function applyMeta(m) {
+      captionName.textContent = m.name;
+      captionKind.textContent = m.kind || '3D model';
+      viewer.setAttribute('alt', 'Interactive 3D preview of ' + m.name);
+
+      dlGlb.href = './models/' + m.id + '.glb';
+      dlGlb.setAttribute('download', m.id + '.glb');
+      glbSize.textContent = m.glb || '';
+
+      const hasBlend = m.hasBlend !== false;
+      dlBlend.href = hasBlend ? './models/' + m.id + '.blend' : '#';
+      dlBlend.setAttribute('download', m.id + '.blend');
+      blendSize.textContent = hasBlend ? (m.blend || '') : 'not uploaded';
+      dlBlend.classList.toggle('is-missing', !hasBlend);
+      dlBlend.setAttribute('aria-disabled', hasBlend ? 'false' : 'true');
+    }
+
+    function finishSwap() {
+      window.clearTimeout(safetyTimer);
+      viewer.classList.remove('is-swapping');
+    }
+
+    function selectModel(id, force) {
+      if (id === currentId && !force) return;
+      const m = MODELS.filter(function (x) { return x.id === id; })[0];
+      if (!m) return;
+
+      const isFirst = currentId === null;
+      currentId = id;
+      applyMeta(m);
+      renderPicker();
+
+      if (isFirst) {
+        viewer.setAttribute('src', './models/' + m.id + '.glb');
+        return;
+      }
+
+      viewer.classList.add('is-swapping');
+      window.clearTimeout(swapTimer);
+      window.clearTimeout(safetyTimer);
+
+      swapTimer = window.setTimeout(function () {
+        viewer.setAttribute('src', './models/' + m.id + '.glb');
+        safetyTimer = window.setTimeout(finishSwap, 8000);
+      }, 300);
+    }
+
+    viewer.addEventListener('load', function () { finishSwap(); refit(); });
+    viewer.addEventListener('error', finishSwap);
+
+    dlBlend.addEventListener('click', function (e) {
+      if (dlBlend.classList.contains('is-missing')) e.preventDefault();
+    });
+
+    /* ============================================================
+       FULLSCREEN
+       ============================================================ */
+    let fitTimer = null;
+
+    function refit() {
+      if (typeof viewer.updateFraming !== 'function') return;
+      let orbit = null;
+      try {
+        if (typeof viewer.getCameraOrbit === 'function') orbit = viewer.getCameraOrbit();
+      } catch (e) { /* not ready */ }
+
+      viewer.updateFraming().then(function () {
+        viewer.cameraOrbit = orbit
+          ? orbit.theta + 'rad ' + orbit.phi + 'rad 105%'
+          : 'auto auto 105%';
+      }).catch(function () { /* ignore */ });
+    }
+
+    function scheduleRefit() {
+      window.clearTimeout(fitTimer);
+      fitTimer = window.setTimeout(refit, 140);
+    }
+
+    function isExpanded() { return stage.classList.contains('expanded'); }
+
+    function expandModel() {
+      if (isExpanded()) return;
+      stage.classList.add('expanded');
+      document.body.style.overflow = 'hidden';
+      viewer.setAttribute('touch-action', 'none');
+      scheduleRefit();
+    }
+
+    function collapseModel() {
+      if (!isExpanded()) return;
+      stage.classList.remove('expanded');
+      document.body.style.overflow = '';
+      viewer.setAttribute('touch-action', 'pan-y');
+      scheduleRefit();
+    }
+
+    expandBtn.addEventListener('click', expandModel);
+    closeBtn.addEventListener('click', collapseModel);
+    backdrop.addEventListener('click', collapseModel);
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && isExpanded()) collapseModel();
+    });
+
+    let pressing = false, downX = 0, downY = 0, dragged = false;
+
+    viewer.addEventListener('pointerdown', function (e) {
+      pressing = true; dragged = false;
+      downX = e.clientX; downY = e.clientY;
+    });
+
+    viewer.addEventListener('pointermove', function (e) {
+      if (!pressing) return;
+      if (Math.abs(e.clientX - downX) > 6 || Math.abs(e.clientY - downY) > 6) dragged = true;
+    });
+
+    window.addEventListener('pointerup', function () { pressing = false; });
+
+    viewer.addEventListener('click', function () {
+      if (!dragged && !isExpanded()) expandModel();
+    });
+
+    window.addEventListener('resize', scheduleRefit);
+
+    /* ============================================================
+       MANIFEST
+
+       models/models.json is rewritten by watch-models.bat whenever
+       the models folder changes. We re-read it periodically so new
+       models appear without touching any code.
+       ============================================================ */
+    function normalise(raw) {
+      return raw
+        .filter(function (m) { return m && m.id; })
+        .map(function (m) {
+          return {
+            id:       String(m.id),
+            name:     String(m.name || m.id),
+            kind:     String(m.kind || '3D model'),
+            glb:      String(m.glb || ''),
+            blend:    String(m.blend || ''),
+            hasBlend: m.hasBlend !== false
+          };
+        });
+    }
+
+    function loadManifest() {
+      return fetch('./models/models.json', { cache: 'no-store' })
+        .then(function (res) {
+          if (!res.ok) throw new Error('no manifest');
+          return res.json();
+        })
+        .then(function (data) {
+          const list = normalise(Array.isArray(data.models) ? data.models : []);
+          if (!list.length) return false;
+
+          const stamp = String(data.generated || '') + '|' +
+                        list.map(function (m) { return m.id + ':' + m.glb; }).join(',');
+          if (stamp === manifestStamp) return false;
+
+          manifestStamp = stamp;
+          MODELS = list;
+          return true;
+        })
+        .catch(function () { return false; });
+    }
+
+    function applyModelList() {
+      const stillThere = MODELS.some(function (m) { return m.id === currentId; });
+      if (!stillThere && MODELS.length) selectModel(MODELS[0].id, true);
+      else renderPicker();
+    }
+
+    /* ============================================================
+       INIT
+       ============================================================ */
+    loadManifest().then(function () {
+      renderPicker();
+      if (MODELS.length) selectModel(MODELS[0].id);
+
+      window.setInterval(function () {
+        if (document.hidden) return;
+        loadManifest().then(function (changed) { if (changed) applyModelList(); });
+      }, 5000);
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  })();
+  </script>
+</body>
+</html>

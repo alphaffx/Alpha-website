@@ -1,0 +1,21 @@
+{
+  "generated": "2026-09-17T14:53:04",
+  "models": [
+    {"id":"alpha","name":"Alpha","kind":"3D model","glb":"6.1 MB","blend":"6.6 MB","hasBlend":true,"tier":"free","price":""},
+    {"id":"beesto","name":"Beesto","kind":"3D model","glb":"7.3 MB","blend":"9.5 MB","hasBlend":true,"tier":"free","price":""},
+    {"id":"camy","name":"Camy","kind":"3D model","glb":"2.7 MB","blend":"4.1 MB","hasBlend":true,"tier":"free","price":""},
+    {"id":"durento","name":"Durento","kind":"3D model","glb":"8.0 MB","blend":"10.1 MB","hasBlend":true,"tier":"free","price":""},
+    {"id":"furious","name":"Furious","kind":"3D model","glb":"1.4 MB","blend":"1.4 MB","hasBlend":true,"tier":"free","price":""},
+    {"id":"jokkie","name":"Jokkie","kind":"3D model","glb":"4.0 MB","blend":"4.8 MB","hasBlend":true,"tier":"free","price":""},
+    {"id":"kanzaki","name":"Kanzaki","kind":"3D model","glb":"518 KB","blend":"991 KB","hasBlend":true,"tier":"free","price":""},
+    {"id":"le chris","name":"Le Chris","kind":"3D model","glb":"7.8 MB","blend":"14.5 MB","hasBlend":true,"tier":"free","price":""},
+    {"id":"maxxo","name":"Maxxo","kind":"3D model","glb":"1.0 MB","blend":"2.3 MB","hasBlend":true,"tier":"free","price":""},
+    {"id":"miaou","name":"Miaou","kind":"3D model","glb":"2.9 MB","blend":"3.5 MB","hasBlend":true,"tier":"free","price":""},
+    {"id":"moiz","name":"Moiz","kind":"3D model","glb":"6.2 MB","blend":"8.4 MB","hasBlend":true,"tier":"free","price":""},
+    {"id":"presy","name":"Presy","kind":"3D model","glb":"4.1 MB","blend":"5.8 MB","hasBlend":true,"tier":"free","price":""},
+    {"id":"raynox","name":"Raynox","kind":"3D model","glb":"4.3 MB","blend":"5.1 MB","hasBlend":true,"tier":"free","price":""},
+    {"id":"rroli.n","name":"Rroli.n","kind":"3D model","glb":"1.8 MB","blend":"2.0 MB","hasBlend":true,"tier":"free","price":""},
+    {"id":"tung tung sahur","name":"Tung Tung Sahur","kind":"3D model","glb":"3.1 MB","blend":"3.0 MB","hasBlend":true,"tier":"free","price":""},
+    {"id":"zorro","name":"Zorro","kind":"3D model","glb":"1.5 MB","blend":"2.7 MB","hasBlend":true,"tier":"free","price":""}
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "_comment": "Courses, lessons and anything else for sale that isn't a file in models/ or presets/. Add an entry per item. Leave \"url\" empty and the card shows 'Coming soon' instead of a link.",
+  "items": [
+    {
+      "title": "Blender to TikTok — the full workflow",
+      "desc": "Coming soon: how a character goes from Blender to a finished clip.",
+      "price": "",
+      "url": ""
+    }
+  ]
+}
