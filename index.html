@@ -41,10 +41,14 @@
     </div>
 
     <div class="tabs" role="tablist">
+      <!-- EMPTY SECTIONS: "Color Correction" and "Store" are hidden because they
+           have no content yet. To bring one back, delete the word  hidden  from
+           its button below AND from the matching one in the menu drawer.
+           Nothing else was removed - the panels and all 8 translations are intact. -->
       <button class="tab is-active" role="tab" id="tab-home"    aria-controls="panel-home"    aria-selected="true"  data-i18n="nav.home">Home</button>
       <button class="tab"           role="tab" id="tab-models"  aria-controls="panel-models"  aria-selected="false" data-i18n="nav.models">3D Models</button>
-      <button class="tab"           role="tab" id="tab-cc"      aria-controls="panel-cc"      aria-selected="false" data-i18n="nav.cc">Color Correction</button>
-      <button class="tab"           role="tab" id="tab-store"   aria-controls="panel-store"   aria-selected="false" data-i18n="nav.store">Store</button>
+      <button class="tab"           role="tab" id="tab-cc"      aria-controls="panel-cc"      aria-selected="false" data-i18n="nav.cc" hidden>Color Correction</button>
+      <button class="tab"           role="tab" id="tab-store"   aria-controls="panel-store"   aria-selected="false" data-i18n="nav.store" hidden>Store</button>
       <button class="tab"           role="tab" id="tab-contact" aria-controls="panel-contact" aria-selected="false" data-i18n="nav.contact">Contact</button>
     </div>
   </nav>
@@ -62,8 +66,8 @@
     <nav class="drawer-nav">
       <button class="drawer-link" type="button" data-goto="home"    data-i18n="nav.home">Home</button>
       <button class="drawer-link" type="button" data-goto="models"  data-i18n="nav.models">3D Models</button>
-      <button class="drawer-link" type="button" data-goto="cc"      data-i18n="nav.cc">Color Correction</button>
-      <button class="drawer-link" type="button" data-goto="store"   data-i18n="nav.store">Store</button>
+      <button class="drawer-link" type="button" data-goto="cc"      data-i18n="nav.cc" hidden>Color Correction</button>
+      <button class="drawer-link" type="button" data-goto="store"   data-i18n="nav.store" hidden>Store</button>
       <button class="drawer-link" type="button" data-goto="contact" data-i18n="nav.contact">Contact</button>
     </nav>
 
