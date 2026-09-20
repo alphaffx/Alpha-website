@@ -1,0 +1,13 @@
+# alphaff.gg
+
+User-agent: *
+Allow: /
+
+# Old backups kept in the repo. They contain earlier copies of the
+# site, so they are blocked to stop search engines treating them as
+# duplicate pages.
+Disallow: /backup-before-art-banner-20260916-222851/
+Disallow: /backup-before-electric-theme-20260916-222629/
+Disallow: /backup-before-refresh-20260916-215156/
+
+Sitemap: https://alphaff.gg/sitemap.xml

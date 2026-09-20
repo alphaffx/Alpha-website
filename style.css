@@ -2309,3 +2309,79 @@ a.store-card:hover {
    Arabic glyphs, so those characters skip down the stack to the
    device's own sans automatically. Nothing to configure - it is
    the same behaviour Road Rage would have had. */
+
+
+/* ============================================================
+   FEEDBACK FORM  --  added 19 Sep 2026
+   Lives at the bottom of the Contact tab.
+   ============================================================ */
+.fb-block {
+  max-width: 560px;
+  margin: 38px auto 0;
+  padding: 26px 24px;
+  border: 1px solid var(--line, rgba(255,255,255,.12));
+  border-radius: 16px;
+  background: rgba(255,255,255,.03);
+}
+
+.fb-title { margin: 0 0 6px; font-size: 1.15rem; }
+
+.fb-sub {
+  margin: 0 0 20px;
+  color: var(--text-dim);
+  font-size: .94rem;
+  line-height: 1.6;
+}
+
+.fb-form { display: flex; flex-direction: column; gap: 6px; }
+
+.fb-label {
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  margin-top: 10px;
+}
+
+.fb-input {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid var(--line, rgba(255,255,255,.14));
+  border-radius: 10px;
+  background: rgba(0,0,0,.25);
+  color: var(--text);
+  font: inherit;
+  font-size: 1rem;              /* 16px stops iOS zooming in on focus */
+}
+
+.fb-input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.fb-textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
+
+.fb-send { margin-top: 18px; align-self: flex-start; }
+.fb-send[disabled] { opacity: .55; cursor: default; }
+
+/* Spam trap - must stay invisible but not display:none, or bots skip it. */
+.fb-honey {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fb-status {
+  margin: 14px 0 0;
+  font-size: .92rem;
+  line-height: 1.55;
+}
+.fb-status.is-ok  { color: var(--accent); }
+.fb-status.is-err { color: #ff8f8f; }
+
+@media (max-width: 640px) {
+  .fb-block { padding: 20px 16px; margin-top: 28px; }
+  .fb-send  { align-self: stretch; text-align: center; }
+}

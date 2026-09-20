@@ -16,6 +16,22 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Anton&family=Bebas+Neue&family=Archivo+Black&display=swap">
 
+  <!-- ============================================================
+       VISITOR ANALYTICS  --  Cloudflare Web Analytics
+       ------------------------------------------------------------
+       Counts visits per day / week / month. No cookies, so no
+       consent banner is needed, and it is free.
+
+       Replace  PASTE-YOUR-TOKEN-HERE  below with the token from
+       your Cloudflare dashboard (Web Analytics -> your site ->
+       "Manage site" -> the JS snippet). Keep the quotes and the
+       curly brackets exactly as they are - only the token changes.
+
+       Until you paste it, nothing is recorded.
+       ============================================================ -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "PASTE-YOUR-TOKEN-HERE"}'></script>
+
   <link rel="stylesheet" href="style.css">
 
   <script src="i18n.js"></script>
@@ -418,6 +434,31 @@
           <span class="contact-value">admin@alphaff.gg</span>
         </a>
       </div>
+
+      <!-- ---------- Feedback form ---------- -->
+      <section class="fb-block">
+        <h3 class="fb-title" data-i18n="contact.fbTitle">Tell me what you think</h3>
+        <p class="fb-sub" data-i18n="contact.fbSub">Spotted something broken, or confusing on your phone? Tell me and I will fix it.</p>
+
+        <form class="fb-form" id="fbForm" novalidate>
+          <label class="fb-label" for="fbMsg" data-i18n="contact.fbMsgLabel">Your message</label>
+          <textarea class="fb-input fb-textarea" id="fbMsg" name="message" rows="5" required
+                    data-i18n-attr="placeholder:contact.fbMsgPh"
+                    placeholder="What worked, what did not"></textarea>
+
+          <label class="fb-label" for="fbEmail" data-i18n="contact.fbEmailLabel">Your email (optional)</label>
+          <input class="fb-input" id="fbEmail" name="email" type="email" autocomplete="email"
+                 data-i18n-attr="placeholder:contact.fbEmailPh"
+                 placeholder="So I can reply">
+
+          <!-- Spam trap. Real people never see this; bots fill it in. -->
+          <input class="fb-honey" id="fbHoney" type="text" name="_honey"
+                 tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <button class="button fb-send" id="fbSend" type="submit" data-i18n="contact.fbSend">Send</button>
+          <p class="fb-status" id="fbStatus" role="status" hidden></p>
+        </form>
+      </section>
 
       <p class="contact-note" data-i18n="contact.note">Fastest reply is usually on TikTok.</p>
     </section>
@@ -1329,6 +1370,65 @@
        INIT
        ============================================================ */
     loadSettings();
+    /* ============================================================
+       FEEDBACK FORM
+       ------------------------------------------------------------
+       The site is static, so it cannot send email itself. The form
+       posts to FormSubmit, a free relay that forwards the message
+       to the address below.
+
+       IMPORTANT: the very first message sent will NOT arrive. Instead
+       FormSubmit emails that address a confirmation link. Click it
+       once and every message after that comes straight through.
+       ============================================================ */
+    (function () {
+      const form = document.getElementById('fbForm');
+      if (!form) return;
+
+      const FB_TO   = 'admin@alphaff.gg';
+      const btn     = document.getElementById('fbSend');
+      const status  = document.getElementById('fbStatus');
+      const msgBox  = document.getElementById('fbMsg');
+      const mailBox = document.getElementById('fbEmail');
+      const honey   = document.getElementById('fbHoney');
+
+      function say(key, ok) {
+        status.hidden = false;
+        status.textContent = t(key);
+        status.classList.toggle('is-ok', ok === true);
+        status.classList.toggle('is-err', ok === false);
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const body = msgBox.value.trim();
+        if (!body) { msgBox.focus(); return; }
+
+        // A filled honeypot means a bot. Show success and send nothing.
+        if (honey.value) { form.reset(); say('contact.fbOk', true); return; }
+
+        btn.disabled = true;
+        say('contact.fbSending', null);
+
+        fetch('https://formsubmit.co/ajax/' + FB_TO, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            message: body,
+            email: mailBox.value.trim() || '(not given)',
+            page_language: I18N ? I18N.current : 'en',
+            _subject: 'alphaff.gg - site feedback',
+            _template: 'table'
+          })
+        })
+        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+        .then(function () { form.reset(); say('contact.fbOk', true); })
+        .catch(function () { say('contact.fbErr', false); })
+        .then(function () { btn.disabled = false; });
+      });
+    })();
+
     if (I18N) I18N.init();
     applySettings();
     buildLangGrid();
