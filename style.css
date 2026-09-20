@@ -2489,3 +2489,89 @@ h1, h2, h3 {
 @media (prefers-reduced-motion: reduce) {
   .shot-dot::after { transition: none; }
 }
+
+
+/* ============================================================
+   STORE LIGHTBOX + SEARCH
+   ============================================================ */
+.store-search { position: relative; max-width: 460px; margin: 0 auto 26px; }
+.store-search .search-input { width: 100%; }
+.store-search .search-clear { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); }
+.store-none { margin: 0 0 22px; text-align: center; color: var(--text-dim); }
+
+body.lb-open { overflow: hidden; }
+
+.lb {
+  position: fixed; inset: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  padding: max(16px, env(safe-area-inset-top)) 16px;
+  background: rgba(3, 7, 14, .93);
+  backdrop-filter: blur(6px);
+}
+.lb-stage {
+  margin: 0; max-width: min(1280px, 100%); max-height: 100%;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+}
+.lb-img {
+  max-width: 100%; max-height: calc(100vh - 150px);
+  border-radius: 12px; object-fit: contain;
+  box-shadow: 0 18px 60px rgba(0,0,0,.6);
+}
+.lb-cap { margin: 0; color: var(--text-dim); font-size: .95rem; text-align: center; }
+
+.lb-close, .lb-nav {
+  flex: none; width: 46px; height: 46px;
+  border: 1px solid rgba(255,255,255,.18); border-radius: 50%;
+  background: rgba(255,255,255,.07); color: var(--text);
+  font-size: 1.1rem; line-height: 1; cursor: pointer;
+}
+.lb-close:hover, .lb-nav:hover { background: rgba(255,255,255,.16); }
+.lb-close:focus-visible, .lb-nav:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.lb-close { position: absolute; top: max(14px, env(safe-area-inset-top)); right: 14px; }
+
+.lb-dots {
+  position: absolute; left: 0; right: 0;
+  bottom: max(18px, env(safe-area-inset-bottom));
+  display: flex; justify-content: center; gap: 8px;
+}
+.lb-dot { width: 26px; height: 26px; padding: 0; border: none; background: transparent; cursor: pointer; position: relative; }
+.lb-dot::after {
+  content: ""; position: absolute; inset: 9px; border-radius: 50%;
+  background: rgba(255,255,255,.4); transition: background .18s ease, transform .18s ease;
+}
+.lb-dot.is-on::after { background: var(--accent, #4bc5ff); transform: scale(1.4); }
+.lb-dot:focus-visible { outline: 2px solid var(--accent); outline-offset: -4px; border-radius: 50%; }
+
+@media (max-width: 640px) {
+  .lb-nav { display: none; }          /* arrows cover the picture - swipe instead */
+  .lb-img { max-height: calc(100vh - 180px); }
+}
+@media (prefers-reduced-motion: reduce) { .lb-dot::after { transition: none; } }
+
+
+/* ============================================================
+   DISPLAY FONT OPTIONS  --  20 Sep 2026
+   ------------------------------------------------------------
+   Road Rage is licensed "free for personal use only", so it cannot
+   ship with this site. A commercial licence is sold by its designer
+   (Youssef Habchi, Desktop + Webfont tier) if you ever want it.
+
+   All four below are free for commercial use. To try another, move
+   the comment markers so only ONE line is live.
+   ============================================================ */
+:root {
+  /* Loud comic-book caps - closest in spirit to Road Rage */
+  --font-display: "Bangers", "Impact", "Arial Narrow Bold", sans-serif;
+
+  /* Military stencil - on theme for a battle royale */
+  /* --font-display: "Black Ops One", "Impact", "Arial Narrow Bold", sans-serif; */
+
+  /* Squared-off esports lettering, clean and modern */
+  /* --font-display: "Russo One", "Impact", "Arial Narrow Bold", sans-serif; */
+
+  /* Heavy condensed - what the site used before */
+  /* --font-display: "Anton", "Impact", "Arial Narrow Bold", sans-serif; */
+}
+
+/* Bangers is drawn tight; a little air keeps ALPHA readable at size. */
+.brand, .title { letter-spacing: .03em; }

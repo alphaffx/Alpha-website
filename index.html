@@ -58,7 +58,7 @@
   <!-- Body typeface (Inter) + display faces. All from Google Fonts, free for commercial use. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Anton&family=Bebas+Neue&family=Archivo+Black&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Anton&family=Bangers&family=Black+Ops+One&family=Russo+One&display=swap">
 
   <!-- ============================================================
        VISITOR ANALYTICS  --  Cloudflare Web Analytics
@@ -429,6 +429,16 @@
         <p class="tier-empty" id="storePresetsEmpty" data-i18n="store.empty">Nothing here yet — check back soon.</p>
       </section>
 
+      <!-- Appears on its own once there are more than STORE_SEARCH_MIN products. -->
+      <div class="store-search" id="storeSearch" hidden>
+        <input class="search-input" id="storeQ" type="search" autocomplete="off"
+               data-i18n-attr="placeholder:search.placeholder"
+               placeholder="Search models - just start typing">
+        <button class="search-clear" id="storeQClear" type="button"
+                aria-label="Clear search" data-i18n-attr="aria-label:search.clear" hidden>&#10005;</button>
+      </div>
+      <p class="store-none" id="storeNone" hidden></p>
+
       <section class="store-block">
         <h3 class="tier-head"><span data-i18n="store.other">Courses &amp; resources</span>
           <span class="tier-count" id="storeOtherCount"></span></h3>
@@ -436,6 +446,21 @@
         <p class="tier-empty" id="storeOtherEmpty" data-i18n="store.empty">Nothing here yet — check back soon.</p>
       </section>
     </section>
+
+    <!-- Full-screen picture viewer for the store. -->
+    <div class="lb" id="storeLb" role="dialog" aria-modal="true" hidden>
+      <button class="lb-close" id="lbClose" type="button"
+              aria-label="Close" data-i18n-attr="aria-label:viewer.close">&#10005;</button>
+      <button class="lb-nav lb-prev" id="lbPrev" type="button"
+              aria-label="Previous picture" data-i18n-attr="aria-label:lb.prev">&#10094;</button>
+      <figure class="lb-stage">
+        <img class="lb-img" id="lbImg" alt="">
+        <figcaption class="lb-cap" id="lbCap"></figcaption>
+      </figure>
+      <button class="lb-nav lb-next" id="lbNext" type="button"
+              aria-label="Next picture" data-i18n-attr="aria-label:lb.next">&#10095;</button>
+      <div class="lb-dots" id="lbDots"></div>
+    </div>
 
     <!-- ============ CONTACT ============ -->
     <section class="panel" id="panel-contact" role="tabpanel" aria-labelledby="tab-contact" hidden>
@@ -1328,6 +1353,7 @@
           const show = function (n) {
             i = (n + shots.length) % shots.length;
             img.src = shots[i];
+            el.__shot = i;
             dots.forEach(function (d, k) { d.classList.toggle('is-on', k === i); });
           };
 
@@ -1335,12 +1361,15 @@
             b.addEventListener('click', function () { show(k); });
           });
 
-          /* tapping the picture itself moves to the next one */
-          img.addEventListener('click', function () { show(i + 1); });
-          img.classList.add('is-tappable');
 
           box.appendChild(strip);
         }
+        /* tapping the picture opens the full-screen viewer at that shot */
+        img.classList.add('is-tappable');
+        img.addEventListener('click', function () {
+          openLightbox(shots, el.__shot || 0, opts.title || '');
+        });
+
         el.appendChild(box);
       }
 
@@ -1387,6 +1416,116 @@
       return el;
     }
 
+    /* ============================================================
+       STORE LIGHTBOX
+       ============================================================ */
+    const lb      = document.getElementById('storeLb');
+    const lbImg   = document.getElementById('lbImg');
+    const lbCap   = document.getElementById('lbCap');
+    const lbDots  = document.getElementById('lbDots');
+    const lbPrev  = document.getElementById('lbPrev');
+    const lbNext  = document.getElementById('lbNext');
+    const lbClose = document.getElementById('lbClose');
+
+    let lbShots = [], lbAt = 0, lbOpener = null;
+
+    function lbGo(n) {
+      if (!lbShots.length) return;
+      lbAt = (n + lbShots.length) % lbShots.length;
+      lbImg.src = lbShots[lbAt];
+      Array.prototype.forEach.call(lbDots.children, function (d, k) {
+        d.classList.toggle('is-on', k === lbAt);
+      });
+      const many = lbShots.length > 1;
+      lbPrev.hidden = lbNext.hidden = !many;
+      lbDots.hidden = !many;
+    }
+
+    function openLightbox(shots, at, caption) {
+      lbShots = shots || [];
+      if (!lbShots.length) return;
+      lbOpener = document.activeElement;
+
+      lbDots.innerHTML = '';
+      lbShots.forEach(function (_, k) {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'lb-dot';
+        b.setAttribute('aria-label', String(k + 1));
+        b.addEventListener('click', function () { lbGo(k); });
+        lbDots.appendChild(b);
+      });
+
+      lbCap.textContent = caption || '';
+      lbImg.alt = caption || '';
+      lb.hidden = false;
+      document.body.classList.add('lb-open');
+      lbGo(at || 0);
+      lbClose.focus();
+    }
+
+    function closeLightbox() {
+      lb.hidden = true;
+      lbImg.removeAttribute('src');
+      document.body.classList.remove('lb-open');
+      if (lbOpener && lbOpener.focus) lbOpener.focus();
+      lbOpener = null;
+    }
+
+    lbPrev.addEventListener('click', function () { lbGo(lbAt - 1); });
+    lbNext.addEventListener('click', function () { lbGo(lbAt + 1); });
+    lbClose.addEventListener('click', closeLightbox);
+    lb.addEventListener('click', function (e) { if (e.target === lb) closeLightbox(); });
+
+    document.addEventListener('keydown', function (e) {
+      if (lb.hidden) return;
+      if (e.key === 'Escape')     { e.preventDefault(); closeLightbox(); }
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); lbGo(lbAt - 1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); lbGo(lbAt + 1); }
+    });
+
+    (function () {   /* swipe on a phone */
+      let x0 = null;
+      lb.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+      lb.addEventListener('touchend', function (e) {
+        if (x0 === null) return;
+        const dx = e.changedTouches[0].clientX - x0;
+        if (Math.abs(dx) > 45) lbGo(lbAt + (dx < 0 ? 1 : -1));
+        x0 = null;
+      }, { passive: true });
+    })();
+
+    /* ============================================================
+       STORE SEARCH  --  hidden until the store outgrows one glance
+       ============================================================ */
+    const STORE_SEARCH_MIN = 6;
+    const storeSearch = document.getElementById('storeSearch');
+    const storeQ      = document.getElementById('storeQ');
+    const storeQClear = document.getElementById('storeQClear');
+    const storeNone   = document.getElementById('storeNone');
+
+    function applyStoreFilter() {
+      const q = (storeQ.value || '').trim().toLowerCase();
+      storeQClear.hidden = !q;
+
+      let shown = 0, total = 0;
+      document.querySelectorAll('#panel-store .store-card').forEach(function (card) {
+        total++;
+        const hit = !q || (card.textContent || '').toLowerCase().indexOf(q) !== -1;
+        card.hidden = !hit;
+        if (hit) shown++;
+      });
+
+      storeNone.hidden = !(q && shown === 0);
+      if (!storeNone.hidden) storeNone.textContent = t('store.noMatch', { q: storeQ.value });
+      storeSearch.hidden = total <= STORE_SEARCH_MIN;
+    }
+
+    storeQ.addEventListener('input', applyStoreFilter);
+    storeQClear.addEventListener('click', function () {
+      storeQ.value = ''; applyStoreFilter(); storeQ.focus();
+    });
+
     function fillStore(grid, empty, count, items) {
       grid.innerHTML = '';
       items.forEach(function (it) { grid.appendChild(storeCard(it)); });
@@ -1410,6 +1549,8 @@
           return { title: x.title || '', desc: x.desc || '', price: x.price,
                    url: x.url || '', images: x.images || [] };
         }));
+
+      applyStoreFilter();
     }
 
     function loadStoreExtras() {
