@@ -1,70 +1,83 @@
 {
-    "_comment":  "Products shown on the Store tab. Each one needs a slug: that is the folder name under media/store/ where its pictures live. Drop pictures into media/store/\u003cslug\u003e/ and run watch-models.bat - the watcher fills in the images list below. Everything else here you edit by hand and the watcher leaves alone.",
-    "items":  [
-                  {
-                      "slug":  "old-peak",
-                      "title":  "Old Peak 2020 - Free Fire Map",
-                      "price":  "$20",
-                      "desc":  "The original 2020 Old Peak rebuilt in Blender - classic layout, buildings and terrain, fully textured. .blend file, Blender 3.0+.",
-                      "url":  "https://alphaff.gumroad.com/l/mbvzi",
-                      "images":  [
-                                     "./media/store/old-peak/1.webp",
-                                     "./media/store/old-peak/2.webp",
-                                     "./media/store/old-peak/3.webp",
-                                     "./media/store/old-peak/4.webp"
-                                 ]
-                  },
-                  {
-                      "slug":  "alpine",
-                      "title":  "Alpine Map - Snow \u0026 Mountain",
-                      "price":  "$20",
-                      "desc":  "A winter combat environment - snowy peaks, pine forest, frozen terrain and tactical outposts, pre-textured. .blend file, Blender 3.0+.",
-                      "url":  "https://alphaff.gumroad.com/l/kkdfoh",
-                      "images":  [
-                                     "./media/store/alpine/1.webp",
-                                     "./media/store/alpine/2.webp",
-                                     "./media/store/alpine/3.webp",
-                                     "./media/store/alpine/4.webp"
-                                 ]
-                  },
-                  {
-                      "slug":  "football-factory",
-                      "title":  "World Cup 2026 Football Factory",
-                      "price":  "$15",
-                      "desc":  "The Free Fire Factory rebuilt as a World Cup arena - field markings, goalposts and themed decoration, fully textured. .blend file, Blender 3.0+.",
-                      "url":  "https://alphaff.gumroad.com/l/uiolhn",
-                      "images":  [
-                                     "./media/store/football-factory/1.webp",
-                                     "./media/store/football-factory/2.webp",
-                                     "./media/store/football-factory/3.webp",
-                                     "./media/store/football-factory/4.webp"
-                                 ]
-                  },
-                  {
-                      "slug":  "social-island",
-                      "title":  "Social Island",
-                      "price":  "$10",
-                      "desc":  "A fully textured recreation of the Free Fire Social Island - themed zones, hangouts and mini-game areas, render-ready. .blend file, Blender 3.0+.",
-                      "url":  "https://alphaff.gumroad.com/l/bmsniz",
-                      "images":  [
-                                     "./media/store/social-island/1.webp",
-                                     "./media/store/social-island/2.webp",
-                                     "./media/store/social-island/3.webp",
-                                     "./media/store/social-island/4.webp"
-                                 ]
-                  },
-                  {
-                      "slug":  "lone-wolf",
-                      "title":  "Lone Wolf Map Pack",
-                      "price":  "$5",
-                      "desc":  "Multiple 1v1 arena environments including the Iron Cage - full textures and clean shader setups. .blend files, Blender 3.0+.",
-                      "url":  "https://alphaff.gumroad.com/l/dlrgg",
-                      "images":  [
-                                     "./media/store/lone-wolf/1.webp",
-                                     "./media/store/lone-wolf/2.webp",
-                                     "./media/store/lone-wolf/3.webp",
-                                     "./media/store/lone-wolf/4.webp"
-                                 ]
-                  }
-              ]
+  "_comment": "Products shown on the Store tab. Each one needs a slug: that is the folder name under media/store/ where its pictures live. Drop pictures into media/store/<slug>/ and run watch-models.bat - the watcher fills in the images list below. Everything else here you edit by hand and the watcher leaves alone.",
+  "items": [
+    {
+      "slug": "bermuda",
+      "title": "Full Bermuda Map",
+      "price": "$20",
+      "desc": "The complete Free Fire Bermuda map as one Blender scene - all key locations, terrain and landmarks, fully textured and render-ready. .blend file, Blender 3.0+.",
+      "url": "https://alphaff.gumroad.com/l/tuyiqj",
+      "images": [
+        "./media/store/bermuda/1.webp",
+        "./media/store/bermuda/2.webp",
+        "./media/store/bermuda/3.webp",
+        "./media/store/bermuda/4.webp"
+      ]
+    },
+    {
+      "slug": "old-peak",
+      "title": "Old Peak 2020 - Free Fire Map",
+      "price": "$20",
+      "desc": "The original 2020 Old Peak rebuilt in Blender - classic layout, buildings and terrain, fully textured. .blend file, Blender 3.0+.",
+      "url": "https://alphaff.gumroad.com/l/mbvzi",
+      "images": [
+        "./media/store/old-peak/1.webp",
+        "./media/store/old-peak/2.webp",
+        "./media/store/old-peak/3.webp",
+        "./media/store/old-peak/4.webp"
+      ]
+    },
+    {
+      "slug": "alpine",
+      "title": "Alpine Map - Snow & Mountain",
+      "price": "$20",
+      "desc": "A winter combat environment - snowy peaks, pine forest, frozen terrain and tactical outposts, pre-textured. .blend file, Blender 3.0+.",
+      "url": "https://alphaff.gumroad.com/l/kkdfoh",
+      "images": [
+        "./media/store/alpine/1.webp",
+        "./media/store/alpine/2.webp",
+        "./media/store/alpine/3.webp",
+        "./media/store/alpine/4.webp"
+      ]
+    },
+    {
+      "slug": "football-factory",
+      "title": "World Cup 2026 Football Factory",
+      "price": "$15",
+      "desc": "The Free Fire Factory rebuilt as a World Cup arena - field markings, goalposts and themed decoration, fully textured. .blend file, Blender 3.0+.",
+      "url": "https://alphaff.gumroad.com/l/uiolhn",
+      "images": [
+        "./media/store/football-factory/1.webp",
+        "./media/store/football-factory/2.webp",
+        "./media/store/football-factory/3.webp",
+        "./media/store/football-factory/4.webp"
+      ]
+    },
+    {
+      "slug": "social-island",
+      "title": "Social Island",
+      "price": "$10",
+      "desc": "A fully textured recreation of the Free Fire Social Island - themed zones, hangouts and mini-game areas, render-ready. .blend file, Blender 3.0+.",
+      "url": "https://alphaff.gumroad.com/l/bmsniz",
+      "images": [
+        "./media/store/social-island/1.webp",
+        "./media/store/social-island/2.webp",
+        "./media/store/social-island/3.webp",
+        "./media/store/social-island/4.webp"
+      ]
+    },
+    {
+      "slug": "lone-wolf",
+      "title": "Lone Wolf Map Pack",
+      "price": "$5",
+      "desc": "Multiple 1v1 arena environments including the Iron Cage - full textures and clean shader setups. .blend files, Blender 3.0+.",
+      "url": "https://alphaff.gumroad.com/l/dlrgg",
+      "images": [
+        "./media/store/lone-wolf/1.webp",
+        "./media/store/lone-wolf/2.webp",
+        "./media/store/lone-wolf/3.webp",
+        "./media/store/lone-wolf/4.webp"
+      ]
+    }
+  ]
 }
