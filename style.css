@@ -1133,6 +1133,11 @@ main { max-width: 1180px; }
    used and nothing breaks.
    ============================================================ */
 
+/* DISABLED 20 Sep 2026 - these three files do not exist, so every
+   visitor's browser was requesting them and getting 404s on every
+   page load. Headings use Anton now. If you ever license Road Rage
+   and put the files in fonts/, delete this comment wrapper to
+   switch back.
 @font-face {
   font-family: "Road Rage";
   src: url("fonts/road-rage.woff2") format("woff2"),
@@ -1142,6 +1147,7 @@ main { max-width: 1180px; }
   font-style: normal;
   font-display: swap;
 }
+*/
 
 :root {
   --font-display: "Road Rage", "Impact", "Haettenschweiler", "Arial Narrow Bold", sans-serif;
@@ -2384,4 +2390,24 @@ a.store-card:hover {
 @media (max-width: 640px) {
   .fb-block { padding: 20px 16px; margin-top: 28px; }
   .fb-send  { align-self: stretch; text-align: center; }
+}
+
+
+/* ============================================================
+   HEADING FONT  --  added 20 Sep 2026
+   ------------------------------------------------------------
+   Line 1023 set every h1/h2/h3 to "Trebuchet MS". That font ships
+   with Windows and macOS but NOT with Android, and neither does
+   its "Segoe UI" fallback - so section headings looked one way on
+   a PC and another on a phone. Same problem the big headings had.
+
+   Inter is loaded from Google Fonts, so it reaches every device.
+
+   The three big display headings are NOT affected: .brand, .title
+   and .panel-head h2 use class selectors, which beat these plain
+   element selectors, so they stay in Anton.
+   ============================================================ */
+h1, h2, h3 {
+  font-family: var(--font-body);
+  letter-spacing: -.01em;      /* Trebuchet's -.035em is too tight for Inter */
 }
