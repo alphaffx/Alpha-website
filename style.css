@@ -2411,3 +2411,81 @@ h1, h2, h3 {
   font-family: var(--font-body);
   letter-spacing: -.01em;      /* Trebuchet's -.035em is too tight for Inter */
 }
+
+
+/* ============================================================
+   STORE PRODUCT PICTURES  --  added 20 Sep 2026
+   Pictures live in media/store/<slug>/ and are listed into
+   store.json by watch-models.bat.
+   ============================================================ */
+.store-shots {
+  position: relative;
+  margin: -2px -2px 14px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(0,0,0,.3);
+  aspect-ratio: 16 / 9;
+}
+
+.store-shot {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.store-shot.is-tappable { cursor: pointer; }
+
+.shot-dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8px;
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+}
+
+.shot-dot {
+  width: 22px;                  /* wide hit area, small look - easy to tap */
+  height: 22px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+}
+
+.shot-dot::after {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.45);
+  box-shadow: 0 0 4px rgba(0,0,0,.5);
+  transition: background .18s ease, transform .18s ease;
+}
+
+.shot-dot.is-on::after {
+  background: var(--accent, #4bc5ff);
+  transform: scale(1.35);
+}
+
+.shot-dot:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+/* The card is a div now, so the buy link is its own element. */
+.store-card-buy {
+  display: inline-block;
+  margin-top: auto;
+  padding-top: 10px;
+  font-size: .9rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+}
+.store-card-buy:hover { text-decoration: underline; }
+.store-card-buy:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .shot-dot::after { transition: none; }
+}

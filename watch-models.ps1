@@ -182,6 +182,54 @@ function Write-PresetManifest {
     return $files.Count
 }
 
+# ---------- Store product pictures ----------
+
+# Pictures for a store product live in  media\store\<slug>\  where <slug>
+# is the "slug" field of that product in store.json. Drop any number of
+# pictures in and they become that product's slideshow, in filename order.
+$StoreImagePattern = '\.(jpg|jpeg|png|webp|avif|gif)$'
+
+function Write-StoreManifest {
+    $manifest = Join-Path $Root 'store.json'
+    if (-not (Test-Path -LiteralPath $manifest)) { return -1 }
+
+    try { $data = Get-Content -LiteralPath $manifest -Raw | ConvertFrom-Json } catch { return -1 }
+    if (-not $data.items) { return -1 }
+
+    $total = 0
+    foreach ($it in $data.items) {
+        if (-not $it.slug) { continue }
+        $dir  = Join-Path (Join-Path $Root 'media\store') $it.slug
+        $list = New-Object System.Collections.ArrayList
+        if (Test-Path -LiteralPath $dir) {
+            $files = Get-ChildItem -LiteralPath $dir -File |
+                     Where-Object { $_.Name -match $StoreImagePattern } |
+                     Sort-Object Name
+            foreach ($f in $files) {
+                [void]$list.Add('./media/store/' + $it.slug + '/' + $f.Name)
+            }
+        }
+        # everything else in store.json (title, price, desc, url) is left alone
+        $it.images = @($list.ToArray())
+        $total += $list.Count
+    }
+
+    $json = $data | ConvertTo-Json -Depth 8
+    $utf8 = New-Object System.Text.UTF8Encoding($false)
+    [System.IO.File]::WriteAllText($manifest, $json, $utf8)
+    return $total
+}
+
+function Get-StoreSignature {
+    $base = Join-Path $Root 'media\store'
+    if (-not (Test-Path -LiteralPath $base)) { return 'none' }
+    $files = Get-ChildItem -LiteralPath $base -File -Recurse |
+             Where-Object { $_.Name -match $StoreImagePattern } |
+             Sort-Object FullName
+    $parts = foreach ($f in $files) { "$($f.FullName):$($f.Length)" }
+    return ($parts -join '|')
+}
+
 function Get-PresetSignature {
     $dir = Join-Path $Root 'presets'
     if (-not (Test-Path -LiteralPath $dir)) { return 'none' }
@@ -216,7 +264,7 @@ $lastSignature = ''
 
 while ($true) {
     try {
-        $signature = (Get-FolderSignature) + '##' + (Get-PresetSignature)
+        $signature = (Get-FolderSignature) + '##' + (Get-PresetSignature) + '##' + (Get-StoreSignature)
 
         if ($signature -ne $lastSignature) {
             $result = Write-Manifest
@@ -228,6 +276,11 @@ while ($true) {
             $presetCount = Write-PresetManifest
             if ($presetCount -ge 0) {
                 Write-Host ("            presets.json updated - {0} preset(s)" -f $presetCount) -ForegroundColor Green
+            }
+
+            $shotCount = Write-StoreManifest
+            if ($shotCount -ge 0) {
+                Write-Host ("            store.json updated - {0} product picture(s)" -f $shotCount) -ForegroundColor Green
             }
 
             foreach ($id in $result.NoBlend) {

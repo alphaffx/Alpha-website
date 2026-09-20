@@ -108,7 +108,7 @@
       <button class="tab is-active" role="tab" id="tab-home"    aria-controls="panel-home"    aria-selected="true"  data-i18n="nav.home">Home</button>
       <button class="tab"           role="tab" id="tab-models"  aria-controls="panel-models"  aria-selected="false" data-i18n="nav.models">3D Models</button>
       <button class="tab"           role="tab" id="tab-cc"      aria-controls="panel-cc"      aria-selected="false" data-i18n="nav.cc" hidden>Color Correction</button>
-      <button class="tab"           role="tab" id="tab-store"   aria-controls="panel-store"   aria-selected="false" data-i18n="nav.store" hidden>Store</button>
+      <button class="tab"           role="tab" id="tab-store"   aria-controls="panel-store"   aria-selected="false" data-i18n="nav.store">Store</button>
       <button class="tab"           role="tab" id="tab-contact" aria-controls="panel-contact" aria-selected="false" data-i18n="nav.contact">Contact</button>
     </div>
   </nav>
@@ -127,7 +127,7 @@
       <button class="drawer-link" type="button" data-goto="home"    data-i18n="nav.home">Home</button>
       <button class="drawer-link" type="button" data-goto="models"  data-i18n="nav.models">3D Models</button>
       <button class="drawer-link" type="button" data-goto="cc"      data-i18n="nav.cc" hidden>Color Correction</button>
-      <button class="drawer-link" type="button" data-goto="store"   data-i18n="nav.store" hidden>Store</button>
+      <button class="drawer-link" type="button" data-goto="store"   data-i18n="nav.store">Store</button>
       <button class="drawer-link" type="button" data-goto="contact" data-i18n="nav.contact">Contact</button>
     </nav>
 
@@ -415,14 +415,14 @@
         <p data-i18n="store.sub">Premium models, presets and lessons.</p>
       </div>
 
-      <section class="store-block">
+      <section class="store-block" hidden>
         <h3 class="tier-head"><span data-i18n="store.models">Premium 3D models</span>
           <span class="tier-count" id="storeModelCount"></span></h3>
         <div class="store-grid" id="storeModels"></div>
         <p class="tier-empty" id="storeModelsEmpty" data-i18n="store.empty">Nothing here yet — check back soon.</p>
       </section>
 
-      <section class="store-block">
+      <section class="store-block" hidden>
         <h3 class="tier-head"><span data-i18n="store.presets">Premium presets</span>
           <span class="tier-count" id="storePresetCount"></span></h3>
         <div class="store-grid" id="storePresets"></div>
@@ -1287,12 +1287,61 @@
     let storeExtras = [];
 
     function storeCard(opts) {
-      const el = document.createElement(opts.url ? 'a' : 'div');
+      const el = document.createElement('div');
       el.className = 'store-card' + (opts.url ? '' : ' is-soon');
-      if (opts.url) {
-        el.href = opts.url;
-        el.target = '_blank';
-        el.rel = 'noopener noreferrer';
+
+      /* ---- picture slideshow -------------------------------------
+         opts.images is a list of paths written into store.json by
+         watch-models.bat. Drop pictures into media/store/<slug>/ and
+         run the watcher; they appear here. No pictures = no slideshow,
+         and the card just shows text.                               */
+      /* PowerShell can collapse a one-item list to a plain string, so accept both */
+      const rawShots = opts.images;
+      const shots = (Array.isArray(rawShots) ? rawShots : (rawShots ? [rawShots] : []))
+                      .filter(Boolean).map(function (u) { return encodeURI(u); });
+      if (shots.length) {
+        const box = document.createElement('div');
+        box.className = 'store-shots';
+
+        const img = document.createElement('img');
+        img.className = 'store-shot';
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.alt = opts.title || '';
+        img.src = shots[0];
+        box.appendChild(img);
+
+        if (shots.length > 1) {
+          let i = 0;
+          const strip = document.createElement('div');
+          strip.className = 'shot-dots';
+
+          const dots = shots.map(function (_, k) {
+            const b = document.createElement('button');
+            b.type = 'button';
+            b.className = 'shot-dot' + (k === 0 ? ' is-on' : '');
+            b.setAttribute('aria-label', String(k + 1));   /* a number needs no translation */
+            strip.appendChild(b);
+            return b;
+          });
+
+          const show = function (n) {
+            i = (n + shots.length) % shots.length;
+            img.src = shots[i];
+            dots.forEach(function (d, k) { d.classList.toggle('is-on', k === i); });
+          };
+
+          dots.forEach(function (b, k) {
+            b.addEventListener('click', function () { show(k); });
+          });
+
+          /* tapping the picture itself moves to the next one */
+          img.addEventListener('click', function () { show(i + 1); });
+          img.classList.add('is-tappable');
+
+          box.appendChild(strip);
+        }
+        el.appendChild(box);
       }
 
       const head = document.createElement('div');
@@ -1317,10 +1366,23 @@
         el.appendChild(d);
       }
 
-      const foot = document.createElement('span');
-      foot.className = 'store-card-foot';
-      foot.textContent = opts.url ? t('store.view') : t('store.soon');
-      el.appendChild(foot);
+      /* The card is a div, not a link, because the dots inside it are
+         buttons and a button inside a link is broken for keyboards and
+         screen readers. The buy link is its own element instead.      */
+      if (opts.url) {
+        const buy = document.createElement('a');
+        buy.className = 'store-card-buy';
+        buy.href = opts.url;
+        buy.target = '_blank';
+        buy.rel = 'noopener noreferrer';
+        buy.textContent = t('store.view');
+        el.appendChild(buy);
+      } else {
+        const foot = document.createElement('span');
+        foot.className = 'store-card-foot';
+        foot.textContent = t('store.soon');
+        el.appendChild(foot);
+      }
 
       return el;
     }
@@ -1345,7 +1407,8 @@
 
       fillStore(storeOther, storeOtherEmpty, storeOtherCount,
         storeExtras.map(function (x) {
-          return { title: x.title || '', desc: x.desc || '', price: x.price, url: x.url || '' };
+          return { title: x.title || '', desc: x.desc || '', price: x.price,
+                   url: x.url || '', images: x.images || [] };
         }));
     }
 

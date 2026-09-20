@@ -102,7 +102,7 @@
       'store.sub': 'Premium models, presets and lessons.',
       'store.models': 'Premium 3D models',
       'store.presets': 'Premium presets',
-      'store.other': 'Courses & resources',
+      'store.other': 'Maps & Scenes',
       'store.empty': 'Nothing here yet — check back soon.',
       'store.soon': 'Coming soon',
       'store.view': 'View'
@@ -186,7 +186,7 @@
       'store.sub': 'Modèles, préréglages et cours premium.',
       'store.models': 'Modèles 3D premium',
       'store.presets': 'Préréglages premium',
-      'store.other': 'Cours & ressources',
+      'store.other': 'Cartes & décors',
       'store.empty': 'Rien ici pour l’instant — revenez bientôt.',
       'store.soon': 'Bientôt disponible',
       'store.view': 'Voir'
@@ -270,7 +270,7 @@
       'store.sub': 'Modelos, predefinições e aulas premium.',
       'store.models': 'Modelos 3D premium',
       'store.presets': 'Predefinições premium',
-      'store.other': 'Cursos e recursos',
+      'store.other': 'Mapas & cenários',
       'store.empty': 'Nada aqui ainda — volte em breve.',
       'store.soon': 'Em breve',
       'store.view': 'Ver'
@@ -354,7 +354,7 @@
       'store.sub': 'Modelos, ajustes y cursos premium.',
       'store.models': 'Modelos 3D premium',
       'store.presets': 'Ajustes premium',
-      'store.other': 'Cursos y recursos',
+      'store.other': 'Mapas y escenarios',
       'store.empty': 'Nada por aquí todavía — vuelve pronto.',
       'store.soon': 'Próximamente',
       'store.view': 'Ver'
@@ -438,7 +438,7 @@
       'store.sub': 'Model, preset, dan kelas premium.',
       'store.models': 'Model 3D premium',
       'store.presets': 'Preset premium',
-      'store.other': 'Kursus & sumber daya',
+      'store.other': 'Peta & Lokasi',
       'store.empty': 'Belum ada apa-apa di sini — cek lagi nanti.',
       'store.soon': 'Segera hadir',
       'store.view': 'Lihat'
@@ -522,7 +522,7 @@
       'store.sub': 'โมเดล พรีเซ็ต และคอร์สแบบพรีเมียม',
       'store.models': 'โมเดล 3D พรีเมียม',
       'store.presets': 'พรีเซ็ตพรีเมียม',
-      'store.other': 'คอร์สและแหล่งข้อมูล',
+      'store.other': 'แผนที่และฉาก',
       'store.empty': 'ยังไม่มีอะไรที่นี่ — กลับมาดูใหม่เร็ว ๆ นี้',
       'store.soon': 'เร็ว ๆ นี้',
       'store.view': 'ดู'
@@ -606,7 +606,7 @@
       'store.sub': 'Mô hình, preset và khoá học cao cấp.',
       'store.models': 'Mô hình 3D cao cấp',
       'store.presets': 'Preset cao cấp',
-      'store.other': 'Khoá học & tài nguyên',
+      'store.other': 'Bản đồ & bối cảnh',
       'store.empty': 'Chưa có gì ở đây — hãy quay lại sau.',
       'store.soon': 'Sắp có',
       'store.view': 'Xem'
@@ -690,7 +690,7 @@
       'store.sub': 'نماذج وإعدادات ودروس مميزة.',
       'store.models': 'نماذج ثلاثية الأبعاد مميزة',
       'store.presets': 'إعدادات مميزة',
-      'store.other': 'دورات وموارد',
+      'store.other': 'الخرائط والمشاهد',
       'store.empty': 'لا شيء هنا بعد — عد قريبًا.',
       'store.soon': 'قريبًا',
       'store.view': 'عرض'
