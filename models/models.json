@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-22T04:42:14",
+  "generated": "2026-09-22T05:12:22",
   "models": [
     {"id":"alpha","name":"Alpha","kind":"3D model","glb":"6.1 MB","blend":"6.6 MB","hasBlend":true,"tier":"free","price":""},
     {"id":"beesto","name":"Beesto","kind":"3D model","glb":"7.3 MB","blend":"9.5 MB","hasBlend":true,"tier":"free","price":""},
@@ -7,6 +7,7 @@
     {"id":"Dms","name":"Dms","kind":"3D model","glb":"1.2 MB","blend":"1.3 MB","hasBlend":true,"tier":"free","price":""},
     {"id":"durento","name":"Durento","kind":"3D model","glb":"8.0 MB","blend":"10.1 MB","hasBlend":true,"tier":"free","price":""},
     {"id":"furious","name":"Furious","kind":"3D model","glb":"1.4 MB","blend":"1.4 MB","hasBlend":true,"tier":"free","price":""},
+    {"id":"Jaxmax","name":"Jaxmax","kind":"3D model","glb":"4.1 MB","blend":"5.8 MB","hasBlend":true,"tier":"free","price":""},
     {"id":"jokkie","name":"Jokkie","kind":"3D model","glb":"4.0 MB","blend":"4.8 MB","hasBlend":true,"tier":"free","price":""},
     {"id":"kanzaki","name":"Kanzaki","kind":"3D model","glb":"518 KB","blend":"991 KB","hasBlend":true,"tier":"free","price":""},
     {"id":"le chris","name":"Le Chris","kind":"3D model","glb":"7.8 MB","blend":"14.5 MB","hasBlend":true,"tier":"free","price":""},
