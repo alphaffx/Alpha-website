@@ -528,13 +528,12 @@
     }
 
     /* ============================================================
-       AUTOMATIC MATERIAL FIX
-       These character exports arrive with metalness switched on, and
-       in most of them the colour texture is also wired in as the
-       roughness map, so the character renders as chrome. This runs on
-       every model as it loads, including ones added in future.
+       PREVIEW MATERIAL REPAIR
+       Some exports wire a color atlas into normal, roughness and
+       specular slots. Remove only those duplicate-image connections;
+       preserve authored materials with distinct maps and their factors.
        ============================================================ */
-    const MATERIAL_FIX = { enabled: true, metallic: 0, roughness: 0.6 };
+    const MATERIAL_FIX = { enabled: true, metallic: 0, roughness: 0.85 };
 
     function sameImage(a, b) {
       if (!a || !b) return false;
@@ -546,42 +545,54 @@
         if (sa && sb) {
           if (sa === sb) return true;
           if (sa.uri && sb.uri && sa.uri === sb.uri) return true;
-          if (sa.name && sb.name && sa.name === sb.name) return true;
+          // Embedded images have no URI; bufferView identifies their actual image data.
+          if (Number.isInteger(sa.bufferView) && sa.bufferView === sb.bufferView) return true;
         }
       } catch (e) { /* fall through */ }
       return false;
     }
 
-    function fixMaterials() {
+    async function fixMaterials() {
       if (!MATERIAL_FIX.enabled) return;
       let model = null;
       try { model = viewer.model; } catch (e) { return; }
       if (!model || !model.materials || !model.materials.length) return;
 
-      model.materials.forEach(function (mat) {
+      await Promise.all(model.materials.map(async function (mat) {
         try {
-          if (typeof mat.ensureLoaded === 'function') mat.ensureLoaded();
+          if (typeof mat.ensureLoaded === 'function') await mat.ensureLoaded();
           const pbr = mat.pbrMetallicRoughness;
           if (!pbr) return;
-
-          if (typeof pbr.setMetallicFactor === 'function') {
-            pbr.setMetallicFactor(MATERIAL_FIX.metallic);
-          }
 
           const baseInfo = pbr.baseColorTexture;
           const mrInfo   = pbr.metallicRoughnessTexture;
 
           if (mrInfo && mrInfo.texture && sameImage(baseInfo, mrInfo)) {
             if (typeof mrInfo.setTexture === 'function') mrInfo.setTexture(null);
+            pbr.setMetallicFactor(MATERIAL_FIX.metallic);
             if (typeof pbr.setRoughnessFactor === 'function') {
               pbr.setRoughnessFactor(MATERIAL_FIX.roughness);
             }
           }
-        } catch (e) { /* one odd material must not stop the others */ }
-      });
+          // A color atlas is not a tangent-space normal map. It bends the light incorrectly.
+          if (sameImage(baseInfo, mat.normalTexture)) mat.normalTexture.setTexture(null);
+          if (sameImage(baseInfo, mat.specularTexture)) {
+            mat.specularTexture.setTexture(null);
+            mat.setSpecularFactor(0.2);
+          }
+        } catch (e) { console.warn('Could not adjust preview material:', mat.name, e); }
+      }));
     }
 
-    viewer.addEventListener('load', function () { document.getElementById('viewerStatus').hidden = true; fixMaterials(); finishSwap(); resetView(); });
+    viewer.addEventListener('load', async function () {
+      const loadedModel = viewer.model;
+      const loadedSrc = viewer.getAttribute('src');
+      await fixMaterials();
+      if (viewer.model !== loadedModel || viewer.getAttribute('src') !== loadedSrc) return;
+      viewer.dataset.materialsReady = loadedSrc;
+      document.getElementById('viewerStatus').hidden = true;
+      finishSwap(); resetView();
+    });
     viewer.addEventListener('error', viewerFailed);
 
     // Premium models can be previewed but not downloaded yet.

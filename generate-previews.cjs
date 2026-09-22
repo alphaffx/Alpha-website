@@ -7,7 +7,9 @@ const root = __dirname;
 const cacheFile = path.join(root, '.thumbnail-cache.json');
 const outputDir = path.join(root, 'media', 'models');
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-const fingerprint = stat => `${stat.size}:${stat.mtimeMs}`;
+// Bump when preview rendering changes so cached thumbnails are regenerated.
+const RENDER_VERSION = 2;
+const fingerprint = stat => `${RENDER_VERSION}:${stat.size}:${stat.mtimeMs}`;
 
 async function readJson(file, fallback) {
   try { return JSON.parse(await fs.readFile(file, 'utf8')); }
@@ -33,7 +35,7 @@ async function generate({ force = false, only } = {}) {
     const signature = fingerprint(stat);
     const previous = cache[id];
     const preview = await fs.stat(output).catch(error => { if (error.code === 'ENOENT') return null; throw error; });
-    if (!force && preview?.size && (previous ? previous.signature === signature : preview.mtimeMs >= stat.mtimeMs)) {
+    if (!force && preview?.size && previous?.signature === signature) {
       cache[id] = { signature }; continue;
     }
     pending.push({ id, source, output, signature });
@@ -111,7 +113,8 @@ async function generate({ force = false, only } = {}) {
         }, item.id);
         await page.waitForFunction(id => {
           const viewer = document.querySelector('model-viewer');
-          return viewer?.loaded && viewer.getAttribute('src') === './models/' + encodeURIComponent(id) + '.glb';
+          const src = './models/' + encodeURIComponent(id) + '.glb';
+          return viewer?.loaded && viewer.getAttribute('src') === src && viewer.dataset.materialsReady === src;
         }, item.id, { timeout: 60000 });
         await page.evaluate(async () => {
           const viewer = document.querySelector('model-viewer');
