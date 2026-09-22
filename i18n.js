@@ -732,6 +732,20 @@
     upgradeKeys.forEach((key, i) => { STRINGS[code]['upgrade.' + key] = values[i]; });
   });
 
+  const mobileLabels = {
+    en: ['Close', 'Browse models', 'Open selected model'],
+    fr: ['Fermer', 'Parcourir les modèles', 'Ouvrir le modèle sélectionné'],
+    pt: ['Fechar', 'Explorar modelos', 'Abrir modelo selecionado'],
+    es: ['Cerrar', 'Explorar modelos', 'Abrir modelo seleccionado'],
+    id: ['Tutup', 'Jelajahi model', 'Buka model terpilih'],
+    th: ['ปิด', 'ดูโมเดล', 'เปิดโมเดลที่เลือก'],
+    vi: ['Đóng', 'Duyệt mô hình', 'Mở mô hình đã chọn'],
+    ar: ['إغلاق', 'تصفح النماذج', 'افتح النموذج المحدد']
+  };
+  Object.entries(mobileLabels).forEach(([code, labels]) => {
+    ['close', 'browse', 'reopen'].forEach((key, i) => { STRINGS[code]['mobile.' + key] = labels[i]; });
+  });
+
   /* ---------------- engine ---------------- */
 
   const STORE_KEY = 'alpha.lang';

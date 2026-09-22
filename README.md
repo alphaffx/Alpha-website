@@ -6,7 +6,9 @@ Static HTML, CSS and JavaScript. Serve this folder over HTTP; opening `index.htm
 
 Sections support `#home`, `#models`, `#store`, and `#contact`. Models support links such as `#models/beesto`. The 3D viewer is imported on demand. Data saver requires an explicit click before loading a preview, and reduced motion disables automatic rotation.
 
-The homepage video uses `preload="none"` and starts only when played. Product images and model thumbnails are lazy-loaded. Model thumbnails live at `media/models/<model-id>.webp`; a missing thumbnail is hidden while its model remains accessible. Format and file-size labels come from the model catalog. Rigging and version metadata are not inferred from filenames.
+Product images and model thumbnails are lazy-loaded. Model thumbnails live at `media/models/<model-id>.webp`; a missing thumbnail is hidden while its model remains accessible. Format and file-size labels come from the model catalog. Rigging and version metadata are not inferred from filenames.
+
+Close exits fullscreen back to the embedded viewer; closing the embedded viewer returns to the catalog. Selecting a model or choosing “Open selected model” reopens the preview. Fullscreen opens only through its button. Mobile layouts use a two-column catalog, compact downloads and a “Browse models” shortcut.
 
 ## Verification
 

@@ -195,8 +195,8 @@
     }
 
     function showPanel(name, updateRoute = true) {
+      if (isExpanded()) collapseModel();
       if (!tabs.some(tab => tab.id === 'tab-' + name && !tab.hidden)) name = 'home';
-      if (name !== 'home') document.querySelector('.featured-work video').pause();
       if (updateRoute) history.pushState(null, '', '#' + name + (name === 'models' && currentId ? '/' + encodeURIComponent(currentId) : ''));
       if (name === 'models' && !currentModel && firstFree()) selectModel(firstFree().id, false, false);
       else if (name === 'models' && currentModel && !viewer.getAttribute('src') && !settings.dataSaver) loadNow();
@@ -479,7 +479,7 @@
       try {
         if (!viewerImport) viewerImport = import('https://unpkg.com/@google/model-viewer@4.3.1/dist/model-viewer.min.js').catch(e => { viewerImport = null; throw e; });
         await viewerImport;
-        if ((!force && settings.dataSaver) || activeTab() !== 'models') { status.hidden = true; return; }
+        if ((!force && settings.dataSaver) || activeTab() !== 'models' || library.classList.contains('preview-closed')) { status.hidden = true; return; }
         viewer.setAttribute('src', srcFor(currentModel));
       } catch (e) { viewerFailed(); }
     }
@@ -494,6 +494,7 @@
     loadBtn.addEventListener('click', () => loadNow(true));
 
     function selectModel(id, force, updateRoute = true) {
+      if (library.classList.contains('preview-closed')) { openPreview(); force = true; }
       if (id === currentId && !force) return;
       const m = MODELS.filter(function (x) { return x.id === id; })[0];
       if (!m || isPaid(m)) return;
@@ -630,26 +631,48 @@
 
     function isExpanded() { return stage.classList.contains('expanded'); }
 
+    const stageAnchor = document.createComment('3D viewer position');
+    stage.before(stageAnchor);
+    let viewerScrollY = 0;
+
     function expandModel() {
       if (isExpanded()) return;
       focusReturn = expandBtn;
+      viewerScrollY = window.scrollY;
+      document.body.appendChild(stage);
       stage.classList.add('expanded');
+      stage.setAttribute('role', 'dialog');
+      stage.setAttribute('aria-modal', 'true');
+      stage.setAttribute('aria-label', currentModel ? currentModel.name : '3D preview');
+      expandBtn.hidden = true;
       document.body.style.overflow = 'hidden';
       viewer.setAttribute('touch-action', 'none');
+      syncOverlay();
+      closeBtn.focus({ preventScroll: true });
       scheduleRefit();
     }
 
     function collapseModel() {
       if (!isExpanded()) return;
       stage.classList.remove('expanded');
+      stageAnchor.after(stage);
+      stage.removeAttribute('role');
+      stage.removeAttribute('aria-modal');
+      stage.removeAttribute('aria-label');
+      expandBtn.hidden = false;
       document.body.style.overflow = '';
       viewer.setAttribute('touch-action', 'pan-y');
+      syncOverlay();
+      window.scrollTo({ top: viewerScrollY, behavior: 'instant' });
       scheduleRefit();
     }
 
     document.getElementById('resetBtn').addEventListener('click', resetView);
     expandBtn.addEventListener('click', expandModel);
-    closeBtn.addEventListener('click', collapseModel);
+    closeBtn.addEventListener('click', () => {
+      if (isExpanded()) collapseModel();
+      else closePreview();
+    });
     backdrop.addEventListener('click', collapseModel);
 
     document.addEventListener('keydown', function (e) {
@@ -659,22 +682,7 @@
       if (!drawer.hidden) { closeDrawer(); }
     });
 
-    let pressing = false, downX = 0, downY = 0, dragged = false;
-
-    viewer.addEventListener('pointerdown', function (e) {
-      pressing = true; dragged = false; downX = e.clientX; downY = e.clientY;
-    });
-
-    viewer.addEventListener('pointermove', function (e) {
-      if (!pressing) return;
-      if (Math.abs(e.clientX - downX) > 6 || Math.abs(e.clientY - downY) > 6) dragged = true;
-    });
-
-    window.addEventListener('pointerup', function () { pressing = false; });
-
-    viewer.addEventListener('click', function () {
-      if (!dragged && !isExpanded() && viewer.getAttribute('src')) expandModel();
-    });
+    // Fullscreen is explicit: tapping or dragging a model must not interrupt scrolling.
 
     window.addEventListener('resize', scheduleRefit);
 
@@ -686,6 +694,35 @@
        the heading wrapping, a different font, or a themed tab bar.
        ============================================================ */
     const library = document.querySelector('.library');
+    const reopenViewer = document.getElementById('reopenViewer');
+    function browseModels() {
+      search.focus({ preventScroll: true });
+      search.scrollIntoView({ block: 'start', behavior: settings.reduceMotion ? 'instant' : 'smooth' });
+    }
+    function closePreview() {
+      window.clearTimeout(swapTimer);
+      window.clearTimeout(safetyTimer);
+      library.classList.add('preview-closed');
+      document.querySelector('.library-preview').hidden = true;
+      document.querySelector('.library-side').hidden = true;
+      viewer.removeAttribute('src');
+      reopenViewer.hidden = false;
+      sizeLibrary();
+      browseModels();
+    }
+    function openPreview() {
+      library.classList.remove('preview-closed');
+      document.querySelector('.library-preview').hidden = false;
+      document.querySelector('.library-side').hidden = false;
+      reopenViewer.hidden = true;
+      sizeLibrary();
+    }
+    reopenViewer.addEventListener('click', () => {
+      if (currentModel) selectModel(currentModel.id, true, false);
+      closeBtn.focus({ preventScroll: true });
+      stage.scrollIntoView({ block: 'center', behavior: settings.reduceMotion ? 'instant' : 'smooth' });
+    });
+    document.getElementById('browseModels').addEventListener('click', browseModels);
 
     function sizeLibrary() {
       if (!library) return;

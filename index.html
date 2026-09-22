@@ -58,9 +58,23 @@
   <!-- Body typeface (Inter) + display faces. All from Google Fonts, free for commercial use. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Anton&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Anton&family=Bangers&family=Black+Ops+One&family=Russo+One&display=swap">
 
-  <!-- Analytics is disabled until a real Cloudflare token is configured. -->
+  <!-- ============================================================
+       VISITOR ANALYTICS  --  Cloudflare Web Analytics
+       ------------------------------------------------------------
+       Counts visits per day / week / month. No cookies, so no
+       consent banner is needed, and it is free.
+
+       Replace  PASTE-YOUR-TOKEN-HERE  below with the token from
+       your Cloudflare dashboard (Web Analytics -> your site ->
+       "Manage site" -> the JS snippet). Keep the quotes and the
+       curly brackets exactly as they are - only the token changes.
+
+       Until you paste it, nothing is recorded.
+       ============================================================ -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "PASTE-YOUR-TOKEN-HERE"}'></script>
 
   <link rel="stylesheet" href="style.css">
 
@@ -170,18 +184,11 @@
         <p class="tagline" data-i18n="hero.tagline">3D Animator &amp; Creator</p>
         <p class="subtitle" data-i18n="hero.subtitle">Bringing characters to life through 3D animation.</p>
         <div class="hero-actions">
-          <button class="button" data-goto="models" data-i18n="upgrade.explore">Explore Free Models</button>
-          <button class="button button-ghost" data-goto="store" data-i18n="upgrade.shop">Shop Maps</button>
+          <button class="button" data-goto="models" data-i18n="hero.cta1">View My Work</button>
+          <button class="button button-ghost" data-goto="contact" data-i18n="hero.cta2">Get in Touch</button>
         </div>
       </header>
 
-      <section class="featured-work" aria-labelledby="featuredTitle">
-        <div><h2 id="featuredTitle" data-i18n="upgrade.featured">Characters in motion</h2>
-        <p data-i18n="upgrade.featuredDesc">A closer look at my animation work. Press play to watch.</p></div>
-        <video controls playsinline preload="none" poster="media/alpha-artwork.jpg" aria-label="ALPHA animation showcase">
-          <source src="media/alpha-motion.mp4" type="video/mp4">
-        </video>
-      </section>
       <div class="cards">
         <article class="card">
           <span class="card-icon" aria-hidden="true">◈</span>
@@ -264,6 +271,7 @@
 
       <div id="catalogStatus" class="load-status" role="status"></div>
       <button id="catalogRetry" class="button" hidden data-i18n="upgrade.retry">Try again</button>
+      <button id="reopenViewer" class="button reopen-viewer" type="button" hidden data-i18n="mobile.reopen">Open selected model</button>
       <div class="library">
       <aside class="library-list">
 
@@ -333,13 +341,14 @@
         </button>
 
         <button class="close-btn" id="closeBtn" type="button"
-                aria-label="Close fullscreen view" data-i18n-attr="aria-label:viewer.close">&#10005;</button>
+                aria-label="Close viewer" data-i18n-attr="aria-label:mobile.close"><span aria-hidden="true">&#10005;</span> <span data-i18n="mobile.close">Close</span></button>
       </div>
 
       <p class="model-caption">
         <strong id="captionName">—</strong> &middot; <span id="captionKind"></span>
       </p>
 
+      <button class="button button-ghost browse-models" id="browseModels" type="button" data-i18n="mobile.browse">Browse models</button>
       </div><!-- /preview-sticky -->
 
 
@@ -540,6 +549,5 @@
   </footer>
 
   <script src="app.js" defer></script>
-
 </body>
 </html>
