@@ -706,6 +706,32 @@
 
   };
 
+  Object.assign(STRINGS.en, {
+    'viewer.reset': 'Reset view',
+    'upgrade.explore': 'Explore Free Models', 'upgrade.shop': 'Shop Maps',
+    'upgrade.featured': 'Characters in motion',
+    'upgrade.featuredDesc': 'A closer look at my animation work. Press play to watch.',
+    'upgrade.retry': 'Try again', 'upgrade.loading': 'Loading catalog…',
+    'upgrade.loadingModel': 'Loading 3D preview…',
+    'upgrade.modelError': 'The preview could not load. Try again or download the model below.',
+    'upgrade.catalogError': 'The catalog could not load. Check your connection and try again.',
+    'upgrade.empty': 'No models are available yet.', 'upgrade.preview': 'Open image preview'
+  });
+
+  const upgradeKeys = ['explore', 'shop', 'featured', 'featuredDesc', 'retry', 'loading', 'loadingModel', 'modelError', 'catalogError', 'empty', 'preview'];
+  const upgradeTranslations = {
+    fr: ['Explorer les modèles gratuits', 'Acheter des cartes', 'Personnages en mouvement', 'Découvrez mes animations. Appuyez sur lecture.', 'Réessayer', 'Chargement du catalogue…', 'Chargement de l’aperçu 3D…', 'Aperçu indisponible. Réessayez ou téléchargez le modèle ci-dessous.', 'Catalogue indisponible. Vérifiez votre connexion et réessayez.', 'Aucun modèle disponible pour le moment.', 'Ouvrir l’aperçu'],
+    pt: ['Explorar modelos grátis', 'Comprar mapas', 'Personagens em movimento', 'Veja meu trabalho de animação. Aperte o play.', 'Tentar novamente', 'Carregando catálogo…', 'Carregando prévia 3D…', 'Não foi possível carregar a prévia. Tente novamente ou baixe o modelo abaixo.', 'Não foi possível carregar o catálogo. Verifique sua conexão e tente novamente.', 'Nenhum modelo disponível ainda.', 'Abrir prévia'],
+    es: ['Explorar modelos gratis', 'Comprar mapas', 'Personajes en movimiento', 'Descubre mis animaciones. Pulsa reproducir.', 'Reintentar', 'Cargando catálogo…', 'Cargando vista 3D…', 'No se pudo cargar la vista. Reintenta o descarga el modelo abajo.', 'No se pudo cargar el catálogo. Comprueba tu conexión y reintenta.', 'Todavía no hay modelos disponibles.', 'Abrir vista previa'],
+    id: ['Jelajahi model gratis', 'Beli peta', 'Karakter bergerak', 'Lihat karya animasi saya. Tekan putar untuk menonton.', 'Coba lagi', 'Memuat katalog…', 'Memuat pratinjau 3D…', 'Pratinjau gagal dimuat. Coba lagi atau unduh model di bawah.', 'Katalog gagal dimuat. Periksa koneksi dan coba lagi.', 'Belum ada model tersedia.', 'Buka pratinjau'],
+    th: ['ดูโมเดลฟรี', 'ซื้อแผนที่', 'ตัวละครที่เคลื่อนไหว', 'ชมผลงานแอนิเมชันของฉัน กดเล่นเพื่อรับชม', 'ลองอีกครั้ง', 'กำลังโหลดแคตตาล็อก…', 'กำลังโหลดตัวอย่าง 3D…', 'โหลดตัวอย่างไม่ได้ ลองอีกครั้งหรือดาวน์โหลดโมเดลด้านล่าง', 'โหลดแคตตาล็อกไม่ได้ ตรวจสอบการเชื่อมต่อแล้วลองอีกครั้ง', 'ยังไม่มีโมเดล', 'เปิดภาพตัวอย่าง'],
+    vi: ['Khám phá mô hình miễn phí', 'Mua bản đồ', 'Nhân vật chuyển động', 'Khám phá tác phẩm hoạt hình của tôi. Nhấn phát để xem.', 'Thử lại', 'Đang tải danh mục…', 'Đang tải bản xem trước 3D…', 'Không tải được bản xem trước. Thử lại hoặc tải mô hình bên dưới.', 'Không tải được danh mục. Kiểm tra kết nối và thử lại.', 'Chưa có mô hình nào.', 'Mở bản xem trước'],
+    ar: ['استكشف النماذج المجانية', 'تسوق الخرائط', 'شخصيات متحركة', 'شاهد أعمالي في التحريك. اضغط على تشغيل للمشاهدة.', 'حاول مجددًا', 'جارٍ تحميل الكتالوج…', 'جارٍ تحميل المعاينة ثلاثية الأبعاد…', 'تعذر تحميل المعاينة. حاول مجددًا أو نزّل النموذج أدناه.', 'تعذر تحميل الكتالوج. تحقق من اتصالك وحاول مجددًا.', 'لا توجد نماذج متاحة بعد.', 'افتح المعاينة']
+  };
+  Object.entries(upgradeTranslations).forEach(([code, values]) => {
+    upgradeKeys.forEach((key, i) => { STRINGS[code]['upgrade.' + key] = values[i]; });
+  });
+
   /* ---------------- engine ---------------- */
 
   const STORE_KEY = 'alpha.lang';
