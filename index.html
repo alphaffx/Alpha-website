@@ -329,6 +329,11 @@
         <!-- Shown instead of auto-loading when data saver is on -->
         <button class="model-load" id="modelLoad" type="button" hidden></button>
 
+        <button class="expand-btn reset-btn" id="resetBtn" type="button"
+                aria-label="Reset view" data-i18n-attr="aria-label:viewer.reset">
+          <span aria-hidden="true">&#10227;</span> <span data-i18n="viewer.reset">Reset view</span>
+        </button>
+
         <button class="expand-btn" id="expandBtn" type="button"
                 aria-label="Open fullscreen view" data-i18n-attr="aria-label:viewer.fullscreen">
           <span aria-hidden="true">⤢</span> <span data-i18n="viewer.fullscreen">Fullscreen</span>
@@ -1088,7 +1093,7 @@
       });
     }
 
-    viewer.addEventListener('load', function () { fixMaterials(); finishSwap(); refit(); });
+    viewer.addEventListener('load', function () { fixMaterials(); finishSwap(); resetView(); });
     viewer.addEventListener('error', finishSwap);
 
     // Premium models can be previewed but not downloaded yet.
@@ -1119,6 +1124,18 @@
       }).catch(function () { /* ignore */ });
     }
 
+    /* refit() keeps whatever angle you were looking from and only pulls the
+       camera back. resetView() puts everything back to how the model first
+       loaded - needed because a stray pinch can zoom inside the model and
+       there was previously no way out but reloading the page. */
+    function resetView() {
+      if (typeof viewer.updateFraming !== 'function') return;
+      viewer.updateFraming().then(function () {
+        viewer.cameraOrbit  = 'auto auto 105%';
+        viewer.fieldOfView  = 'auto';
+      }).catch(function () { /* ignore */ });
+    }
+
     function scheduleRefit() {
       window.clearTimeout(fitTimer);
       fitTimer = window.setTimeout(refit, 140);
@@ -1142,6 +1159,7 @@
       scheduleRefit();
     }
 
+    document.getElementById('resetBtn').addEventListener('click', resetView);
     expandBtn.addEventListener('click', expandModel);
     closeBtn.addEventListener('click', collapseModel);
     backdrop.addEventListener('click', collapseModel);

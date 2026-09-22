@@ -2631,3 +2631,38 @@ body.lb-open { overflow: hidden; }
     left: max(14px, calc(env(safe-area-inset-left) + 10px));
   }
 }
+
+/* ============================================================
+   RESET VIEW BUTTON  --  22 Sep 2026
+   ------------------------------------------------------------
+   A stray pinch could zoom inside the model with no way back
+   except reloading the page. This sits beside Fullscreen and
+   returns the camera to how the model first loaded.
+   ============================================================ */
+.reset-btn {
+  right: auto;
+  left: 14px;
+}
+
+/* Fullscreen only appears on hover on desktop; on a touch screen
+   there is no hover, so both buttons stay visible. */
+.reset-btn { opacity: 1; transform: none; }
+
+.model-stage.expanded .reset-btn {
+  position: fixed;
+  bottom: max(20px, calc(env(safe-area-inset-bottom) + 14px));
+  left: max(16px, calc(env(safe-area-inset-left) + 14px));
+  right: auto;
+  opacity: 1;
+}
+
+[dir="rtl"] .reset-btn { left: auto; right: 14px; }
+[dir="rtl"] .model-stage.expanded .reset-btn {
+  left: auto;
+  right: max(16px, calc(env(safe-area-inset-right) + 14px));
+}
+
+@media (max-width: 640px) {
+  .reset-btn { left: 10px; bottom: 10px; padding: 10px 14px; }
+  [dir="rtl"] .reset-btn { right: 10px; left: auto; }
+}
