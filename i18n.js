@@ -26,8 +26,9 @@
 
     en: {
       'nav.home': 'Home', 'nav.models': '3D Models', 'nav.contact': 'Contact',
-      'hero.tagline': '3D Animator & Creator',
-      'hero.subtitle': 'Bringing characters to life through 3D animation.',
+      'hero.title': 'BUILT IN BLENDER',
+      'hero.tagline': 'Free Fire maps & characters in 3D',
+      'hero.subtitle': 'Download the free ones, or commission something built for you.',
       'hero.cta1': 'View My Work', 'hero.cta2': 'Get in Touch',
       'card1.title': 'Character Animation',
       'card1.body': 'Rigging and animating characters with weight, timing and personality.',
@@ -110,8 +111,9 @@
 
     fr: {
       'nav.home': 'Accueil', 'nav.models': 'Modèles 3D', 'nav.contact': 'Contact',
-      'hero.tagline': 'Animateur 3D & Créateur',
-      'hero.subtitle': 'Donner vie aux personnages grâce à l\u2019animation 3D.',
+      'hero.title': 'FAIT SOUS BLENDER',
+      'hero.tagline': 'Cartes et personnages Free Fire en 3D',
+      'hero.subtitle': 'Téléchargez les modèles gratuits, ou commandez une création sur mesure.',
       'hero.cta1': 'Voir Mon Travail', 'hero.cta2': 'Me Contacter',
       'card1.title': 'Animation de Personnages',
       'card1.body': 'Rigging et animation de personnages avec du poids, du rythme et de la personnalité.',
@@ -194,8 +196,9 @@
 
     pt: {
       'nav.home': 'Início', 'nav.models': 'Modelos 3D', 'nav.contact': 'Contato',
-      'hero.tagline': 'Animador 3D & Criador',
-      'hero.subtitle': 'Dando vida a personagens através da animação 3D.',
+      'hero.title': 'FEITO NO BLENDER',
+      'hero.tagline': 'Mapas e personagens de Free Fire em 3D',
+      'hero.subtitle': 'Baixe os gratuitos, ou encomende algo feito sob medida.',
       'hero.cta1': 'Ver Meu Trabalho', 'hero.cta2': 'Entre em Contato',
       'card1.title': 'Animação de Personagens',
       'card1.body': 'Rigging e animação de personagens com peso, timing e personalidade.',
@@ -278,8 +281,9 @@
 
     es: {
       'nav.home': 'Inicio', 'nav.models': 'Modelos 3D', 'nav.contact': 'Contacto',
-      'hero.tagline': 'Animador 3D y Creador',
-      'hero.subtitle': 'Dando vida a personajes con animación 3D.',
+      'hero.title': 'HECHO EN BLENDER',
+      'hero.tagline': 'Mapas y personajes de Free Fire en 3D',
+      'hero.subtitle': 'Descarga los gratuitos, o encarga algo hecho a medida.',
       'hero.cta1': 'Ver Mi Trabajo', 'hero.cta2': 'Contáctame',
       'card1.title': 'Animación de Personajes',
       'card1.body': 'Rigging y animación de personajes con peso, ritmo y personalidad.',
@@ -362,8 +366,9 @@
 
     id: {
       'nav.home': 'Beranda', 'nav.models': 'Model 3D', 'nav.contact': 'Kontak',
-      'hero.tagline': 'Animator & Kreator 3D',
-      'hero.subtitle': 'Menghidupkan karakter lewat animasi 3D.',
+      'hero.title': 'DIBUAT DI BLENDER',
+      'hero.tagline': 'Peta dan karakter Free Fire dalam 3D',
+      'hero.subtitle': 'Unduh yang gratis, atau pesan sesuatu yang dibuat khusus.',
       'hero.cta1': 'Lihat Karya Saya', 'hero.cta2': 'Hubungi Saya',
       'card1.title': 'Animasi Karakter',
       'card1.body': 'Rigging dan animasi karakter dengan bobot, timing, dan kepribadian.',
@@ -446,8 +451,9 @@
 
     th: {
       'nav.home': 'หน้าแรก', 'nav.models': 'โมเดล 3D', 'nav.contact': 'ติดต่อ',
-      'hero.tagline': 'นักแอนิเมชัน 3D และครีเอเตอร์',
-      'hero.subtitle': 'ทำให้ตัวละครมีชีวิตด้วยแอนิเมชัน 3D',
+      'hero.title': 'สร้างด้วย BLENDER',
+      'hero.tagline': 'แผนที่และตัวละคร Free Fire แบบ 3D',
+      'hero.subtitle': 'ดาวน์โหลดตัวที่ฟรีได้เลย หรือสั่งทำแบบเฉพาะของคุณ',
       'hero.cta1': 'ดูผลงาน', 'hero.cta2': 'ติดต่อฉัน',
       'card1.title': 'แอนิเมชันตัวละคร',
       'card1.body': 'ริกและทำแอนิเมชันตัวละคร ด้วยน้ำหนัก จังหวะ และบุคลิก',
@@ -530,8 +536,9 @@
 
     vi: {
       'nav.home': 'Trang chủ', 'nav.models': 'Mô hình 3D', 'nav.contact': 'Liên hệ',
-      'hero.tagline': 'Nhà làm hoạt hình 3D & Nhà sáng tạo',
-      'hero.subtitle': 'Thổi hồn cho nhân vật bằng hoạt hình 3D.',
+      'hero.title': 'LÀM BẰNG BLENDER',
+      'hero.tagline': 'Bản đồ và nhân vật Free Fire ở dạng 3D',
+      'hero.subtitle': 'Tải miễn phí, hoặc đặt làm riêng theo yêu cầu.',
       'hero.cta1': 'Xem Tác Phẩm', 'hero.cta2': 'Liên Hệ',
       'card1.title': 'Hoạt hình nhân vật',
       'card1.body': 'Dựng xương và tạo chuyển động cho nhân vật với trọng lượng, nhịp điệu và cá tính.',
@@ -614,8 +621,9 @@
 
     ar: {
       'nav.home': 'الرئيسية', 'nav.models': 'نماذج ثلاثية الأبعاد', 'nav.contact': 'تواصل',
-      'hero.tagline': 'مصمم رسوم متحركة ثلاثية الأبعاد',
-      'hero.subtitle': 'أمنح الشخصيات حياة عبر الرسوم المتحركة ثلاثية الأبعاد.',
+      'hero.title': 'صُنع في BLENDER',
+      'hero.tagline': 'خرائط وشخصيات Free Fire بتقنية ثلاثية الأبعاد',
+      'hero.subtitle': 'حمّل النماذج المجانية، أو اطلب تصميمًا خاصًا بك.',
       'hero.cta1': 'شاهد أعمالي', 'hero.cta2': 'تواصل معي',
       'card1.title': 'تحريك الشخصيات',
       'card1.body': 'بناء الهياكل وتحريك الشخصيات بوزن وإيقاع وشخصية.',

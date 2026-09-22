@@ -183,7 +183,7 @@
     <!-- ============ HOME ============ -->
     <section class="panel is-active" id="panel-home" role="tabpanel" aria-labelledby="tab-home">
       <header class="hero">
-        <h1 class="title">ALPHA</h1>
+        <h1 class="title" data-i18n="hero.title">BUILT IN BLENDER</h1>
         <p class="tagline" data-i18n="hero.tagline">3D Animator &amp; Creator</p>
         <p class="subtitle" data-i18n="hero.subtitle">Bringing characters to life through 3D animation.</p>
         <div class="hero-actions">
@@ -429,7 +429,8 @@
         <p class="tier-empty" id="storePresetsEmpty" data-i18n="store.empty">Nothing here yet — check back soon.</p>
       </section>
 
-      <!-- Appears on its own once there are more than STORE_SEARCH_MIN products. -->
+      <!-- Appears on its own once there are more than STORE_SEARCH_MIN products.
+           With only a handful of cards on screen a search box is just clutter. -->
       <div class="store-search" id="storeSearch" hidden>
         <input class="search-input" id="storeQ" type="search" autocomplete="off"
                data-i18n-attr="placeholder:search.placeholder"
@@ -1418,6 +1419,8 @@
 
     /* ============================================================
        STORE LIGHTBOX
+       Tapping a product picture opens it full screen. Arrows, dots,
+       swipe, arrow keys and Escape all work.
        ============================================================ */
     const lb      = document.getElementById('storeLb');
     const lbImg   = document.getElementById('lbImg');
@@ -1427,7 +1430,9 @@
     const lbNext  = document.getElementById('lbNext');
     const lbClose = document.getElementById('lbClose');
 
-    let lbShots = [], lbAt = 0, lbOpener = null;
+    let lbShots = [];
+    let lbAt    = 0;
+    let lbOpener = null;
 
     function lbGo(n) {
       if (!lbShots.length) return;
@@ -1466,7 +1471,7 @@
 
     function closeLightbox() {
       lb.hidden = true;
-      lbImg.removeAttribute('src');
+      lbImg.removeAttribute('src');          /* stop it holding the picture in memory */
       document.body.classList.remove('lb-open');
       if (lbOpener && lbOpener.focus) lbOpener.focus();
       lbOpener = null;
@@ -1475,6 +1480,8 @@
     lbPrev.addEventListener('click', function () { lbGo(lbAt - 1); });
     lbNext.addEventListener('click', function () { lbGo(lbAt + 1); });
     lbClose.addEventListener('click', closeLightbox);
+
+    /* clicking the dark area around the picture closes it */
     lb.addEventListener('click', function (e) { if (e.target === lb) closeLightbox(); });
 
     document.addEventListener('keydown', function (e) {
@@ -1484,7 +1491,8 @@
       if (e.key === 'ArrowRight') { e.preventDefault(); lbGo(lbAt + 1); }
     });
 
-    (function () {   /* swipe on a phone */
+    /* swipe on a phone */
+    (function () {
       let x0 = null;
       lb.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
       lb.addEventListener('touchend', function (e) {
@@ -1496,7 +1504,8 @@
     })();
 
     /* ============================================================
-       STORE SEARCH  --  hidden until the store outgrows one glance
+       STORE SEARCH
+       Hidden until the store outgrows a single glance.
        ============================================================ */
     const STORE_SEARCH_MIN = 6;
     const storeSearch = document.getElementById('storeSearch');
@@ -1511,7 +1520,8 @@
       let shown = 0, total = 0;
       document.querySelectorAll('#panel-store .store-card').forEach(function (card) {
         total++;
-        const hit = !q || (card.textContent || '').toLowerCase().indexOf(q) !== -1;
+        const hay = (card.textContent || '').toLowerCase();
+        const hit = !q || hay.indexOf(q) !== -1;
         card.hidden = !hit;
         if (hit) shown++;
       });
@@ -1523,7 +1533,9 @@
 
     storeQ.addEventListener('input', applyStoreFilter);
     storeQClear.addEventListener('click', function () {
-      storeQ.value = ''; applyStoreFilter(); storeQ.focus();
+      storeQ.value = '';
+      applyStoreFilter();
+      storeQ.focus();
     });
 
     function fillStore(grid, empty, count, items) {
