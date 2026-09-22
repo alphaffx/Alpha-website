@@ -4,3 +4,11 @@ media/models/*.png
 media/models/*.tmp
 .preview-test-*/
 review-auto-preview.webp
+
+# Blender's automatic backup copies - duplicates of the .blend files
+*.blend1
+
+# Old manual backups from before this folder was in git. Git is the
+# backup now. These are already committed, so ignoring them only stops
+# NEW ones being added - see the note about removing the existing ones.
+backup-before-*/

@@ -198,6 +198,7 @@
       if (isExpanded()) collapseModel();
       if (!tabs.some(tab => tab.id === 'tab-' + name && !tab.hidden)) name = 'home';
       if (updateRoute) history.pushState(null, '', '#' + name + (name === 'models' && currentId ? '/' + encodeURIComponent(currentId) : ''));
+      if (name === 'cc') initCompare();   // probe the comparison pictures on first open
       if (name === 'models' && !currentModel && firstFree()) selectModel(firstFree().id, false, false);
       else if (name === 'models' && currentModel && !viewer.getAttribute('src') && !settings.dataSaver) loadNow();
       tabs.forEach(function (tab) {
@@ -788,7 +789,16 @@
     }
 
     // Both images have to load before the comparison means anything.
-    (function initCompare() {
+    /* The two comparison pictures are probed by trying to load them, which
+       is fine - except this used to run on every page load for a tab that is
+       hidden and for files that do not exist yet, costing every visitor two
+       guaranteed 404s. The <img> tags now carry data-src, and the probe only
+       runs the first time the Colour Correction tab is actually opened. */
+    let compareProbed = false;
+    function initCompare() {
+      if (compareProbed) return;
+      compareProbed = true;
+
       let ready = 0, failed = false;
       function done() {
         ready++;
@@ -797,11 +807,12 @@
       function fail() { failed = true; baWrap.hidden = true; baEmpty.hidden = false; }
 
       [baBefore, baAfter].forEach(function (img) {
-        if (img.complete) { (img.naturalWidth ? done : fail)(); return; }
         img.addEventListener('load', done);
         img.addEventListener('error', fail);
+        const src = img.getAttribute('data-src');
+        if (src) img.src = src; else fail();
       });
-    })();
+    }
 
     function renderPresets(all) {
       // paid presets are shown in the Store instead

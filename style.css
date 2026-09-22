@@ -2557,7 +2557,10 @@ body.lb-open { overflow: hidden; }
    (Youssef Habchi, Desktop + Webfont tier) if you ever want it.
 
    All four below are free for commercial use. To try another, move
-   the comment markers so only ONE line is live.
+   the comment markers so only ONE line is live -- AND add that family
+   to the Google Fonts <link> in index.html, or the browser has nothing
+   to download and silently falls back to Impact. Only Bangers is
+   loaded right now; the other three are not.
    ============================================================ */
 :root {
   /* Loud comic-book caps - closest in spirit to Road Rage */
