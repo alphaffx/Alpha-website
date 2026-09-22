@@ -10,11 +10,26 @@ Product images and model thumbnails are lazy-loaded. Model thumbnails live at `m
 
 Close exits fullscreen back to the embedded viewer; closing the embedded viewer returns to the catalog. Selecting a model or choosing “Open selected model” reopens the preview. Fullscreen opens only through its button. Mobile layouts use a two-column catalog, compact downloads and a “Browse models” shortcut.
 
-## Verification
+## Adding models and automatic previews
+
+1. Double-click `watch-models.bat` and keep it running.
+2. Copy a `.glb` file into `models/`, plus its matching `.blend` if available.
+3. Wait for `Saved media/models/<name>.webp` in the watcher window.
+4. Refresh your local website. Commit and sync the model, `models/models.json`, and its new `.webp` to publish them.
+
+The watcher uses the actual website's 3D viewer, lighting and material adjustments to generate a preview at a consistent camera angle. The model's exported orientation determines which side faces the camera. It saves an optimized 192×230 WebP automatically. Updated GLBs regenerate their thumbnails, missing thumbnails are recreated, and unchanged models are skipped. Existing previews are retained if rendering fails; retries occur every 30 seconds. `.thumbnail-cache.json` is local bookkeeping and is not committed.
+
+Requirements: Node.js, Playwright, Microsoft Edge and internet access for the existing model-viewer dependency. The installed Codex Node/Playwright runtime is detected automatically on this machine; another machine can install Node.js and run `npm install --no-save playwright`. `PLAYWRIGHT_PATH` and `PREVIEW_BROWSER` optionally override the Playwright package and browser channel. No Python or manual image conversion is needed.
+
+To regenerate one preview manually, run `node generate-previews.cjs --force --model "model name"`. To refresh all previews, use `node generate-previews.cjs --force`. `powershell -NoProfile -ExecutionPolicy Bypass -File watch-models.ps1 -Once` performs a single catalog/preview update and exits with a failure code if previews fail.
+
+## Browser verification
+
+Run `node test-previews.cjs` to test the watcher and thumbnail renderer in a temporary fixture without modifying your real models. It checks new previews, unchanged files, same-size changes, missing images, paid models and incomplete exports.
 
 Run `node verify.cjs` with Playwright and Microsoft Edge installed. The script uses a local server on port 8765 and verifies navigation, reloads, Back, keyboard focus, store error recovery, thumbnails, mobile overflow, and data saver. It loads the existing external viewer dependency but does not submit messages or make purchases. Set `PLAYWRIGHT_PATH` if Playwright is installed outside the normal Node resolution path. The Codex bundled runtime is also supported.
 
-Run `node verify.cjs --render` to render PNG thumbnail sources from the GLB files. Convert these to 192×230 WebP images before publishing; the website uses the WebP files. The browser checks also produce `review-*.png` screenshots for local inspection.
+The browser checks also produce `review-*.png` screenshots for local inspection. Use `generate-previews.cjs` for production thumbnails.
 
 ## Analytics and contact
 

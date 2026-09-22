@@ -11,6 +11,8 @@
 #  sits beside it, the .blend download is offered too.
 # ==============================================================
 
+param([switch]$Once)
+
 $ErrorActionPreference = 'Stop'
 
 $Root      = $PSScriptRoot
@@ -244,8 +246,31 @@ function Get-FolderSignature {
     $files = Get-ChildItem -LiteralPath $ModelsDir -File |
              Where-Object { $_.Extension -eq '.glb' -or $_.Extension -eq '.blend' } |
              Sort-Object Name
-    $parts = foreach ($f in $files) { "$($f.Name):$($f.Length)" }
+    $parts = foreach ($f in $files) { "$($f.Name):$($f.Length):$($f.LastWriteTimeUtc.Ticks)" }
     return ($parts -join '|')
+}
+
+function Get-PreviewSignature {
+    $dir = Join-Path $Root 'media\models'
+    if (-not (Test-Path -LiteralPath $dir)) { return 'none' }
+    $parts = Get-ChildItem -LiteralPath $dir -Filter '*.webp' -File | Sort-Object Name | ForEach-Object { "$($_.Name):$($_.Length):$($_.LastWriteTimeUtc.Ticks)" }
+    return ($parts -join '|')
+}
+
+function Update-Previews {
+    $nodeCommand = Get-Command node -ErrorAction SilentlyContinue
+    $nodePath = if ($nodeCommand) { $nodeCommand.Source } else { Join-Path $env:USERPROFILE '.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe' }
+    if (-not (Test-Path -LiteralPath $nodePath)) {
+        Write-Host '  Preview generation needs Node.js. Install Node.js, then restart the watcher.' -ForegroundColor Yellow
+        return $false
+    }
+    $previousErrorAction = $ErrorActionPreference
+    try {
+        $ErrorActionPreference = 'Continue'
+        & $nodePath (Join-Path $Root 'generate-previews.cjs') 2>&1 | ForEach-Object { Write-Host "            $_" }
+        $succeeded = ($LASTEXITCODE -eq 0)
+    } finally { $ErrorActionPreference = $previousErrorAction }
+    return $succeeded
 }
 
 # ---------- run ----------
@@ -257,18 +282,28 @@ Write-Host "  ---------------------" -ForegroundColor DarkCyan
 Write-Host "  Watching: $ModelsDir" -ForegroundColor DarkGray
 Write-Host "  Drop a .glb (and its .blend) in that folder and the" -ForegroundColor DarkGray
 Write-Host "  website picks it up within a few seconds." -ForegroundColor DarkGray
+Write-Host "  Preview images are generated automatically. Refresh your local" -ForegroundColor DarkGray
+Write-Host "  page afterwards; commit and sync to update the live website." -ForegroundColor DarkGray
 Write-Host "  Close this window to stop." -ForegroundColor DarkGray
 Write-Host ""
 
 $lastSignature = ''
+$lastPreviewSignature = ''
+$previewRetryAt = [datetime]::MinValue
+$previewPending = $true
 
 while ($true) {
     try {
         $signature = (Get-FolderSignature) + '##' + (Get-PresetSignature) + '##' + (Get-StoreSignature)
 
         if ($signature -ne $lastSignature) {
+            # Avoid cataloging half-copied exports. The renderer also validates GLB length.
+            Start-Sleep -Seconds 2
+            $settled = (Get-FolderSignature) + '##' + (Get-PresetSignature) + '##' + (Get-StoreSignature)
+            if ($signature -ne $settled) { continue }
             $result = Write-Manifest
             $lastSignature = $signature
+            $previewPending = $true
             $time = Get-Date -Format 'HH:mm:ss'
 
             Write-Host ("  [{0}] models.json updated - {1} model(s)" -f $time, $result.Count) -ForegroundColor Green
@@ -287,9 +322,19 @@ while ($true) {
                 Write-Host ("            note: {0}.glb has no matching {0}.blend" -f $id) -ForegroundColor DarkYellow
             }
         }
+        if ((Get-PreviewSignature) -ne $lastPreviewSignature) { $previewPending = $true }
+        if ($previewPending -and (Get-Date) -ge $previewRetryAt) {
+            $previewPending = -not (Update-Previews)
+            $lastPreviewSignature = Get-PreviewSignature
+            $previewRetryAt = (Get-Date).AddSeconds(30)
+            if ($previewPending) { Write-Host '            Will retry previews in 30 seconds.' -ForegroundColor Yellow }
+        }
     } catch {
         Write-Host ("  [{0}] error: {1}" -f (Get-Date -Format 'HH:mm:ss'), $_.Exception.Message) -ForegroundColor Red
+        $previewPending = $true
+        $previewRetryAt = (Get-Date).AddSeconds(30)
     }
 
+    if ($Once) { if ($previewPending) { exit 1 } else { exit 0 } }
     Start-Sleep -Seconds 2
 }

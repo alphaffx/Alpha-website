@@ -1,2 +1,6 @@
 review-*.png
 media/models/*.png
+.thumbnail-cache.json
+media/models/*.tmp
+.preview-test-*/
+review-auto-preview.webp
