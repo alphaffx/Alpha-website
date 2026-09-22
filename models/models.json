@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-22T05:29:26",
+  "generated": "2026-09-22T06:17:08",
   "models": [
     {"id":"alpha","name":"Alpha","kind":"3D model","glb":"6.1 MB","blend":"6.6 MB","hasBlend":true,"tier":"free","price":""},
     {"id":"beesto","name":"Beesto","kind":"3D model","glb":"7.3 MB","blend":"9.5 MB","hasBlend":true,"tier":"free","price":""},
@@ -12,7 +12,7 @@
     {"id":"kanzaki","name":"Kanzaki","kind":"3D model","glb":"518 KB","blend":"991 KB","hasBlend":true,"tier":"free","price":""},
     {"id":"le chris","name":"Le Chris","kind":"3D model","glb":"7.8 MB","blend":"14.5 MB","hasBlend":true,"tier":"free","price":""},
     {"id":"maxxo","name":"Maxxo","kind":"3D model","glb":"1.0 MB","blend":"2.3 MB","hasBlend":true,"tier":"free","price":""},
-    {"id":"miaou","name":"Miaou","kind":"3D model","glb":"2.9 MB","blend":"3.5 MB","hasBlend":true,"tier":"free","price":""},
+    {"id":"miaou","name":"Miaou","kind":"3D model","glb":"2.9 MB","blend":"3.7 MB","hasBlend":true,"tier":"free","price":""},
     {"id":"moiz","name":"Moiz","kind":"3D model","glb":"6.2 MB","blend":"8.4 MB","hasBlend":true,"tier":"free","price":""},
     {"id":"raynox","name":"Raynox","kind":"3D model","glb":"4.3 MB","blend":"5.1 MB","hasBlend":true,"tier":"free","price":""},
     {"id":"rroli.n","name":"Rroli.n","kind":"3D model","glb":"1.8 MB","blend":"2.0 MB","hasBlend":true,"tier":"free","price":""},

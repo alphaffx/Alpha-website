@@ -574,6 +574,21 @@
             if (typeof pbr.setRoughnessFactor === 'function') {
               pbr.setRoughnessFactor(MATERIAL_FIX.roughness);
             }
+          } else if (
+            // A material that is fully metallic with no metal map at all is the
+            // Blender default-export artefact, not an authored metal. Left alone
+            // it mirrors the environment and the character reads as black with
+            // white highlights. A deliberately metallic part (gold buckle, gun)
+            // carries its own metallic-roughness map and is not touched here.
+            (!mrInfo || !mrInfo.texture) &&
+            baseInfo && baseInfo.texture &&
+            typeof pbr.metallicFactor === 'number' && pbr.metallicFactor >= 0.9
+          ) {
+            pbr.setMetallicFactor(MATERIAL_FIX.metallic);
+            if (typeof pbr.setRoughnessFactor === 'function' &&
+                typeof pbr.roughnessFactor === 'number' && pbr.roughnessFactor < 0.6) {
+              pbr.setRoughnessFactor(MATERIAL_FIX.roughness);
+            }
           }
           // A color atlas is not a tangent-space normal map. It bends the light incorrectly.
           if (sameImage(baseInfo, mat.normalTexture)) mat.normalTexture.setTexture(null);
