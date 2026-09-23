@@ -2206,11 +2206,12 @@ body.on-models main { max-width: 1560px; }
 
 .store-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
 }
 
 .store-card {
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -2224,7 +2225,8 @@ body.on-models main { max-width: 1560px; }
   transition: transform .25s var(--ease), border-color .25s ease, box-shadow .25s ease;
 }
 
-a.store-card:hover {
+.store-card:hover,
+.store-card:focus-within {
   transform: translateY(-3px);
   border-color: var(--border-lit);
   box-shadow: 0 14px 34px rgba(0, 0, 0, .4);
@@ -2277,6 +2279,10 @@ a.store-card:hover {
 }
 
 .store-card.is-soon .store-card-foot { color: var(--text-dim); }
+
+@media (max-width: 1000px) {
+  .store-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 
 @media (max-width: 640px) {
   .store-grid { grid-template-columns: 1fr; }
@@ -2420,8 +2426,9 @@ h1, h2, h3 {
    ============================================================ */
 .store-shots {
   position: relative;
-  margin: -2px -2px 14px;
-  border-radius: 12px;
+  flex: 0 0 auto;
+  margin: -22px -22px 8px;
+  border-radius: calc(var(--radius-lg) - 1px) calc(var(--radius-lg) - 1px) 0 0;
   overflow: hidden;
   background: rgba(0,0,0,.3);
   aspect-ratio: 16 / 9;
@@ -2459,7 +2466,10 @@ h1, h2, h3 {
 .shot-dot::after {
   content: "";
   position: absolute;
-  inset: 8px;
+  width: 6px;
+  height: 6px;
+  top: calc(50% - 3px);
+  left: calc(50% - 3px);
   border-radius: 50%;
   background: rgba(255,255,255,.45);
   box-shadow: 0 0 4px rgba(0,0,0,.5);
@@ -2475,15 +2485,20 @@ h1, h2, h3 {
 
 /* The card is a div now, so the buy link is its own element. */
 .store-card-buy {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
   margin-top: auto;
-  padding-top: 10px;
+  padding: 10px 16px;
+  border: 1px solid var(--border-lit);
+  border-radius: 10px;
   font-size: .9rem;
   font-weight: 700;
   color: var(--accent);
   text-decoration: none;
 }
-.store-card-buy:hover { text-decoration: underline; }
+.store-card-buy:hover { border-color: var(--accent); }
 .store-card-buy:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 @media (prefers-reduced-motion: reduce) {

@@ -23,6 +23,49 @@ console.log('Rendered',m.id);
 }
 }
 const assert=require('assert/strict');
+// Exercise the actual picker, including text, accessible names, persistence and RTL.
+const resetLabels = {
+  en: 'Reset view', fr: 'Réinitialiser la vue', pt: 'Redefinir visualização',
+  es: 'Restablecer vista', id: 'Atur ulang tampilan', th: 'รีเซ็ตมุมมอง',
+  vi: 'Đặt lại góc nhìn', ar: 'إعادة ضبط العرض'
+};
+await page.locator('#menuBtn').click();
+await page.locator('#openSettings').click();
+const languages = await page.evaluate(() => window.AlphaI18n.langs);
+assert.deepEqual(languages.map(l => l.code).sort(), Object.keys(resetLabels).sort());
+for (const lang of languages) {
+  await page.locator(`#langGrid [data-code="${lang.code}"]`).click();
+  assert.equal(await page.locator('#resetBtn [data-i18n]').textContent(), resetLabels[lang.code]);
+  assert.equal(await page.locator('#resetBtn').getAttribute('aria-label'), resetLabels[lang.code]);
+  assert.equal(await page.locator('html').getAttribute('lang'), lang.code);
+  assert.equal(await page.locator('html').getAttribute('dir'), lang.dir);
+  assert.deepEqual(await page.locator('#langGrid .lang-btn').allTextContents(), languages.map(l => l.name));
+  assert.equal(await page.locator('#langGrid .is-active').getAttribute('data-code'), lang.code);
+  assert.equal(await page.evaluate(() => localStorage.getItem('alpha.lang')), lang.code);
+}
+await page.reload();
+assert.equal(await page.locator('#resetBtn').getAttribute('aria-label'), resetLabels.ar);
+await page.locator('#tab-store').click();
+await page.waitForFunction(() => document.querySelectorAll('#storeOther .store-card').length === 6);
+for (const code of ['ar', 'en']) {
+  await page.evaluate(code => window.AlphaI18n.set(code), code);
+  for (const width of [1440, 800, 390, 320]) {
+    await page.setViewportSize({width, height: 900});
+    assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+    const columns = await page.locator('#storeOther').evaluate(el => getComputedStyle(el).gridTemplateColumns.split(' ').length);
+    assert.equal(columns, width > 1000 ? 3 : width > 640 ? 2 : 1);
+    assert.equal(await page.locator('#storeOther .store-card-buy').count(), 6);
+    if (width === 1440 || width === 390) await page.screenshot({path: `review-store-${code}-${width}.png`, fullPage: true});
+  }
+}
+await page.setViewportSize({width:1440,height:1000});
+console.log('PASS: all 8 language picker outputs, reset text/aria-labels, persistence, RTL and responsive store columns.');
+if (process.argv.includes('--store-i18n')) {
+  assert.deepEqual(errors, []);
+  await browser.close();
+  server.close();
+  return;
+}
 await page.goto('http://127.0.0.1:8765/#home');
 await page.waitForTimeout(700);
 assert.equal(await page.locator('model-viewer').getAttribute('src'),null);
