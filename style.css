@@ -2824,3 +2824,17 @@ body.on-commerce main { padding-top: clamp(24px, 3vw, 40px); }
   .panel-head p { font-size: .9375rem; }
   .store-faq details { padding-block: 20px; }
 }
+
+/* Verified details for the selected model. */
+.model-details { padding: 20px; margin-bottom: 16px; border: 1px solid var(--line, #303846); border-radius: 14px; background: rgba(15, 20, 29, .85); }
+.model-details h3 { font-size: 16px; margin: 0 0 16px; }
+.model-details dl { margin: 0; }
+.model-details dl > div { padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,.08); }
+.model-details dt { font-size: 12px; color: #aeb9c9; margin-bottom: 5px; }
+.model-details dd { font-size: 14px; margin: 0; overflow-wrap: anywhere; }
+.model-details-note { color: #aeb9c9; font-size: 12px; line-height: 1.6; margin: 14px 0 0; }
+.animation-controls { display: grid; gap: 10px; margin-top: 18px; }
+.animation-controls[hidden] { display: none; }
+.animation-controls label { font-size: 13px; }
+.animation-controls select { width: 100%; min-width: 0; color: #fff; background: #141c29; border: 1px solid #536078; border-radius: 8px; padding: 10px; font: inherit; }
+.animation-controls button { white-space: normal; }

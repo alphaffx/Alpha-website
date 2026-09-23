@@ -196,6 +196,10 @@
 
     function showPanel(name, updateRoute = true) {
       if (isExpanded()) collapseModel();
+      if (name !== 'models' && typeof viewer.pause === 'function') {
+        viewer.pause();
+        document.getElementById('animationToggle').textContent = t('details.play');
+      }
       if (!tabs.some(tab => tab.id === 'tab-' + name && !tab.hidden)) name = 'home';
       if (updateRoute) history.pushState(null, '', '#' + name + (name === 'models' && currentId ? '/' + encodeURIComponent(currentId) : ''));
       if (name === 'cc') initCompare();   // probe the comparison pictures on first open
@@ -438,6 +442,7 @@
     function srcFor(m) { return fileFor(m, '.glb'); }
 
     function applyMeta(m) {
+      renderModelDetails(m);
       captionName.textContent = m.name;
       captionKind.textContent = m.kind ? m.kind : t('viewer.kind');
       viewer.setAttribute('alt', m.name);
@@ -466,7 +471,51 @@
       viewer.classList.remove('is-swapping');
     }
 
+    function renderModelDetails(m) {
+      const facts = m.glbDetails;
+      const rows = [
+        [t('details.blender'), m.hasBlend === false ? t('dl.missing') : (m.blenderCompatibility || t('details.unverified'))],
+        [t('details.rig'), facts ? t(facts.rigged ? 'details.rigged' : 'details.noRig') : t('details.unknown')],
+        [t('details.textures'), facts ? t('details.textureCount', { n: facts.embeddedTextures, m: facts.externalTextures }) : t('details.unknown')],
+        [t('details.animations'), facts ? (facts.animations.length ? t('details.clipCount', { n: facts.animations.length }) : t('details.noClips')) : t('details.unknown')]
+      ];
+      const list = document.getElementById('modelDetails');
+      list.replaceChildren();
+      rows.forEach(([label, value]) => {
+        const row = document.createElement('div');
+        const dt = document.createElement('dt'); dt.textContent = label;
+        const dd = document.createElement('dd'); dd.textContent = value;
+        row.append(dt, dd); list.append(row);
+      });
+      document.getElementById('animationToggle').textContent = t(viewer.paused === false ? 'details.pause' : 'details.play');
+    }
+
+    function resetAnimationControls() {
+      if (typeof viewer.pause === 'function') viewer.pause();
+      document.getElementById('animationControls').hidden = true;
+      document.getElementById('animationClip').replaceChildren();
+      document.getElementById('animationToggle').textContent = t('details.play');
+    }
+
+    function populateAnimations() {
+      resetAnimationControls();
+      const clips = viewer.availableAnimations || [];
+      const select = document.getElementById('animationClip');
+      clips.forEach(name => { const option = document.createElement('option'); option.value = name; option.textContent = name; select.append(option); });
+      if (clips.length) { viewer.animationName = clips[0]; viewer.currentTime = 0; }
+      document.getElementById('animationControls').hidden = !clips.length;
+    }
+    document.getElementById('animationClip').addEventListener('change', function () {
+      viewer.pause(); viewer.animationName = this.value; viewer.currentTime = 0;
+      document.getElementById('animationToggle').textContent = t('details.play');
+    });
+    document.getElementById('animationToggle').addEventListener('click', function () {
+      if (viewer.paused) viewer.play(); else viewer.pause();
+      this.textContent = t(viewer.paused ? 'details.play' : 'details.pause');
+    });
+
     function showLoadButton(m) {
+      resetAnimationControls();
       window.clearTimeout(swapTimer);
       window.clearTimeout(safetyTimer);
       viewer.classList.remove('is-swapping');
@@ -489,6 +538,7 @@
       } catch (e) { viewerFailed(); }
     }
     function viewerFailed() {
+      resetAnimationControls();
       finishSwap();
       viewer.removeAttribute('src');
       const status = document.getElementById('viewerStatus');
@@ -509,6 +559,7 @@
       window.clearTimeout(safetyTimer);
       currentId = id;
       currentModel = m;
+      resetAnimationControls();
       if (updateRoute) history.pushState(null, "", "#models/" + encodeURIComponent(id));
       applyMeta(m);
       renderPicker();
@@ -610,6 +661,7 @@
       await fixMaterials();
       if (viewer.model !== loadedModel || viewer.getAttribute('src') !== loadedSrc) return;
       viewer.dataset.materialsReady = loadedSrc;
+      if (currentModel && loadedSrc === srcFor(currentModel)) populateAnimations();
       document.getElementById('viewerStatus').hidden = true;
       finishSwap(); resetView();
     });
@@ -731,6 +783,7 @@
       search.scrollIntoView({ block: 'start', behavior: settings.reduceMotion ? 'instant' : 'smooth' });
     }
     function closePreview() {
+      resetAnimationControls();
       window.clearTimeout(swapTimer);
       window.clearTimeout(safetyTimer);
       library.classList.add('preview-closed');
@@ -1182,6 +1235,11 @@
             glb:      String(m.glb || ''),
             blend:    String(m.blend || ''),
             hasBlend: m.hasBlend !== false,
+            blenderCompatibility: typeof m.blenderCompatibility === 'string' ? m.blenderCompatibility.trim() : '',
+            glbDetails: m.glbDetails && typeof m.glbDetails.rigged === 'boolean' &&
+              Number.isInteger(m.glbDetails.embeddedTextures) && m.glbDetails.embeddedTextures >= 0 &&
+              Number.isInteger(m.glbDetails.externalTextures) && m.glbDetails.externalTextures >= 0 &&
+              Array.isArray(m.glbDetails.animations) ? m.glbDetails : null,
             // anything not explicitly marked "paid" is free
             tier:     String(m.tier || 'free').toLowerCase() === 'paid' ? 'paid' : 'free',
             price:    String(m.price || '')
@@ -1198,7 +1256,7 @@
           const list = normalise(Array.isArray(data.models) ? data.models : []);
           document.getElementById('catalogStatus').textContent = list.length ? '' : t('upgrade.empty');
           const stamp = String(data.generated || '') + '|' +
-                        list.map(function (m) { return m.id + ':' + m.glb + ':' + m.tier; }).join(',');
+                        JSON.stringify(list);
           if (stamp === manifestStamp) return false;
           manifestStamp = stamp;
           MODELS = list;
@@ -1215,7 +1273,10 @@
       const current = MODELS.filter(function (m) { return m.id === currentId; })[0];
       const first = firstFree();
       if ((!current || isPaid(current)) && first) selectModel(first.id, true);
-      else renderPicker();
+      else {
+        if (current) { currentModel = current; applyMeta(current); }
+        renderPicker();
+      }
       renderStore();
     }
 

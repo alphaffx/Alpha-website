@@ -15,7 +15,7 @@ function run(command, args, cwd) {
 (async () => {
   const fixture = await fs.mkdtemp(path.join(root, '.preview-test-'));
   try {
-    for (const name of ['index.html', 'app.js', 'i18n.js', 'style.css', 'generate-previews.cjs', 'watch-models.ps1']) await fs.copyFile(path.join(root, name), path.join(fixture, name));
+    for (const name of ['index.html', 'app.js', 'i18n.js', 'style.css', 'generate-previews.cjs', 'generate-model-details.cjs', 'watch-models.ps1']) await fs.copyFile(path.join(root, name), path.join(fixture, name));
     await fs.mkdir(path.join(fixture, 'models'));
     const id = 'new model test';
     const source = path.join(fixture, 'models', id + '.glb');
@@ -37,12 +37,17 @@ function run(command, args, cwd) {
     const manifestPath = path.join(fixture, 'models/models.json');
     const manifest = JSON.parse(await fs.readFile(manifestPath, 'utf8'));
     manifest.models[0].tier = 'paid';
+    manifest.models[0].blenderCompatibility = '4.5 (tested)';
+    assert.equal(manifest.models[0].glbDetails.embeddedTextures, 7);
     await fs.writeFile(manifestPath, JSON.stringify(manifest));
     assert.equal((await run(process.execPath, ['generate-previews.cjs', '--force', '--model', id], fixture)).code, 0);
     const good = await fs.readFile(preview);
     await fs.copyFile(path.join(root, 'models/beesto.glb'), path.join(fixture, 'models/second model.glb'));
     await fs.writeFile(source, Buffer.from('incomplete export'));
     assert.notEqual((await watcher()).code, 0);
+    const updated = JSON.parse(await fs.readFile(manifestPath, 'utf8'));
+    assert.equal(updated.models.find(m => m.id === id).blenderCompatibility, '4.5 (tested)');
+    assert.equal(updated.models.find(m => m.id === id).glbDetails, undefined);
     assert.deepEqual(await fs.readFile(preview), good, 'invalid GLBs must preserve existing previews');
     assert((await fs.stat(path.join(fixture, 'media/models/second model.webp'))).size > 1000);
     console.log('PASS: watcher creates previews, handles spaces and paid models, skips unchanged files, detects same-size updates, recreates missing images, and isolates incomplete exports.');

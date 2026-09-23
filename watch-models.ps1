@@ -108,6 +108,16 @@ function Write-Manifest {
             (ConvertTo-JsonText $tier),
             (ConvertTo-JsonText $price)
 
+        # Preserve verified compatibility and generated GLB facts between scans.
+        if ($previous.ContainsKey($id)) {
+            $entry = $row | ConvertFrom-Json
+            foreach ($field in @('blenderCompatibility', 'glbDetails')) {
+                if ($null -ne $previous[$id].$field) {
+                    $entry | Add-Member -NotePropertyName $field -NotePropertyValue $previous[$id].$field
+                }
+            }
+            $row = '    ' + ($entry | ConvertTo-Json -Depth 12 -Compress)
+        }
         [void]$rows.Add($row)
         $count++
     }

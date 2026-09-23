@@ -23,6 +23,7 @@ async function atomicWrite(file, contents) {
 }
 
 async function generate({ force = false, only } = {}) {
+  require('./generate-model-details.cjs').generate(root);
   const cache = await readJson(cacheFile, {});
   const manifest = await readJson(path.join(root, 'models/models.json'), { models: [] });
   const pending = [];

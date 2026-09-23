@@ -784,6 +784,157 @@
     faqKeys.forEach((key, i) => { STRINGS[code]['faq.' + key] = values[i]; });
   });
 
+  const modelDetailKeys = ["title","scope","choose","play","pause","blender","unverified","rig","rigged","noRig","unknown","textures","textureCount","animations","clipCount","noClips"];
+  const modelDetailTranslations = {
+  "en": [
+    "Model details",
+    "Rig, texture and animation details describe the GLB preview file.",
+    "Preview animation",
+    "Play animation",
+    "Pause animation",
+    "Blender compatibility",
+    "Not verified",
+    "Rig in GLB",
+    "Skeleton included",
+    "No skeleton in GLB",
+    "Not specified",
+    "Textures in GLB",
+    "{n} embedded · {m} external",
+    "Animations in GLB",
+    "{n} clips included",
+    "No clips included"
+  ],
+  "fr": [
+    "Détails du modèle",
+    "Les détails du rig, des textures et des animations concernent le fichier GLB.",
+    "Aperçu de l’animation",
+    "Lire l’animation",
+    "Mettre en pause",
+    "Compatibilité Blender",
+    "Non vérifiée",
+    "Rig du GLB",
+    "Squelette inclus",
+    "Aucun squelette dans le GLB",
+    "Non précisé",
+    "Textures du GLB",
+    "{n} intégrées · {m} externes",
+    "Animations du GLB",
+    "{n} clips inclus",
+    "Aucun clip inclus"
+  ],
+  "pt": [
+    "Detalhes do modelo",
+    "Os detalhes de rig, texturas e animações se referem ao arquivo GLB.",
+    "Prévia da animação",
+    "Reproduzir animação",
+    "Pausar animação",
+    "Compatibilidade com Blender",
+    "Não verificada",
+    "Rig no GLB",
+    "Esqueleto incluído",
+    "Sem esqueleto no GLB",
+    "Não informado",
+    "Texturas no GLB",
+    "{n} incorporadas · {m} externas",
+    "Animações no GLB",
+    "{n} clipes incluídos",
+    "Nenhum clipe incluído"
+  ],
+  "es": [
+    "Detalles del modelo",
+    "Los detalles de rig, texturas y animaciones corresponden al archivo GLB.",
+    "Vista previa de animación",
+    "Reproducir animación",
+    "Pausar animación",
+    "Compatibilidad con Blender",
+    "Sin verificar",
+    "Rig en GLB",
+    "Esqueleto incluido",
+    "Sin esqueleto en GLB",
+    "Sin especificar",
+    "Texturas en GLB",
+    "{n} integradas · {m} externas",
+    "Animaciones en GLB",
+    "{n} clips incluidos",
+    "Sin clips incluidos"
+  ],
+  "id": [
+    "Detail model",
+    "Detail rig, tekstur, dan animasi menjelaskan file pratinjau GLB.",
+    "Pratinjau animasi",
+    "Putar animasi",
+    "Jeda animasi",
+    "Kompatibilitas Blender",
+    "Belum diverifikasi",
+    "Rig dalam GLB",
+    "Kerangka disertakan",
+    "Tidak ada kerangka dalam GLB",
+    "Belum ditentukan",
+    "Tekstur dalam GLB",
+    "{n} tertanam · {m} eksternal",
+    "Animasi dalam GLB",
+    "{n} klip disertakan",
+    "Tidak ada klip"
+  ],
+  "th": [
+    "รายละเอียดโมเดล",
+    "รายละเอียดริก พื้นผิว และแอนิเมชันอ้างอิงจากไฟล์ตัวอย่าง GLB",
+    "ดูตัวอย่างแอนิเมชัน",
+    "เล่นแอนิเมชัน",
+    "หยุดแอนิเมชันชั่วคราว",
+    "ความเข้ากันได้กับ Blender",
+    "ยังไม่ยืนยัน",
+    "ริกใน GLB",
+    "มีโครงกระดูก",
+    "ไม่มีโครงกระดูกใน GLB",
+    "ไม่ระบุ",
+    "พื้นผิวใน GLB",
+    "ฝังในไฟล์ {n} · ภายนอก {m}",
+    "แอนิเมชันใน GLB",
+    "มี {n} คลิป",
+    "ไม่มีคลิป"
+  ],
+  "vi": [
+    "Chi tiết mô hình",
+    "Thông tin rig, kết cấu và hoạt ảnh mô tả tệp xem trước GLB.",
+    "Xem trước hoạt ảnh",
+    "Phát hoạt ảnh",
+    "Tạm dừng hoạt ảnh",
+    "Tương thích Blender",
+    "Chưa xác minh",
+    "Rig trong GLB",
+    "Có bộ xương",
+    "Không có bộ xương trong GLB",
+    "Chưa xác định",
+    "Kết cấu trong GLB",
+    "{n} nhúng · {m} bên ngoài",
+    "Hoạt ảnh trong GLB",
+    "Có {n} đoạn hoạt ảnh",
+    "Không có hoạt ảnh"
+  ],
+  "ar": [
+    "تفاصيل النموذج",
+    "تفاصيل الهيكل والخامات والحركات تخص ملف المعاينة GLB.",
+    "معاينة الحركة",
+    "تشغيل الحركة",
+    "إيقاف الحركة مؤقتًا",
+    "التوافق مع Blender",
+    "لم يتم التحقق",
+    "الهيكل في GLB",
+    "يتضمن هيكلًا عظميًا",
+    "لا يوجد هيكل عظمي في GLB",
+    "غير محدد",
+    "الخامات في GLB",
+    "{n} مضمّنة · {m} خارجية",
+    "الحركات في GLB",
+    "يتضمن {n} مقاطع",
+    "لا يتضمن مقاطع"
+  ]
+};
+  Object.entries(modelDetailTranslations).forEach(([code, values]) => {
+    modelDetailKeys.forEach((key, i) => { STRINGS[code]["details." + key] = values[i]; });
+  });
+
   /* ---------------- engine ---------------- */
 
   const STORE_KEY = 'alpha.lang';

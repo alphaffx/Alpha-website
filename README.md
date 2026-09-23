@@ -44,3 +44,11 @@ Store FAQ copy lives in `faqTranslations` in `i18n.js` for all eight languages. 
 ## Publishing
 
 These are local changes. Publish the updated HTML, CSS, JavaScript, catalogs, and `media/models/*.webp` files through the existing hosting workflow. Do not publish local screenshots or thumbnail PNG sources.
+
+## Model details
+
+`node generate-model-details.cjs` reads each GLB and updates `glbDetails` in the catalog with skin presence, embedded/external texture image counts, and animation clip names. The preview generator also runs this inspection, so the watcher updates details automatically. A skeleton in the GLB does not establish the quality or features of the Blender rig. GLB facts do not describe the contents of the separate `.blend` file.
+
+After actually testing a source file, set its optional `blenderCompatibility` string in `models/models.json` (for example, `4.5 — tested`). The watcher preserves it. Missing compatibility is shown as “Not verified”; it is never inferred from a filename or export version. Recheck this manually when replacing a Blender source file.
+
+Animation controls appear after a preview with embedded animation clips loads. Playback starts only when the visitor presses Play, and pauses on model changes, closing the preview, or leaving the Models tab. The current GLB exports contain textures but no skeletons or animation clips; export those from Blender to enable animated previews.

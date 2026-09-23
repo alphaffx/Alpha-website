@@ -356,6 +356,16 @@
       </div><!-- /library-preview -->
 
       <aside class="library-side">
+      <section class="model-details" aria-labelledby="modelDetailsTitle">
+        <h3 id="modelDetailsTitle" data-i18n="details.title">Model details</h3>
+        <dl id="modelDetails"></dl>
+        <p class="model-details-note" data-i18n="details.scope">Rig, texture and animation details describe the GLB preview file.</p>
+        <div id="animationControls" class="animation-controls" hidden>
+          <label for="animationClip" data-i18n="details.choose">Preview animation</label>
+          <select id="animationClip"></select>
+          <button id="animationToggle" class="button button-ghost" type="button" data-i18n="details.play">Play animation</button>
+        </div>
+      </section>
       <div class="downloads">
         <p class="downloads-title" data-i18n="dl.title">Download this model</p>
 
