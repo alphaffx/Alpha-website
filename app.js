@@ -216,6 +216,7 @@
 
       // the models tab gets a wider page than the rest of the site
       document.body.classList.toggle('on-models', name === 'models');
+      document.body.classList.toggle('on-commerce', name === 'store' || name === 'contact');
 
       // the panes only have a measurable height once the panel is visible
       if (name === 'models') {

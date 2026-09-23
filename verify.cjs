@@ -120,11 +120,13 @@ if (process.argv.includes('--commerce')) {
       assert(await page.locator('#commissionForm .fb-input').evaluateAll(fields => fields.every(el => {
         const rect = el.getBoundingClientRect(); return rect.left >= 0 && rect.right <= innerWidth;
       })));
+      await page.evaluate(() => window.scrollTo({top: 0, behavior: 'instant'}));
       if (width !== 320) await page.screenshot({path: `review-contact-${code}-${width}.png`, fullPage: true});
     }
     await page.locator('#tab-store').click();
     await page.locator('.store-faq details').evaluateAll(items => items.forEach(el => { el.open = true; }));
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+    await page.locator('.store-faq').screenshot({path: `review-faq-${code}-320.png`});
     await page.locator('#tab-contact').click();
   }
   console.log('PASS: FAQ keyboard controls, commission navigation, validation, translated fields, exact payload, relay rejection/success, retained input, mobile and RTL layouts. No real messages sent.');

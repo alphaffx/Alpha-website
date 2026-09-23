@@ -723,18 +723,17 @@ main {
 
 .contact-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 18px;
-  max-width: 720px;
-  margin: 0 auto;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 24px 0;
 }
 
-.contact-card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-  padding: 26px 24px;
+.contact-grid .contact-card {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  align-items: center;
+  column-gap: 12px;
+  padding: 16px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
@@ -749,28 +748,37 @@ main {
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
 }
 
-.contact-icon {
+.contact-card .contact-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
-  margin-bottom: 10px;
-  border-radius: 12px;
+  grid-row: span 2;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
   background: var(--accent-soft);
   color: var(--accent);
   font-size: 1.15rem;
 }
 
-.contact-label {
+.contact-card .contact-label {
   font-weight: 700;
-  font-size: 1.02rem;
+  font-size: .9rem;
 }
 
 .contact-value {
   color: var(--text-dim);
-  font-size: 0.92rem;
+  font-size: .78rem;
   word-break: break-word;
+}
+
+.contact-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+@media (max-width: 1000px) {
+  .contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 480px) {
+  .contact-grid { grid-template-columns: 1fr; gap: 8px; }
+  .contact-grid .contact-card { padding: 12px 16px; }
 }
 
 .contact-note {
@@ -2217,7 +2225,6 @@ body.on-models main { max-width: 1560px; }
   gap: 10px;
   padding: 22px;
   border: 1px solid var(--border);
-  border-top: 2px solid rgba(255, 196, 84, .5);
   border-radius: var(--radius-lg);
   background: var(--surface);
   color: var(--text);
@@ -2237,27 +2244,30 @@ body.on-models main { max-width: 1560px; }
 .store-card.is-soon { opacity: .72; }
 
 .store-card-head {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
 }
 
 .store-card-name {
-  font-size: 1.08rem;
+  font-size: 1rem;
   font-weight: 700;
-  line-height: 1.35;
+  line-height: 1.5;
   overflow-wrap: anywhere;
 }
 
 .store-card-price {
   flex: 0 0 auto;
-  padding: 3px 10px;
+  padding: 4px 10px;
   border: 1px solid rgba(255, 196, 84, .42);
   border-radius: 999px;
   background: rgba(255, 196, 84, .14);
   color: #ffc454;
-  font-size: .78rem;
+  font-size: .9rem;
+  font-variant-numeric: tabular-nums;
+  direction: ltr;
   font-weight: 700;
   letter-spacing: .04em;
   white-space: nowrap;
@@ -2403,7 +2413,7 @@ body.on-models main { max-width: 1560px; }
   border-radius: var(--radius-lg);
   background: var(--surface);
 }
-.commission-block { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.6fr); gap: 40px; }
+.commission-block { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.6fr); gap: 40px; margin-top: 0; margin-bottom: 24px; }
 .commission-intro h3, .store-faq h3 { margin: 0 0 12px; font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.25; }
 .commission-intro p, .commission-note, .commission-field small { color: var(--text-dim); }
 .commission-intro a, .store-faq a { color: var(--accent); overflow-wrap: anywhere; }
@@ -2418,8 +2428,14 @@ body.on-models main { max-width: 1560px; }
 .commission-note { margin: 0; }
 .commission-form .button { grid-column: 1 / -1; justify-self: start; }
 .commission-form .button:disabled { opacity: .6; cursor: wait; }
-.store-faq details { border-bottom: 1px solid var(--border); padding: 18px 0; }
-.store-faq summary { cursor: pointer; font-weight: 600; }
+.store-faq details { border-bottom: 1px solid var(--border); padding: 24px 0; }
+.store-faq summary { display: flex; align-items: center; justify-content: space-between; gap: 24px; cursor: pointer; font-weight: 600; list-style: none; line-height: 1.5; }
+.store-faq summary::-webkit-details-marker { display: none; }
+.store-faq summary::after { content: ''; flex: 0 0 8px; width: 8px; height: 8px; border-inline-end: 2px solid var(--accent); border-bottom: 2px solid var(--accent); transform: rotate(45deg); margin-inline-end: 4px; }
+.store-faq details[open] summary::after { transform: rotate(225deg); }
+[dir="rtl"] .store-faq summary::after { transform: rotate(-45deg); }
+[dir="rtl"] .store-faq details[open] summary::after { transform: rotate(135deg); }
+.store-faq details[open] summary { color: var(--accent); }
 .store-faq summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
 .store-faq details p { color: var(--text-dim); max-width: 75ch; margin-bottom: 0; }
 .store-faq .button { margin-top: 24px; }
@@ -2478,6 +2494,7 @@ h1, h2, h3 {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 .store-shot.is-tappable { cursor: pointer; }
@@ -2490,6 +2507,12 @@ h1, h2, h3 {
   display: flex;
   justify-content: center;
   gap: 7px;
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: rgba(3, 9, 20, .72);
 }
 
 .shot-dot {
@@ -2782,3 +2805,22 @@ body.lb-open { overflow: hidden; }
 .model-stage .viewer-status { top: 64px; z-index: 1001; }
 .model-card.is-active small { color: #073447; }
 .viewer-status { position: absolute; top: 12px; left: 12px; right: 12px; z-index: 5; padding: 10px; border-radius: 8px; background: #0e1319; color: var(--text); pointer-events: none; }
+
+/* Keep artwork atmospheric behind the catalog and project forms. */
+body.on-commerce::before { filter: blur(10px) brightness(.28) saturate(.7); }
+body.on-commerce::after { background: linear-gradient(180deg, rgba(3,9,20,.48), rgba(3,9,20,.8) 65%, #030914); }
+body.on-commerce main { padding-top: clamp(24px, 3vw, 40px); }
+.panel-head { margin-bottom: 28px; }
+.panel-head h2 { line-height: 1.15; }
+.panel-head p { max-width: 54ch; margin-inline: auto; font-size: 1rem; line-height: 1.6; }
+.commission-intro p, .store-faq details p, .fb-sub, .store-card-desc { font-size: .9375rem; line-height: 1.65; }
+.commission-intro h3, .store-faq h3 { font-size: clamp(1.4rem, 2.4vw, 1.85rem); letter-spacing: -.02em; }
+@media (min-width: 641px) {
+  .store-card-head { min-height: 3rem; }
+}
+@media (max-width: 640px) {
+  .panel-head { margin-bottom: 22px; }
+  .panel-head h2 { font-size: 2rem; }
+  .panel-head p { font-size: .9375rem; }
+  .store-faq details { padding-block: 20px; }
+}
