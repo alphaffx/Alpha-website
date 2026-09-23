@@ -2378,9 +2378,12 @@ body.on-models main { max-width: 1560px; }
 /* Spam trap - must stay invisible but not display:none, or bots skip it. */
 .fb-honey {
   position: absolute;
-  left: -9999px;
   width: 1px;
   height: 1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
   opacity: 0;
   pointer-events: none;
 }
@@ -2392,6 +2395,42 @@ body.on-models main { max-width: 1560px; }
 }
 .fb-status.is-ok  { color: var(--accent); }
 .fb-status.is-err { color: #ff8f8f; }
+
+.commission-block, .store-faq {
+  margin: 40px 0;
+  padding: clamp(20px, 4vw, 40px);
+  border: 1px solid var(--border-lit);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+.commission-block { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.6fr); gap: 40px; }
+.commission-intro h3, .store-faq h3 { margin: 0 0 12px; font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.25; }
+.commission-intro p, .commission-note, .commission-field small { color: var(--text-dim); }
+.commission-intro a, .store-faq a { color: var(--accent); overflow-wrap: anywhere; }
+.commission-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; min-width: 0; }
+.commission-field { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.commission-field label { font-size: .9rem; font-weight: 600; }
+.commission-field small, .commission-note { font-size: .85rem; }
+.commission-field textarea { resize: vertical; }
+.commission-field select, .commission-field input[type="date"] { color-scheme: dark; min-width: 0; }
+.commission-field option { background: var(--surface); }
+.commission-wide { grid-column: 1 / -1; }
+.commission-note { margin: 0; }
+.commission-form .button { grid-column: 1 / -1; justify-self: start; }
+.commission-form .button:disabled { opacity: .6; cursor: wait; }
+.store-faq details { border-bottom: 1px solid var(--border); padding: 18px 0; }
+.store-faq summary { cursor: pointer; font-weight: 600; }
+.store-faq summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+.store-faq details p { color: var(--text-dim); max-width: 75ch; margin-bottom: 0; }
+.store-faq .button { margin-top: 24px; }
+.faq-support { display: block; margin-top: 20px; }
+@media (max-width: 800px) {
+  .commission-block { grid-template-columns: 1fr; gap: 24px; }
+}
+@media (max-width: 480px) {
+  .commission-form { grid-template-columns: 1fr; }
+  .commission-form .button { justify-self: stretch; }
+}
 
 @media (max-width: 640px) {
   .fb-block { padding: 20px 16px; margin-top: 28px; }

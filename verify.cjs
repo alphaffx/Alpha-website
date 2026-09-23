@@ -60,7 +60,76 @@ for (const code of ['ar', 'en']) {
 }
 await page.setViewportSize({width:1440,height:1000});
 console.log('PASS: all 8 language picker outputs, reset text/aria-labels, persistence, RTL and responsive store columns.');
-if (process.argv.includes('--store-i18n')) {
+if (process.argv.includes('--commerce')) {
+  const submissions = [];
+  let relayResult = {success: false};
+  await page.route('https://formsubmit.co/**', async route => {
+    submissions.push(route.request().postDataJSON());
+    await route.fulfill({status: 200, contentType: 'application/json', body: JSON.stringify(relayResult)});
+  });
+  await page.goto('http://127.0.0.1:8765/#store');
+  const summary = page.locator('.store-faq summary').first();
+  await summary.focus();
+  await page.keyboard.press('Enter');
+  assert(await page.locator('.store-faq details').first().evaluate(el => el.open));
+  await page.locator('[data-commission-link]').click();
+  assert.equal(await page.evaluate(() => document.activeElement.id), 'commissionName');
+  assert(page.url().endsWith('#contact'));
+  await page.locator('#commissionSend').click();
+  assert.equal(submissions.length, 0);
+  await page.locator('#commissionName').fill('Test Creator');
+  await page.locator('#commissionEmail').fill('not-an-email');
+  await page.locator('#commissionType').selectOption('Map or scene');
+  await page.locator('#commissionBudget').fill('500 USD');
+  await page.locator('#commissionDeadline').fill('2027-01-15');
+  await page.locator('#commissionBrief').fill('A custom Blender scene with lighting.');
+  await page.locator('#commissionReferences').fill('https://example.com/one\nhttps://example.com/two');
+  await page.locator('#commissionSend').click();
+  assert.equal(submissions.length, 0);
+  await page.locator('#commissionEmail').fill('creator@example.com');
+  for (const lang of languages) {
+    await page.evaluate(code => window.AlphaI18n.set(code), lang.code);
+    assert.equal(await page.locator('#commissionBrief').inputValue(), 'A custom Blender scene with lighting.');
+    const output = await page.evaluate(() => {
+      const keys = [...document.querySelectorAll('[data-i18n]')].map(el => el.dataset.i18n).filter(key => /^(faq|commission)\./.test(key));
+      return keys.map(key => [key, window.AlphaI18n.t(key)]);
+    });
+    assert(output.every(([key, value]) => value && value !== key));
+    if (lang.code !== 'en') assert.notEqual(await page.locator('#commissionSend').textContent(), 'Send project request');
+  }
+  await page.locator('#commissionSend').click();
+  await page.waitForFunction(() => document.querySelector('#commissionStatus').classList.contains('is-err'));
+  assert.equal(await page.locator('#commissionBrief').inputValue(), 'A custom Blender scene with lighting.');
+  assert.deepEqual(submissions[0], {
+    name: 'Test Creator', email: 'creator@example.com', project_type: 'Map or scene', budget: '500 USD',
+    deadline: '2027-01-15', brief: 'A custom Blender scene with lighting.',
+    references: 'https://example.com/one\nhttps://example.com/two', page_language: 'ar',
+    _subject: 'alphaff.gg - commission request', _template: 'table'
+  });
+  relayResult = {success: 'true'};
+  await page.locator('#commissionSend').click();
+  await page.waitForFunction(() => document.querySelector('#commissionStatus').classList.contains('is-ok'));
+  assert.equal(submissions.length, 2);
+  assert.equal(await page.locator('#commissionBrief').inputValue(), '');
+  assert.equal(await page.locator('#commissionSend').isEnabled(), true);
+  for (const code of ['en', 'ar']) {
+    await page.evaluate(code => window.AlphaI18n.set(code), code);
+    for (const width of [1440, 390, 320]) {
+      await page.setViewportSize({width, height: 900});
+      assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), JSON.stringify(await page.evaluate(() => ({width: innerWidth, lang: document.documentElement.lang, overflow: [...document.querySelectorAll('#panel-contact *')].filter(el => { const r = el.getBoundingClientRect(); return r.width && (r.left < 0 || r.right > innerWidth); }).map(el => ({id: el.id, class: el.className, rect: el.getBoundingClientRect().toJSON()}))}))));
+      assert(await page.locator('#commissionForm .fb-input').evaluateAll(fields => fields.every(el => {
+        const rect = el.getBoundingClientRect(); return rect.left >= 0 && rect.right <= innerWidth;
+      })));
+      if (width !== 320) await page.screenshot({path: `review-contact-${code}-${width}.png`, fullPage: true});
+    }
+    await page.locator('#tab-store').click();
+    await page.locator('.store-faq details').evaluateAll(items => items.forEach(el => { el.open = true; }));
+    assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+    await page.locator('#tab-contact').click();
+  }
+  console.log('PASS: FAQ keyboard controls, commission navigation, validation, translated fields, exact payload, relay rejection/success, retained input, mobile and RTL layouts. No real messages sent.');
+}
+if (process.argv.includes('--store-i18n') || process.argv.includes('--commerce')) {
   assert.deepEqual(errors, []);
   await browser.close();
   server.close();

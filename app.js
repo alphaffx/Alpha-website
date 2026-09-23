@@ -232,6 +232,9 @@
       btn.addEventListener('click', function () {
         showPanel(btn.dataset.goto);
         if (!drawer.hidden) closeDrawer();
+        if (btn.hasAttribute('data-commission-link')) {
+          document.getElementById('commissionName').focus();
+        }
       });
     });
 
@@ -1276,6 +1279,61 @@
         .then(function (result) { if (result.success !== true && result.success !== 'true') throw new Error('Submission rejected'); form.reset(); say('contact.fbOk', true); })
         .catch(function () { say('contact.fbErr', false); })
         .then(function () { btn.disabled = false; });
+      });
+    })();
+
+    // Commission briefs use the same relay as feedback, with a distinct subject.
+    (function () {
+      const form = document.getElementById('commissionForm');
+      const button = document.getElementById('commissionSend');
+      const status = document.getElementById('commissionStatus');
+      let pending = false;
+      function say(key, ok) {
+        status.dataset.i18n = key;
+        status.textContent = t(key);
+        status.hidden = false;
+        status.classList.toggle('is-ok', ok === true);
+        status.classList.toggle('is-err', ok === false);
+      }
+      form.addEventListener('submit', async function (event) {
+        event.preventDefault();
+        if (pending) return;
+        for (const field of form.querySelectorAll('[required]')) {
+          if (!field.value.trim()) { field.value = ''; field.reportValidity(); return; }
+        }
+        if (!form.reportValidity() || form.elements._honey.value) return;
+        const payload = Object.fromEntries(new FormData(form));
+        delete payload._honey;
+        Object.keys(payload).forEach(key => { payload[key] = payload[key].trim(); });
+        payload.page_language = I18N ? I18N.current : 'en';
+        payload._subject = 'alphaff.gg - commission request';
+        payload._template = 'table';
+        pending = true;
+        button.disabled = true;
+        form.setAttribute('aria-busy', 'true');
+        say('contact.fbSending');
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 20000);
+        try {
+          const response = await fetch('https://formsubmit.co/ajax/admin@alphaff.gg', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(payload),
+            signal: controller.signal
+          });
+          if (!response.ok) throw new Error('Request failed');
+          const result = await response.json();
+          if (result.success !== true && result.success !== 'true') throw new Error('Submission rejected');
+          form.reset();
+          say('commission.sent', true);
+        } catch (error) {
+          say('contact.fbErr', false);
+        } finally {
+          clearTimeout(timeout);
+          pending = false;
+          button.disabled = false;
+          form.removeAttribute('aria-busy');
+        }
       });
     })();
 

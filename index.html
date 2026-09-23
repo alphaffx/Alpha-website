@@ -455,6 +455,31 @@
         <div class="store-grid" id="storeOther"></div>
         <p class="tier-empty" id="storeOtherEmpty" data-i18n="store.empty">Nothing here yet — check back soon.</p>
       </section>
+      <section class="store-faq" aria-labelledby="storeFaqTitle">
+        <h3 id="storeFaqTitle" data-i18n="faq.title">FAQ &amp; usage terms</h3>
+        <details>
+          <summary data-i18n="faq.commercialQ">Can I use an asset commercially?</summary>
+          <p data-i18n="faq.commercialA">For commercial-use permission, email admin@alphaff.gg with the product name and how you plan to use it.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.creditQ">Do I need to give credit?</summary>
+          <p data-i18n="faq.creditA">Email admin@alphaff.gg with the product name to confirm credit requirements for your project.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.shareQ">Can I share or redistribute the files?</summary>
+          <p data-i18n="faq.shareA">Ask admin@alphaff.gg about permission before sharing, reselling, or redistributing asset files.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.helpQ">How do I get help with a purchase?</summary>
+          <p data-i18n="faq.helpA">Email admin@alphaff.gg with the product name, order reference, Blender version, and a description or screenshot of the issue.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.customQ">Can I request custom work?</summary>
+          <p data-i18n="faq.customA">Yes. Use the project form on the Contact page to share your brief, budget, preferred deadline, and references. I’ll reply to discuss availability and a quote.</p>
+        </details>
+        <a href="mailto:admin@alphaff.gg" class="faq-support">admin@alphaff.gg</a>
+        <button class="button" type="button" data-goto="contact" data-commission-link data-i18n="commission.send">Send project request</button>
+      </section>
     </section>
 
     <!-- Full-screen picture viewer for the store. -->
@@ -513,6 +538,56 @@
           <span class="contact-value">admin@alphaff.gg</span>
         </a>
       </div>
+
+      <section class="commission-block" aria-labelledby="commissionTitle">
+        <div class="commission-intro">
+          <h3 id="commissionTitle" data-i18n="commission.title">Let’s build something together</h3>
+          <p data-i18n="commission.sub">Tell me about your project. I’ll review the brief and reply by email to discuss availability and a quote.</p>
+          <a href="mailto:admin@alphaff.gg">admin@alphaff.gg</a>
+        </div>
+        <form id="commissionForm" class="commission-form">
+          <div class="commission-field">
+            <label for="commissionName" data-i18n="commission.name">Your name</label>
+            <input class="fb-input" id="commissionName" name="name" autocomplete="name" maxlength="100" required>
+          </div>
+          <div class="commission-field">
+            <label for="commissionEmail" data-i18n="commission.email">Your email</label>
+            <input class="fb-input" id="commissionEmail" name="email" type="email" autocomplete="email" maxlength="254" required>
+          </div>
+          <div class="commission-field">
+            <label for="commissionType" data-i18n="commission.type">Project type</label>
+            <select class="fb-input" id="commissionType" name="project_type" required>
+              <option value="" data-i18n="commission.choose">Choose a project type</option>
+              <option value="3D model" data-i18n="commission.model">Custom 3D model</option>
+              <option value="Map or scene" data-i18n="commission.map">Map or scene</option>
+              <option value="Animation" data-i18n="commission.animation">Animation</option>
+              <option value="Other" data-i18n="commission.other">Other</option>
+            </select>
+          </div>
+          <div class="commission-field">
+            <label for="commissionBudget" data-i18n="commission.budget">Budget and currency</label>
+            <input class="fb-input" id="commissionBudget" name="budget" maxlength="100" required aria-describedby="commissionBudgetHint">
+            <small id="commissionBudgetHint" data-i18n="commission.budgetHint">An estimate is fine, or write “Not sure yet”.</small>
+          </div>
+          <div class="commission-field">
+            <label for="commissionDeadline" data-i18n="commission.deadline">Preferred deadline (optional)</label>
+            <input class="fb-input" id="commissionDeadline" name="deadline" type="date">
+          </div>
+          <div class="commission-field commission-wide">
+            <label for="commissionBrief" data-i18n="commission.brief">What would you like me to create?</label>
+            <textarea class="fb-input fb-textarea" id="commissionBrief" name="brief" rows="4" maxlength="5000" required></textarea>
+          </div>
+          <div class="commission-field commission-wide">
+            <label for="commissionReferences" data-i18n="commission.references">Reference links (optional)</label>
+            <textarea class="fb-input" id="commissionReferences" name="references" rows="2" maxlength="3000" aria-describedby="commissionReferencesHint"></textarea>
+            <small id="commissionReferencesHint" data-i18n="commission.referencesHint">One link per line. Make sure shared files are accessible.</small>
+          </div>
+          <input class="fb-honey" name="_honey" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <p class="commission-wide commission-note" data-i18n="commission.note">Your details are sent through FormSubmit to discuss your request. This is an inquiry, not a booking or payment.</p>
+          <button class="button" id="commissionSend" type="submit" data-i18n="commission.send">Send project request</button>
+          <p class="fb-status commission-wide" id="commissionStatus" role="status" hidden></p>
+        </form>
+      </section>
 
       <!-- ---------- Feedback form ---------- -->
       <section class="fb-block">

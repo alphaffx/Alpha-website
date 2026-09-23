@@ -37,6 +37,10 @@ The placeholder analytics script was removed. Enable Cloudflare Web Analytics on
 
 The contact form validates optional email addresses and checks the relay response before reporting success. Actual inbox delivery and relay-account activation must be verified separately; automated checks do not send real mail.
 
+The commission form on Contact collects name, email, project type, budget/currency, optional deadline, brief, and optional reference links. It uses the same FormSubmit recipient (`admin@alphaff.gg`) with a separate commission subject, a 20-second timeout, and retained inputs on failure. `node verify.cjs --commerce` tests translations, FAQ keyboard navigation, responsive layouts, validation, and mocked relay responses without sending email.
+
+Store FAQ copy lives in `faqTranslations` in `i18n.js` for all eight languages. Commercial-use, credit, and redistribution answers currently direct visitors to the owner for permission; replace those answers with the owner's confirmed policy before treating this section as a definitive license.
+
 ## Publishing
 
 These are local changes. Publish the updated HTML, CSS, JavaScript, catalogs, and `media/models/*.webp` files through the existing hosting workflow. Do not publish local screenshots or thumbnail PNG sources.
