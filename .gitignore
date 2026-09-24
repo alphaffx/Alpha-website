@@ -12,3 +12,5 @@ review-auto-preview.webp
 # backup now. These are already committed, so ignoring them only stops
 # NEW ones being added - see the note about removing the existing ones.
 backup-before-*/
+
+.waitlist-build/
