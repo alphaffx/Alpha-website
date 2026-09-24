@@ -43,6 +43,9 @@ const server=http.createServer((req,res)=>{
  assert.equal(await page.locator('#mainModel').evaluate(v=>v.paused),true);
  await page.locator('#animationToggle').click();
  assert.equal(await page.locator('#mainModel').evaluate(v=>v.paused),false);
+ await page.locator('#animationClip').focus();
+ await page.locator('#animationClip').press('f');
+ assert.equal(await page.evaluate(()=>document.activeElement.id),'animationClip');
  await page.locator('#animationClip').selectOption('Float');
  assert.equal(await page.locator('#mainModel').evaluate(v=>v.animationName),'Float');
  assert.equal(await page.locator('#mainModel').evaluate(v=>v.paused),true);

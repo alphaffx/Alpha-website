@@ -58,3 +58,13 @@ Animation controls appear after a preview with embedded animation clips loads. P
 The Home section and Store callout promote upcoming paid recorded classes without taking payment. Waitlist requests require an email and explicit launch-email consent. They use the existing FormSubmit relay to `admin@alphaff.gg`, with subject `alphaff.gg - class waitlist`, language, and a consent timestamp. This is an inbox-based waitlist, not an automated Gumroad subscriber list: deduplicate requests and honor opt-out replies before sending launch announcements.
 
 Run `node test-waitlist.cjs` for mocked submission, validation, consent, failure recovery, translations, and responsive checks. Tests send no real emails. Verify the FormSubmit recipient is activated and confirm actual inbox delivery before relying on signups. When a class is ready, add its real Gumroad product link and confirmed price; no checkout or payment link is present yet.
+
+## Frontend code organization
+
+- `app.js`: navigation, viewer, model/store rendering, and settings.
+- `model-search.js`: model ranking and fuzzy search, independent of the page DOM.
+- `forms.js`: shared feedback, commission, and waitlist handling. All forms validate before sending, reject overlapping submissions, time out after 20 seconds, retain input on failure, and translate status messages.
+- `style.css`: core layout and theme; display/body font choices are defined once near the top.
+- `components.css`: model details, search refinements, and class waitlist styles, loaded after the core stylesheet.
+
+Keep all three JavaScript files and both CSS files in deployments. `test-forms.cjs` checks timeout/retry behavior, duplicate-submit protection, server and malformed-response failures, and translated status messages using mocked requests. `test-waitlist.cjs`, `test-model-details.cjs`, and `verify.cjs --commerce` cover their corresponding flows. No subscriber service is connected; waitlist requests still go to the admin inbox.

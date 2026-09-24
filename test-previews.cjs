@@ -15,7 +15,7 @@ function run(command, args, cwd) {
 (async () => {
   const fixture = await fs.mkdtemp(path.join(root, '.preview-test-'));
   try {
-    for (const name of ['index.html', 'app.js', 'i18n.js', 'style.css', 'generate-previews.cjs', 'generate-model-details.cjs', 'watch-models.ps1']) await fs.copyFile(path.join(root, name), path.join(fixture, name));
+    for (const name of ['index.html', 'app.js', 'model-search.js', 'forms.js', 'components.css', 'i18n.js', 'style.css', 'generate-previews.cjs', 'generate-model-details.cjs', 'watch-models.ps1']) await fs.copyFile(path.join(root, name), path.join(fixture, name));
     await fs.mkdir(path.join(fixture, 'models'));
     const id = 'new model test';
     const source = path.join(fixture, 'models', id + '.glb');

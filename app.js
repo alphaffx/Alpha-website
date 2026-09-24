@@ -256,66 +256,6 @@
       });
     }
 
-    function isSubsequence(q, text) {
-      let i = 0;
-      for (let j = 0; j < text.length && i < q.length; j++) if (text[j] === q[i]) i++;
-      return i === q.length;
-    }
-
-    function matchScore(q, m) {
-      const name = String(m.name || '').toLowerCase();
-      const id   = String(m.id   || '').toLowerCase();
-      if (name === q || id === q)                         return 900;
-      if (name.indexOf(q) === 0 || id.indexOf(q) === 0)   return 800 - name.length;
-      const at = name.indexOf(q);
-      if (at > -1)                                        return 700 - at;
-      if (id.indexOf(q) > -1)                             return 690;
-      if (isSubsequence(q, name) || isSubsequence(q, id)) return 600;
-      return 0;
-    }
-
-    function distance(a, b) {
-      if (a === b) return 0;
-      if (!a.length) return b.length;
-      if (!b.length) return a.length;
-      let prev = [];
-      for (let j = 0; j <= b.length; j++) prev[j] = j;
-      for (let i = 1; i <= a.length; i++) {
-        const row = [i];
-        for (let j = 1; j <= b.length; j++) {
-          const cost = a[i - 1] === b[j - 1] ? 0 : 1;
-          row[j] = Math.min(row[j - 1] + 1, prev[j] + 1, prev[j - 1] + cost);
-        }
-        prev = row;
-      }
-      return prev[b.length];
-    }
-
-    function rank(raw) {
-      const q = String(raw || '').trim().toLowerCase();
-      const searchable = MODELS.filter(m => !isPaid(m));
-      if (!q) return { mode: 'all', items: searchable };
-
-      const hits = searchable
-        .map(function (m) { return { m: m, s: matchScore(q, m) }; })
-        .filter(function (x) { return x.s > 0; })
-        .sort(function (a, b) { return b.s - a.s; })
-        .map(function (x) { return x.m; });
-
-      if (hits.length) return { mode: 'match', items: hits };
-
-      const near = searchable
-        .map(function (m) {
-          return { m: m, d: Math.min(distance(q, String(m.name).toLowerCase()),
-                                     distance(q, String(m.id).toLowerCase())) };
-        })
-        .sort(function (a, b) { return a.d - b.d; })
-        .slice(0, 3)
-        .map(function (x) { return x.m; });
-
-      return { mode: 'closest', items: near };
-    }
-
     function highlight(name, raw) {
       const q = String(raw || '').trim().toLowerCase();
       if (!q) return esc(name);
@@ -396,7 +336,7 @@
     }
 
     function renderPicker() {
-      const res = rank(query);
+      const res = window.AlphaModelSearch.rank(MODELS, query);
       const searching = !!query.trim();
 
       // Premium models live in the Store now, not in this list.
@@ -465,7 +405,8 @@
       if (!drawer.hidden || !modal.hidden) return;
 
       const tag = (document.activeElement && document.activeElement.tagName) || '';
-      if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+      if (e.defaultPrevented || e.isComposing) return;
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || document.activeElement?.isContentEditable) return;
 
       if (e.key.length === 1 && /\S/.test(e.key)) search.focus();
     });
@@ -1324,165 +1265,6 @@
        INIT
        ============================================================ */
     loadSettings();
-    /* ============================================================
-       FEEDBACK FORM
-       ------------------------------------------------------------
-       The site is static, so it cannot send email itself. The form
-       posts to FormSubmit, a free relay that forwards the message
-       to the address below.
-
-       IMPORTANT: the very first message sent will NOT arrive. Instead
-       FormSubmit emails that address a confirmation link. Click it
-       once and every message after that comes straight through.
-       ============================================================ */
-    (function () {
-      const form = document.getElementById('fbForm');
-      if (!form) return;
-
-      const FB_TO   = 'admin@alphaff.gg';
-      const btn     = document.getElementById('fbSend');
-      const status  = document.getElementById('fbStatus');
-      const msgBox  = document.getElementById('fbMsg');
-      const mailBox = document.getElementById('fbEmail');
-      const honey   = document.getElementById('fbHoney');
-
-      function say(key, ok) {
-        status.hidden = false;
-        status.textContent = t(key);
-        status.classList.toggle('is-ok', ok === true);
-        status.classList.toggle('is-err', ok === false);
-      }
-
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        if (!mailBox.reportValidity()) return;
-        const body = msgBox.value.trim();
-        if (!body) { msgBox.focus(); return; }
-
-        // A filled honeypot means a bot. Show success and send nothing.
-        if (honey.value) { form.reset(); say('contact.fbOk', true); return; }
-
-        btn.disabled = true;
-        say('contact.fbSending', null);
-
-        fetch('https://formsubmit.co/ajax/' + FB_TO, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({
-            message: body,
-            email: mailBox.value.trim() || '(not given)',
-            page_language: I18N ? I18N.current : 'en',
-            _subject: 'alphaff.gg - site feedback',
-            _template: 'table'
-          })
-        })
-        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-        .then(function (result) { if (result.success !== true && result.success !== 'true') throw new Error('Submission rejected'); form.reset(); say('contact.fbOk', true); })
-        .catch(function () { say('contact.fbErr', false); })
-        .then(function () { btn.disabled = false; });
-      });
-    })();
-
-    // Commission briefs use the same relay as feedback, with a distinct subject.
-    (function () {
-      const form = document.getElementById('commissionForm');
-      const button = document.getElementById('commissionSend');
-      const status = document.getElementById('commissionStatus');
-      let pending = false;
-      function say(key, ok) {
-        status.dataset.i18n = key;
-        status.textContent = t(key);
-        status.hidden = false;
-        status.classList.toggle('is-ok', ok === true);
-        status.classList.toggle('is-err', ok === false);
-      }
-      form.addEventListener('submit', async function (event) {
-        event.preventDefault();
-        if (pending) return;
-        for (const field of form.querySelectorAll('[required]')) {
-          if (!field.value.trim()) { field.value = ''; field.reportValidity(); return; }
-        }
-        if (!form.reportValidity() || form.elements._honey.value) return;
-        const payload = Object.fromEntries(new FormData(form));
-        delete payload._honey;
-        Object.keys(payload).forEach(key => { payload[key] = payload[key].trim(); });
-        payload.page_language = I18N ? I18N.current : 'en';
-        payload._subject = 'alphaff.gg - commission request';
-        payload._template = 'table';
-        pending = true;
-        button.disabled = true;
-        form.setAttribute('aria-busy', 'true');
-        say('contact.fbSending');
-        const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 20000);
-        try {
-          const response = await fetch('https://formsubmit.co/ajax/admin@alphaff.gg', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify(payload),
-            signal: controller.signal
-          });
-          if (!response.ok) throw new Error('Request failed');
-          const result = await response.json();
-          if (result.success !== true && result.success !== 'true') throw new Error('Submission rejected');
-          form.reset();
-          say('commission.sent', true);
-        } catch (error) {
-          say('contact.fbErr', false);
-        } finally {
-          clearTimeout(timeout);
-          pending = false;
-          button.disabled = false;
-          form.removeAttribute('aria-busy');
-        }
-      });
-    })();
-
-    // Free class waitlist: requests go to the existing owner inbox.
-    (function () {
-      const form = document.getElementById('learnForm');
-      const button = document.getElementById('learnSend');
-      const status = document.getElementById('learnStatus');
-      let pending = false;
-      function say(key, ok) {
-        status.dataset.i18n = key;
-        status.textContent = t(key);
-        status.hidden = false;
-        status.classList.toggle('is-ok', ok === true);
-        status.classList.toggle('is-err', ok === false);
-      }
-      form.addEventListener('submit', async event => {
-        event.preventDefault();
-        if (pending || !form.reportValidity() || form.elements._honey.value) return;
-        const payload = {
-          email: form.elements.email.value.trim(),
-          interest: 'Learn with ALPHA — recorded classes',
-          consent: 'Requested class launch emails; may opt out by replying.',
-          consent_at: new Date().toISOString(),
-          page_language: I18N ? I18N.current : 'en',
-          _subject: 'alphaff.gg - class waitlist',
-          _template: 'table'
-        };
-        pending = true; button.disabled = true;
-        form.setAttribute('aria-busy', 'true');
-        say('contact.fbSending');
-        const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 20000);
-        try {
-          const response = await fetch('https://formsubmit.co/ajax/admin@alphaff.gg', {
-            method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify(payload), signal: controller.signal
-          });
-          if (!response.ok) throw new Error('Request failed');
-          const result = await response.json();
-          if (result.success !== true && result.success !== 'true') throw new Error('Submission rejected');
-          form.reset(); say('learn.sent', true);
-        } catch (error) { say('learn.error', false); }
-        finally { clearTimeout(timeout); pending = false; button.disabled = false; form.removeAttribute('aria-busy'); }
-      });
-    })();
-
     if (I18N) I18N.init();
     applySettings();
     buildLangGrid();

@@ -4,6 +4,8 @@
    ============================================================ */
 
 :root {
+  --font-display: "Bangers", "Impact", "Arial Narrow Bold", sans-serif;
+  --font-body: "Inter", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
   --bg:          #07090c;
   --bg-raised:   #0e1319;
   --surface:     #131a22;
@@ -982,7 +984,6 @@ main { max-width: 1440px; padding-top: clamp(26px,5vw,64px); }
 }
 
 
-
 /* Full-page atmospheric artwork. Content stays sharp above it. */
 body { background: #030914; isolation: isolate; }
 body::before {
@@ -1130,37 +1131,8 @@ main { max-width: 1180px; }
 }
 
 
-/* ============================================================
-   TYPOGRAPHY
-   Road Rage for display, Inter for everything you actually read.
+/* Typography: display headings use Bangers; body text uses Inter. */
 
-   Road Rage is not a web font, so it has to be served from this
-   folder. Drop the file in as:   fonts/road-rage.ttf
-   (or .otf — both are listed below, the browser takes whichever
-   it finds first). Until the file exists the fallback stack is
-   used and nothing breaks.
-   ============================================================ */
-
-/* DISABLED 20 Sep 2026 - these three files do not exist, so every
-   visitor's browser was requesting them and getting 404s on every
-   page load. Headings use Anton now. If you ever license Road Rage
-   and put the files in fonts/, delete this comment wrapper to
-   switch back.
-@font-face {
-  font-family: "Road Rage";
-  src: url("fonts/road-rage.woff2") format("woff2"),
-       url("fonts/road-rage.otf")   format("opentype"),
-       url("fonts/road-rage.ttf")   format("truetype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-*/
-
-:root {
-  --font-display: "Anton", "Impact", sans-serif;
-  --font-body: "Inter", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
-}
 
 body,
 .search-input,
@@ -1170,14 +1142,12 @@ body,
   font-family: var(--font-body);
 }
 
-/* Display face — big statements only. Road Rage is a brush face;
-   it is striking at large sizes and unreadable at small ones, so
-   it is deliberately kept off body copy, buttons and UI. */
+/* Display face for the wordmark and main headings. */
 .brand,
 .title,
 .panel-head h2 {
   font-family: var(--font-display);
-  font-style: normal;          /* the face already leans; no faux italic */
+  font-style: normal;          /* Keep the original font shapes. */
   font-weight: 400;            /* it has one weight; 900 would fake-bold it */
 }
 
@@ -2300,37 +2270,10 @@ body.on-models main { max-width: 1560px; }
 }
 
 
-/* ============================================================
-   DISPLAY FONT  --  added 19 Sep 2026
-   ------------------------------------------------------------
-   Road Rage never actually loaded: fonts/road-rage.woff2 was
-   never downloaded, so the @font-face rule above pointed at a
-   missing file. PC visitors fell back to Impact; Android phones
-   have no Impact, so they fell all the way to a plain sans.
-   That is why the site looked different on a phone.
 
-   These faces load from Google Fonts on every device, so all
-   visitors now see the same headings. All are free for
-   commercial use.
 
-   TO TRY ANOTHER: comment out the live line and uncomment one
-   of the others. Only one may be active at a time.
-   ============================================================ */
-:root {
-  /* Heavy condensed - closest to the Impact look you had on PC */
-  --font-display: "Anton", "Impact", "Arial Narrow Bold", sans-serif;
 
-  /* Taller, cleaner caps */
-  /* --font-display: "Bebas Neue", "Impact", "Arial Narrow Bold", sans-serif; */
-
-  /* Wide and very heavy */
-  /* --font-display: "Archivo Black", "Impact", "Arial Black", sans-serif; */
-}
-
-/* Thai and Arabic headings: these display faces carry no Thai or
-   Arabic glyphs, so those characters skip down the stack to the
-   device's own sans automatically. Nothing to configure - it is
-   the same behaviour Road Rage would have had. */
+/* Unsupported heading glyphs fall back to the device sans-serif font. */
 
 
 /* ============================================================
@@ -2466,7 +2409,7 @@ body.on-models main { max-width: 1560px; }
 
    The three big display headings are NOT affected: .brand, .title
    and .panel-head h2 use class selectors, which beat these plain
-   element selectors, so they stay in Anton.
+   element selectors, so they keep the display face.
    ============================================================ */
 h1, h2, h3 {
   font-family: var(--font-body);
@@ -2625,33 +2568,6 @@ body.lb-open { overflow: hidden; }
 }
 @media (prefers-reduced-motion: reduce) { .lb-dot::after { transition: none; } }
 
-
-/* ============================================================
-   DISPLAY FONT OPTIONS  --  20 Sep 2026
-   ------------------------------------------------------------
-   Road Rage is licensed "free for personal use only", so it cannot
-   ship with this site. A commercial licence is sold by its designer
-   (Youssef Habchi, Desktop + Webfont tier) if you ever want it.
-
-   All four below are free for commercial use. To try another, move
-   the comment markers so only ONE line is live -- AND add that family
-   to the Google Fonts <link> in index.html, or the browser has nothing
-   to download and silently falls back to Impact. Only Bangers is
-   loaded right now; the other three are not.
-   ============================================================ */
-:root {
-  /* Loud comic-book caps - closest in spirit to Road Rage */
-  --font-display: "Bangers", "Impact", "Arial Narrow Bold", sans-serif;
-
-  /* Military stencil - on theme for a battle royale */
-  /* --font-display: "Black Ops One", "Impact", "Arial Narrow Bold", sans-serif; */
-
-  /* Squared-off esports lettering, clean and modern */
-  /* --font-display: "Russo One", "Impact", "Arial Narrow Bold", sans-serif; */
-
-  /* Heavy condensed - what the site used before */
-  /* --font-display: "Anton", "Impact", "Arial Narrow Bold", sans-serif; */
-}
 
 /* Bangers is drawn tight; a little air keeps ALPHA readable at size. */
 .brand, .title { letter-spacing: .03em; }
@@ -2824,85 +2740,3 @@ body.on-commerce main { padding-top: clamp(24px, 3vw, 40px); }
   .panel-head p { font-size: .9375rem; }
   .store-faq details { padding-block: 20px; }
 }
-
-/* Verified details for the selected model. */
-.model-details { padding: 20px; margin-bottom: 16px; border: 1px solid var(--line, #303846); border-radius: 14px; background: rgba(15, 20, 29, .85); }
-.model-details h3 { font-size: 16px; margin: 0 0 16px; }
-.model-details dl { margin: 0; }
-.model-details dl > div { padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,.08); }
-.model-details dt { font-size: 12px; color: #aeb9c9; margin-bottom: 5px; }
-.model-details dd { font-size: 14px; margin: 0; overflow-wrap: anywhere; }
-.model-details-note { color: #aeb9c9; font-size: 12px; line-height: 1.6; margin: 14px 0 0; }
-.animation-controls { display: grid; gap: 10px; margin-top: 18px; }
-.animation-controls[hidden] { display: none; }
-.animation-controls label { font-size: 13px; }
-.animation-controls select { width: 100%; min-width: 0; color: #fff; background: #141c29; border: 1px solid #536078; border-radius: 8px; padding: 10px; font: inherit; }
-.animation-controls button { white-space: normal; }
-
-/* Phones: stretch the tabs across the whole bar so there is no empty
-   space after the last tab. Tabs never shrink below their text, so
-   longer translations still scroll sideways instead of squashing. */
-@media (max-width: 760px) {
-  .tabs { justify-content: stretch; }
-  .tab { flex: 1 0 auto; text-align: center; }
-}
-
-/* Model search: a single, softly lit field with stable result spacing. */
-.library-list .model-search {
-  padding: 0;
-  margin-bottom: 10px;
-  border-radius: 14px;
-  background: #0c1928;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, .14);
-  transition: box-shadow 180ms ease;
-}
-.library-list .model-search:focus-within { box-shadow: 0 0 0 3px rgba(83, 200, 246, .12), 0 6px 22px rgba(0,0,0,.18); }
-.model-search .search-input {
-  min-width: 0;
-  height: 52px;
-  padding: 0 48px;
-  border-radius: 14px;
-  border: 1px solid rgba(149, 193, 223, .24);
-  background: transparent;
-  font-size: 16px;
-  line-height: 1.4;
-  box-shadow: none;
-}
-.model-search .search-input::placeholder { color: #91a8bc; opacity: 1; }
-.model-search .search-input:focus { outline: none; border-color: #66d5fa; background: rgba(52, 158, 211, .04); box-shadow: none; }
-.model-search .search-icon { inset-inline-start: 16px; inset-inline-end: auto; display: flex; width: 19px; height: 19px; color: #91a8bc; transition: color 180ms ease; }
-.model-search .search-icon svg { width: 100%; height: 100%; }
-.model-search:focus-within .search-icon { color: #79dcff; }
-.model-search .search-clear { inset-inline-end: 4px; inset-inline-start: auto; width: 44px; height: 44px; min-width: 44px; min-height: 44px; border-radius: 11px; background: transparent; font-size: 14px; }
-.model-search .search-clear:hover { background: rgba(102, 213, 250, .1); }
-.model-search .search-clear[hidden], .model-list .model-card[hidden] { display: none; }
-.library-list .search-hint { display: block; min-height: 22px; margin: 0 2px 10px; text-align: start; font-size: 12px; line-height: 1.6; overflow-wrap: anywhere; }
-.library-list .search-hint[hidden] { display: block !important; visibility: hidden; }
-[dir="rtl"] .model-search .search-input { padding: 0 48px; }
-@media (prefers-reduced-motion: reduce) { .model-search, .model-search * { transition: none !important; } }
-
-/* Header name: ALPHA'S 3D SPACE */
-.brand { white-space: nowrap; text-transform: uppercase; }
-.brand-sub { font-size: .62em; letter-spacing: .08em; opacity: .9; margin-inline-start: .15em; }
-@media (max-width: 520px) { .brand { font-size: 1.45rem; } }
-
-/* Upcoming classes and free launch waitlist. */
-.learn-section { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 5vw, 64px); padding: clamp(22px, 4vw, 44px); border: 1px solid rgba(113, 209, 247, .25); border-radius: 24px; background: linear-gradient(135deg, rgba(17, 51, 75, .96), rgba(7, 17, 31, .96)); scroll-margin-top: 160px; }
-.learn-badge { display: inline-block; padding: 6px 11px; border: 1px solid rgba(114, 216, 249, .3); border-radius: 999px; color: #94e2ff; font-size: 12px; font-weight: 600; }
-.learn-intro h2 { margin: 18px 0; font-family: var(--font-display); font-weight: 400; font-size: clamp(30px, 4vw, 48px); line-height: 1.1; }
-.learn-intro p { color: #d0dfeb; line-height: 1.8; }
-.learn-section .learn-note, .learn-note { font-size: 13px; line-height: 1.7; color: #aebfd0; }
-.learn-form { min-width: 0; display: grid; gap: 13px; align-content: start; }
-.learn-form h3, .learn-form p { margin: 0; }
-.learn-form > label { font-size: 14px; }
-.learn-form .fb-input { width: 100%; min-width: 0; font-size: 16px; }
-.learn-consent { display: flex; align-items: flex-start; gap: 10px; line-height: 1.6; cursor: pointer; }
-.learn-consent input { flex: 0 0 auto; width: 18px; height: 18px; margin: 3px 0 0; accent-color: #64d5ff; }
-.learn-form .button { width: 100%; white-space: normal; }
-.learn-form .button:disabled { opacity: .6; cursor: wait; }
-.learn-store { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin: 32px 0; padding: 24px; border: 1px solid var(--border); border-radius: 18px; background: rgba(10, 27, 43, .94); }
-.learn-store h3 { margin: 12px 0 8px; }
-.learn-store p { margin: 0; color: #aebfd0; font-size: 14px; }
-.learn-store .button { flex-shrink: 0; white-space: normal; }
-@media (max-width: 700px) { .learn-section { grid-template-columns: 1fr; } .learn-store { align-items: stretch; flex-direction: column; } }
-@media (max-width: 480px) { .hero .title { font-size: clamp(2.5rem, 10vw, 3rem); overflow-wrap: anywhere; } }
