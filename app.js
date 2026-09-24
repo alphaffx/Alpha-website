@@ -1328,9 +1328,21 @@
     sizeLibrary();
     window.setTimeout(sizeLibrary, 300);
 
+    /* Intro video: French visitors get the French version, everyone else English. */
+    const LESSON_VIDEOS = { fr: '1BtJ35x-4DNayGUEknefIqGbw0RaZ34ut', en: '1n_kDn6_UVQ1fYEGqEAD40UEMWcRBzJLV' };
+    const lessonId = () => (window.AlphaI18n && window.AlphaI18n.current === 'fr') ? LESSON_VIDEOS.fr : LESSON_VIDEOS.en;
+    const syncLesson = () => {
+      const open = document.getElementById('lessonOpen');
+      if (open) open.href = 'https://drive.google.com/file/d/' + lessonId() + '/view';
+      const frame = document.querySelector('#lessonPlayer iframe');
+      const src = 'https://drive.google.com/file/d/' + lessonId() + '/preview';
+      if (frame && frame.src !== src) frame.src = src;
+    };
+    syncLesson();
+    document.addEventListener('alpha:langchange', syncLesson);
     document.getElementById('lessonPlay')?.addEventListener('click', () => {
       const frame = document.createElement('iframe');
-      frame.src = 'https://drive.google.com/file/d/1BtJ35x-4DNayGUEknefIqGbw0RaZ34ut/preview';
+      frame.src = 'https://drive.google.com/file/d/' + lessonId() + '/preview';
       frame.title = document.getElementById('lessonTitle').textContent;
       frame.allow = 'autoplay; fullscreen';
       frame.allowFullscreen = true;
