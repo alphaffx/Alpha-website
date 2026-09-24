@@ -32,6 +32,18 @@
         _subject: subject,
         _template: 'table'
       };
+      // Optional Google Sheets mirror, configured only after deployment is verified.
+      // FormSubmit still sends the inbox notification; the browser never gets sheet access.
+      if (id === 'learnForm' && form.dataset.webhook) {
+        let webhook;
+        try { webhook = new URL(form.dataset.webhook); } catch { say(error, false); return; }
+        if (webhook.protocol !== 'https:' || webhook.hostname !== 'script.google.com' ||
+            !/^\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(webhook.pathname) || webhook.search || webhook.hash) {
+          say(error, false);
+          return;
+        }
+        body._webhook = webhook.href;
+      }
       pending = true;
       button.disabled = true;
       form.setAttribute('aria-busy', 'true');

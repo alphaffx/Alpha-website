@@ -20,11 +20,14 @@ await page.route('https://formsubmit.co/**',async route=>{
 await page.locator('#learnSend').click();assert.equal(requests.length,0);
 await page.locator('#learnEmail').fill('test@example.com');
 await page.locator('#learnSend').click();assert.equal(requests.length,0);
+await page.locator('#learnForm').evaluate(form=>form.dataset.webhook='https://script.google.com/macros/s/test-fixture/exec');
 await page.locator('#learnForm [name=consent]').check();
 await page.locator('#learnSend').click();
 await page.waitForFunction(()=>document.getElementById('learnStatus').classList.contains('is-err'));
 assert.equal(await page.locator('#learnEmail').inputValue(),'test@example.com');
 assert.equal(requests[0]._subject,'alphaff.gg - class waitlist');
+assert.equal(requests[0]._webhook,'https://script.google.com/macros/s/test-fixture/exec');
+await page.locator('#learnForm').evaluate(form=>delete form.dataset.webhook);
 assert.match(requests[0].consent,/class launch/);
 assert(requests[0].consent_at);
 httpStatus=500;

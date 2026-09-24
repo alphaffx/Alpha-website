@@ -1,0 +1,17 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert/strict');
+const rows=[['Email','Signed up (UTC)','Language','Consent','Consent recorded (UTC)','Status','Notes']];
+let held=false,releases=0;
+const sheet={getLastRow:()=>rows.length,getRange:(row,col,height,width)=>({getValues:()=>rows.slice(row-1,row-1+height).map(r=>r.slice(col-1,col-1+width)),setValues:values=>{assert(held);rows[row-1]=values[0];}})};
+const context={console:{error:()=>{}},PropertiesService:{getScriptProperties:()=>({getProperty:()=> 'private-sheet'})},LockService:{getScriptLock:()=>({waitLock:()=>{held=true;},hasLock:()=>held,releaseLock:()=>{held=false;releases++;}})},SpreadsheetApp:{openById:()=>({getSheetByName:()=>sheet}),flush:()=>{}},ContentService:{MimeType:{JSON:'json'},createTextOutput:text=>({setMimeType:()=>JSON.parse(text)})}};
+vm.createContext(context);vm.runInContext(fs.readFileSync('integrations/waitlist/Code.gs','utf8'),context);
+const data={email:'Person@Example.com',interest:'Learn with ALPHA — recorded classes',consent:'Requested class launch emails; may opt out by replying.',consent_at:'2026-09-24T12:00:00Z',page_language:'fr'};
+const submit=d=>context.doPost({postData:{contents:JSON.stringify({form_data:d})}});
+assert.equal(submit(data).success,true);assert.equal(rows.length,2);assert.equal(rows[1][0],'person@example.com');assert.equal(rows[1][2],'fr');
+rows[1][5]='Opted out';rows[1][6]='Requested by email';
+assert.equal(submit({...data,email:' person@example.com '}).success,true);assert.equal(rows.length,2);assert.equal(rows[1][5],'Opted out');
+assert.equal(submit({...data,consent:''}).success,false);assert.equal(submit({...data,email:'not-an-email'}).success,false);
+assert.equal(submit({...data,consent_at:'not-a-date'}).success,false);
+assert.equal(submit({...data,email:'=formula@example.com'}).success,true);assert.equal(rows[2][0],"'=formula@example.com");
+assert.equal(context.doGet().success,false);assert.equal(context.doPost({postData:{contents:'invalid'}}).success,false);
+assert.equal(held,false);assert.equal(releases,3);
+console.log('PASS: receiver validates consent/email, deduplicates case-insensitively, preserves opt-outs, escapes formulas, releases locks and exposes no subscriber list.');
