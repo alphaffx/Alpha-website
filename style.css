@@ -2880,3 +2880,8 @@ body.on-commerce main { padding-top: clamp(24px, 3vw, 40px); }
 .library-list .search-hint[hidden] { display: block !important; visibility: hidden; }
 [dir="rtl"] .model-search .search-input { padding: 0 48px; }
 @media (prefers-reduced-motion: reduce) { .model-search, .model-search * { transition: none !important; } }
+
+/* Header name: ALPHA'S 3D SPACE */
+.brand { white-space: nowrap; text-transform: uppercase; }
+.brand-sub { font-size: .62em; letter-spacing: .08em; opacity: .9; margin-inline-start: .15em; }
+@media (max-width: 520px) { .brand { font-size: 1.45rem; } }
