@@ -2838,3 +2838,11 @@ body.on-commerce main { padding-top: clamp(24px, 3vw, 40px); }
 .animation-controls label { font-size: 13px; }
 .animation-controls select { width: 100%; min-width: 0; color: #fff; background: #141c29; border: 1px solid #536078; border-radius: 8px; padding: 10px; font: inherit; }
 .animation-controls button { white-space: normal; }
+
+/* Phones: stretch the tabs across the whole bar so there is no empty
+   space after the last tab. Tabs never shrink below their text, so
+   longer translations still scroll sideways instead of squashing. */
+@media (max-width: 760px) {
+  .tabs { justify-content: stretch; }
+  .tab { flex: 1 0 auto; text-align: center; }
+}
