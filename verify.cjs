@@ -166,6 +166,11 @@ await page.route('**/store.json',r=>r.abort());await page.reload();await page.wa
 assert(await page.locator('#storeRetry').isVisible());await page.unroute('**/store.json');await page.locator('#storeRetry').click();await page.waitForTimeout(500);
 assert.equal(await page.locator('#storeStatus').textContent(),'');
 await page.goto('http://127.0.0.1:8765/#models/alpha');await page.waitForTimeout(800);
+// Offscreen thumbnails load lazily; bring each into view before checking it.
+for (const thumbnail of await page.locator('.model-card:not([hidden]) img').all()) {
+  await thumbnail.scrollIntoViewIfNeeded();
+  await thumbnail.evaluate(img => img.decode());
+}
 assert.equal(await page.locator('.model-card img').evaluateAll(imgs=>imgs.filter(i=>i.complete && i.naturalWidth>0).length),JSON.parse(fs.readFileSync('models/models.json')).models.filter(m=>m.tier !== 'paid').length);
 await page.screenshot({path:'review-models-mobile.png',fullPage:true});
 assert.deepEqual(errors,[]);console.log('PASS: routes, thumbnails, keyboard dialogs, gallery, loading recovery, mobile width; no runtime errors.');

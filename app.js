@@ -289,9 +289,10 @@
 
     function rank(raw) {
       const q = String(raw || '').trim().toLowerCase();
-      if (!q) return { mode: 'all', items: MODELS.slice() };
+      const searchable = MODELS.filter(m => !isPaid(m));
+      if (!q) return { mode: 'all', items: searchable };
 
-      const hits = MODELS
+      const hits = searchable
         .map(function (m) { return { m: m, s: matchScore(q, m) }; })
         .filter(function (x) { return x.s > 0; })
         .sort(function (a, b) { return b.s - a.s; })
@@ -299,7 +300,7 @@
 
       if (hits.length) return { mode: 'match', items: hits };
 
-      const near = MODELS
+      const near = searchable
         .map(function (m) {
           return { m: m, d: Math.min(distance(q, String(m.name).toLowerCase()),
                                      distance(q, String(m.id).toLowerCase())) };
@@ -366,8 +367,28 @@
     }
 
     function fill(grid, list) {
-      grid.innerHTML = '';
-      list.forEach(function (m) { grid.appendChild(cardFor(m)); });
+      // Keep matching DOM nodes and loaded thumbnails stable while typing.
+      const existing = new Map(Array.from(grid.children, card => [card.dataset.id, card]));
+      const wanted = new Set(list.map(m => m.id));
+      for (const card of grid.children) card.hidden = !wanted.has(card.dataset.id);
+      list.forEach(function (m, index) {
+        const card = existing.get(m.id) || cardFor(m);
+        card.hidden = false;
+        card.style.order = index;
+        card.classList.toggle('is-active', m.id === currentId);
+        card.setAttribute('aria-pressed', String(m.id === currentId));
+        card.querySelector('.model-card-name').innerHTML = highlight(m.name, query);
+        card.querySelector('small').textContent = 'GLB' + (m.hasBlend ? ' + BLEND' : '') + ' · ' + m.glb;
+        if (!card.parentNode) grid.appendChild(card);
+      });
+      // Match keyboard order to visual rank without replacing the cards.
+      list.forEach((m, index) => {
+        const card = Array.from(grid.children).find(el => el.dataset.id === m.id);
+        if (grid.children[index] !== card) grid.insertBefore(card, grid.children[index] || null);
+      });
+      for (const card of Array.from(grid.children)) {
+        if (!MODELS.some(m => m.id === card.dataset.id && !isPaid(m))) card.remove();
+      }
     }
 
     function renderPicker() {
@@ -391,30 +412,45 @@
         searchHint.textContent = t('search.noMatch', { q: typed });
       } else if (res.mode === 'match' && typed) {
         searchHint.hidden = false;
-        searchHint.textContent = t('search.count', { n: res.items.length, m: MODELS.length });
+        searchHint.textContent = t('search.count', { n: free.length, m: totalFree });
       } else {
         searchHint.hidden = true;
         searchHint.textContent = '';
       }
     }
 
-    search.addEventListener('input', function () { query = search.value; renderPicker(); });
+    let searchFrame = 0;
+    function flushSearch() {
+      window.cancelAnimationFrame(searchFrame);
+      searchFrame = 0;
+      query = search.value;
+      renderPicker();
+    }
+    search.addEventListener('input', function (event) {
+      searchClear.hidden = !search.value;
+      if (event.isComposing) return;
+      window.cancelAnimationFrame(searchFrame);
+      searchFrame = window.requestAnimationFrame(flushSearch);
+    });
+    search.addEventListener('compositionend', flushSearch);
 
     search.addEventListener('keydown', function (e) {
+      if (e.isComposing) return;
+      if (e.key === 'Enter' || e.key === 'ArrowDown') flushSearch();
       if (e.key === 'Enter') {
         e.preventDefault();
-        const first = document.querySelector('#panel-models .model-card');
+        const first = document.querySelector('#panel-models .model-card:not([hidden])');
         if (first) { selectModel(first.dataset.id); search.blur(); }
       } else if (e.key === 'Escape') {
         clearSearch();
       } else if (e.key === 'ArrowDown') {
         e.preventDefault();
-        const first = document.querySelector('#panel-models .model-card');
+        const first = document.querySelector('#panel-models .model-card:not([hidden])');
         if (first) first.focus();
       }
     });
 
-    function clearSearch() { query = ''; search.value = ''; renderPicker(); }
+    function clearSearch() { search.value = ''; flushSearch(); }
 
     searchClear.addEventListener('click', function () { clearSearch(); search.focus(); });
 
