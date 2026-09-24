@@ -1328,5 +1328,14 @@
     sizeLibrary();
     window.setTimeout(sizeLibrary, 300);
 
+    document.getElementById('lessonPlay')?.addEventListener('click', () => {
+      const frame = document.createElement('iframe');
+      frame.src = 'https://drive.google.com/file/d/1BtJ35x-4DNayGUEknefIqGbw0RaZ34ut/preview';
+      frame.title = document.getElementById('lessonTitle').textContent;
+      frame.allow = 'autoplay; fullscreen';
+      frame.allowFullscreen = true;
+      document.getElementById('lessonPlayer').replaceChildren(frame);
+      frame.focus();
+    }, { once: true });
     document.getElementById('year').textContent = new Date().getFullYear();
   })();

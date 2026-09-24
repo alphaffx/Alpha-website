@@ -25,6 +25,11 @@
   const STRINGS = {
 
     en: {
+      "lesson.badge": "Free intro · Paid course",
+      "lesson.title": "Start here: course preparation",
+      "lesson.description": "Watch the free introduction in French. The full course is paid and coming soon.",
+      "lesson.watch": "▶ Watch free intro · French",
+      "lesson.open": "Open in Google Drive ↗",
       'nav.home': 'Home', 'nav.models': '3D Models', 'nav.contact': 'Contact',
       'hero.title': "FREE FIRE. A NEW DIMENSION.",
       'hero.tagline': 'Free Fire maps & characters in 3D',
@@ -111,6 +116,11 @@
     },
 
     fr: {
+      "lesson.badge": "Introduction gratuite · Formation payante",
+      "lesson.title": "Commencez ici : préparez la formation",
+      "lesson.description": "Regardez l’introduction gratuite en français. La formation complète sera payante et arrive bientôt.",
+      "lesson.watch": "▶ Voir l’introduction gratuite · Français",
+      "lesson.open": "Ouvrir dans Google Drive ↗",
       'nav.home': 'Accueil', 'nav.models': 'Modèles 3D', 'nav.contact': 'Contact',
       'hero.title': "FREE FIRE. UNE NOUVELLE DIMENSION.",
       'hero.tagline': 'Cartes et personnages Free Fire en 3D',
@@ -197,6 +207,11 @@
     },
 
     pt: {
+      "lesson.badge": "Introdução gratuita · Curso pago",
+      "lesson.title": "Comece aqui: preparação para o curso",
+      "lesson.description": "Assista à introdução gratuita em francês. O curso completo será pago e estará disponível em breve.",
+      "lesson.watch": "▶ Ver introdução gratuita · Francês",
+      "lesson.open": "Abrir no Google Drive ↗",
       'nav.home': 'Início', 'nav.models': 'Modelos 3D', 'nav.contact': 'Contato',
       'hero.title': "FREE FIRE. UMA NOVA DIMENSÃO.",
       'hero.tagline': 'Mapas e personagens de Free Fire em 3D',
@@ -283,6 +298,11 @@
     },
 
     es: {
+      "lesson.badge": "Introducción gratuita · Curso de pago",
+      "lesson.title": "Empieza aquí: preparación para el curso",
+      "lesson.description": "Mira la introducción gratuita en francés. El curso completo será de pago y estará disponible pronto.",
+      "lesson.watch": "▶ Ver introducción gratuita · Francés",
+      "lesson.open": "Abrir en Google Drive ↗",
       'nav.home': 'Inicio', 'nav.models': 'Modelos 3D', 'nav.contact': 'Contacto',
       'hero.title': "FREE FIRE. UNA NUEVA DIMENSIÓN.",
       'hero.tagline': 'Mapas y personajes de Free Fire en 3D',
@@ -369,6 +389,11 @@
     },
 
     id: {
+      "lesson.badge": "Pengantar gratis · Kursus berbayar",
+      "lesson.title": "Mulai di sini: persiapan kursus",
+      "lesson.description": "Tonton pengantar gratis dalam bahasa Prancis. Kursus lengkap berbayar akan segera hadir.",
+      "lesson.watch": "▶ Tonton pengantar gratis · Bahasa Prancis",
+      "lesson.open": "Buka di Google Drive ↗",
       'nav.home': 'Beranda', 'nav.models': 'Model 3D', 'nav.contact': 'Kontak',
       'hero.title': "FREE FIRE. DIMENSI BARU.",
       'hero.tagline': 'Peta dan karakter Free Fire dalam 3D',
@@ -455,6 +480,11 @@
     },
 
     th: {
+      "lesson.badge": "บทนำฟรี · หลักสูตรแบบชำระเงิน",
+      "lesson.title": "เริ่มที่นี่: เตรียมพร้อมก่อนเรียน",
+      "lesson.description": "ชมบทนำฟรีเป็นภาษาฝรั่งเศส หลักสูตรเต็มเป็นแบบชำระเงินและจะเปิดเร็ว ๆ นี้",
+      "lesson.watch": "▶ ชมบทนำฟรี · ภาษาฝรั่งเศส",
+      "lesson.open": "เปิดใน Google Drive ↗",
       'nav.home': 'หน้าแรก', 'nav.models': 'โมเดล 3D', 'nav.contact': 'ติดต่อ',
       'hero.title': "FREE FIRE. มิติใหม่.",
       'hero.tagline': 'แผนที่และตัวละคร Free Fire แบบ 3D',
@@ -541,6 +571,11 @@
     },
 
     vi: {
+      "lesson.badge": "Giới thiệu miễn phí · Khóa học trả phí",
+      "lesson.title": "Bắt đầu tại đây: chuẩn bị cho khóa học",
+      "lesson.description": "Xem phần giới thiệu miễn phí bằng tiếng Pháp. Khóa học đầy đủ có trả phí sẽ sớm ra mắt.",
+      "lesson.watch": "▶ Xem giới thiệu miễn phí · Tiếng Pháp",
+      "lesson.open": "Mở trong Google Drive ↗",
       'nav.home': 'Trang chủ', 'nav.models': 'Mô hình 3D', 'nav.contact': 'Liên hệ',
       'hero.title': "FREE FIRE. MỘT CHIỀU KHÔNG GIAN MỚI.",
       'hero.tagline': 'Bản đồ và nhân vật Free Fire ở dạng 3D',
@@ -627,6 +662,11 @@
     },
 
     ar: {
+      "lesson.badge": "مقدمة مجانية · دورة مدفوعة",
+      "lesson.title": "ابدأ هنا: الاستعداد للدورة",
+      "lesson.description": "شاهد المقدمة المجانية باللغة الفرنسية. الدورة الكاملة مدفوعة وستتوفر قريبًا.",
+      "lesson.watch": "▶ شاهد المقدمة المجانية · الفرنسية",
+      "lesson.open": "افتح في Google Drive ↗",
       'nav.home': 'الرئيسية', 'nav.models': 'نماذج ثلاثية الأبعاد', 'nav.contact': 'تواصل',
       'hero.title': "FREE FIRE. بُعد جديد.",
       'hero.tagline': 'خرائط وشخصيات Free Fire بتقنية ثلاثية الأبعاد',

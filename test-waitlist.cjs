@@ -12,6 +12,13 @@ const errors=[];page.on('pageerror',e=>errors.push(e.message));
 await page.goto('http://127.0.0.1:8767');
 
 const assert=require('assert/strict');
+// Only load the external lesson player after the visitor chooses to watch.
+assert.equal(await page.locator('#lessonPlayer iframe').count(),0);
+await page.route('https://drive.google.com/**', route => route.fulfill({contentType:'text/html',body:'<p>Lesson player fixture</p>'}));
+await page.locator('#lessonPlay').click();
+assert.equal(await page.locator('#lessonPlayer iframe').getAttribute('src'),'https://drive.google.com/file/d/1BtJ35x-4DNayGUEknefIqGbw0RaZ34ut/preview');
+assert(await page.locator('#lessonPlayer iframe').getAttribute('title'));
+assert.equal(await page.locator('.lesson-card a').getAttribute('target'),'_blank');
 const requests=[];let result={success:false};let httpStatus=200;
 await page.route('https://formsubmit.co/**',async route=>{
  requests.push(route.request().postDataJSON());

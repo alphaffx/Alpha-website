@@ -67,6 +67,15 @@
 .learn-intro p { color: #d0dfeb; line-height: 1.8; }
 .learn-section .learn-note, .learn-note { font-size: 13px; line-height: 1.7; color: #aebfd0; }
 .learn-form { min-width: 0; display: grid; gap: 13px; align-content: start; }
+.learn-intro { min-width: 0; }
+.lesson-card { margin-top: 24px; }
+.lesson-card h3 { margin: 0; }
+.lesson-player { aspect-ratio: 16 / 9; overflow: hidden; border-radius: 12px; background: #07090c; margin: 16px 0 12px; }
+.lesson-play { display: block; position: relative; width: 100%; height: 100%; padding: 0; border: 0; cursor: pointer; background: #07090c; color: white; }
+.lesson-play img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.lesson-play span { position: absolute; inset-inline: 0; bottom: 0; padding: 12px; background: rgba(0,0,0,.88); font: 600 14px var(--font-body); }
+.lesson-play:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
+.lesson-player iframe { width: 100%; height: 100%; border: 0; display: block; }
 .learn-form h3, .learn-form p { margin: 0; }
 .learn-form > label { font-size: 14px; }
 .learn-form .fb-input { width: 100%; min-width: 0; font-size: 16px; }
