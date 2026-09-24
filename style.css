@@ -2885,3 +2885,24 @@ body.on-commerce main { padding-top: clamp(24px, 3vw, 40px); }
 .brand { white-space: nowrap; text-transform: uppercase; }
 .brand-sub { font-size: .62em; letter-spacing: .08em; opacity: .9; margin-inline-start: .15em; }
 @media (max-width: 520px) { .brand { font-size: 1.45rem; } }
+
+/* Upcoming classes and free launch waitlist. */
+.learn-section { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 5vw, 64px); padding: clamp(22px, 4vw, 44px); border: 1px solid rgba(113, 209, 247, .25); border-radius: 24px; background: linear-gradient(135deg, rgba(17, 51, 75, .96), rgba(7, 17, 31, .96)); scroll-margin-top: 160px; }
+.learn-badge { display: inline-block; padding: 6px 11px; border: 1px solid rgba(114, 216, 249, .3); border-radius: 999px; color: #94e2ff; font-size: 12px; font-weight: 600; }
+.learn-intro h2 { margin: 18px 0; font-family: var(--font-display); font-weight: 400; font-size: clamp(30px, 4vw, 48px); line-height: 1.1; }
+.learn-intro p { color: #d0dfeb; line-height: 1.8; }
+.learn-section .learn-note, .learn-note { font-size: 13px; line-height: 1.7; color: #aebfd0; }
+.learn-form { min-width: 0; display: grid; gap: 13px; align-content: start; }
+.learn-form h3, .learn-form p { margin: 0; }
+.learn-form > label { font-size: 14px; }
+.learn-form .fb-input { width: 100%; min-width: 0; font-size: 16px; }
+.learn-consent { display: flex; align-items: flex-start; gap: 10px; line-height: 1.6; cursor: pointer; }
+.learn-consent input { flex: 0 0 auto; width: 18px; height: 18px; margin: 3px 0 0; accent-color: #64d5ff; }
+.learn-form .button { width: 100%; white-space: normal; }
+.learn-form .button:disabled { opacity: .6; cursor: wait; }
+.learn-store { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin: 32px 0; padding: 24px; border: 1px solid var(--border); border-radius: 18px; background: rgba(10, 27, 43, .94); }
+.learn-store h3 { margin: 12px 0 8px; }
+.learn-store p { margin: 0; color: #aebfd0; font-size: 14px; }
+.learn-store .button { flex-shrink: 0; white-space: normal; }
+@media (max-width: 700px) { .learn-section { grid-template-columns: 1fr; } .learn-store { align-items: stretch; flex-direction: column; } }
+@media (max-width: 480px) { .hero .title { font-size: clamp(2.5rem, 10vw, 3rem); overflow-wrap: anywhere; } }

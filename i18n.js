@@ -935,6 +935,117 @@
     modelDetailKeys.forEach((key, i) => { STRINGS[code]["details." + key] = values[i]; });
   });
 
+  const learnKeys = ["soon","title","body","format","join","note","consent","notify","privacy","sent","error"];
+  const learnTranslations = {
+  "en": [
+    "Coming soon",
+    "Learn with ALPHA",
+    "Go behind my Free Fire videos. Learn how I build a scene, animate characters, light the shot and create the final edit.",
+    "Recorded classes · One-time purchase per class · Character files not included",
+    "Join the free waitlist",
+    "No payment today. Price and release date will be announced when the class is ready.",
+    "Email me about ALPHA’s class launch. I can opt out by replying.",
+    "Notify me at launch",
+    "Your email is sent through FormSubmit to ALPHA for class launch updates.",
+    "Your waitlist request has been sent. Thanks for your interest!",
+    "Could not send your request. Please try again or email admin@alphaff.gg."
+  ],
+  "fr": [
+    "Bientôt disponible",
+    "Apprenez avec ALPHA",
+    "Découvrez les coulisses de mes vidéos Free Fire : création de scènes, animation, éclairage et montage final.",
+    "Cours enregistrés · Achat unique par cours · Fichiers des personnages non inclus",
+    "Rejoindre la liste gratuite",
+    "Aucun paiement aujourd’hui. Le prix et la date seront annoncés quand le cours sera prêt.",
+    "Recevoir les annonces de lancement des cours ALPHA. Je peux me désinscrire en répondant.",
+    "Me prévenir au lancement",
+    "Votre e-mail est transmis à ALPHA via FormSubmit pour les annonces de lancement.",
+    "Votre demande a été envoyée. Merci de votre intérêt !",
+    "Envoi impossible. Réessayez ou écrivez à admin@alphaff.gg."
+  ],
+  "pt": [
+    "Em breve",
+    "Aprenda com ALPHA",
+    "Veja os bastidores dos meus vídeos de Free Fire: criação de cenas, animação, iluminação e edição final.",
+    "Aulas gravadas · Compra única por aula · Arquivos dos personagens não incluídos",
+    "Entrar na lista gratuita",
+    "Nenhum pagamento agora. O preço e a data serão anunciados quando a aula estiver pronta.",
+    "Quero receber e-mails sobre o lançamento das aulas ALPHA. Posso cancelar respondendo.",
+    "Avise-me no lançamento",
+    "Seu e-mail é enviado ao ALPHA pelo FormSubmit para avisos de lançamento.",
+    "Seu pedido foi enviado. Obrigado pelo interesse!",
+    "Não foi possível enviar. Tente novamente ou escreva para admin@alphaff.gg."
+  ],
+  "es": [
+    "Próximamente",
+    "Aprende con ALPHA",
+    "Descubre cómo hago mis vídeos de Free Fire: escenas, animación de personajes, iluminación y edición final.",
+    "Clases grabadas · Pago único por clase · Archivos de personajes no incluidos",
+    "Unirme a la lista gratuita",
+    "Sin pago hoy. El precio y la fecha se anunciarán cuando la clase esté lista.",
+    "Quiero recibir avisos del lanzamiento de las clases de ALPHA. Puedo darme de baja respondiendo.",
+    "Avisarme del lanzamiento",
+    "Tu correo se envía a ALPHA mediante FormSubmit para avisos del lanzamiento.",
+    "Tu solicitud ha sido enviada. ¡Gracias por tu interés!",
+    "No se pudo enviar. Inténtalo de nuevo o escribe a admin@alphaff.gg."
+  ],
+  "id": [
+    "Segera hadir",
+    "Belajar bersama ALPHA",
+    "Lihat proses pembuatan video Free Fire saya: penataan adegan, animasi karakter, pencahayaan, dan edit akhir.",
+    "Kelas rekaman · Sekali bayar per kelas · File karakter tidak disertakan",
+    "Gabung daftar tunggu gratis",
+    "Tidak ada pembayaran sekarang. Harga dan tanggal diumumkan saat kelas siap.",
+    "Kirim email tentang peluncuran kelas ALPHA. Saya dapat berhenti dengan membalas.",
+    "Kabari saat peluncuran",
+    "Email Anda dikirim melalui FormSubmit ke ALPHA untuk kabar peluncuran kelas.",
+    "Permintaan Anda terkirim. Terima kasih atas minat Anda!",
+    "Gagal mengirim. Coba lagi atau email admin@alphaff.gg."
+  ],
+  "th": [
+    "เร็ว ๆ นี้",
+    "เรียนรู้กับ ALPHA",
+    "ชมเบื้องหลังวิดีโอ Free Fire ของฉัน เรียนรู้การจัดฉาก แอนิเมชันตัวละคร แสง และการตัดต่อขั้นสุดท้าย",
+    "คลาสวิดีโอ · ซื้อครั้งเดียวต่อคลาส · ไม่รวมไฟล์ตัวละคร",
+    "ลงชื่อรอฟรี",
+    "ยังไม่ต้องชำระเงิน จะประกาศราคาและวันเปิดตัวเมื่อคลาสพร้อม",
+    "ส่งอีเมลแจ้งเปิดตัวคลาส ALPHA ให้ฉัน ยกเลิกได้โดยตอบกลับอีเมล",
+    "แจ้งฉันเมื่อเปิดตัว",
+    "อีเมลของคุณจะส่งผ่าน FormSubmit ถึง ALPHA เพื่อแจ้งข่าวเปิดตัวคลาส",
+    "ส่งคำขอแล้ว ขอบคุณที่สนใจ!",
+    "ส่งไม่สำเร็จ โปรดลองอีกครั้งหรือส่งอีเมลถึง admin@alphaff.gg"
+  ],
+  "vi": [
+    "Sắp ra mắt",
+    "Học cùng ALPHA",
+    "Khám phá cách tôi làm video Free Fire: dựng cảnh, tạo hoạt ảnh nhân vật, chiếu sáng và chỉnh sửa cuối cùng.",
+    "Bài học ghi hình · Thanh toán một lần cho mỗi bài · Không kèm tệp nhân vật",
+    "Đăng ký chờ miễn phí",
+    "Chưa cần thanh toán. Giá và ngày ra mắt sẽ được công bố khi bài học sẵn sàng.",
+    "Gửi email cho tôi khi lớp học ALPHA ra mắt. Tôi có thể hủy bằng cách trả lời email.",
+    "Báo tôi khi ra mắt",
+    "Email của bạn được gửi qua FormSubmit tới ALPHA để nhận tin ra mắt lớp học.",
+    "Yêu cầu đã được gửi. Cảm ơn bạn đã quan tâm!",
+    "Không thể gửi. Vui lòng thử lại hoặc gửi email tới admin@alphaff.gg."
+  ],
+  "ar": [
+    "قريبًا",
+    "تعلّم مع ALPHA",
+    "اكتشف كواليس فيديوهاتي في Free Fire. تعلّم إعداد المشهد وتحريك الشخصيات والإضاءة والمونتاج النهائي.",
+    "دروس مسجّلة · شراء مرة واحدة لكل درس · ملفات الشخصيات غير مشمولة",
+    "انضم لقائمة الانتظار مجانًا",
+    "لا دفع الآن. سيُعلن السعر والموعد عندما يصبح الدرس جاهزًا.",
+    "أرغب في تلقي رسائل عن إطلاق دروس ALPHA. يمكنني إلغاء الاشتراك بالرد.",
+    "أبلغني عند الإطلاق",
+    "يُرسل بريدك عبر FormSubmit إلى ALPHA لتلقي أخبار إطلاق الدروس.",
+    "تم إرسال طلبك. شكرًا لاهتمامك!",
+    "تعذر الإرسال. حاول مجددًا أو راسل admin@alphaff.gg."
+  ]
+};
+  Object.entries(learnTranslations).forEach(([code, values]) => {
+    learnKeys.forEach((key, i) => { STRINGS[code]["learn." + key] = values[i]; });
+  });
+
   /* ---------------- engine ---------------- */
 
   const STORE_KEY = 'alpha.lang';

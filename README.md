@@ -52,3 +52,9 @@ These are local changes. Publish the updated HTML, CSS, JavaScript, catalogs, an
 After actually testing a source file, set its optional `blenderCompatibility` string in `models/models.json` (for example, `4.5 — tested`). The watcher preserves it. Missing compatibility is shown as “Not verified”; it is never inferred from a filename or export version. Recheck this manually when replacing a Blender source file.
 
 Animation controls appear after a preview with embedded animation clips loads. Playback starts only when the visitor presses Play, and pauses on model changes, closing the preview, or leaving the Models tab. The current GLB exports contain textures but no skeletons or animation clips; export those from Blender to enable animated previews.
+
+## Learn with ALPHA waitlist
+
+The Home section and Store callout promote upcoming paid recorded classes without taking payment. Waitlist requests require an email and explicit launch-email consent. They use the existing FormSubmit relay to `admin@alphaff.gg`, with subject `alphaff.gg - class waitlist`, language, and a consent timestamp. This is an inbox-based waitlist, not an automated Gumroad subscriber list: deduplicate requests and honor opt-out replies before sending launch announcements.
+
+Run `node test-waitlist.cjs` for mocked submission, validation, consent, failure recovery, translations, and responsive checks. Tests send no real emails. Verify the FormSubmit recipient is activated and confirm actual inbox delivery before relying on signups. When a class is ready, add its real Gumroad product link and confirmed price; no checkout or payment link is present yet.
