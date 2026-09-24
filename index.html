@@ -235,6 +235,26 @@
         </div>
       </section>
 
+      <section class="home-block learn-section" aria-labelledby="learnTitle">
+        <div class="learn-intro">
+          <span class="learn-badge" data-i18n="learn.soon">Coming soon</span>
+          <h2 id="learnTitle" data-i18n="learn.title">Learn with ALPHA</h2>
+          <p data-i18n="learn.body">Go behind my Free Fire videos. Learn how I build a scene, animate characters, light the shot and create the final edit.</p>
+          <p class="learn-note" data-i18n="learn.format">Recorded classes · One-time purchase per class · Character files not included</p>
+        </div>
+        <form id="learnForm" class="learn-form">
+          <h3 data-i18n="learn.join">Join the free waitlist</h3>
+          <p class="learn-note" data-i18n="learn.note">No payment today. Price and release date will be announced when the class is ready.</p>
+          <label for="learnEmail" data-i18n="commission.email">Your email</label>
+          <input class="fb-input" id="learnEmail" name="email" type="email" autocomplete="email" maxlength="254" required aria-describedby="learnPrivacy">
+          <label class="learn-consent"><input type="checkbox" name="consent" required><span data-i18n="learn.consent">Email me about ALPHA’s class launch. I can opt out by replying.</span></label>
+          <input type="text" name="_honey" class="fb-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="button" id="learnSend" type="submit" data-i18n="learn.notify">Notify me at launch</button>
+          <p id="learnPrivacy" class="learn-note" data-i18n="learn.privacy">Your email is sent through FormSubmit to ALPHA for class launch updates.</p>
+          <p class="fb-status" id="learnStatus" role="status" hidden></p>
+        </form>
+      </section>
+
       <!-- ---------- About ---------- -->
       <section class="home-block">
         <h2 class="block-title" data-i18n="about.title">About me</h2>
@@ -464,6 +484,10 @@
           <span class="tier-count" id="storeOtherCount"></span></h3>
         <div class="store-grid" id="storeOther"></div>
         <p class="tier-empty" id="storeOtherEmpty" data-i18n="store.empty">Nothing here yet — check back soon.</p>
+      </section>
+      <section class="learn-store" aria-labelledby="learnStoreTitle">
+        <div><span class="learn-badge" data-i18n="learn.soon">Coming soon</span><h3 id="learnStoreTitle" data-i18n="learn.title">Learn with ALPHA</h3><p data-i18n="learn.note">No payment today. Price and release date will be announced when the class is ready.</p></div>
+        <button class="button button-ghost" type="button" data-goto="home" data-learn-link data-i18n="learn.join">Join the free waitlist</button>
       </section>
       <section class="store-faq" aria-labelledby="storeFaqTitle">
         <h3 id="storeFaqTitle" data-i18n="faq.title">FAQ &amp; usage terms</h3>

@@ -237,6 +237,10 @@
       btn.addEventListener('click', function () {
         showPanel(btn.dataset.goto);
         if (!drawer.hidden) closeDrawer();
+        if (btn.hasAttribute('data-learn-link')) {
+          document.getElementById('learnEmail').focus({ preventScroll: true });
+          document.querySelector('.learn-section').scrollIntoView({ behavior: settings.reduceMotion ? 'instant' : 'smooth', block: 'start' });
+        }
         if (btn.hasAttribute('data-commission-link')) {
           document.getElementById('commissionName').focus();
         }
@@ -1432,6 +1436,50 @@
           button.disabled = false;
           form.removeAttribute('aria-busy');
         }
+      });
+    })();
+
+    // Free class waitlist: requests go to the existing owner inbox.
+    (function () {
+      const form = document.getElementById('learnForm');
+      const button = document.getElementById('learnSend');
+      const status = document.getElementById('learnStatus');
+      let pending = false;
+      function say(key, ok) {
+        status.dataset.i18n = key;
+        status.textContent = t(key);
+        status.hidden = false;
+        status.classList.toggle('is-ok', ok === true);
+        status.classList.toggle('is-err', ok === false);
+      }
+      form.addEventListener('submit', async event => {
+        event.preventDefault();
+        if (pending || !form.reportValidity() || form.elements._honey.value) return;
+        const payload = {
+          email: form.elements.email.value.trim(),
+          interest: 'Learn with ALPHA — recorded classes',
+          consent: 'Requested class launch emails; may opt out by replying.',
+          consent_at: new Date().toISOString(),
+          page_language: I18N ? I18N.current : 'en',
+          _subject: 'alphaff.gg - class waitlist',
+          _template: 'table'
+        };
+        pending = true; button.disabled = true;
+        form.setAttribute('aria-busy', 'true');
+        say('contact.fbSending');
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 20000);
+        try {
+          const response = await fetch('https://formsubmit.co/ajax/admin@alphaff.gg', {
+            method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(payload), signal: controller.signal
+          });
+          if (!response.ok) throw new Error('Request failed');
+          const result = await response.json();
+          if (result.success !== true && result.success !== 'true') throw new Error('Submission rejected');
+          form.reset(); say('learn.sent', true);
+        } catch (error) { say('learn.error', false); }
+        finally { clearTimeout(timeout); pending = false; button.disabled = false; form.removeAttribute('aria-busy'); }
       });
     })();
 
