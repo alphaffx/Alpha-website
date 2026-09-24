@@ -26,7 +26,7 @@
 
     en: {
       'nav.home': 'Home', 'nav.models': '3D Models', 'nav.contact': 'Contact',
-      'hero.title': 'BUILT IN BLENDER',
+      'hero.title': "FREE FIRE. A NEW DIMENSION.",
       'hero.tagline': 'Free Fire maps & characters in 3D',
       'hero.subtitle': 'Download the free ones, or commission something built for you.',
       'hero.cta1': 'View My Work', 'hero.cta2': 'Get in Touch',
@@ -112,7 +112,7 @@
 
     fr: {
       'nav.home': 'Accueil', 'nav.models': 'Modèles 3D', 'nav.contact': 'Contact',
-      'hero.title': 'FAIT SOUS BLENDER',
+      'hero.title': "FREE FIRE. UNE NOUVELLE DIMENSION.",
       'hero.tagline': 'Cartes et personnages Free Fire en 3D',
       'hero.subtitle': 'Téléchargez les modèles gratuits, ou commandez une création sur mesure.',
       'hero.cta1': 'Voir Mon Travail', 'hero.cta2': 'Me Contacter',
@@ -198,7 +198,7 @@
 
     pt: {
       'nav.home': 'Início', 'nav.models': 'Modelos 3D', 'nav.contact': 'Contato',
-      'hero.title': 'FEITO NO BLENDER',
+      'hero.title': "FREE FIRE. UMA NOVA DIMENSÃO.",
       'hero.tagline': 'Mapas e personagens de Free Fire em 3D',
       'hero.subtitle': 'Baixe os gratuitos, ou encomende algo feito sob medida.',
       'hero.cta1': 'Ver Meu Trabalho', 'hero.cta2': 'Entre em Contato',
@@ -284,7 +284,7 @@
 
     es: {
       'nav.home': 'Inicio', 'nav.models': 'Modelos 3D', 'nav.contact': 'Contacto',
-      'hero.title': 'HECHO EN BLENDER',
+      'hero.title': "FREE FIRE. UNA NUEVA DIMENSIÓN.",
       'hero.tagline': 'Mapas y personajes de Free Fire en 3D',
       'hero.subtitle': 'Descarga los gratuitos, o encarga algo hecho a medida.',
       'hero.cta1': 'Ver Mi Trabajo', 'hero.cta2': 'Contáctame',
@@ -370,7 +370,7 @@
 
     id: {
       'nav.home': 'Beranda', 'nav.models': 'Model 3D', 'nav.contact': 'Kontak',
-      'hero.title': 'DIBUAT DI BLENDER',
+      'hero.title': "FREE FIRE. DIMENSI BARU.",
       'hero.tagline': 'Peta dan karakter Free Fire dalam 3D',
       'hero.subtitle': 'Unduh yang gratis, atau pesan sesuatu yang dibuat khusus.',
       'hero.cta1': 'Lihat Karya Saya', 'hero.cta2': 'Hubungi Saya',
@@ -456,7 +456,7 @@
 
     th: {
       'nav.home': 'หน้าแรก', 'nav.models': 'โมเดล 3D', 'nav.contact': 'ติดต่อ',
-      'hero.title': 'สร้างด้วย BLENDER',
+      'hero.title': "FREE FIRE. มิติใหม่.",
       'hero.tagline': 'แผนที่และตัวละคร Free Fire แบบ 3D',
       'hero.subtitle': 'ดาวน์โหลดตัวที่ฟรีได้เลย หรือสั่งทำแบบเฉพาะของคุณ',
       'hero.cta1': 'ดูผลงาน', 'hero.cta2': 'ติดต่อฉัน',
@@ -542,7 +542,7 @@
 
     vi: {
       'nav.home': 'Trang chủ', 'nav.models': 'Mô hình 3D', 'nav.contact': 'Liên hệ',
-      'hero.title': 'LÀM BẰNG BLENDER',
+      'hero.title': "FREE FIRE. MỘT CHIỀU KHÔNG GIAN MỚI.",
       'hero.tagline': 'Bản đồ và nhân vật Free Fire ở dạng 3D',
       'hero.subtitle': 'Tải miễn phí, hoặc đặt làm riêng theo yêu cầu.',
       'hero.cta1': 'Xem Tác Phẩm', 'hero.cta2': 'Liên Hệ',
@@ -628,7 +628,7 @@
 
     ar: {
       'nav.home': 'الرئيسية', 'nav.models': 'نماذج ثلاثية الأبعاد', 'nav.contact': 'تواصل',
-      'hero.title': 'صُنع في BLENDER',
+      'hero.title': "FREE FIRE. بُعد جديد.",
       'hero.tagline': 'خرائط وشخصيات Free Fire بتقنية ثلاثية الأبعاد',
       'hero.subtitle': 'حمّل النماذج المجانية، أو اطلب تصميمًا خاصًا بك.',
       'hero.cta1': 'شاهد أعمالي', 'hero.cta2': 'تواصل معي',
