@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-22T19:39:16",
+  "generated": "2026-09-27T23:44:25",
   "models": [
     {
       "id": "alpha",
@@ -157,6 +157,22 @@
       "glbDetails": {
         "rigged": false,
         "embeddedTextures": 7,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "luna",
+      "name": "Luna",
+      "kind": "3D model",
+      "glb": "11.5 MB",
+      "blend": "11.2 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 11,
         "externalTextures": 0,
         "animations": []
       }
