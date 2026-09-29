@@ -163,3 +163,15 @@ html.reduce-motion { scroll-behavior: auto; }
   html { scroll-behavior: auto; }
   .panel.is-active { animation: none; }
 }
+
+/* Local SVG brand marks, with visible labels providing the link names. */
+.contact-grid .contact-card { grid-template-columns: 40px minmax(0, 1fr); }
+.social-icon { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 40px; width: 40px; height: 40px; border-radius: 12px; }
+.social-icon img { display: block; width: 24px; height: 24px; filter: brightness(0) invert(1); }
+.contact-card .contact-icon.social-icon { width: 40px; height: 40px; margin-bottom: 0; }
+.social-icon.social-icon--tiktok { background: #090909; border: 1px solid #42464d; }
+.social-icon.social-icon--instagram { background: linear-gradient(135deg, #833ab4, #c13584 55%, #e06b38); }
+.social-icon.social-icon--youtube { background: #c90000; }
+.social-icon.social-icon--email { background: #16445f; }
+.hire-link .social-icon { flex-basis: 32px; width: 32px; height: 32px; border-radius: 9px; }
+.hire-link .social-icon img { width: 20px; height: 20px; }
