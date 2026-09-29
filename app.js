@@ -216,7 +216,18 @@
           panel.classList.toggle('is-active', isTarget);
         }
       });
-      window.scrollTo({ top: 0, behavior: settings.reduceMotion ? 'auto' : 'smooth' });
+      // A new panel starts at the top; scrolling through its middle feels like a jump.
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      const selectedTab = document.getElementById('tab-' + name);
+      if (selectedTab) {
+        const strip = selectedTab.parentElement;
+        const bounds = strip.getBoundingClientRect();
+        const target = selectedTab.getBoundingClientRect();
+        if (target.left < bounds.left || target.right > bounds.right) {
+          strip.scrollBy({ left: target.left - bounds.left - (bounds.width - target.width) / 2,
+            behavior: settings.reduceMotion ? 'instant' : 'smooth' });
+        }
+      }
 
       // the models tab gets a wider page than the rest of the site
       document.body.classList.toggle('on-models', name === 'models');
@@ -234,7 +245,8 @@
     });
 
     document.querySelectorAll('[data-goto]').forEach(function (btn) {
-      btn.addEventListener('click', function () {
+      btn.addEventListener('click', function (event) {
+        if (btn.tagName === 'A') event.preventDefault();
         showPanel(btn.dataset.goto);
         if (!drawer.hidden) closeDrawer();
         if (btn.hasAttribute('data-learn-link')) {
