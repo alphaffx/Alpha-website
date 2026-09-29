@@ -1183,6 +1183,10 @@
     classesKeys.forEach((key, i) => { if (STRINGS[code]) STRINGS[code][key] = values[i]; });
   });
 
+
+  /* Live TikTok counter label */
+  Object.entries({"en": "Live TikTok followers", "fr": "Abonnés TikTok en direct", "pt": "Seguidores no TikTok ao vivo", "es": "Seguidores de TikTok en vivo", "id": "Pengikut TikTok langsung", "th": "ผู้ติดตาม TikTok แบบสด", "vi": "Người theo dõi TikTok trực tiếp", "ar": "متابعو TikTok مباشرةً"}).forEach(([code, v]) => { if (STRINGS[code]) STRINGS[code]['about.tiktokLive'] = v; });
+
   /* ---------------- engine ---------------- */
 
   const STORE_KEY = 'alpha.lang';

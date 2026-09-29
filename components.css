@@ -97,3 +97,12 @@
 .store-card-price.is-free { color: #7dffb0; }
 @media (max-width: 420px) { .tabs .tab { padding-inline: 7px; font-size: 12.5px; letter-spacing: 0; } }
 @media (max-width: 370px) { .tabs .tab { padding-inline: 5px; font-size: 12px; } }
+
+/* Live TikTok follower counter (About section) */
+.tiktok-live { display: inline-flex; margin: 22px 0 8px; color: #8fd4ff; font-size: 14px; font-weight: 600; text-decoration: none; }
+.tiktok-live:hover { color: #dff8ff; }
+.tiktok-live-label { display: inline-flex; align-items: center; gap: 8px; }
+.live-dot { width: 9px; height: 9px; border-radius: 50%; background: #ff3b5c; box-shadow: 0 0 0 0 #ff3b5c99; animation: livePulse 1.6s infinite; }
+@keyframes livePulse { 70% { box-shadow: 0 0 0 8px #ff3b5c00; } 100% { box-shadow: 0 0 0 0 #ff3b5c00; } }
+@media (prefers-reduced-motion: reduce) { .live-dot { animation: none; } }
+.tiktok-live-frame { display: block; width: 300px; max-width: 100%; height: 80px; border: 0; border-radius: 12px; overflow: hidden; }
