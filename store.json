@@ -2,6 +2,17 @@
     "_comment":  "Products shown on the Store tab. Each one needs a slug: that is the folder name under media/store/ where its pictures live. Drop pictures into media/store/\u003cslug\u003e/ and run watch-models.bat - the watcher fills in the images list below. Everything else here you edit by hand and the watcher leaves alone.",
     "items":  [
                   {
+                      "slug":  "pro-hud",
+                      "title":  "ALPHA'S PRO HUD: Layout + Sensitivity (Emulator)",
+                      "price":  "$0.99",
+                      "desc":  "My exact Free Fire HUD layout, sensitivity and emulator settings - import it and play with the same setup I use. Instant download.",
+                      "url":  "https://alphaff.gumroad.com/l/wetfbn",
+                      "images":  [
+                                     "./media/store/pro-hud/1.webp",
+                                     "./media/store/pro-hud/2.webp"
+                                 ]
+                  },
+                  {
                       "slug":  "bermuda",
                       "title":  "Full Bermuda Map",
                       "price":  "$20",
