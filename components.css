@@ -89,3 +89,11 @@
 .learn-store .button { flex-shrink: 0; white-space: normal; }
 @media (max-width: 700px) { .learn-section { grid-template-columns: 1fr; } .learn-store { align-items: stretch; flex-direction: column; } }
 @media (max-width: 480px) { .hero .title { font-size: clamp(2.5rem, 10vw, 3rem); overflow-wrap: anywhere; } }
+
+/* Classes tab */
+.classes-lang { margin: -8px 0 18px; color: #8fd4ff; font-size: 14px; font-weight: 600; }
+.lesson-item .lesson-player { margin: 0 0 14px; }
+.lesson-item a.lesson-play { text-decoration: none; }
+.store-card-price.is-free { color: #7dffb0; }
+@media (max-width: 420px) { .tabs .tab { padding-inline: 7px; font-size: 12.5px; letter-spacing: 0; } }
+@media (max-width: 370px) { .tabs .tab { padding-inline: 5px; font-size: 12px; } }

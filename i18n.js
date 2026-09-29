@@ -1086,6 +1086,103 @@
     learnKeys.forEach((key, i) => { STRINGS[code]["learn." + key] = values[i]; });
   });
 
+
+  /* Classes tab */
+  const classesTranslations = {
+  "en": [
+    "Classes",
+    "Classes",
+    "Learn how I make my Free Fire animations in Blender, step by step.",
+    "Free",
+    "▶ Watch free",
+    "Buy on Gumroad",
+    "Lessons in English",
+    "Lessons in French",
+    "New classes are coming soon."
+  ],
+  "fr": [
+    "Cours",
+    "Cours",
+    "Apprenez pas à pas comment je crée mes animations Free Fire dans Blender.",
+    "Gratuit",
+    "▶ Regarder gratuitement",
+    "Acheter sur Gumroad",
+    "Cours en anglais",
+    "Cours en français",
+    "De nouveaux cours arrivent bientôt."
+  ],
+  "pt": [
+    "Aulas",
+    "Aulas",
+    "Aprenda passo a passo como faço minhas animações de Free Fire no Blender.",
+    "Grátis",
+    "▶ Assistir grátis",
+    "Comprar no Gumroad",
+    "Aulas em inglês",
+    "Aulas em francês",
+    "Novas aulas em breve."
+  ],
+  "es": [
+    "Clases",
+    "Clases",
+    "Aprende paso a paso cómo hago mis animaciones de Free Fire en Blender.",
+    "Gratis",
+    "▶ Ver gratis",
+    "Comprar en Gumroad",
+    "Clases en inglés",
+    "Clases en francés",
+    "Pronto habrá nuevas clases."
+  ],
+  "id": [
+    "Kelas",
+    "Kelas",
+    "Pelajari langkah demi langkah cara saya membuat animasi Free Fire di Blender.",
+    "Gratis",
+    "▶ Tonton gratis",
+    "Beli di Gumroad",
+    "Pelajaran dalam bahasa Inggris",
+    "Pelajaran dalam bahasa Prancis",
+    "Kelas baru segera hadir."
+  ],
+  "th": [
+    "คลาสเรียน",
+    "คลาสเรียน",
+    "เรียนรู้ทีละขั้นว่าผมสร้างแอนิเมชัน Free Fire ใน Blender อย่างไร",
+    "ฟรี",
+    "▶ ดูฟรี",
+    "ซื้อบน Gumroad",
+    "บทเรียนภาษาอังกฤษ",
+    "บทเรียนภาษาฝรั่งเศส",
+    "คลาสใหม่กำลังจะมาเร็ว ๆ นี้"
+  ],
+  "vi": [
+    "Lớp học",
+    "Lớp học",
+    "Học từng bước cách tôi làm hoạt ảnh Free Fire trong Blender.",
+    "Miễn phí",
+    "▶ Xem miễn phí",
+    "Mua trên Gumroad",
+    "Bài học bằng tiếng Anh",
+    "Bài học bằng tiếng Pháp",
+    "Lớp học mới sắp ra mắt."
+  ],
+  "ar": [
+    "الدروس",
+    "الدروس",
+    "تعلّم خطوة بخطوة كيف أصنع رسوم Free Fire المتحركة في Blender.",
+    "مجاني",
+    "▶ شاهد مجانًا",
+    "اشترِ عبر Gumroad",
+    "دروس باللغة الإنجليزية",
+    "دروس باللغة الفرنسية",
+    "دروس جديدة قريبًا."
+  ]
+};
+  const classesKeys = ["nav.classes", "classes.title", "classes.sub", "classes.free", "classes.watch", "classes.buy", "classes.inEnglish", "classes.inFrench", "classes.empty"];
+  Object.entries(classesTranslations).forEach(([code, values]) => {
+    classesKeys.forEach((key, i) => { if (STRINGS[code]) STRINGS[code][key] = values[i]; });
+  });
+
   /* ---------------- engine ---------------- */
 
   const STORE_KEY = 'alpha.lang';

@@ -106,6 +106,7 @@
       <button class="tab is-active" role="tab" id="tab-home"    aria-controls="panel-home"    aria-selected="true"  data-i18n="nav.home">Home</button>
       <button class="tab"           role="tab" id="tab-models"  aria-controls="panel-models"  aria-selected="false" data-i18n="nav.models">3D Models</button>
       <button class="tab"           role="tab" id="tab-cc"      aria-controls="panel-cc"      aria-selected="false" data-i18n="nav.cc" hidden>Color Correction</button>
+      <button class="tab"           role="tab" id="tab-classes" aria-controls="panel-classes" aria-selected="false" data-i18n="nav.classes">Classes</button>
       <button class="tab"           role="tab" id="tab-store"   aria-controls="panel-store"   aria-selected="false" data-i18n="nav.store">Store</button>
       <button class="tab"           role="tab" id="tab-contact" aria-controls="panel-contact" aria-selected="false" data-i18n="nav.contact">Contact</button>
     </div>
@@ -125,6 +126,7 @@
       <button class="drawer-link" type="button" data-goto="home"    data-i18n="nav.home">Home</button>
       <button class="drawer-link" type="button" data-goto="models"  data-i18n="nav.models">3D Models</button>
       <button class="drawer-link" type="button" data-goto="cc"      data-i18n="nav.cc" hidden>Color Correction</button>
+      <button class="drawer-link" type="button" data-goto="classes" data-i18n="nav.classes">Classes</button>
       <button class="drawer-link" type="button" data-goto="store"   data-i18n="nav.store">Store</button>
       <button class="drawer-link" type="button" data-goto="contact" data-i18n="nav.contact">Contact</button>
     </nav>
@@ -458,6 +460,19 @@
     </section>
 
     <!-- ============ STORE ============ -->
+    <!-- ============ CLASSES ============
+         The lesson list comes from lessons.json - add new lessons there.
+         French visitors get the French version, everyone else English. -->
+    <section class="panel" id="panel-classes" role="tabpanel" aria-labelledby="tab-classes" hidden>
+      <div class="panel-head">
+        <h2 data-i18n="classes.title">Classes</h2>
+        <p data-i18n="classes.sub">Learn how I make my Free Fire animations in Blender, step by step.</p>
+      </div>
+      <p class="classes-lang" id="classesLang"></p>
+      <div class="store-grid classes-grid" id="classesGrid"></div>
+      <p class="tier-empty" id="classesEmpty" data-i18n="classes.empty" hidden>New classes are coming soon.</p>
+    </section>
+
     <section class="panel" id="panel-store" role="tabpanel" aria-labelledby="tab-store" hidden>
       <div class="panel-head">
         <h2 data-i18n="store.title">Store</h2>

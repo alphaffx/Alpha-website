@@ -1325,6 +1325,85 @@
       else if (!e.shiftKey && (document.activeElement === last || !focusOverlay.contains(document.activeElement))) { e.preventDefault(); first?.focus(); }
     });
 
+
+    /* ============================================================
+       CLASSES
+       Reads lessons.json. French visitors get each lesson's "fr"
+       version; every other language gets "en". Free lessons play a
+       Google Drive video right in the card, paid ones link to Gumroad.
+       ============================================================ */
+    let LESSONS = [];
+    const classesGrid = document.getElementById('classesGrid');
+    function lessonLang() { return (window.AlphaI18n && window.AlphaI18n.current === 'fr') ? 'fr' : 'en'; }
+    function renderClasses() {
+      if (!classesGrid) return;
+      const lang = lessonLang();
+      const list = LESSONS.filter(x => x && x[lang]);
+      document.getElementById('classesLang').textContent = t(lang === 'fr' ? 'classes.inFrench' : 'classes.inEnglish');
+      document.getElementById('classesEmpty').hidden = list.length > 0;
+      classesGrid.replaceChildren(...list.map(function (lesson) {
+        const v = lesson[lang];
+        const card = document.createElement('article');
+        card.className = 'store-card lesson-item';
+        const player = document.createElement('div');
+        player.className = 'lesson-player';
+        const cover = document.createElement(lesson.free ? 'button' : 'a');
+        cover.className = 'lesson-play';
+        if (lesson.free) cover.type = 'button';
+        else { cover.href = v.url || '#'; cover.target = '_blank'; cover.rel = 'noopener noreferrer'; }
+        if (lesson.thumb) {
+          const img = document.createElement('img');
+          img.src = lesson.thumb; img.alt = ''; img.loading = 'lazy'; img.decoding = 'async';
+          cover.appendChild(img);
+        }
+        const label = document.createElement('span');
+        label.textContent = lesson.free ? t('classes.watch') : t('classes.buy');
+        cover.appendChild(label);
+        player.appendChild(cover);
+        if (lesson.free && v.video) {
+          cover.addEventListener('click', function () {
+            const frame = document.createElement('iframe');
+            frame.src = 'https://drive.google.com/file/d/' + encodeURIComponent(v.video) + '/preview';
+            frame.title = v.title || '';
+            frame.allow = 'autoplay; fullscreen';
+            frame.allowFullscreen = true;
+            player.replaceChildren(frame);
+            frame.focus();
+          }, { once: true });
+        }
+        card.appendChild(player);
+        const head = document.createElement('div');
+        head.className = 'store-card-head';
+        const name = document.createElement('span');
+        name.className = 'store-card-name';
+        name.textContent = v.title || '';
+        const price = document.createElement('span');
+        price.className = 'store-card-price' + (lesson.free ? ' is-free' : '');
+        price.textContent = lesson.free ? t('classes.free') : (lesson.price || '');
+        head.append(name, price);
+        card.appendChild(head);
+        if (v.desc) {
+          const d = document.createElement('p');
+          d.className = 'store-card-desc';
+          d.textContent = v.desc;
+          card.appendChild(d);
+        }
+        if (!lesson.free && v.url) {
+          const buy = document.createElement('a');
+          buy.className = 'store-card-buy';
+          buy.href = v.url; buy.target = '_blank'; buy.rel = 'noopener noreferrer';
+          buy.textContent = t('classes.buy');
+          card.appendChild(buy);
+        }
+        return card;
+      }));
+    }
+    fetch('./lessons.json', { cache: 'no-cache' })
+      .then(r => r.ok ? r.json() : { items: [] })
+      .then(d => { LESSONS = Array.isArray(d.items) ? d.items : []; renderClasses(); })
+      .catch(() => { renderClasses(); });
+    document.addEventListener('alpha:langchange', renderClasses);
+
     sizeLibrary();
     window.setTimeout(sizeLibrary, 300);
 

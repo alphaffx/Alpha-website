@@ -1,0 +1,20 @@
+{
+  "_comment": "Lessons shown on the Classes tab. Visitors using French see the 'fr' version of each lesson; every other language sees 'en'. A lesson with only one language only shows for that language. Free lessons: put the Google Drive file ID in 'video' (the part between /d/ and /view in the share link; the file must be shared as 'Anyone with the link'). Paid lessons: set 'free' to false, add 'price' and put the Gumroad link in 'url'. Lessons appear in the order listed here.",
+  "items": [
+    {
+      "id": "start-here",
+      "free": true,
+      "thumb": "assets/lessons/start-here-thumbnail-v3.jpg",
+      "fr": {
+        "title": "Commencez ici : préparez la formation",
+        "desc": "L’introduction gratuite : ce qu’il faut installer et préparer avant de commencer les cours.",
+        "video": "1BtJ35x-4DNayGUEknefIqGbw0RaZ34ut"
+      },
+      "en": {
+        "title": "Start here: course preparation",
+        "desc": "The free introduction: what to install and get ready before you start the classes.",
+        "video": "1n_kDn6_UVQ1fYEGqEAD40UEMWcRBzJLV"
+      }
+    }
+  ]
+}
