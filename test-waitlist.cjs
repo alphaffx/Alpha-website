@@ -16,7 +16,7 @@ const assert=require('assert/strict');
 assert.equal(await page.locator('#lessonPlayer iframe').count(),0);
 await page.route('https://drive.google.com/**', route => route.fulfill({contentType:'text/html',body:'<p>Lesson player fixture</p>'}));
 await page.locator('#lessonPlay').click();
-assert.equal(await page.locator('#lessonPlayer iframe').getAttribute('src'),'https://drive.google.com/file/d/1BtJ35x-4DNayGUEknefIqGbw0RaZ34ut/preview');
+assert.equal(await page.locator('#lessonPlayer iframe').getAttribute('src'),'https://drive.google.com/file/d/1n_kDn6_UVQ1fYEGqEAD40UEMWcRBzJLV/preview');
 assert(await page.locator('#lessonPlayer iframe').getAttribute('title'));
 assert.equal(await page.locator('.lesson-card a').getAttribute('target'),'_blank');
 const requests=[];let result={success:false};let httpStatus=200;

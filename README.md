@@ -1,5 +1,11 @@
 # ALPHA website
 
+## French course launch
+
+The French-only Free Fire → Blender course is listed first in `store.json` and in the French Classes catalog in `lessons.json`, linking to https://alphaff.gumroad.com/l/ycdfuj. Pricing is maintained on Gumroad. The English course is not yet available; the signup form now records interest in that edition. The Home and Store launch callouts are translated into all eight supported site languages. The existing free introductions remain available in both languages.
+
+GitHub Pages publishes `main` from the repository root. Launch email copy and the outstanding inbox-access requirement are recorded in `integrations/waitlist/course-launch.md`. Older waitlist setup notes below describe the pre-launch state.
+
 Static HTML, CSS and JavaScript. Serve this folder over HTTP; opening `index.html` as a local file prevents catalog fetching. The main behavior lives in `app.js`, translations in `i18n.js`, and catalogs in `models/models.json` and `store.json`.
 
 ## Browsing

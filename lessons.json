@@ -2,6 +2,16 @@
   "_comment": "Lessons shown on the Classes tab. Visitors using French see the 'fr' version of each lesson; every other language sees 'en'. A lesson with only one language only shows for that language. Free lessons: put the Google Drive file ID in 'video' (the part between /d/ and /view in the share link; the file must be shared as 'Anyone with the link'). Paid lessons: set 'free' to false, add 'price' and put the Gumroad link in 'url'. Lessons appear in the order listed here.",
   "items": [
     {
+      "id": "free-fire-blender-fr",
+      "free": false,
+      "thumb": "media/store/free-fire-blender-fr/1.webp",
+      "fr": {
+        "title": "De Free Fire à Blender : Rigging et animation de personnages",
+        "desc": "Formation en français uniquement : extraire un personnage Free Fire, l’importer dans Blender, ajouter un rig et le faire bouger et danser. Version anglaise à venir, sans date annoncée. Tarif actuel sur Gumroad.",
+        "url": "https://alphaff.gumroad.com/l/ycdfuj"
+      }
+    },
+    {
       "id": "start-here",
       "free": true,
       "thumb": "assets/lessons/start-here-thumbnail-v3.jpg",

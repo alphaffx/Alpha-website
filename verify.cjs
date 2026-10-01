@@ -46,7 +46,8 @@ for (const lang of languages) {
 await page.reload();
 assert.equal(await page.locator('#resetBtn').getAttribute('aria-label'), resetLabels.ar);
 await page.locator('#tab-store').click();
-await page.waitForFunction(() => document.querySelectorAll('#storeOther .store-card').length === 6);
+const expectedStoreCount = JSON.parse(fs.readFileSync('store.json', 'utf8')).items.length;
+await page.waitForFunction(count => document.querySelectorAll('#storeOther .store-card').length === count, expectedStoreCount);
 for (const code of ['ar', 'en']) {
   await page.evaluate(code => window.AlphaI18n.set(code), code);
   for (const width of [1440, 800, 390, 320]) {
@@ -54,7 +55,7 @@ for (const code of ['ar', 'en']) {
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
     const columns = await page.locator('#storeOther').evaluate(el => getComputedStyle(el).gridTemplateColumns.split(' ').length);
     assert.equal(columns, width > 1000 ? 3 : width > 640 ? 2 : 1);
-    assert.equal(await page.locator('#storeOther .store-card-buy').count(), 6);
+    assert.equal(await page.locator('#storeOther .store-card-buy').count(), expectedStoreCount);
     if (width === 1440 || width === 390) await page.screenshot({path: `review-store-${code}-${width}.png`, fullPage: true});
   }
 }
@@ -72,7 +73,7 @@ if (process.argv.includes('--commerce')) {
   await summary.focus();
   await page.keyboard.press('Enter');
   assert(await page.locator('.store-faq details').first().evaluate(el => el.open));
-  await page.locator('[data-commission-link]').click();
+  await page.locator('#panel-store [data-commission-link]').click();
   assert.equal(await page.evaluate(() => document.activeElement.id), 'commissionName');
   assert(page.url().endsWith('#contact'));
   await page.locator('#commissionSend').click();

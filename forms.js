@@ -92,7 +92,7 @@
     subject: 'alphaff.gg - class waitlist', success: 'learn.sent', error: 'learn.error',
     payload: form => ({
       email: form.elements.email.value,
-      interest: 'Learn with ALPHA — recorded classes',
+      interest: 'Learn with ALPHA — English edition waitlist',
       consent: 'Requested class launch emails; may opt out by replying.',
       consent_at: new Date().toISOString()
     })

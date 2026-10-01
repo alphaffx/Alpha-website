@@ -2,6 +2,13 @@
     "_comment":  "Products shown on the Store tab. Each one needs a slug: that is the folder name under media/store/ where its pictures live. Drop pictures into media/store/\u003cslug\u003e/ and run watch-models.bat - the watcher fills in the images list below. Everything else here you edit by hand and the watcher leaves alone.",
     "items":  [
                   {
+                      "slug": "free-fire-blender-fr",
+                      "title": "De Free Fire à Blender : Rigging et animation de personnages — Formation en français",
+                      "desc": "French-only course: extract Free Fire characters, import them into Blender, add a rig, and make them move and dance. English edition coming soon; no release date announced. See Gumroad for the current price.",
+                      "url": "https://alphaff.gumroad.com/l/ycdfuj",
+                      "images": ["./media/store/free-fire-blender-fr/1.webp"]
+                  },
+                  {
                       "slug":  "pro-hud",
                       "title":  "ALPHA'S PRO HUD: Layout + Sensitivity (Emulator)",
                       "price":  "$0.99",
