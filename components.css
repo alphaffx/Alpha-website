@@ -225,3 +225,13 @@ html.reduce-motion { scroll-behavior: auto; }
   .brand-wordmark img { width: 156px; }
   .brand-wordmark .brand-sub { font-size: 9px; }
 }
+
+/* Compact one-row header: logo + "3D SPACE" side by side. */
+.brand.brand-wordmark { display: inline-flex; flex-direction: row; align-items: center; gap: 12px; }
+.brand-wordmark img { width: auto; height: 44px; }
+.brand-wordmark .brand-sub { margin: 0; padding-left: 12px; border-left: 1px solid rgba(255,255,255,.25); font-size: 11px; letter-spacing: .18em; line-height: 1; white-space: nowrap; }
+@media (min-width: 900px) { .menu-btn { display: none; } }
+@media (max-width: 640px) {
+  .brand-wordmark img { width: auto; height: 32px; }
+  .brand-wordmark .brand-sub { display: none; }
+}
