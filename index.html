@@ -180,32 +180,43 @@
 
     <!-- ============ HOME ============ -->
     <section class="panel is-active" id="panel-home" role="tabpanel" aria-labelledby="tab-home">
-      <header class="hero">
+      <header class="hero home-showcase">
+        <div class="hero-copy">
+        <p class="home-eyebrow" data-i18n="home.eyebrow">LEARN · CREATE · ANIMATE</p>
         <h1 class="title" data-i18n="hero.title">FROM FREE FIRE TO BLENDER</h1>
         <p class="tagline" data-i18n="hero.tagline">Free Fire characters &amp; maps in 3D — and courses to make your own</p>
         <p class="subtitle" data-i18n="hero.subtitle">Explore models in 3D, download free files, or bring your next animation project to life with me.</p>
         <div class="hero-actions">
-          <a class="button" href="https://alphaff.gumroad.com/l/ycdfuj" target="_blank" rel="noopener noreferrer" data-i18n="hero.ctaCourse">Get the Course</a>
+          <button class="button" data-goto="store" data-courses-link data-i18n="home.courses">Explore Courses</button>
           <button class="button button-ghost" data-goto="models" data-i18n="hero.cta1">Explore 3D Models</button>
-          <button class="button button-ghost" data-goto="contact" data-commission-link data-i18n="hero.cta2">Start a Project</button>
         </div>
+        <p class="home-course-note" data-i18n="home.note">Courses in French · Full package or individual parts</p>
+        <button class="tool-link home-project-link" data-goto="contact" data-commission-link data-i18n="hero.cta2">Start a Project</button>
+        </div>
+        <figure class="home-artwork">
+          <img src="media/alpha-artwork.jpg" alt="ALPHA character artwork with blue lighting and the Blender logo" width="1280" height="720" fetchpriority="high">
+          <figcaption><span>ALPHA / 3D SPACE</span><a href="https://www.tiktok.com/@alphaff.freefire" target="_blank" rel="noopener noreferrer" data-i18n="home.edits">Watch my edits ↗</a></figcaption>
+        </figure>
       </header>
 
-      <div class="cards">
+      <div class="cards home-visual-cards">
         <article class="card">
-          <span class="card-icon" aria-hidden="true">◈</span>
+          <img class="service-preview" src="media/store/free-fire-blender-part-2-fr/1.webp" alt="Rig and animate course preview" width="960" height="540" loading="lazy">
           <h3 data-i18n="card1.title">Character Animation</h3>
           <p data-i18n="card1.body">Rigging and animating characters with weight, timing and personality.</p>
+          <button class="tool-link" data-goto="store" data-courses-link data-i18n="home.courses">Explore Courses</button>
         </article>
         <article class="card">
-          <span class="card-icon" aria-hidden="true">◐</span>
+          <div class="service-models" aria-hidden="true"><img src="media/models/alpha.webp" alt="" loading="lazy"><img src="media/models/luna.webp" alt="" loading="lazy"><img src="media/models/zorro.webp" alt="" loading="lazy"></div>
           <h3 data-i18n="card2.title">Interactive 3D</h3>
           <p data-i18n="card2.body">Real-time models you can spin, inspect and explore right in the browser.</p>
+          <button class="tool-link" data-goto="models" data-i18n="hero.cta1">Explore 3D Models</button>
         </article>
         <article class="card">
-          <span class="card-icon" aria-hidden="true">▶</span>
+          <img class="service-preview" src="media/alpha-artwork.jpg" alt="ALPHA Free Fire character artwork" width="1280" height="720" loading="lazy">
           <h3 data-i18n="card3.title">Short-Form Video</h3>
           <p data-i18n="card3.body">Animation built for TikTok — fast, punchy and made to be rewatched.</p>
+          <a class="tool-link" href="https://www.tiktok.com/@alphaff.freefire" target="_blank" rel="noopener noreferrer" data-i18n="home.edits">Watch my edits ↗</a>
         </article>
       </div>
 

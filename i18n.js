@@ -1218,6 +1218,20 @@
     ['all', 'resources', 'intros', 'search', 'categories'].forEach((key, i) => { STRINGS[code]['store.' + key] = values[i]; });
   });
 
+  const homeShowcase = {
+    en: ['LEARN · CREATE · ANIMATE', 'Explore Courses', 'Courses in French · Full package or individual parts', 'Watch my edits ↗'],
+    fr: ['APPRENDRE · CRÉER · ANIMER', 'Découvrir les cours', 'Cours en français · Formation complète ou parties séparées', 'Voir mes vidéos ↗'],
+    pt: ['APRENDA · CRIE · ANIME', 'Explorar cursos', 'Cursos em francês · Pacote completo ou partes separadas', 'Ver meus vídeos ↗'],
+    es: ['APRENDE · CREA · ANIMA', 'Explorar cursos', 'Cursos en francés · Paquete completo o partes individuales', 'Ver mis vídeos ↗'],
+    id: ['BELAJAR · BERKREASI · ANIMASIKAN', 'Jelajahi kursus', 'Kursus bahasa Prancis · Paket lengkap atau bagian terpisah', 'Tonton video saya ↗'],
+    th: ['เรียนรู้ · สร้างสรรค์ · ทำแอนิเมชัน', 'ดูคอร์สเรียน', 'คอร์สภาษาฝรั่งเศส · แพ็กเกจเต็มหรือแยกแต่ละส่วน', 'ดูวิดีโอของฉัน ↗'],
+    vi: ['HỌC · SÁNG TẠO · LÀM HOẠT HÌNH', 'Khám phá khóa học', 'Khóa học tiếng Pháp · Trọn bộ hoặc từng phần', 'Xem video của tôi ↗'],
+    ar: ['تعلّم · أبدع · حرّك', 'استكشف الدورات', 'دورات بالفرنسية · الحزمة الكاملة أو أجزاء منفصلة', 'شاهد فيديوهاتي ↗']
+  };
+  Object.entries(homeShowcase).forEach(([code, values]) => {
+    ['eyebrow', 'courses', 'note', 'edits'].forEach((key, i) => { STRINGS[code]['home.' + key] = values[i]; });
+  });
+
   const STORE_KEY = 'alpha.lang';
   let current = 'en';
 

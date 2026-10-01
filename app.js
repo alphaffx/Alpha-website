@@ -254,6 +254,9 @@
       btn.addEventListener('click', function (event) {
         if (btn.tagName === 'A') event.preventDefault();
         showPanel(btn.dataset.goto);
+        if (btn.hasAttribute('data-courses-link')) {
+          document.querySelector('[data-store-category="classes"]').click();
+        }
         if (!drawer.hidden) closeDrawer();
         if (btn.hasAttribute('data-learn-link')) {
           document.getElementById('learnEmail').focus({ preventScroll: true });
