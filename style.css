@@ -2740,3 +2740,13 @@ body.on-commerce main { padding-top: clamp(24px, 3vw, 40px); }
   .panel-head p { font-size: .9375rem; }
   .store-faq details { padding-block: 20px; }
 }
+
+
+/* ---- Homepage polish (Claude, Oct 2026) ---- */
+/* Hamburger only on phones/tablets; desktop already has the full tab bar. */
+@media (min-width: 900px) { .menu-btn { display: none; } }
+/* Let the character artwork show through on the home page (other pages keep their darker treatment). */
+body:not(.on-commerce)::before { filter: blur(3px) brightness(.78) saturate(1.15); }
+body:not(.on-commerce)::after { background: linear-gradient(180deg, rgba(2,9,22,.1), rgba(2,9,22,.38) 55%, rgba(2,9,22,.85)); }
+/* Keep the hero text crisp over the brighter art. */
+.hero .title, .hero .tagline, .hero .subtitle { text-shadow: 0 2px 18px rgba(2,9,22,.85); }
