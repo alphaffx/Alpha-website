@@ -1204,6 +1204,19 @@
   });
 
   /* ---------------- engine ---------------- */
+  const storeCategoryStrings = {
+    en: ['All', 'Other resources', 'Free introductions', 'Search the store', 'Store categories'],
+    fr: ['Tout', 'Autres ressources', 'Introductions gratuites', 'Rechercher dans la boutique', 'Catégories de la boutique'],
+    pt: ['Tudo', 'Outros recursos', 'Introduções gratuitas', 'Pesquisar na loja', 'Categorias da loja'],
+    es: ['Todo', 'Otros recursos', 'Introducciones gratuitas', 'Buscar en la tienda', 'Categorías de la tienda'],
+    id: ['Semua', 'Sumber daya lainnya', 'Pengantar gratis', 'Cari di toko', 'Kategori toko'],
+    th: ['ทั้งหมด', 'ทรัพยากรอื่น ๆ', 'บทนำฟรี', 'ค้นหาในร้านค้า', 'หมวดหมู่ร้านค้า'],
+    vi: ['Tất cả', 'Tài nguyên khác', 'Giới thiệu miễn phí', 'Tìm trong cửa hàng', 'Danh mục cửa hàng'],
+    ar: ['الكل', 'موارد أخرى', 'مقدمات مجانية', 'ابحث في المتجر', 'فئات المتجر']
+  };
+  Object.entries(storeCategoryStrings).forEach(([code, values]) => {
+    ['all', 'resources', 'intros', 'search', 'categories'].forEach((key, i) => { STRINGS[code]['store.' + key] = values[i]; });
+  });
 
   const STORE_KEY = 'alpha.lang';
   let current = 'en';

@@ -195,6 +195,12 @@
     }
 
     function showPanel(name, updateRoute = true) {
+      if (name === 'classes') {
+        name = 'store';
+        storeCategory = 'classes';
+        if (!updateRoute) history.replaceState(null, '', '#store');
+        applyStoreFilter();
+      }
       if (isExpanded()) collapseModel();
       if (name !== 'models' && typeof viewer.pause === 'function') {
         viewer.pause();
@@ -1139,9 +1145,9 @@
 
     /* ============================================================
        STORE SEARCH
-       Hidden until the store outgrows a single glance.
+       Search spans every category; category buttons browse without a query.
        ============================================================ */
-    const STORE_SEARCH_MIN = 6;
+    let storeCategory = 'all';
     const storeSearch = document.getElementById('storeSearch');
     const storeQ      = document.getElementById('storeQ');
     const storeQClear = document.getElementById('storeQClear');
@@ -1151,19 +1157,33 @@
       const q = (storeQ.value || '').trim().toLowerCase();
       storeQClear.hidden = !q;
 
-      let shown = 0, total = 0;
+      let shown = 0;
       document.querySelectorAll('#panel-store .store-card').forEach(function (card) {
-        total++;
         const hay = (card.textContent || '').toLowerCase();
-        const hit = !q || hay.indexOf(q) !== -1;
+        const category = card.closest('[data-store-section]')?.dataset.storeSection;
+        const hit = q ? hay.indexOf(q) !== -1 : (storeCategory === 'all' || category === storeCategory);
         card.hidden = !hit;
         if (hit) shown++;
       });
 
       storeNone.hidden = !(q && shown === 0);
       if (!storeNone.hidden) storeNone.textContent = t('store.noMatch', { q: storeQ.value });
-      storeSearch.hidden = total <= STORE_SEARCH_MIN;
+      storeSearch.hidden = false;
+      document.querySelectorAll('[data-store-section]').forEach(section => {
+        section.hidden = !Array.from(section.querySelectorAll('.store-card')).some(card => !card.hidden);
+      });
+      document.querySelectorAll('[data-store-category]').forEach(button => {
+        button.setAttribute('aria-pressed', String(button.dataset.storeCategory === (q ? 'all' : storeCategory)));
+      });
     }
+
+    document.querySelectorAll('[data-store-category]').forEach(button => {
+      button.addEventListener('click', () => {
+        storeCategory = button.dataset.storeCategory;
+        storeQ.value = '';
+        applyStoreFilter();
+      });
+    });
 
     storeQ.addEventListener('input', applyStoreFilter);
     storeQClear.addEventListener('click', function () {
@@ -1175,8 +1195,8 @@
     function fillStore(grid, empty, count, items) {
       grid.innerHTML = '';
       items.forEach(function (it) { grid.appendChild(storeCard(it)); });
-      empty.hidden = items.length > 0;
-      count.textContent = items.length ? String(items.length) : '';
+      if (empty) empty.hidden = items.length > 0;
+      if (count) count.textContent = items.length ? String(items.length) : '';
     }
 
     function renderStore() {
@@ -1191,10 +1211,15 @@
         }));
 
       fillStore(storeOther, storeOtherEmpty, storeOtherCount,
-        storeExtras.map(function (x) {
+        storeExtras.filter(x => x.category === 'maps').map(function (x) {
           return { title: x.title || '', desc: x.desc || '', price: x.price,
                    url: x.url || '', images: x.images || [] };
         }));
+
+      ['classes', 'resources'].forEach(category => {
+        const grid = document.getElementById(category === 'classes' ? 'storeCourses' : 'storeResources');
+        fillStore(grid, null, null, storeExtras.filter(x => category === 'resources' ? (!x.category || x.category === category) : x.category === category));
+      });
 
       applyStoreFilter();
     }
@@ -1350,7 +1375,8 @@
     function renderClasses() {
       if (!classesGrid) return;
       const lang = lessonLang();
-      const list = LESSONS.filter(x => x && x[lang]);
+      // Paid courses are rendered once from the store catalog in every language.
+      const list = LESSONS.filter(x => x && x.free && x[lang]);
       document.getElementById('classesLang').textContent = t(lang === 'fr' ? 'classes.inFrench' : 'classes.inEnglish');
       document.getElementById('classesEmpty').hidden = list.length > 0;
       classesGrid.replaceChildren(...list.map(function (lesson) {
@@ -1409,6 +1435,7 @@
         }
         return card;
       }));
+      applyStoreFilter();
     }
     fetch('./lessons.json', { cache: 'no-cache' })
       .then(r => r.ok ? r.json() : { items: [] })

@@ -90,7 +90,13 @@
 @media (max-width: 700px) { .learn-section { grid-template-columns: 1fr; } .learn-store { align-items: stretch; flex-direction: column; } }
 @media (max-width: 480px) { .hero .title { font-size: clamp(2.5rem, 10vw, 3rem); overflow-wrap: anywhere; } }
 
-/* Classes tab */
+/* Store categories and class introductions. */
+.store-categories { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 0 0 20px; }
+.store-categories .button { white-space: normal; }
+.store-categories [aria-pressed="true"] { background: #8fd4ff; color: #061522; border-color: #8fd4ff; }
+.store-categories .button:focus-visible { outline: 3px solid #8fd4ff; outline-offset: 3px; }
+[data-store-section="classes"] > p { color: #aebfd0; line-height: 1.6; }
+[data-store-section="classes"] > h4 { margin-top: 28px; }
 .classes-lang { margin: -8px 0 18px; color: #8fd4ff; font-size: 14px; font-weight: 600; }
 .lesson-item .lesson-player { margin: 0 0 14px; }
 .lesson-item a.lesson-play { text-decoration: none; }
