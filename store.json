@@ -23,6 +23,17 @@
       "category": "classes"
     },
     {
+      "slug": "free-fire-blender-part-2-fr",
+      "title": "De Free Fire à Blender — Part 2/2: Rig & Animation (French)",
+      "price": "$45",
+      "desc": "Standalone Part 2 in French: rig your character with Mixamo, align the fingers, bring the rig back into Blender, and start animating. Requires a character already imported and textured in Blender (as covered in Part 1), plus a free Adobe account for Mixamo. Choose the full package for extraction, rigging, and animation together.",
+      "url": "https://alphaff.gumroad.com/l/qzigc",
+      "images": [
+        "./media/store/free-fire-blender-part-2-fr/1.webp"
+      ],
+      "category": "classes"
+    },
+    {
       "slug": "pro-hud",
       "title": "ALPHA'S PRO HUD: Layout + Sensitivity (Emulator)",
       "price": "$0.99",
