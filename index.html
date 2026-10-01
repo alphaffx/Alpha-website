@@ -79,10 +79,21 @@
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
           data-cf-beacon='{"token": "PASTE-YOUR-TOKEN-HERE"}'></script>
 
-  <link rel="stylesheet" href="style.css?v=20261001d">
-  <link rel="stylesheet" href="components.css?v=20261001d">
+  <link rel="stylesheet" href="style.css?v=20261001e">
+  <link rel="stylesheet" href="components.css?v=20261001e">
 
   <script src="i18n.js"></script>
+  <script>
+    /* Apply reading settings before the page paints, so there is no flash. */
+    (function () {
+      try {
+        var s = JSON.parse(localStorage.getItem('alpha.settings') || '{}'), c = document.documentElement.classList;
+        if (s.textSize === 'large' || s.textSize === 'xl') c.add('text-' + s.textSize);
+        if (s.plainBg) c.add('plain-bg');
+        if (s.highContrast) c.add('high-contrast');
+      } catch (e) {}
+    })();
+  </script>
 
 
 </head>
@@ -176,6 +187,31 @@
         <span class="setting-desc" data-i18n="set.dataDesc">Ask before loading large models.</span>
       </span>
       <input type="checkbox" id="setDataSaver" class="switch">
+    </label>
+
+    <div class="setting-block setting-block--size">
+      <span class="setting-label" id="textSizeLabel" data-i18n="set.textSize">Text size</span>
+      <div class="lang-grid size-grid" id="textSizeGrid" role="group" aria-labelledby="textSizeLabel">
+        <button class="lang-btn" type="button" data-text-size="normal" aria-pressed="true" data-i18n="set.textNormal">Normal</button>
+        <button class="lang-btn" type="button" data-text-size="large" aria-pressed="false" data-i18n="set.textLarge">Large</button>
+        <button class="lang-btn" type="button" data-text-size="xl" aria-pressed="false" data-i18n="set.textXL">Extra large</button>
+      </div>
+    </div>
+
+    <label class="setting-row">
+      <span class="setting-text">
+        <span class="setting-label" data-i18n="set.plainBg">Plain background</span>
+        <span class="setting-desc" data-i18n="set.plainBgDesc">Hide the artwork behind the text so it is easier to read.</span>
+      </span>
+      <input type="checkbox" id="setPlainBg" class="switch">
+    </label>
+
+    <label class="setting-row">
+      <span class="setting-text">
+        <span class="setting-label" data-i18n="set.contrast">High contrast</span>
+        <span class="setting-desc" data-i18n="set.contrastDesc">Brighter text and stronger outlines.</span>
+      </span>
+      <input type="checkbox" id="setHighContrast" class="switch">
     </label>
   </div>
 
