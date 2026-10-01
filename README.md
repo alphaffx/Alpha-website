@@ -6,7 +6,7 @@ The Store contains Classes, Maps & scenes, and Other resources, with an All filt
 
 ## French course launch
 
-The French-only Free Fire → Blender course is listed first in `store.json` and in the French Classes catalog in `lessons.json`, linking to https://alphaff.gumroad.com/l/ycdfuj. Pricing is maintained on Gumroad. The English course is not yet available; the signup form now records interest in that edition. The Home and Store launch callouts are translated into all eight supported site languages. The existing free introductions remain available in both languages.
+The French-only Free Fire → Blender full package is listed first in `store.json`, linking to https://alphaff.gumroad.com/l/ycdfuj. A separate $15 Part 1 covers extraction, Blender import, and textures at https://alphaff.gumroad.com/l/avdvzb; it excludes rigging, animation, and rendering. Part 2 is not yet listed. Full-package pricing is maintained on Gumroad. The English course is not yet available; the signup form now records interest in that edition. The Home and Store launch callouts are translated into all eight supported site languages. The existing free introductions remain available in both languages.
 
 GitHub Pages publishes `main` from the repository root. Launch email copy and the outstanding inbox-access requirement are recorded in `integrations/waitlist/course-launch.md`. Older waitlist setup notes below describe the pre-launch state.
 

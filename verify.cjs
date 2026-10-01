@@ -50,7 +50,7 @@ const expectedStoreCount = JSON.parse(fs.readFileSync('store.json', 'utf8')).ite
 await page.waitForFunction(count => document.querySelectorAll('#storeOther .store-card').length === count, expectedStoreCount);
 await page.waitForSelector('#classesGrid .lesson-item');
 assert.equal(await page.locator('#tab-classes, #panel-classes, [data-goto="classes"]').count(), 0);
-assert.equal(await page.locator('#storeCourses .store-card').count(), 1);
+assert.equal(await page.locator('#storeCourses .store-card').count(), JSON.parse(fs.readFileSync('store.json', 'utf8')).items.filter(x => x.category === 'classes').length);
 assert.equal(await page.locator('#storeResources .store-card').count(), 1);
 await page.locator('[data-store-category="classes"]').click();
 assert(await page.locator('[data-store-section="classes"]').isVisible());
