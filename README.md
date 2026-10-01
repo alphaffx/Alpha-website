@@ -1,5 +1,9 @@
 # ALPHA website
 
+## Store categories
+
+The Store contains Classes, Maps & scenes, and Other resources, with an All filter. Search covers the entire store regardless of the selected category. The separate Classes tab has been removed; old `#classes` links open the Store with Classes selected. Free introductions remain in the Classes category, clearly labelled free. Paid courses are rendered once from `store.json`, and free introductions are read from `lessons.json`. Set each store item's `category` to `classes`, `maps`, or `resources`; uncategorized items appear under Other resources. Paid models and presets also appear under Other resources when present.
+
 ## French course launch
 
 The French-only Free Fire → Blender course is listed first in `store.json` and in the French Classes catalog in `lessons.json`, linking to https://alphaff.gumroad.com/l/ycdfuj. Pricing is maintained on Gumroad. The English course is not yet available; the signup form now records interest in that edition. The Home and Store launch callouts are translated into all eight supported site languages. The existing free introductions remain available in both languages.

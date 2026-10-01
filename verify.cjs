@@ -46,8 +46,31 @@ for (const lang of languages) {
 await page.reload();
 assert.equal(await page.locator('#resetBtn').getAttribute('aria-label'), resetLabels.ar);
 await page.locator('#tab-store').click();
-const expectedStoreCount = JSON.parse(fs.readFileSync('store.json', 'utf8')).items.length;
+const expectedStoreCount = JSON.parse(fs.readFileSync('store.json', 'utf8')).items.filter(x => x.category === 'maps').length;
 await page.waitForFunction(count => document.querySelectorAll('#storeOther .store-card').length === count, expectedStoreCount);
+await page.waitForSelector('#classesGrid .lesson-item');
+assert.equal(await page.locator('#tab-classes, #panel-classes, [data-goto="classes"]').count(), 0);
+assert.equal(await page.locator('#storeCourses .store-card').count(), 1);
+assert.equal(await page.locator('#storeResources .store-card').count(), 1);
+await page.locator('[data-store-category="classes"]').click();
+assert(await page.locator('[data-store-section="classes"]').isVisible());
+assert(await page.locator('#storeOther').isHidden());
+// Search is global even after choosing Classes.
+await page.locator('#storeQ').fill('Bermuda');
+assert(await page.locator('#storeOther .store-card:visible').count() === 1);
+assert(await page.locator('[data-store-section="classes"]').isHidden());
+assert.equal(await page.locator('[data-store-category="all"]').getAttribute('aria-pressed'), 'true');
+await page.locator('#storeQ').fill('no-such-product-xyz');
+assert(await page.locator('#storeNone').isVisible());
+await page.locator('[data-store-category="resources"]').click();
+assert.equal(await page.locator('#storeQ').inputValue(), '');
+assert(await page.locator('#storeResources').isVisible());
+await page.goto('http://127.0.0.1:8765/#classes');
+await page.waitForSelector('#storeCourses .store-card');
+assert(page.url().endsWith('#store'));
+assert(await page.locator('[data-store-section="classes"]').isVisible());
+assert.equal(await page.locator('[data-store-category="classes"]').getAttribute('aria-pressed'), 'true');
+await page.locator('[data-store-category="all"]').click();
 for (const code of ['ar', 'en']) {
   await page.evaluate(code => window.AlphaI18n.set(code), code);
   for (const width of [1440, 800, 390, 320]) {

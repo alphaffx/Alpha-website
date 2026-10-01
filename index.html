@@ -106,7 +106,6 @@
       <button class="tab is-active" role="tab" id="tab-home"    aria-controls="panel-home"    aria-selected="true"  data-i18n="nav.home">Home</button>
       <button class="tab"           role="tab" id="tab-models"  aria-controls="panel-models"  aria-selected="false" data-i18n="nav.models">3D Models</button>
       <button class="tab"           role="tab" id="tab-cc"      aria-controls="panel-cc"      aria-selected="false" data-i18n="nav.cc" hidden>Color Correction</button>
-      <button class="tab"           role="tab" id="tab-classes" aria-controls="panel-classes" aria-selected="false" data-i18n="nav.classes">Classes</button>
       <button class="tab"           role="tab" id="tab-store"   aria-controls="panel-store"   aria-selected="false" data-i18n="nav.store">Store</button>
       <button class="tab"           role="tab" id="tab-contact" aria-controls="panel-contact" aria-selected="false" data-i18n="nav.contact">Contact</button>
     </div>
@@ -126,7 +125,6 @@
       <button class="drawer-link" type="button" data-goto="home"    data-i18n="nav.home">Home</button>
       <button class="drawer-link" type="button" data-goto="models"  data-i18n="nav.models">3D Models</button>
       <button class="drawer-link" type="button" data-goto="cc"      data-i18n="nav.cc" hidden>Color Correction</button>
-      <button class="drawer-link" type="button" data-goto="classes" data-i18n="nav.classes">Classes</button>
       <button class="drawer-link" type="button" data-goto="store"   data-i18n="nav.store">Store</button>
       <button class="drawer-link" type="button" data-goto="contact" data-i18n="nav.contact">Contact</button>
     </nav>
@@ -467,45 +465,23 @@
     </section>
 
     <!-- ============ STORE ============ -->
-    <!-- ============ CLASSES ============
-         The lesson list comes from lessons.json - add new lessons there.
-         French visitors get the French version, everyone else English. -->
-    <section class="panel" id="panel-classes" role="tabpanel" aria-labelledby="tab-classes" hidden>
-      <div class="panel-head">
-        <h2 data-i18n="classes.title">Classes</h2>
-        <p data-i18n="classes.sub">Learn how I make my Free Fire animations in Blender, step by step.</p>
-      </div>
-      <p class="classes-lang" id="classesLang"></p>
-      <div class="store-grid classes-grid" id="classesGrid"></div>
-      <p class="tier-empty" id="classesEmpty" data-i18n="classes.empty" hidden>New classes are coming soon.</p>
-    </section>
-
     <section class="panel" id="panel-store" role="tabpanel" aria-labelledby="tab-store" hidden>
       <div class="panel-head">
         <h2 data-i18n="store.title">Store</h2>
         <p data-i18n="store.sub">Premium models, presets and lessons.</p>
       </div>
 
-      <section class="store-block" hidden>
-        <h3 class="tier-head"><span data-i18n="store.models">Premium 3D models</span>
-          <span class="tier-count" id="storeModelCount"></span></h3>
-        <div class="store-grid" id="storeModels"></div>
-        <p class="tier-empty" id="storeModelsEmpty" data-i18n="store.empty">Nothing here yet — check back soon.</p>
-      </section>
+      <nav class="store-categories" aria-label="Store categories" data-i18n-attr="aria-label:store.categories">
+        <button type="button" class="button button-ghost" data-store-category="all" aria-pressed="true" data-i18n="store.all">All</button>
+        <button type="button" class="button button-ghost" data-store-category="classes" aria-pressed="false" data-i18n="classes.title">Classes</button>
+        <button type="button" class="button button-ghost" data-store-category="maps" aria-pressed="false" data-i18n="store.other">Maps &amp; scenes</button>
+        <button type="button" class="button button-ghost" data-store-category="resources" aria-pressed="false" data-i18n="store.resources">Other resources</button>
+      </nav>
 
-      <section class="store-block" hidden>
-        <h3 class="tier-head"><span data-i18n="store.presets">Premium presets</span>
-          <span class="tier-count" id="storePresetCount"></span></h3>
-        <div class="store-grid" id="storePresets"></div>
-        <p class="tier-empty" id="storePresetsEmpty" data-i18n="store.empty">Nothing here yet — check back soon.</p>
-      </section>
-
-      <!-- Appears on its own once there are more than STORE_SEARCH_MIN products.
-           With only a handful of cards on screen a search box is just clutter. -->
-      <div class="store-search" id="storeSearch" hidden>
+      <div class="store-search" id="storeSearch">
         <input class="search-input" id="storeQ" type="search" autocomplete="off"
-               data-i18n-attr="placeholder:search.placeholder"
-               placeholder="Search models - just start typing">
+               data-i18n-attr="placeholder:store.search;aria-label:store.search"
+               placeholder="Search the store">
         <button class="search-clear" id="storeQClear" type="button"
                 aria-label="Clear search" data-i18n-attr="aria-label:search.clear" hidden>&#10005;</button>
       </div>
@@ -513,11 +489,38 @@
       <button id="storeRetry" class="button" hidden data-i18n="upgrade.retry">Try again</button>
       <p class="store-none" id="storeNone" hidden></p>
 
-      <section class="store-block">
-        <h3 class="tier-head"><span data-i18n="store.other">Courses &amp; resources</span>
+      <section class="store-block" data-store-section="classes">
+        <h3 class="tier-head" data-i18n="classes.title">Classes</h3>
+        <p data-i18n="course.summary">The full course is available in French only. English edition coming soon.</p>
+        <div class="store-grid" id="storeCourses"></div>
+        <h4 data-i18n="store.intros">Free introductions</h4>
+        <p class="classes-lang" id="classesLang"></p>
+        <div class="store-grid classes-grid" id="classesGrid"></div>
+        <p class="tier-empty" id="classesEmpty" data-i18n="classes.empty" hidden>New classes are coming soon.</p>
+      </section>
+      <section class="store-block" data-store-section="resources" hidden>
+        <h3 class="tier-head"><span data-i18n="store.models">Premium 3D models</span>
+          <span class="tier-count" id="storeModelCount"></span></h3>
+        <div class="store-grid" id="storeModels"></div>
+        <p class="tier-empty" id="storeModelsEmpty" data-i18n="store.empty">Nothing here yet — check back soon.</p>
+      </section>
+
+      <section class="store-block" data-store-section="resources" hidden>
+        <h3 class="tier-head"><span data-i18n="store.presets">Premium presets</span>
+          <span class="tier-count" id="storePresetCount"></span></h3>
+        <div class="store-grid" id="storePresets"></div>
+        <p class="tier-empty" id="storePresetsEmpty" data-i18n="store.empty">Nothing here yet — check back soon.</p>
+      </section>
+
+      <section class="store-block" data-store-section="maps">
+        <h3 class="tier-head"><span data-i18n="store.other">Maps &amp; scenes</span>
           <span class="tier-count" id="storeOtherCount"></span></h3>
         <div class="store-grid" id="storeOther"></div>
         <p class="tier-empty" id="storeOtherEmpty" data-i18n="store.empty">Nothing here yet — check back soon.</p>
+      </section>
+      <section class="store-block" data-store-section="resources">
+        <h3 class="tier-head" data-i18n="store.resources">Other resources</h3>
+        <div class="store-grid" id="storeResources"></div>
       </section>
       <section class="learn-store" aria-labelledby="learnStoreTitle">
         <div><span class="learn-badge" data-i18n="course.available">Available in French</span><h3 id="learnStoreTitle" data-i18n="learn.title">Learn with ALPHA</h3><p data-i18n="course.summary">The French course is available: extract Free Fire characters, import them into Blender, add a rig, and make them move and dance. English edition coming soon; no release date announced.</p></div>
