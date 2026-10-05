@@ -80,7 +80,7 @@
           data-cf-beacon='{"token": "PASTE-YOUR-TOKEN-HERE"}'></script>
 
   <link rel="stylesheet" href="style.css?v=20261001e">
-  <link rel="stylesheet" href="components.css?v=20261005-courses">
+  <link rel="stylesheet" href="components.css?v=20261005-reel">
 
   <script src="i18n.js"></script>
   <script>
@@ -226,13 +226,16 @@
         <p class="tagline" data-i18n="hero.tagline">Free Fire characters &amp; maps in 3D — and courses to make your own</p>
         <p class="subtitle" data-i18n="hero.subtitle">Explore models in 3D, download free files, or bring your next animation project to life with me.</p>
         <div class="hero-actions">
-          <button class="button" data-goto="store" data-courses-link data-i18n="home.courses">Explore Courses</button>
-          <button class="button button-ghost" data-goto="models" data-i18n="hero.cta1">Explore 3D Models</button>
+          <button class="button" data-goto="contact" data-commission-link data-i18n="hero.cta2">Start a Project</button>
+          <button class="button button-ghost" data-goto="store" data-courses-link data-i18n="home.courses">Explore Courses</button>
         </div>
         <p class="home-course-note" data-i18n="home.note">Courses in English & French · Complete course or individual parts</p>
-        <button class="tool-link home-project-link" data-goto="contact" data-commission-link data-i18n="hero.cta2">Start a Project</button>
+        <button class="tool-link home-project-link" data-goto="models" data-i18n="hero.cta1">Explore 3D Models</button>
         </div>
         <figure class="home-artwork">
+          <!-- SHOWREEL: export your reel as media/showreel.mp4 (1280x720, H.264, under ~15 MB, no sound needed)
+               and commit it. Until that file exists, the artwork image below shows instead. -->
+          <video class="home-reel" src="media/showreel.mp4" poster="media/alpha-artwork.jpg" muted loop playsinline preload="none" width="1280" height="720" aria-label="ALPHA animation showreel" hidden></video>
           <img src="media/alpha-artwork.jpg" alt="ALPHA character artwork with blue lighting and the Blender logo" width="1280" height="720" fetchpriority="high">
           <figcaption><span>ALPHA / 3D SPACE</span><a href="https://www.tiktok.com/@alphaff.freefire" target="_blank" rel="noopener noreferrer" data-i18n="home.edits">Watch my edits ↗</a></figcaption>
         </figure>
@@ -741,7 +744,7 @@
   </footer>
 
   <script src="model-search.js" defer></script>
-  <script src="app.js" defer></script>
+  <script src="app.js?v=20261005-reel" defer></script>
   <script src="forms.js" defer></script>
 </body>
 </html>
