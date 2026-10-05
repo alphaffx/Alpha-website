@@ -259,3 +259,30 @@ html.high-contrast a:not(.button):not(.brand) { text-decoration: underline; text
 html.high-contrast :focus-visible { outline: 3px solid #ffffff !important; outline-offset: 3px; }
 html.high-contrast .card, html.high-contrast .tool, html.high-contrast .setting-row { border-color: var(--border); }
 .setting-block--size { margin: 0; padding: 18px 0; border-top: 1px solid var(--border); }
+
+/* ---------- Character submission form (Contact) ---------- */
+.char-label { font-size: .9rem; font-weight: 600; }
+.char-drop { position: relative; display: flex; flex-wrap: wrap; align-items: center; gap: 14px; padding: 22px; border: 2px dashed var(--border-lit); border-radius: var(--radius); background: var(--accent-soft); transition: border-color .2s, background .2s; }
+.char-drop.is-over { border-color: var(--accent); background: rgba(112, 228, 255, .2); }
+.char-drop.is-full .char-pick { opacity: .5; pointer-events: none; }
+.char-drop-text { color: var(--text-dim); font-size: .9rem; }
+.char-pick { cursor: pointer; min-height: 44px; }
+.char-file { position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden; clip: rect(0 0 0 0); }
+.char-file:focus-visible + * , .char-drop:focus-within { outline: 2px solid var(--accent); outline-offset: 3px; }
+.char-previews { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 12px; }
+.char-previews:empty { display: none; }
+.char-previews li { position: relative; width: 112px; height: 112px; border-radius: 10px; overflow: hidden; border: 1px solid var(--border-lit); background: var(--bg-raised); }
+.char-previews img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.char-remove { position: absolute; top: 4px; right: 4px; width: 32px; height: 32px; border-radius: 50%; border: 0; background: rgba(3, 9, 20, .85); color: #fff; font-size: 14px; cursor: pointer; }
+.char-remove:hover, .char-remove:focus-visible { background: #c62f45; }
+.char-wants { border: 0; padding: 0; margin: 0; gap: 10px; }
+.char-wants legend { font-size: .9rem; font-weight: 600; margin-bottom: 10px; padding: 0; }
+.char-choice, .char-consent { display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-raised); cursor: pointer; line-height: 1.45; }
+.char-choice:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.char-choice input, .char-consent input { margin-top: 3px; width: 18px; height: 18px; flex: none; accent-color: var(--accent); }
+.char-consent { font-size: .9rem; color: var(--text); }
+@media (max-width: 640px) {
+  .char-drop { justify-content: center; text-align: center; }
+  .char-pick { width: 100%; }
+  .char-previews li { width: calc(33.333% - 8px); height: auto; aspect-ratio: 1; }
+}

@@ -80,7 +80,7 @@
           data-cf-beacon='{"token": "PASTE-YOUR-TOKEN-HERE"}'></script>
 
   <link rel="stylesheet" href="style.css?v=20261001e">
-  <link rel="stylesheet" href="components.css?v=20261005-reel">
+  <link rel="stylesheet" href="components.css?v=20261005-char">
 
   <script src="i18n.js"></script>
   <script>
@@ -624,53 +624,70 @@
         <p data-i18n="contact.sub">Open for collaborations, commissions and animation work.</p>
       </div>
 
-      <section class="commission-block" aria-labelledby="commissionTitle">
+      <section class="commission-block char-block" aria-labelledby="commissionTitle">
         <div class="commission-intro">
-          <h3 id="commissionTitle" data-i18n="commission.title">Let’s build something together</h3>
-          <p data-i18n="commission.sub">Tell me about your project. I’ll review the brief and reply by email to discuss availability and a quote.</p>
+          <h3 id="commissionTitle" data-i18n="char.title">Get your character in 3D</h3>
+          <p data-i18n="char.sub">Send me pictures of your Free Fire character. I pick characters to model in 3D and add to the 3D Models page, and you can also ask for a private model or an animation.</p>
           <a href="mailto:admin@alphaff.gg">admin@alphaff.gg</a>
         </div>
-        <form id="commissionForm" class="commission-form">
+        <!-- Sent straight to FormSubmit as a normal form post (their AJAX mode cannot carry files).
+             FormSubmit shows a quick "I'm not a robot" check, then returns the visitor here. -->
+        <form id="characterForm" class="commission-form" action="https://formsubmit.co/admin@alphaff.gg" method="POST" enctype="multipart/form-data">
           <div class="commission-field">
-            <label for="commissionName" data-i18n="commission.name">Your name</label>
-            <input class="fb-input" id="commissionName" name="name" autocomplete="name" maxlength="100" required>
+            <label for="commissionName" data-i18n="char.name">Your name or gamer tag</label>
+            <input class="fb-input" id="commissionName" name="name" autocomplete="nickname" maxlength="100" required>
           </div>
           <div class="commission-field">
-            <label for="commissionEmail" data-i18n="commission.email">Your email</label>
-            <input class="fb-input" id="commissionEmail" name="email" type="email" autocomplete="email" maxlength="254" required>
+            <label for="charEmail" data-i18n="char.email">Your email</label>
+            <input class="fb-input" id="charEmail" name="email" type="email" autocomplete="email" maxlength="254" required>
           </div>
           <div class="commission-field">
-            <label for="commissionType" data-i18n="commission.type">Project type</label>
-            <select class="fb-input" id="commissionType" name="project_type" required>
-              <option value="" data-i18n="commission.choose">Choose a project type</option>
-              <option value="3D model" data-i18n="commission.model">Custom 3D model</option>
-              <option value="Map or scene" data-i18n="commission.map">Map or scene</option>
-              <option value="Animation" data-i18n="commission.animation">Animation</option>
-              <option value="Other" data-i18n="commission.other">Other</option>
-            </select>
+            <label for="charSocial" data-i18n="char.social">TikTok or Instagram (optional)</label>
+            <input class="fb-input" id="charSocial" name="social" maxlength="100" placeholder="@yourname" aria-describedby="charSocialHint">
+            <small id="charSocialHint" data-i18n="char.socialHint">So I can tag you when your character goes up.</small>
           </div>
           <div class="commission-field">
-            <label for="commissionBudget" data-i18n="commission.budget">Budget and currency</label>
-            <input class="fb-input" id="commissionBudget" name="budget" maxlength="100" required aria-describedby="commissionBudgetHint">
-            <small id="commissionBudgetHint" data-i18n="commission.budgetHint">An estimate is fine, or write “Not sure yet”.</small>
+            <label for="charCharacter" data-i18n="char.charName">Character name (optional)</label>
+            <input class="fb-input" id="charCharacter" name="character" maxlength="100">
           </div>
-          <div class="commission-field">
-            <label for="commissionDeadline" data-i18n="commission.deadline">Preferred deadline (optional)</label>
-            <input class="fb-input" id="commissionDeadline" name="deadline" type="date">
-          </div>
+
           <div class="commission-field commission-wide">
-            <label for="commissionBrief" data-i18n="commission.brief">What would you like me to create?</label>
-            <textarea class="fb-input fb-textarea" id="commissionBrief" name="brief" rows="4" maxlength="5000" required></textarea>
+            <span class="char-label" id="charPicsLabel" data-i18n="char.pics">Pictures of your character</span>
+            <div class="char-drop" id="charDrop">
+              <label class="button button-ghost char-pick" for="charPics" data-i18n="char.pick">Choose pictures</label>
+              <span class="char-drop-text" data-i18n="char.drop">or drag them here</span>
+              <input class="char-file" id="charPics" name="attachment" type="file" accept="image/jpeg,image/png,image/webp" multiple required aria-labelledby="charPicsLabel" aria-describedby="charPicsHint">
+            </div>
+            <small id="charPicsHint" data-i18n="char.picsHint">Up to 3 images (JPG, PNG or WebP). A clear front view works best — add the back or side if you can.</small>
+            <ul class="char-previews" id="charPreviews" aria-live="polite"></ul>
           </div>
+
+          <fieldset class="commission-field commission-wide char-wants">
+            <legend data-i18n="char.want">What would you like?</legend>
+            <label class="char-choice"><input type="radio" name="request" value="Add to the free library" checked> <span data-i18n="char.wantFree">Add it to the free library on this site</span></label>
+            <label class="char-choice"><input type="radio" name="request" value="Private 3D model (paid)"> <span data-i18n="char.wantModel">A private 3D model just for me (paid — I'll reply with a quote)</span></label>
+            <label class="char-choice"><input type="radio" name="request" value="Animation or edit (paid)"> <span data-i18n="char.wantAnim">An animation or edit with my character (paid — I'll reply with a quote)</span></label>
+          </fieldset>
+
           <div class="commission-field commission-wide">
-            <label for="commissionReferences" data-i18n="commission.references">Reference links (optional)</label>
-            <textarea class="fb-input" id="commissionReferences" name="references" rows="2" maxlength="3000" aria-describedby="commissionReferencesHint"></textarea>
-            <small id="commissionReferencesHint" data-i18n="commission.referencesHint">One link per line. Make sure shared files are accessible.</small>
+            <label for="charNotes" data-i18n="char.notes">Anything else? (optional)</label>
+            <textarea class="fb-input fb-textarea" id="charNotes" name="notes" rows="3" maxlength="3000"></textarea>
           </div>
+
+          <label class="char-consent commission-wide">
+            <input type="checkbox" name="permission" value="Yes - may show the character and finished model on alphaff.gg and socials, with credit" required>
+            <span data-i18n="char.consent">This is my character, and ALPHA may show it and the finished 3D model on alphaff.gg and his socials, with credit to my name.</span>
+          </label>
+
           <input class="fb-honey" name="_honey" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <p class="commission-wide commission-note" data-i18n="commission.note">Your details are sent through FormSubmit to discuss your request. This is an inquiry, not a booking or payment.</p>
-          <button class="button" id="commissionSend" type="submit" data-i18n="commission.send">Send project request</button>
-          <p class="fb-status commission-wide" id="commissionStatus" role="status" hidden></p>
+          <input type="hidden" name="_subject" value="alphaff.gg - new character submission">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" value="https://alphaff.gg/?sent=character#contact">
+          <input type="hidden" name="page_language" value="en">
+
+          <p class="commission-wide commission-note" data-i18n="char.note">Not every character can be made. Free library picks are my choice, and I'll email you if I pick yours. Your details and pictures are sent to me by email through FormSubmit.</p>
+          <button class="button" id="charSend" type="submit" data-i18n="char.send">Send my character</button>
+          <p class="fb-status commission-wide" id="charStatus" role="status" hidden></p>
         </form>
       </section>
 
@@ -745,6 +762,6 @@
 
   <script src="model-search.js" defer></script>
   <script src="app.js?v=20261005-reel" defer></script>
-  <script src="forms.js" defer></script>
+  <script src="forms.js?v=20261005-char" defer></script>
 </body>
 </html>
