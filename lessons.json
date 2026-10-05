@@ -4,6 +4,7 @@
     {
       "id": "free-fire-blender-fr",
       "free": false,
+      "price": "$99.99",
       "thumb": "media/store/free-fire-blender-fr/1.webp",
       "fr": {
         "title": "De Free Fire à Blender : Rigging et animation de personnages",

@@ -37,6 +37,7 @@
     {
       "slug": "free-fire-blender-fr",
       "title": "De Free Fire à Blender — Full package (French)",
+      "price": "$99.99",
       "desc": "The complete course in French: extract Free Fire characters, import them into Blender, add a rig, and make them move and dance. See Gumroad for the current price.",
       "url": "https://alphaff.gumroad.com/l/ycdfuj",
       "images": [
@@ -47,7 +48,7 @@
     {
       "slug": "free-fire-blender-part-1-fr",
       "title": "De Free Fire à Blender — Part 1/2: Extraction & Textures (French)",
-      "price": "$15",
+      "price": "$24.99",
       "desc": "Standalone Part 1 in French: extract a Free Fire character, import it into Blender, apply textures, and fix common texture issues. Does not include rigging, animation, or rendering. Choose the full package for extraction, rigging, and animation together.",
       "url": "https://alphaff.gumroad.com/l/avdvzb",
       "images": [
@@ -58,7 +59,7 @@
     {
       "slug": "free-fire-blender-part-2-fr",
       "title": "De Free Fire à Blender — Part 2/2: Rig & Animation (French)",
-      "price": "$45",
+      "price": "$74.99",
       "desc": "Standalone Part 2 in French: rig your character with Mixamo, align the fingers, bring the rig back into Blender, and start animating. Requires a character already imported and textured in Blender (as covered in Part 1), plus a free Adobe account for Mixamo. Choose the full package for extraction, rigging, and animation together.",
       "url": "https://alphaff.gumroad.com/l/qzigc",
       "images": [
