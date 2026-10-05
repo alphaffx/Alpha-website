@@ -907,6 +907,21 @@
     });
   });
 
+  const charOutfitKeys = ['outfit','outfitHint','head','mask','top','bottom','shoes'];
+  const charOutfitTranslations = {
+    en: ['Outfit items (names as shown in the game)', 'Copy each item’s name from your Vault in Free Fire. If a slot is empty, write “None”.', 'Head (hair or headwear)', 'Mask or face (optional)', 'Top', 'Bottom (pants)', 'Shoes (optional)'],
+    fr: ['Tenue (noms comme dans le jeu)', 'Copie le nom de chaque objet depuis ton Coffre dans Free Fire. Si un emplacement est vide, écris « Aucun ».', 'Tête (cheveux ou couvre-chef)', 'Masque ou visage (facultatif)', 'Haut', 'Bas (pantalon)', 'Chaussures (facultatif)'],
+    pt: ['Itens do traje (nomes como aparecem no jogo)', 'Copie o nome de cada item do seu Cofre no Free Fire. Se um espaço estiver vazio, escreva “Nenhum”.', 'Cabeça (cabelo ou chapéu)', 'Máscara ou rosto (opcional)', 'Parte de cima', 'Parte de baixo (calça)', 'Calçados (opcional)'],
+    es: ['Prendas del atuendo (nombres como aparecen en el juego)', 'Copia el nombre de cada objeto desde tu Bóveda en Free Fire. Si una casilla está vacía, escribe “Ninguno”.', 'Cabeza (pelo o gorro)', 'Máscara o cara (opcional)', 'Parte de arriba', 'Parte de abajo (pantalón)', 'Zapatos (opcional)'],
+    id: ['Item kostum (nama seperti di dalam game)', 'Salin nama setiap item dari Vault kamu di Free Fire. Jika slot kosong, tulis “Tidak ada”.', 'Kepala (rambut atau topi)', 'Masker atau wajah (opsional)', 'Atasan', 'Bawahan (celana)', 'Sepatu (opsional)'],
+    th: ['ชิ้นส่วนชุด (ชื่อตามที่แสดงในเกม)', 'คัดลอกชื่อไอเท็มแต่ละชิ้นจากคลัง (Vault) ใน Free Fire ถ้าช่องไหนว่าง ให้เขียนว่า “ไม่มี”', 'หัว (ทรงผมหรือหมวก)', 'หน้ากากหรือใบหน้า (ไม่บังคับ)', 'เสื้อ', 'กางเกง', 'รองเท้า (ไม่บังคับ)'],
+    vi: ['Trang phục (tên như trong game)', 'Sao chép tên từng món từ Kho đồ trong Free Fire. Nếu ô nào trống, hãy ghi “Không có”.', 'Đầu (tóc hoặc mũ)', 'Mặt nạ hoặc khuôn mặt (không bắt buộc)', 'Áo', 'Quần', 'Giày (không bắt buộc)'],
+    ar: ['قطع الزي (الأسماء كما تظهر في اللعبة)', 'انسخ اسم كل قطعة من الخزنة في Free Fire. إذا كانت الخانة فارغة، اكتب «لا شيء».', 'الرأس (الشعر أو غطاء الرأس)', 'القناع أو الوجه (اختياري)', 'الجزء العلوي', 'الجزء السفلي (البنطال)', 'الحذاء (اختياري)']
+  };
+  Object.entries(charOutfitTranslations).forEach(([code, values]) => {
+    charOutfitKeys.forEach((key, i) => { STRINGS[code]['char.' + key] = values[i]; });
+  });
+
   const modelDetailKeys = ["title","scope","choose","play","pause","blender","unverified","rig","rigged","noRig","unknown","textures","textureCount","animations","clipCount","noClips"];
   const modelDetailTranslations = {
   "en": [
