@@ -94,6 +94,27 @@
       try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings)); } catch (e) { /* blocked */ }
     }
 
+    /* Showreel on the home page. Shows media/showreel.mp4 in place of the
+       artwork once that file exists; data saver and reduced motion keep
+       the still artwork. A missing file just leaves the artwork. */
+    const reel = document.querySelector('.home-reel');
+    let reelReady = false;
+    if (reel) {
+      reel.addEventListener('loadeddata', function () { reelReady = true; applyReel(); }, { once: true });
+      reel.addEventListener('error', function () { reelReady = false; reel.hidden = true; });
+    }
+    function applyReel() {
+      if (!reel) return;
+      const art = reel.nextElementSibling;
+      const allowed = !settings.dataSaver && !settings.reduceMotion;
+      if (allowed && !reelReady && reel.preload === 'none') { reel.preload = 'auto'; reel.load(); }
+      const show = allowed && reelReady;
+      reel.hidden = !show;
+      if (art) art.hidden = show;
+      if (show) { const p = reel.play(); if (p && p.catch) p.catch(function () {}); }
+      else reel.pause();
+    }
+
     function applySettings() {
       if (settings.autoRotate && !settings.reduceMotion) viewer.setAttribute('auto-rotate', '');
       else viewer.removeAttribute('auto-rotate');
@@ -103,6 +124,8 @@
       cbAutoRotate.checked   = settings.autoRotate;
       cbReduceMotion.checked = settings.reduceMotion;
       cbDataSaver.checked    = settings.dataSaver;
+
+      applyReel();
 
       const root = document.documentElement.classList;
       root.toggle('text-large', settings.textSize === 'large');

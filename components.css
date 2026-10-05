@@ -193,7 +193,8 @@ html.reduce-motion { scroll-behavior: auto; }
 .home-course-note { color: var(--text-dim); font-size: .82rem; margin: 16px 0 8px; }
 .home-project-link { margin-top: 0; }
 .home-artwork { min-width: 0; margin: 0; overflow: hidden; border: 1px solid #31516b; border-radius: 20px; background: #071523; box-shadow: 0 24px 70px #0006; }
-.home-artwork > img { display: block; width: 100%; height: auto; }
+.home-artwork > img, .home-artwork > video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+.home-artwork > [hidden] { display: none; }
 .home-artwork figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 20px; font-size: .8rem; }
 .home-artwork figcaption > span { color: var(--text-dim); letter-spacing: .12em; font-weight: 700; }
 .home-artwork a { color: var(--accent); text-underline-offset: 4px; }
