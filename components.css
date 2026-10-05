@@ -230,3 +230,31 @@ html.reduce-motion { scroll-behavior: auto; }
 #storeCourses .store-shots { aspect-ratio: 1; }
 #storeCourses .store-shot { object-fit: contain; }
 .course-launch-art { display: block; width: 100%; height: auto; border-radius: 12px; margin: 16px 0; }
+/* Compact one-row header: logo + "3D SPACE" side by side. */
+.brand.brand-wordmark { display: inline-flex; flex-direction: row; align-items: center; gap: 12px; }
+.brand-wordmark img { width: auto; height: 44px; }
+.brand-wordmark .brand-sub { margin: 0; padding-left: 12px; border-left: 1px solid rgba(255,255,255,.25); font-size: 11px; letter-spacing: .18em; line-height: 1; white-space: nowrap; }
+@media (max-width: 640px) {
+  .brand-wordmark img { width: auto; height: 32px; }
+  .brand-wordmark .brand-sub { display: none; }
+}
+
+/* ---- Reading settings: text size, plain background, high contrast ---- */
+.size-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+html.text-large { font-size: 112.5%; }
+html.text-xl    { font-size: 125%; }
+
+html.plain-bg body::before { background: none; filter: none; }
+html.plain-bg body::after  { background: #030914; }
+
+html.high-contrast {
+  --text: #ffffff;
+  --text-dim: #e2edf7;
+  --border: rgba(170, 225, 255, .6);
+  --border-lit: #bff0ff;
+}
+html.high-contrast body::after { background: linear-gradient(180deg, rgba(2, 8, 18, .82), rgba(2, 8, 18, .92) 60%, #020812); }
+html.high-contrast a:not(.button):not(.brand) { text-decoration: underline; text-underline-offset: 3px; }
+html.high-contrast :focus-visible { outline: 3px solid #ffffff !important; outline-offset: 3px; }
+html.high-contrast .card, html.high-contrast .tool, html.high-contrast .setting-row { border-color: var(--border); }
+.setting-block--size { margin: 0; padding: 18px 0; border-top: 1px solid var(--border); }

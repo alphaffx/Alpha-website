@@ -58,6 +58,9 @@
     const cbAutoRotate    = document.getElementById('setAutoRotate');
     const cbReduceMotion  = document.getElementById('setReduceMotion');
     const cbDataSaver     = document.getElementById('setDataSaver');
+    const cbPlainBg       = document.getElementById('setPlainBg');
+    const cbHighContrast  = document.getElementById('setHighContrast');
+    const sizeButtons     = Array.prototype.slice.call(document.querySelectorAll('[data-text-size]'));
 
     let currentId = null;
     let currentModel = null;
@@ -70,7 +73,7 @@
        ============================================================ */
     const SETTINGS_KEY = 'alpha.settings';
 
-    const settings = { autoRotate: true, reduceMotion: matchMedia("(prefers-reduced-motion: reduce)").matches, dataSaver: !!(navigator.connection && navigator.connection.saveData) };
+    const settings = { autoRotate: true, reduceMotion: matchMedia("(prefers-reduced-motion: reduce)").matches, dataSaver: !!(navigator.connection && navigator.connection.saveData), textSize: 'normal', plainBg: false, highContrast: matchMedia('(prefers-contrast: more)').matches };
 
     function loadSettings() {
       let raw = null;
@@ -81,6 +84,9 @@
         if (typeof saved.autoRotate   === 'boolean') settings.autoRotate   = saved.autoRotate;
         if (typeof saved.reduceMotion === 'boolean') settings.reduceMotion = saved.reduceMotion;
         if (typeof saved.dataSaver    === 'boolean') settings.dataSaver    = saved.dataSaver;
+        if (saved.textSize === 'normal' || saved.textSize === 'large' || saved.textSize === 'xl') settings.textSize = saved.textSize;
+        if (typeof saved.plainBg      === 'boolean') settings.plainBg      = saved.plainBg;
+        if (typeof saved.highContrast === 'boolean') settings.highContrast = saved.highContrast;
       } catch (e) { /* corrupt value, keep defaults */ }
     }
 
@@ -97,7 +103,34 @@
       cbAutoRotate.checked   = settings.autoRotate;
       cbReduceMotion.checked = settings.reduceMotion;
       cbDataSaver.checked    = settings.dataSaver;
+
+      const root = document.documentElement.classList;
+      root.toggle('text-large', settings.textSize === 'large');
+      root.toggle('text-xl', settings.textSize === 'xl');
+      root.toggle('plain-bg', settings.plainBg);
+      root.toggle('high-contrast', settings.highContrast);
+      cbPlainBg.checked      = settings.plainBg;
+      cbHighContrast.checked = settings.highContrast;
+      sizeButtons.forEach(function (b) {
+        const on = b.getAttribute('data-text-size') === settings.textSize;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
     }
+
+    sizeButtons.forEach(function (b) {
+      b.addEventListener('click', function () {
+        settings.textSize = b.getAttribute('data-text-size'); saveSettings(); applySettings();
+      });
+    });
+
+    cbPlainBg.addEventListener('change', function () {
+      settings.plainBg = cbPlainBg.checked; saveSettings(); applySettings();
+    });
+
+    cbHighContrast.addEventListener('change', function () {
+      settings.highContrast = cbHighContrast.checked; saveSettings(); applySettings();
+    });
 
     cbAutoRotate.addEventListener('change', function () {
       settings.autoRotate = cbAutoRotate.checked; saveSettings(); applySettings();
