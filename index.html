@@ -80,9 +80,9 @@
           data-cf-beacon='{"token": "PASTE-YOUR-TOKEN-HERE"}'></script>
 
   <link rel="stylesheet" href="style.css?v=20261001e">
-  <link rel="stylesheet" href="components.css?v=20261005-char">
+  <link rel="stylesheet" href="components.css?v=20261005-char2">
 
-  <script src="i18n.js"></script>
+  <script src="i18n.js?v=20261005-char2"></script>
   <script>
     /* Apply reading settings before the page paints, so there is no flash. */
     (function () {
@@ -662,6 +662,33 @@
             <ul class="char-previews" id="charPreviews" aria-live="polite"></ul>
           </div>
 
+          <fieldset class="commission-field commission-wide char-outfit" aria-describedby="charOutfitHint">
+            <legend data-i18n="char.outfit">Outfit items (names as shown in the game)</legend>
+            <small id="charOutfitHint" data-i18n="char.outfitHint">Copy each item’s name from your Vault in Free Fire. If a slot is empty, write “None”.</small>
+            <div class="char-outfit-grid">
+              <div class="commission-field">
+                <label for="charHead" data-i18n="char.head">Head (hair or headwear)</label>
+                <input class="fb-input" id="charHead" name="outfit_head" maxlength="120" required>
+              </div>
+              <div class="commission-field">
+                <label for="charMask" data-i18n="char.mask">Mask or face (optional)</label>
+                <input class="fb-input" id="charMask" name="outfit_mask_face" maxlength="120">
+              </div>
+              <div class="commission-field">
+                <label for="charTop" data-i18n="char.top">Top</label>
+                <input class="fb-input" id="charTop" name="outfit_top" maxlength="120" required>
+              </div>
+              <div class="commission-field">
+                <label for="charBottom" data-i18n="char.bottom">Bottom (pants)</label>
+                <input class="fb-input" id="charBottom" name="outfit_bottom" maxlength="120" required>
+              </div>
+              <div class="commission-field">
+                <label for="charShoes" data-i18n="char.shoes">Shoes (optional)</label>
+                <input class="fb-input" id="charShoes" name="outfit_shoes" maxlength="120">
+              </div>
+            </div>
+          </fieldset>
+
           <fieldset class="commission-field commission-wide char-wants">
             <legend data-i18n="char.want">What would you like?</legend>
             <label class="char-choice"><input type="radio" name="request" value="Add to the free library" checked> <span data-i18n="char.wantFree">Add it to the free library on this site</span></label>
@@ -762,6 +789,6 @@
 
   <script src="model-search.js" defer></script>
   <script src="app.js?v=20261005-reel" defer></script>
-  <script src="forms.js?v=20261005-char" defer></script>
+  <script src="forms.js?v=20261005-char2" defer></script>
 </body>
 </html>

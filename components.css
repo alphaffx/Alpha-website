@@ -286,3 +286,8 @@ html.high-contrast .card, html.high-contrast .tool, html.high-contrast .setting-
   .char-pick { width: 100%; }
   .char-previews li { width: calc(33.333% - 8px); height: auto; aspect-ratio: 1; }
 }
+.char-outfit { border: 0; padding: 0; margin: 0; gap: 8px; }
+.char-outfit legend { font-size: .9rem; font-weight: 600; margin-bottom: 4px; padding: 0; }
+.char-outfit > small { color: var(--text-dim); font-size: .85rem; }
+.char-outfit-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 20px; margin-top: 8px; }
+@media (max-width: 640px) { .char-outfit-grid { grid-template-columns: 1fr; } }
