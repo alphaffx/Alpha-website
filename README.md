@@ -6,7 +6,7 @@ The Store contains Classes, Maps & scenes, and Other resources, with an All filt
 
 ## French course launch
 
-The French-only Free Fire → Blender full package is listed first in `store.json`, linking to https://alphaff.gumroad.com/l/ycdfuj. A separate $15 Part 1 covers extraction, Blender import, and textures at https://alphaff.gumroad.com/l/avdvzb; it excludes rigging, animation, and rendering. A separate  Part 2 covers Mixamo rigging and animation at https://alphaff.gumroad.com/l/qzigc; it requires an imported, textured character and a free Adobe account for Mixamo. Full-package pricing is maintained on Gumroad. The English course is not yet available; the signup form now records interest in that edition. The Home and Store launch callouts are translated into all eight supported site languages. The existing free introductions remain available in both languages.
+The French-only Free Fire → Blender full package is listed first in `store.json`, linking to https://alphaff.gumroad.com/l/ycdfuj. A separate $15 Part 1 covers extraction, Blender import, and textures at https://alphaff.gumroad.com/l/avdvzb; it excludes rigging, animation, and rendering. A separate  Part 2 covers Mixamo rigging and animation at https://alphaff.gumroad.com/l/qzigc; it requires an imported, textured character and a free Adobe account for Mixamo. Full-package pricing is maintained on Gumroad. English editions are now available: complete course ($99.99) at https://alphaff.gumroad.com/l/htlskt, Part 1 ($24.99) at https://alphaff.gumroad.com/l/dlfdlv, and Part 2 ($74.99) at https://alphaff.gumroad.com/l/kubex. Prices are USD, verified October 5, 2026. The English waitlist has been replaced by course browsing. English thumbnails are optimized WebP files under media/store/*-en/. The Home and Store launch callouts are translated into all eight supported site languages. The existing free introductions remain available in both languages.
 
 GitHub Pages publishes `main` from the repository root. Launch email copy and the outstanding inbox-access requirement are recorded in `integrations/waitlist/course-launch.md`. Older waitlist setup notes below describe the pre-launch state.
 
@@ -63,7 +63,7 @@ After actually testing a source file, set its optional `blenderCompatibility` st
 
 Animation controls appear after a preview with embedded animation clips loads. Playback starts only when the visitor presses Play, and pauses on model changes, closing the preview, or leaving the Models tab. The current GLB exports contain textures but no skeletons or animation clips; export those from Blender to enable animated previews.
 
-## Learn with ALPHA waitlist
+## Learn with ALPHA waitlist (historical; retired at English launch)
 
 The Home section and Store callout promote upcoming paid recorded classes without taking payment. Waitlist requests require an email and explicit launch-email consent. They use the existing FormSubmit relay to `admin@alphaff.gg`, with subject `alphaff.gg - class waitlist`, language, and a consent timestamp. This is an inbox-based waitlist, not an automated Gumroad subscriber list: deduplicate requests and honor opt-out replies before sending launch announcements.
 

@@ -225,3 +225,8 @@ html.reduce-motion { scroll-behavior: auto; }
   .brand-wordmark img { width: 156px; }
   .brand-wordmark .brand-sub { font-size: 9px; }
 }
+
+/* Preserve the full course thumbnail, including its language badge. */
+#storeCourses .store-shots { aspect-ratio: 1; }
+#storeCourses .store-shot { object-fit: contain; }
+.course-launch-art { display: block; width: 100%; height: auto; border-radius: 12px; margin: 16px 0; }

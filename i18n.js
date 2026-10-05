@@ -1187,18 +1187,82 @@
   /* Live TikTok counter label */
   Object.entries({"en": "Live TikTok followers", "fr": "Abonnés TikTok en direct", "pt": "Seguidores no TikTok ao vivo", "es": "Seguidores de TikTok en vivo", "id": "Pengikut TikTok langsung", "th": "ผู้ติดตาม TikTok แบบสด", "vi": "Người theo dõi TikTok trực tiếp", "ar": "متابعو TikTok مباشرةً"}).forEach(([code, v]) => { if (STRINGS[code]) STRINGS[code]['about.tiktokLive'] = v; });
 
-  /* French course launch; English remains on the waitlist. */
+  /* English and French course launch. */
   const courseLaunch = {
-    en: ["Available in French", "The French course is available: extract Free Fire characters, import them into Blender, add a rig, and make them move and dance. English edition coming soon; no release date announced.", "View the French course on Gumroad", "Join the English edition waitlist", "The French edition is available now. Join for news about the upcoming English edition; no release date announced.", "Watch the free introduction in English. The paid course is available in French only. English edition coming soon."],
-    fr: ["Disponible en français", "La formation en français est disponible : extraire des personnages Free Fire, les importer dans Blender, ajouter un rig et les faire bouger et danser. Version anglaise à venir, sans date annoncée.", "Voir la formation en français sur Gumroad", "Rejoindre la liste d’attente de la version anglaise", "La version française est disponible. Inscrivez-vous pour recevoir les nouvelles de la version anglaise à venir, sans date annoncée.", "Regardez l’introduction gratuite en français. La formation payante est disponible uniquement en français. Version anglaise à venir."],
-    pt: ["Disponível em francês", "O curso em francês está disponível: extraia personagens de Free Fire, importe-os para o Blender, adicione um rig e faça-os se mover e dançar. Versão em inglês em breve, sem data anunciada.", "Ver o curso em francês no Gumroad", "Entrar na lista de espera da versão em inglês", "A versão em francês já está disponível. Inscreva-se para novidades sobre a versão em inglês; ainda sem data anunciada.", "Assista à introdução gratuita em inglês. O curso pago está disponível apenas em francês. Versão em inglês em breve."],
-    es: ["Disponible en francés", "El curso en francés ya está disponible: extrae personajes de Free Fire, impórtalos a Blender, añade un rig y haz que se muevan y bailen. Versión en inglés próximamente, sin fecha anunciada.", "Ver el curso en francés en Gumroad", "Unirse a la lista de espera de la versión en inglés", "La versión en francés ya está disponible. Apúntate para recibir novedades de la versión en inglés; sin fecha anunciada.", "Mira la introducción gratuita en inglés. El curso de pago está disponible solo en francés. Versión en inglés próximamente."],
-    id: ["Tersedia dalam bahasa Prancis", "Kursus bahasa Prancis tersedia: ekstrak karakter Free Fire, impor ke Blender, tambahkan rig, lalu buat bergerak dan menari. Versi bahasa Inggris segera hadir; tanggal belum diumumkan.", "Lihat kursus bahasa Prancis di Gumroad", "Daftar tunggu versi bahasa Inggris", "Versi bahasa Prancis sudah tersedia. Daftar untuk kabar versi bahasa Inggris; tanggal belum diumumkan.", "Tonton pengantar gratis dalam bahasa Inggris. Kursus berbayar hanya tersedia dalam bahasa Prancis. Versi bahasa Inggris segera hadir."],
-    th: ["เปิดสอนเป็นภาษาฝรั่งเศสแล้ว", "คอร์สภาษาฝรั่งเศสเปิดแล้ว: ดึงตัวละคร Free Fire นำเข้า Blender เพิ่มริก และทำให้เคลื่อนไหวและเต้นได้ เวอร์ชันภาษาอังกฤษกำลังจะมา ยังไม่ประกาศวันเปิดตัว", "ดูคอร์สภาษาฝรั่งเศสบน Gumroad", "ลงชื่อรอเวอร์ชันภาษาอังกฤษ", "เวอร์ชันภาษาฝรั่งเศสเปิดแล้ว ลงชื่อรับข่าวเวอร์ชันภาษาอังกฤษ ยังไม่ประกาศวันเปิดตัว", "ชมบทนำฟรีเป็นภาษาอังกฤษ คอร์สแบบชำระเงินมีเฉพาะภาษาฝรั่งเศส เวอร์ชันภาษาอังกฤษกำลังจะมา"],
-    vi: ["Đã có bản tiếng Pháp", "Khóa học tiếng Pháp đã ra mắt: trích xuất nhân vật Free Fire, nhập vào Blender, thêm rig và làm nhân vật chuyển động, nhảy múa. Bản tiếng Anh sắp ra mắt, chưa công bố ngày.", "Xem khóa học tiếng Pháp trên Gumroad", "Đăng ký chờ bản tiếng Anh", "Bản tiếng Pháp đã có. Đăng ký để nhận tin về bản tiếng Anh sắp ra mắt; chưa công bố ngày.", "Xem phần giới thiệu miễn phí bằng tiếng Anh. Khóa học trả phí hiện chỉ có tiếng Pháp. Bản tiếng Anh sắp ra mắt."],
-    ar: ["متاحة بالفرنسية", "الدورة الفرنسية متاحة: استخرج شخصيات Free Fire، واستوردها إلى Blender، وأضف هيكل تحريك، واجعلها تتحرك وترقص. النسخة الإنجليزية قريبًا دون موعد معلن.", "عرض الدورة الفرنسية على Gumroad", "انضم لقائمة انتظار النسخة الإنجليزية", "النسخة الفرنسية متاحة الآن. سجّل لتلقي أخبار النسخة الإنجليزية القادمة؛ لم يُعلن موعد بعد.", "شاهد المقدمة المجانية بالإنجليزية. الدورة المدفوعة متاحة بالفرنسية فقط. النسخة الإنجليزية قريبًا."]
-  };
-  const courseLaunchKeys = ['course.available', 'course.summary', 'course.buy', 'learn.join', 'learn.note', 'lesson.description'];
+    "en": [
+        "Available in English & French",
+        "Extract, texture, rig, and animate Free Fire characters in Blender. English and French editions are available as a complete course or individual parts.",
+        "Explore courses",
+        "Choose your course",
+        "Choose English or French, then start with Part 1, continue with Part 2, or get both in the complete course.",
+        "Watch the free introduction in English. Paid courses are available in English and French.",
+        "Courses in English & French · Complete course or individual parts"
+    ],
+    "fr": [
+        "Disponible en anglais et en français",
+        "Extrayez, texturez, riggez et animez des personnages Free Fire dans Blender. Les éditions anglaise et française sont disponibles en formation complète ou en parties séparées.",
+        "Découvrir les cours",
+        "Choisissez votre cours",
+        "Choisissez l’anglais ou le français, puis la partie 1, la partie 2 ou la formation complète.",
+        "Regardez l’introduction gratuite en français. Les cours payants sont disponibles en anglais et en français.",
+        "Cours en anglais et en français · Formation complète ou parties séparées"
+    ],
+    "pt": [
+        "Disponível em inglês e francês",
+        "Extraia, texturize, faça o rig e anime personagens de Free Fire no Blender. Edições em inglês e francês disponíveis como curso completo ou partes separadas.",
+        "Explorar cursos",
+        "Escolha seu curso",
+        "Escolha inglês ou francês e comece pela Parte 1, continue com a Parte 2 ou adquira o curso completo.",
+        "Assista à introdução gratuita em inglês. Cursos pagos disponíveis em inglês e francês.",
+        "Cursos em inglês e francês · Curso completo ou partes separadas"
+    ],
+    "es": [
+        "Disponible en inglés y francés",
+        "Extrae, texturiza, crea el rig y anima personajes de Free Fire en Blender. Ediciones en inglés y francés disponibles como curso completo o partes individuales.",
+        "Explorar cursos",
+        "Elige tu curso",
+        "Elige inglés o francés y empieza con la Parte 1, continúa con la Parte 2 o consigue el curso completo.",
+        "Mira la introducción gratuita en inglés. Cursos de pago disponibles en inglés y francés.",
+        "Cursos en inglés y francés · Curso completo o partes individuales"
+    ],
+    "id": [
+        "Tersedia dalam bahasa Inggris dan Prancis",
+        "Ekstrak, beri tekstur, buat rig, dan animasikan karakter Free Fire di Blender. Edisi Inggris dan Prancis tersedia sebagai kursus lengkap atau bagian terpisah.",
+        "Jelajahi kursus",
+        "Pilih kursus Anda",
+        "Pilih bahasa Inggris atau Prancis, lalu Bagian 1, Bagian 2, atau kursus lengkap.",
+        "Tonton pengantar gratis dalam bahasa Inggris. Kursus berbayar tersedia dalam bahasa Inggris dan Prancis.",
+        "Kursus bahasa Inggris dan Prancis · Lengkap atau bagian terpisah"
+    ],
+    "th": [
+        "มีทั้งภาษาอังกฤษและภาษาฝรั่งเศส",
+        "เรียนรู้การดึงตัวละคร Free Fire ใส่เท็กซ์เจอร์ สร้างริก และทำแอนิเมชันใน Blender มีทั้งภาษาอังกฤษและฝรั่งเศส เลือกคอร์สเต็มหรือแยกแต่ละส่วนได้",
+        "ดูคอร์สเรียน",
+        "เลือกคอร์สของคุณ",
+        "เลือกภาษาอังกฤษหรือฝรั่งเศส แล้วเลือกส่วนที่ 1 ส่วนที่ 2 หรือคอร์สเต็ม",
+        "ชมบทนำฟรีเป็นภาษาอังกฤษ คอร์สแบบชำระเงินมีทั้งภาษาอังกฤษและภาษาฝรั่งเศส",
+        "คอร์สภาษาอังกฤษและฝรั่งเศส · คอร์สเต็มหรือแยกแต่ละส่วน"
+    ],
+    "vi": [
+        "Có bản tiếng Anh và tiếng Pháp",
+        "Trích xuất, tạo vật liệu, rig và làm hoạt hình nhân vật Free Fire trong Blender. Có bản tiếng Anh và tiếng Pháp, trọn bộ hoặc từng phần.",
+        "Khám phá khóa học",
+        "Chọn khóa học",
+        "Chọn tiếng Anh hoặc tiếng Pháp, rồi chọn Phần 1, Phần 2 hoặc khóa học trọn bộ.",
+        "Xem phần giới thiệu miễn phí bằng tiếng Anh. Khóa học trả phí có bản tiếng Anh và tiếng Pháp.",
+        "Khóa học tiếng Anh và tiếng Pháp · Trọn bộ hoặc từng phần"
+    ],
+    "ar": [
+        "متاحة بالإنجليزية والفرنسية",
+        "استخرج شخصيات Free Fire وأضف الخامات وهيكل التحريك وحرّكها في Blender. النسختان الإنجليزية والفرنسية متاحتان كدورة كاملة أو أجزاء منفصلة.",
+        "استكشف الدورات",
+        "اختر دورتك",
+        "اختر الإنجليزية أو الفرنسية، ثم الجزء الأول أو الثاني أو الدورة الكاملة.",
+        "شاهد المقدمة المجانية بالإنجليزية. الدورات المدفوعة متاحة بالإنجليزية والفرنسية.",
+        "دورات بالإنجليزية والفرنسية · دورة كاملة أو أجزاء منفصلة"
+    ]
+};
+  const courseLaunchKeys = ['course.available', 'course.summary', 'course.buy', 'learn.join', 'learn.note', 'lesson.description', 'home.note'];
   Object.entries(courseLaunch).forEach(([code, values]) => {
     courseLaunchKeys.forEach((key, i) => { STRINGS[code][key] = values[i]; });
   });
@@ -1219,14 +1283,14 @@
   });
 
   const homeShowcase = {
-    en: ['LEARN · CREATE · ANIMATE', 'Explore Courses', 'Courses in French · Full package or individual parts', 'Watch my edits ↗'],
-    fr: ['APPRENDRE · CRÉER · ANIMER', 'Découvrir les cours', 'Cours en français · Formation complète ou parties séparées', 'Voir mes vidéos ↗'],
-    pt: ['APRENDA · CRIE · ANIME', 'Explorar cursos', 'Cursos em francês · Pacote completo ou partes separadas', 'Ver meus vídeos ↗'],
-    es: ['APRENDE · CREA · ANIMA', 'Explorar cursos', 'Cursos en francés · Paquete completo o partes individuales', 'Ver mis vídeos ↗'],
-    id: ['BELAJAR · BERKREASI · ANIMASIKAN', 'Jelajahi kursus', 'Kursus bahasa Prancis · Paket lengkap atau bagian terpisah', 'Tonton video saya ↗'],
-    th: ['เรียนรู้ · สร้างสรรค์ · ทำแอนิเมชัน', 'ดูคอร์สเรียน', 'คอร์สภาษาฝรั่งเศส · แพ็กเกจเต็มหรือแยกแต่ละส่วน', 'ดูวิดีโอของฉัน ↗'],
-    vi: ['HỌC · SÁNG TẠO · LÀM HOẠT HÌNH', 'Khám phá khóa học', 'Khóa học tiếng Pháp · Trọn bộ hoặc từng phần', 'Xem video của tôi ↗'],
-    ar: ['تعلّم · أبدع · حرّك', 'استكشف الدورات', 'دورات بالفرنسية · الحزمة الكاملة أو أجزاء منفصلة', 'شاهد فيديوهاتي ↗']
+    en: ['LEARN · CREATE · ANIMATE', 'Explore Courses', "Courses in English & French · Complete course or individual parts", 'Watch my edits ↗'],
+    fr: ['APPRENDRE · CRÉER · ANIMER', 'Découvrir les cours', "Cours en anglais et en français · Formation complète ou parties séparées", 'Voir mes vidéos ↗'],
+    pt: ['APRENDA · CRIE · ANIME', 'Explorar cursos', "Cursos em inglês e francês · Curso completo ou partes separadas", 'Ver meus vídeos ↗'],
+    es: ['APRENDE · CREA · ANIMA', 'Explorar cursos', "Cursos en inglés y francés · Curso completo o partes individuales", 'Ver mis vídeos ↗'],
+    id: ['BELAJAR · BERKREASI · ANIMASIKAN', 'Jelajahi kursus', "Kursus bahasa Inggris dan Prancis · Lengkap atau bagian terpisah", 'Tonton video saya ↗'],
+    th: ['เรียนรู้ · สร้างสรรค์ · ทำแอนิเมชัน', 'ดูคอร์สเรียน', "คอร์สภาษาอังกฤษและฝรั่งเศส · คอร์สเต็มหรือแยกแต่ละส่วน", 'ดูวิดีโอของฉัน ↗'],
+    vi: ['HỌC · SÁNG TẠO · LÀM HOẠT HÌNH', 'Khám phá khóa học', "Khóa học tiếng Anh và tiếng Pháp · Trọn bộ hoặc từng phần", 'Xem video của tôi ↗'],
+    ar: ['تعلّم · أبدع · حرّك', 'استكشف الدورات', "دورات بالإنجليزية والفرنسية · دورة كاملة أو أجزاء منفصلة", 'شاهد فيديوهاتي ↗']
   };
   Object.entries(homeShowcase).forEach(([code, values]) => {
     ['eyebrow', 'courses', 'note', 'edits'].forEach((key, i) => { STRINGS[code]['home.' + key] = values[i]; });
