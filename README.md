@@ -1,5 +1,9 @@
 # ALPHA website
 
+## Redeem Codes coming soon
+
+The `#redeem` tab currently displays a coming-soon announcement. Its entry button is disabled, it collects no email addresses, and it makes no raffle API requests. Prize previews, dates and rules are intentionally deferred until the real draw is ready. The separate raffle implementation remains on its feature branch; this announcement does not enable backend entries or email delivery.
+
 ## Store categories
 
 The Store contains Classes, Maps & scenes, and Other resources, with an All filter. Search covers the entire store regardless of the selected category. The separate Classes tab has been removed; old `#classes` links open the Store with Classes selected. Free introductions remain in the Classes category, clearly labelled free. Paid courses are rendered once from `store.json`, and free introductions are read from `lessons.json`. Set each store item's `category` to `classes`, `maps`, or `resources`; uncategorized items appear under Other resources. Paid models and presets also appear under Other resources when present.

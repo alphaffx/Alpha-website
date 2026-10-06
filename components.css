@@ -291,3 +291,14 @@ html.high-contrast .card, html.high-contrast .tool, html.high-contrast .setting-
 .char-outfit > small { color: var(--text-dim); font-size: .85rem; }
 .char-outfit-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 20px; margin-top: 8px; }
 @media (max-width: 640px) { .char-outfit-grid { grid-template-columns: 1fr; } }
+.redeem-soon { max-width: 850px; margin: 0 auto; padding: clamp(24px, 5vw, 52px); background: var(--bg-raised); border: 1px solid var(--border); border-radius: var(--radius); text-align: center; }
+.redeem-soon-badge { display: inline-block; padding: 8px 14px; margin: 0 0 20px; border: 1px solid var(--accent); border-radius: 999px; color: var(--accent); font-size: .75rem; font-weight: 700; letter-spacing: .14em; }
+.redeem-soon h3 { font-size: clamp(1.8rem, 4vw, 2.8rem); margin: 0 0 18px; }
+.redeem-soon > p:not(.redeem-soon-badge) { color: var(--text-dim); line-height: 1.7; }
+.redeem-soon-details { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin: 32px 0; text-align: start; }
+.redeem-soon-details > div { padding: 22px; border: 1px solid var(--border); border-radius: var(--radius); }
+.redeem-soon-details h4 { margin: 0 0 10px; font-size: 1rem; }
+.redeem-soon-details p { color: var(--text-dim); line-height: 1.65; margin: 0; }
+.redeem-soon .button:disabled { opacity: .65; cursor: not-allowed; }
+.redeem-soon-note { font-size: .85rem; margin: 14px 0 0; }
+@media (max-width: 600px) { .redeem-soon-details { grid-template-columns: 1fr; gap: 14px; } .redeem-soon .button { width: 100%; } }
