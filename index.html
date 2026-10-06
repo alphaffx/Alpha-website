@@ -82,6 +82,8 @@
   <link rel="stylesheet" href="style.css?v=20261001e">
   <link rel="stylesheet" href="components.css?v=20261005-char2">
 
+  <!-- Set only after the production API has been deployed and verified. No secrets here. -->
+  <meta name="raffle-api-origin" content="">
   <script src="i18n.js?v=20261005-char2"></script>
   <script>
     /* Apply reading settings before the page paints, so there is no flash. */
@@ -121,6 +123,7 @@
       <button class="tab"           role="tab" id="tab-models"  aria-controls="panel-models"  aria-selected="false" data-i18n="nav.models">3D Models</button>
       <button class="tab"           role="tab" id="tab-cc"      aria-controls="panel-cc"      aria-selected="false" data-i18n="nav.cc" hidden>Color Correction</button>
       <button class="tab"           role="tab" id="tab-store"   aria-controls="panel-store"   aria-selected="false" data-i18n="nav.store">Store</button>
+      <button class="tab" role="tab" id="tab-redeem" aria-controls="panel-redeem" aria-selected="false" lang="en">Redeem Codes</button>
       <button class="tab"           role="tab" id="tab-contact" aria-controls="panel-contact" aria-selected="false" data-i18n="nav.contact">Contact</button>
     </div>
   </nav>
@@ -140,6 +143,7 @@
       <button class="drawer-link" type="button" data-goto="models"  data-i18n="nav.models">3D Models</button>
       <button class="drawer-link" type="button" data-goto="cc"      data-i18n="nav.cc" hidden>Color Correction</button>
       <button class="drawer-link" type="button" data-goto="store"   data-i18n="nav.store">Store</button>
+      <button class="drawer-link" type="button" data-goto="redeem" lang="en">Redeem Codes</button>
       <button class="drawer-link" type="button" data-goto="contact" data-i18n="nav.contact">Contact</button>
     </nav>
 
@@ -618,6 +622,43 @@
     </div>
 
     <!-- ============ CONTACT ============ -->
+    <section class="panel" id="panel-redeem" role="tabpanel" aria-labelledby="tab-redeem" lang="en" hidden>
+      <div class="panel-head">
+        <h2>Redeem Codes</h2>
+        <p>A monthly chance to win a game reward. Everyone in the draw gets a fair chance.</p>
+      </div>
+      <div class="raffle-layout">
+        <div class="raffle-card">
+          <p class="raffle-eyebrow">MONTHLY REWARD DRAW</p>
+          <h3>Your next reward starts here.</h3>
+          <p>Limited codes, randomly selected winners. Enter with your email and verify it to join the monthly draw.</p>
+          <ol class="raffle-steps">
+            <li><strong>Enter your email</strong><span>One entry per verified email, per monthly draw.</span></li>
+            <li><strong>Verify your entry</strong><span>Follow the verification link and confirm your email.</span></li>
+            <li><strong>Watch for the result</strong><span>Each winner is assigned one unique code. Entering does not guarantee a reward.</span></li>
+          </ol>
+          <p>Codes are intended to be sent to winners by email when the live raffle launches.</p>
+        </div>
+        <div class="raffle-card">
+          <p id="raffleTest" class="raffle-test" hidden>LOCAL TEST · Dummy rewards only. No emails are sent.</p>
+          <h3>Join the draw</h3>
+          <p id="raffleDraw">Monthly rewards are coming soon.</p>
+          <form id="raffleForm">
+            <label for="raffleEmail">Email address</label>
+            <input class="fb-input" id="raffleEmail" name="email" type="email" autocomplete="email" maxlength="254" placeholder="player@example.test" required aria-describedby="rafflePrivacy">
+            <p id="rafflePrivacy">Your address is used for entry verification and raffle results. This test accepts only @example.test addresses.</p>
+            <div id="raffleRulesBlock" hidden>
+              <details><summary>Raffle rules and privacy details</summary><p id="raffleRules" style="white-space: pre-wrap"></p></details>
+              <label class="char-consent"><input id="raffleConsent" type="checkbox">I have read the rules, meet the eligibility requirements and agree to entry verification and raffle-result emails.</label>
+            </div>
+            <button class="button button-primary" type="submit" disabled>Send verification link</button>
+          </form>
+          <button id="raffleVerify" class="button button-primary" type="button" hidden>Confirm my email</button>
+          <p id="raffleStatus" role="status" aria-live="polite">Checking draw availability…</p>
+        </div>
+      </div>
+    </section>
+
     <section class="panel" id="panel-contact" role="tabpanel" aria-labelledby="tab-contact" hidden>
       <div class="panel-head">
         <h2 data-i18n="contact.title">Get in Touch</h2>
@@ -790,5 +831,6 @@
   <script src="model-search.js" defer></script>
   <script src="app.js?v=20261005-reel" defer></script>
   <script src="forms.js?v=20261005-char2" defer></script>
+  <script src="raffle.js" defer></script>
 </body>
 </html>

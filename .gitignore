@@ -14,3 +14,12 @@ review-auto-preview.webp
 backup-before-*/
 
 .waitlist-build/
+
+# Raffle data belongs outside the public repository, including local test outboxes.
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+.env
+.env.*
+!*.env.example
+*.raffle-codes.txt

@@ -1,0 +1,111 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const os = require('node:os');
+const path = require('node:path');
+const { spawn } = require('node:child_process');
+const { DatabaseSync } = require('node:sqlite');
+const { openRaffle } = require('./integrations/raffle/service.cjs');
+const { createServer } = require('./integrations/raffle/server.cjs');
+const { chromium } = require(process.env.PLAYWRIGHT_PATH || path.join(os.homedir(),'.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright'));
+const dir = fs.mkdtempSync(path.join(os.tmpdir(),'alpha-raffle-'));
+const file = path.join(dir,'test.sqlite');
+const service = openRaffle(file);
+const tokenOf = mail => mail.body.split('verify=')[1];
+let server, browser, db;
+async function concurrentDraw() {
+  return Promise.all([1,2,3].map(() => new Promise((resolve,reject) => {
+    const child = spawn(process.execPath,['integrations/raffle/admin.cjs','draw','2026-10'],{cwd:__dirname,env:{...process.env,RAFFLE_DB:file},windowsHide:true});
+    let output=''; child.stdout.on('data',chunk=>output+=chunk); child.stderr.on('data',()=>{});
+    child.on('error',reject); child.on('exit',code=>code===0 ? resolve(output) : reject(Error(output)));
+  })));
+}
+(async () => {
+  try {
+    service.inventory('2026-10',['DUMMY-OCT-1','DUMMY-OCT-2','DUMMY-OCT-3']);
+    assert.throws(()=>service.inventory('2026-10',['REAL-CODE']));
+    assert.throws(()=>service.inventory('2026-10',['DUMMY-ROLLBACK','DUMMY-OCT-1']));
+    assert.equal(service.status().prizes,3);
+    assert.throws(()=>service.enter('2026-10','visitor@gmail.com','http://127.0.0.1'));
+    for (let i=0;i<6;i++) {
+      service.enter('2026-10',`player${i}@example.test`,'http://127.0.0.1');
+      if (i<5) service.verify(tokenOf(service.outbox().at(-1)));
+    }
+    service.enter('2026-10',' PLAYER0@EXAMPLE.TEST ','http://127.0.0.1');
+    assert.equal(service.outbox().length,6);
+    assert.throws(()=>service.verify(tokenOf(service.outbox()[0])));
+    assert.throws(()=>service.verify('bad'));
+    db = new DatabaseSync(file);
+    db.prepare('UPDATE entries SET expires=0 WHERE email=?').run('player5@example.test');
+    assert.throws(()=>service.verify(tokenOf(service.outbox().at(-1))));
+    const draws = await concurrentDraw();
+    assert.equal(draws.filter(x=>x.includes('alreadyDrawn: false')).length,1);
+    const winners = service.outbox().filter(x=>x.kind==='winner');
+    assert.equal(winners.length,3);
+    assert.equal(new Set(winners.map(x=>x.recipient)).size,3);
+    assert.equal(new Set(winners.map(x=>x.body)).size,3);
+    assert(winners.every(x=>x.recipient !== 'player5@example.test'));
+    assert.equal(service.draw('2026-10').alreadyDrawn,true);
+    assert.throws(()=>service.enter('2026-10','late@example.test','http://127.0.0.1'));
+    assert.throws(()=>service.inventory('2026-10',['DUMMY-LATE']));
+    service.inventory('2026-11',['DUMMY-NOV-1','DUMMY-NOV-2']);
+    server=createServer(service);
+    await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
+    const origin=`http://127.0.0.1:${server.address().port}`;
+    for (const url of ['/integrations/raffle/service.cjs','/.git','/api/raffle/admin','/raffle.sqlite']) assert.equal((await fetch(origin+url)).status,404);
+    assert.equal((await fetch(origin+'/api/raffle/enter',{method:'POST',headers:{'Content-Type':'application/json',Origin:'https://evil.test'},body:'{}'})).status,403);
+    assert(!(await (await fetch(origin+'/api/raffle/status')).text()).includes('DUMMY-'));
+    browser=await chromium.launch({channel:'msedge',headless:true});
+    const page=await browser.newPage({viewport:{width:1440,height:1000}});
+    const errors=[]; page.on('pageerror',err=>errors.push(err.message));
+    await page.goto(origin+'/#redeem');
+    await page.locator('#panel-redeem').waitFor({state:'visible'});
+    await page.locator('#raffleEmail').fill('browser@example.test');
+    await page.locator('#raffleForm button').click();
+    await page.waitForFunction(()=>document.getElementById('raffleStatus').textContent.includes('No email was sent'));
+    await page.goto(service.outbox().at(-1).body);
+    await page.locator('#raffleVerify').click();
+    await page.waitForFunction(()=>document.getElementById('raffleStatus').textContent.includes('Email verified'));
+    assert(!page.url().includes('verify='));
+    await page.locator('#panel-redeem').screenshot({path:'review-raffle-desktop.png'});
+    await page.reload(); assert(await page.locator('#panel-redeem').isVisible());
+    await page.locator('#tab-home').click(); await page.goBack();
+    await page.locator('#panel-redeem').waitFor({state:'visible'});
+    await page.setViewportSize({width:390,height:844});
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+    await page.locator('#panel-redeem').screenshot({path:'review-raffle-mobile.png'});
+    assert.deepEqual(errors,[]);
+    assert.equal(service.draw('2026-11').winners,1);
+    assert.equal(db.prepare('SELECT count(*) AS n FROM codes WHERE month=? AND entry IS NULL').get('2026-11').n,1);
+    service.inventory('2026-12',['DUMMY-DEC-1']);
+    assert.equal(service.draw('2026-12').winners,0);
+    db.close(); db=null;
+    await page.route('**/api/raffle/status',route=>route.fulfill({status:404,body:'Missing'}));
+    await page.reload();
+    await page.waitForFunction(()=>document.getElementById('raffleStatus').textContent.includes('not open yet'));
+    assert(await page.locator('#raffleForm button').isDisabled());
+    // Production page rendering and consent without connecting to a live backend.
+    await page.unroute('**/api/raffle/status');
+    await page.route('**/api/raffle/status',route=>route.fulfill({json:{mode:'production',draw:{month:'2027-01',state:'open',prizes:2,closes:Date.now()+86400000,rules:'Fixture rules <script> must render as text.',rules_hash:'fixture-rules'}}}));
+    let submitted;
+    await page.route('**/api/raffle/enter',route=>{submitted=route.request().postDataJSON();return route.fulfill({json:{message:'Verification queued.'}});});
+    await page.reload();
+    await page.locator('#raffleRulesBlock').waitFor({state:'visible'});
+    assert(await page.locator('#raffleTest').isHidden());
+    await page.locator('#raffleEmail').fill('owner@example.test');
+    await page.locator('#raffleForm button').click();assert.equal(submitted,undefined);
+    await page.locator('#raffleConsent').check();await page.locator('#raffleForm button').click();
+    await page.waitForFunction(()=>document.getElementById('raffleStatus').textContent==='Verification queued.');
+    assert.equal(submitted.consent,true);assert.equal(submitted.rulesHash,'fixture-rules');
+    assert.equal(await page.locator('#raffleRules script').count(),0);
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+    await page.locator('#raffleRulesBlock summary').click();
+    await page.evaluate(()=>window.scrollTo(0,0));
+    await page.screenshot({path:'review-raffle-production-mobile.png',fullPage:true});
+    console.log('PASS: transactional inventory, dummy-only safety, normalized duplicates, verification/replay/expiry, three concurrent draws, unique winners/codes, closed draws, unused inventory, empty draw, HTTP isolation, browser verification, reload/back, mobile layout, unavailable backend, and production rules/consent rendering. No emails sent.');
+  } finally {
+    if(browser) await browser.close();
+    if(server) await new Promise(resolve=>server.close(resolve));
+    if(db) db.close();
+    service.close(); fs.rmSync(dir,{recursive:true,force:true});
+  }
+})().catch(error=>{console.error(error);process.exitCode=1;});

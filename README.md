@@ -1,5 +1,9 @@
 # ALPHA website
 
+## Redeem Codes raffle (local test)
+
+The new `#redeem` tab has a dummy-code raffle preview with email verification, one entry per verified email/month, and transactional random winner assignment. No emails have been sent. Run and test it using [integrations/raffle/README.md](integrations/raffle/README.md). [Production preparation](integrations/raffle/production/README.md) includes encrypted SQLite storage, private inventory import, a closed-by-default API, an optional Resend email adapter, and portable deployment setup. Hosting/email accounts, real inventory and approved draw rules still need configuration; do not publish the dummy raffle as a live giveaway.
+
 ## Store categories
 
 The Store contains Classes, Maps & scenes, and Other resources, with an All filter. Search covers the entire store regardless of the selected category. The separate Classes tab has been removed; old `#classes` links open the Store with Classes selected. Free introductions remain in the Classes category, clearly labelled free. Paid courses are rendered once from `store.json`, and free introductions are read from `lessons.json`. Set each store item's `category` to `classes`, `maps`, or `resources`; uncategorized items appear under Other resources. Paid models and presets also appear under Other resources when present.

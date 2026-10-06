@@ -293,7 +293,7 @@
 
       // the models tab gets a wider page than the rest of the site
       document.body.classList.toggle('on-models', name === 'models');
-      document.body.classList.toggle('on-commerce', name === 'store' || name === 'contact');
+      document.body.classList.toggle('on-commerce', name === 'store' || name === 'contact' || name === 'redeem');
 
       // the panes only have a measurable height once the panel is visible
       if (name === 'models') {
@@ -1370,7 +1370,7 @@
 
     function route() {
       let parts;
-      try { parts = decodeURIComponent(location.hash.slice(1)).split('/'); } catch (e) { parts = ['home']; }
+      try { parts = decodeURIComponent(location.hash.slice(1).split('?')[0]).split('/'); } catch (e) { parts = ['home']; }
       showPanel(parts[0] || 'home', false);
       if (parts[0] === 'models' && parts[1]) selectModel(parts.slice(1).join('/'), false, false);
     }

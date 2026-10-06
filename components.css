@@ -291,3 +291,18 @@ html.high-contrast .card, html.high-contrast .tool, html.high-contrast .setting-
 .char-outfit > small { color: var(--text-dim); font-size: .85rem; }
 .char-outfit-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 20px; margin-top: 8px; }
 @media (max-width: 640px) { .char-outfit-grid { grid-template-columns: 1fr; } }
+/* Monthly reward raffle follows the existing panel, input and button system. */
+.raffle-layout { display: grid; grid-template-columns: 1.1fr 1fr; gap: 24px; }
+.raffle-card { min-width: 0; padding: clamp(22px, 4vw, 42px); background: var(--bg-raised); border: 1px solid var(--border); border-radius: var(--radius); }
+.raffle-card h3 { font-size: clamp(1.4rem, 3vw, 2rem); margin: 0 0 18px; }
+.raffle-card p { color: var(--text-dim); line-height: 1.7; }
+.raffle-eyebrow { color: var(--accent) !important; font-size: .75rem; letter-spacing: .16em; }
+.raffle-steps { padding-inline-start: 22px; display: grid; gap: 22px; margin-block: 30px; }
+.raffle-steps strong, .raffle-steps span { display: block; }
+.raffle-steps span { color: var(--text-dim); margin-top: 5px; line-height: 1.5; }
+#raffleForm { display: grid; gap: 12px; margin-top: 24px; }
+#rafflePrivacy { font-size: .85rem; margin: 0 0 12px; }
+.raffle-test { padding: 12px; border: 1px solid var(--accent); border-radius: 8px; color: var(--accent) !important; font-size: .8rem; }
+#raffleStatus { min-height: 3em; overflow-wrap: anywhere; }
+#raffleVerify { margin-top: 20px; }
+@media (max-width: 760px) { .raffle-layout { grid-template-columns: 1fr; } }
