@@ -1,0 +1,13 @@
+{
+  "frames": 960,
+  "fps": 30,
+  "resolution": [
+    1920,
+    1080
+  ],
+  "missing_images": [],
+  "text_outside_frame": [],
+  "visibility_interpolations": [
+    "CONSTANT"
+  ]
+}

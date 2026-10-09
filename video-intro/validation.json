@@ -1,0 +1,43 @@
+{
+  "resolution": [
+    1920,
+    1080
+  ],
+  "fps": 30,
+  "frames": [
+    1,
+    1350
+  ],
+  "markers": [
+    [
+      "01 / WELCOME",
+      1
+    ],
+    [
+      "02 / FREE MODELS",
+      151
+    ],
+    [
+      "03 / LEARN WITH ALPHA",
+      361
+    ],
+    [
+      "04 / MAPS & SCENES",
+      631
+    ],
+    [
+      "05 / CREATOR RESOURCES",
+      871
+    ],
+    [
+      "06 / COMMISSIONS",
+      1021
+    ],
+    [
+      "07 / START EXPLORING",
+      1201
+    ]
+  ],
+  "missing_images": [],
+  "text_outside_camera": []
+}
