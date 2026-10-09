@@ -94,39 +94,63 @@
       try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings)); } catch (e) { /* blocked */ }
     }
 
-    /* Showreel on the home page. Shows media/showreel.mp4 in place of the
-       artwork once that file exists; data saver and reduced motion keep
-       the still artwork. A missing file just leaves the artwork. */
+    /* Intro video on the home page (media/showreel.mp4).
+       Normal visitors: autoplays muted and loops; the round button turns the voiceover on.
+       Reduced motion / data saver: nothing moves on its own; the video shows its poster
+       with a play button and only loads and plays when clicked (with sound).
+       A missing file just leaves the artwork. */
     const reel = document.querySelector('.home-reel');
-    const reelSound = document.querySelector('.reel-sound');
-    let reelReady = false;
-    if (reel && reelSound) {
-      reelSound.addEventListener('click', function () {
-        const turnOn = reel.muted;
-        reel.muted = !turnOn;
-        if (turnOn) { reel.currentTime = 0; const p = reel.play(); if (p && p.catch) p.catch(function () {}); }
-        reelSound.setAttribute('aria-pressed', turnOn ? 'true' : 'false');
-        reelSound.setAttribute('aria-label', turnOn ? 'Turn sound off' : 'Turn sound on');
-        reelSound.firstElementChild.textContent = turnOn ? '🔊' : '🔇';
-        reelSound.classList.toggle('is-on', turnOn);
+    const reelBtn = document.querySelector('.reel-sound');
+    let reelReady = false, reelFailed = false, reelStarted = false;
+    function setReelBtn(mode) {
+      if (!reelBtn) return;
+      const m = { play: ['▶', 'Play intro video', false], off: ['🔇', 'Turn sound on', false], on: ['🔊', 'Turn sound off', true] }[mode];
+      reelBtn.firstElementChild.textContent = m[0];
+      reelBtn.setAttribute('aria-label', m[1]);
+      reelBtn.setAttribute('aria-pressed', m[2] ? 'true' : 'false');
+      reelBtn.classList.toggle('is-on', m[2]);
+      reelBtn.classList.toggle('is-play', mode === 'play');
+      reelBtn.dataset.mode = mode;
+    }
+    function playReel() { const p = reel.play(); if (p && p.catch) p.catch(function () {}); }
+    if (reel && reelBtn) {
+      reelBtn.addEventListener('click', function () {
+        const mode = reelBtn.dataset.mode;
+        if (mode === 'play') {
+          reelStarted = true; reel.muted = false; reel.loop = false;
+          if (reel.preload === 'none') reel.preload = 'auto';
+          playReel(); setReelBtn('on');
+        } else if (mode === 'off') {
+          reel.muted = false; reel.currentTime = 0; playReel(); setReelBtn('on');
+        } else {
+          reel.muted = true; setReelBtn('off');
+        }
       });
+      reel.addEventListener('ended', function () { if (!reel.loop) { reelStarted = false; reel.muted = true; reel.currentTime = 0; setReelBtn('play'); } });
     }
     if (reel) {
       reel.addEventListener('loadeddata', function () { reelReady = true; applyReel(); }, { once: true });
-      reel.addEventListener('error', function () { reelReady = false; reel.hidden = true; });
+      reel.addEventListener('error', function () { reelFailed = true; reelReady = false; applyReel(); });
     }
     function applyReel() {
       if (!reel) return;
       const art = reel.parentElement.querySelector(':scope > img');
-      const allowed = !settings.dataSaver && !settings.reduceMotion;
-      if (allowed && !reelReady && reel.preload === 'none') { reel.preload = 'auto'; reel.load(); }
-      const show = allowed && reelReady;
+      const auto = !settings.dataSaver && !settings.reduceMotion;
+      let show;
+      if (reelFailed) show = false;
+      else if (auto) {
+        if (!reelReady && reel.preload === 'none') { reel.preload = 'auto'; reel.load(); }
+        show = reelReady;
+        reel.loop = true;
+        if (show) { if (!reelBtn || reelBtn.dataset.mode !== 'on') { reel.muted = true; setReelBtn('off'); } playReel(); }
+      } else {
+        show = true;                      /* poster + play button, no autoplay */
+        if (!reelStarted) { reel.pause(); reel.muted = true; setReelBtn('play'); }
+      }
       reel.hidden = !show;
-      if (reelSound) reelSound.hidden = !show;
-      if (!show && !reel.muted) { reel.muted = true; if (reelSound) { reelSound.classList.remove('is-on'); reelSound.firstElementChild.textContent = '🔇'; reelSound.setAttribute('aria-pressed', 'false'); reelSound.setAttribute('aria-label', 'Turn sound on'); } }
+      if (reelBtn) reelBtn.hidden = !show;
       if (art) art.hidden = show;
-      if (show) { const p = reel.play(); if (p && p.catch) p.catch(function () {}); }
-      else reel.pause();
+      if (!show) { reel.pause(); reel.muted = true; }
     }
 
     function applySettings() {

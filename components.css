@@ -311,3 +311,6 @@ html.high-contrast .card, html.high-contrast .tool, html.high-contrast .setting-
 .reel-sound:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .reel-sound.is-on { background: linear-gradient(135deg,#a6efff,#38b5ff); color: #031a29; border-color: #a6efff; }
 .reel-sound[hidden] { display: none; }
+.reel-sound.is-play { top: 50%; left: 50%; right: auto; width: 88px; height: 88px; font-size: 2rem; transform: translate(-50%,-60%);
+  color: #031a29; background: linear-gradient(135deg,#a6efff,#38b5ff); border-color: #a6efff; box-shadow: 0 0 40px #0095ff88; padding-left: 6px; }
+.reel-sound.is-play:hover { transform: translate(-50%,-60%) scale(1.08); }
