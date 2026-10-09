@@ -357,7 +357,7 @@
           document.querySelector('.learn-section').scrollIntoView({ behavior: settings.reduceMotion ? 'instant' : 'smooth', block: 'start' });
         }
         if (btn.hasAttribute('data-commission-link')) {
-          document.getElementById('commissionName').focus();
+          document.getElementById('contactEmail')?.focus();
         }
       });
     });

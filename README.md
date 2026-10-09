@@ -45,15 +45,17 @@ Run `node verify.cjs` with Playwright and Microsoft Edge installed. The script u
 
 The browser checks also produce `review-*.png` screenshots for local inspection. Use `generate-previews.cjs` for production thumbnails.
 
-## Analytics and contact
+## Homepage and contact
+
+The homepage contains the intro video, direct Models and Courses links, and a short creator/contact section. Free course introductions remain in the Store under Classes. The former service cards, tools list, repeated course pitches, and live follower embed have been removed from Home.
+
+Contact now offers a direct `mailto:admin@alphaff.gg` link and brief project guidance. The character-upload and feedback forms are removed, and `forms.js` is no longer loaded. No page submits requests to FormSubmit. Email links open the visitor's own email app; they do not filter incoming mail or guarantee message quality. Legacy submission scripts and tests remain historical references, not active site features.
+
+Run `node test-home-contact.cjs` for all eight languages at desktop and mobile widths, email/contact navigation, course introductions, absence of relay requests, and Settings focus checks. `node verify.cjs --commerce` checks the Store FAQ and current email contact flow.
 
 The placeholder analytics script was removed. Enable Cloudflare Web Analytics only after obtaining the real site token; no visits are currently recorded by that integration.
 
-The contact form validates optional email addresses and checks the relay response before reporting success. Actual inbox delivery and relay-account activation must be verified separately; automated checks do not send real mail.
-
-The commission form on Contact collects name, email, project type, budget/currency, optional deadline, brief, and optional reference links. It uses the same FormSubmit recipient (`admin@alphaff.gg`) with a separate commission subject, a 20-second timeout, and retained inputs on failure. `node verify.cjs --commerce` tests translations, FAQ keyboard navigation, responsive layouts, validation, and mocked relay responses without sending email.
-
-Store FAQ copy lives in `faqTranslations` in `i18n.js` for all eight languages. Commercial-use, credit, and redistribution answers currently direct visitors to the owner for permission; replace those answers with the owner's confirmed policy before treating this section as a definitive license.
+Store FAQ copy lives in `faqTranslations` in `i18n.js` for all eight languages. Commercial-use, credit, and redistribution answers currently direct visitors to the owner for permission.
 
 ## Publishing
 
@@ -77,8 +79,8 @@ Run `node test-waitlist.cjs` for mocked submission, validation, consent, failure
 
 - `app.js`: navigation, viewer, model/store rendering, and settings.
 - `model-search.js`: model ranking and fuzzy search, independent of the page DOM.
-- `forms.js`: shared feedback, commission, and waitlist handling. All forms validate before sending, reject overlapping submissions, time out after 20 seconds, retain input on failure, and translate status messages.
+- `forms.js`: retired form handlers; no longer loaded by the website.
 - `style.css`: core layout and theme; display/body font choices are defined once near the top.
 - `components.css`: model details, search refinements, and class waitlist styles, loaded after the core stylesheet.
 
-Keep all three JavaScript files and both CSS files in deployments. `test-forms.cjs` checks timeout/retry behavior, duplicate-submit protection, server and malformed-response failures, and translated status messages using mocked requests. `test-waitlist.cjs`, `test-model-details.cjs`, and `verify.cjs --commerce` cover their corresponding flows. No subscriber service is connected; waitlist requests still go to the admin inbox.
+Keep `app.js`, `model-search.js`, `i18n.js`, and both CSS files in deployments. The form-specific tests below describe retired flows. `test-forms.cjs` checks timeout/retry behavior, duplicate-submit protection, server and malformed-response failures, and translated status messages using mocked requests. `test-waitlist.cjs`, `test-model-details.cjs`, and `verify.cjs --commerce` cover their corresponding flows. No subscriber service is connected; waitlist requests still go to the admin inbox.

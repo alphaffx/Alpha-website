@@ -80,9 +80,9 @@
           data-cf-beacon='{"token": "PASTE-YOUR-TOKEN-HERE"}'></script>
 
   <link rel="stylesheet" href="style.css?v=20261001e">
-  <link rel="stylesheet" href="components.css?v=20261009-intro2-card-cleanup">
+  <link rel="stylesheet" href="components.css?v=20261010-simple">
 
-  <script src="i18n.js?v=20261005-char2"></script>
+  <script src="i18n.js?v=20261010-simple"></script>
   <script>
     /* Apply reading settings before the page paints, so there is no flash. */
     (function () {
@@ -225,14 +225,11 @@
         <div class="hero-copy">
         <p class="home-eyebrow" data-i18n="home.eyebrow">LEARN · CREATE · ANIMATE</p>
         <h1 class="title" data-i18n="hero.title">FROM FREE FIRE TO BLENDER</h1>
-        <p class="tagline" data-i18n="hero.tagline">Free Fire characters &amp; maps in 3D — and courses to make your own</p>
-        <p class="subtitle" data-i18n="hero.subtitle">Explore models in 3D, download free files, or bring your next animation project to life with me.</p>
+        <p class="subtitle" data-i18n="simple.intro">Download 3D characters, learn Blender, and bring your ideas to life.</p>
         <div class="hero-actions">
-          <button class="button" data-goto="contact" data-commission-link data-i18n="hero.cta2">Start a Project</button>
-          <button class="button button-ghost" data-goto="store" data-courses-link data-i18n="home.courses">Explore Courses</button>
+          <a class="button" href="#models" data-goto="models" data-i18n="hero.cta1">Explore 3D Models</a>
+          <a class="button button-ghost" href="#store" data-goto="store" data-courses-link data-i18n="home.courses">Explore Courses</a>
         </div>
-        <p class="home-course-note" data-i18n="home.note">Courses in English & French · Complete course or individual parts</p>
-        <button class="tool-link home-project-link" data-goto="models" data-i18n="hero.cta1">Explore 3D Models</button>
         </div>
         <figure class="home-artwork">
           <!-- SHOWREEL: media/showreel.mp4 (1280x720, H.264, under ~15 MB). It autoplays muted;
@@ -244,111 +241,12 @@
         </figure>
       </header>
 
-      <div class="cards home-visual-cards">
-        <article class="card">
-          <img class="service-preview" src="media/store/free-fire-blender-part-2-fr/1.webp" alt="Rig and animate course preview" width="960" height="540" loading="lazy">
-          <h3 data-i18n="card1.title">Character Animation</h3>
-          <p data-i18n="card1.body">Rigging and animating characters with weight, timing and personality.</p>
-          <button class="tool-link" data-goto="store" data-courses-link data-i18n="home.courses">Explore Courses</button>
-        </article>
-        <article class="card card--text-only">
-          <h3 data-i18n="card2.title">Interactive 3D</h3>
-          <p data-i18n="card2.body">Real-time models you can spin, inspect and explore right in the browser.</p>
-          <button class="tool-link" data-goto="models" data-i18n="hero.cta1">Explore 3D Models</button>
-        </article>
-        <article class="card">
-          <img class="service-preview" src="media/alpha-artwork.jpg" alt="ALPHA Free Fire character artwork" width="1280" height="720" loading="lazy">
-          <h3 data-i18n="card3.title">Short-Form Video</h3>
-          <p data-i18n="card3.body">Animation built for TikTok — fast, punchy and made to be rewatched.</p>
-          <a class="tool-link" href="https://www.tiktok.com/@alphaff.freefire" target="_blank" rel="noopener noreferrer" data-i18n="home.edits">Watch my edits ↗</a>
-        </article>
-      </div>
-
-      <!-- ---------- Tools ---------- -->
-      <section class="home-block">
-        <h2 class="block-title" data-i18n="tools.title">What I work with</h2>
-        <div class="tool-row">
-          <div class="tool">
-            <span class="tool-mark" aria-hidden="true">B</span>
-            <div class="tool-body">
-              <h3 class="tool-name">Blender</h3>
-              <p class="tool-desc" data-i18n="tools.blenderDesc">Modelling, rigging, texturing, animation and rendering — all of it done in Blender.</p>
-              <a class="tool-link" href="https://www.blender.org/download/" target="_blank" rel="noopener noreferrer">
-                <span data-i18n="tools.official">Official site</span> <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-          </div>
-
-          <div class="tool">
-            <span class="tool-mark" aria-hidden="true">Ae</span>
-            <div class="tool-body">
-              <h3 class="tool-name">After Effects</h3>
-              <p class="tool-desc" data-i18n="tools.aeDesc">Colour grading, effects and final export — where the raw render becomes the finished clip.</p>
-              <a class="tool-link" href="https://www.adobe.com/products/aftereffects.html" target="_blank" rel="noopener noreferrer">
-                <span data-i18n="tools.official">Official site</span> <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-          </div>
+      <section class="home-about" aria-labelledby="homeAboutTitle">
+        <div>
+          <h2 id="homeAboutTitle" data-i18n="simple.aboutTitle">Made by ALPHA</h2>
+          <p data-i18n="simple.about">I create Free Fire characters and animations in Blender. Have a project in mind? Tell me about it by email.</p>
         </div>
-      </section>
-
-      <section class="home-block learn-section" aria-labelledby="learnTitle">
-        <div class="learn-intro">
-          <span class="learn-badge" data-i18n="lesson.badge">Free intro · Paid course</span>
-          <h2 id="learnTitle" data-i18n="learn.title">Learn with ALPHA</h2>
-          <p data-i18n="course.summary">Extract, texture, rig, and animate Free Fire characters in Blender. English and French editions are available as a complete course or individual parts.</p>
-          <button class="button" type="button" data-goto="store" data-courses-link data-i18n="course.buy">Explore courses</button>
-          <p class="learn-note" data-i18n="learn.format">Recorded classes · One-time purchase per class · Character files not included</p>
-          <article class="lesson-card" aria-labelledby="lessonTitle">
-            <h3 id="lessonTitle" data-i18n="lesson.title">Start here: course preparation</h3>
-            <p class="learn-note" data-i18n="lesson.description">Watch the free introduction in English. Paid courses are available in English and French.</p>
-            <div class="lesson-player" id="lessonPlayer">
-              <button class="lesson-play" id="lessonPlay" type="button">
-                <img src="assets/lessons/start-here-thumbnail-v3.jpg" alt="" width="1280" height="720" loading="lazy">
-                <span data-i18n="lesson.watch">▶ Watch free intro · French</span>
-              </button>
-            </div>
-            <a class="tool-link" id="lessonOpen" href="https://drive.google.com/file/d/1n_kDn6_UVQ1fYEGqEAD40UEMWcRBzJLV/view" target="_blank" rel="noopener noreferrer" data-i18n="lesson.open">Open in Google Drive ↗</a>
-          </article>
-        </div>
-        <aside class="learn-form">
-          <h3 data-i18n="learn.join">Choose your course</h3>
-          <p class="learn-note" data-i18n="learn.note">Choose English or French, then start with Part 1, continue with Part 2, or get both in the complete course.</p>
-          <img class="course-launch-art" src="media/store/free-fire-blender-en/1.webp" alt="Free Fire to Blender complete English course: extract, texture, rig and animate" width="960" height="960" loading="lazy">
-          <button class="button" type="button" data-goto="store" data-courses-link data-i18n="home.courses">Explore Courses</button>
-        </aside>
-      </section>
-
-      <!-- ---------- About ---------- -->
-      <section class="home-block">
-        <h2 class="block-title" data-i18n="about.title">About me</h2>
-        <p class="about-body" data-i18n="about.body">I&#39;m ALPHA. I model, rig and animate 3D characters in Blender — mostly Free Fire characters built for short-form video. Every character on this site was made by me, and the free ones are yours to download and use in your own edits.</p>
-        <!-- Live TikTok follower count (from livecounts.io) -->
-        <a class="tiktok-live" href="https://www.tiktok.com/@alphaff.freefire" target="_blank" rel="noopener noreferrer">
-          <span class="tiktok-live-label"><span class="live-dot" aria-hidden="true"></span><span data-i18n="about.tiktokLive">Live TikTok followers</span></span>
-        </a>
-        <iframe class="tiktok-live-frame" src="https://livecounts.io/embed/tiktok-live-follower-counter/alphaff.freefire"
-                title="Live TikTok follower count for @alphaff.freefire" loading="lazy" width="300" height="80"></iframe>
-      </section>
-
-      <!-- ---------- Hire / contact ---------- -->
-      <section class="home-block home-hire">
-        <h2 class="block-title" data-i18n="home.hire">Work with me</h2>
-        <p class="about-body" data-i18n="home.hireDesc">Available for character animation, custom models and short-form video.</p>
-        <div class="hire-links">
-          <a class="hire-link" href="mailto:admin@alphaff.gg">
-            <span class="social-icon social-icon--email" aria-hidden="true"><img src="assets/icons/email.svg" width="24" height="24" alt=""></span> admin@alphaff.gg
-          </a>
-          <a class="hire-link" href="https://www.tiktok.com/@alphaff.freefire" target="_blank" rel="noopener noreferrer">
-            <span class="social-icon social-icon--tiktok" aria-hidden="true"><img src="assets/icons/tiktok.svg" width="24" height="24" alt=""></span> @alphaff.freefire
-          </a>
-          <a class="hire-link" href="https://youtube.com/@alpha.blender3d" target="_blank" rel="noopener noreferrer">
-            <span class="social-icon social-icon--youtube" aria-hidden="true"><img src="assets/icons/youtube.svg" width="24" height="24" alt=""></span> @alpha.blender3d
-          </a>
-          <a class="hire-link" href="https://www.instagram.com/alphaff.freefire/" target="_blank" rel="noopener noreferrer">
-            <span class="social-icon social-icon--instagram" aria-hidden="true"><img src="assets/icons/instagram.svg" width="24" height="24" alt=""></span> @alphaff.freefire
-          </a>
-        </div>
+        <a class="button button-ghost" href="#contact" data-goto="contact" data-commission-link data-i18n="simple.email">Email me</a>
       </section>
     </section>
 
@@ -600,7 +498,7 @@
           <p data-i18n="faq.customA">Yes. Use the project form on the Contact page to share your brief, budget, preferred deadline, and references. I’ll reply to discuss availability and a quote.</p>
         </details>
         <a href="mailto:admin@alphaff.gg" class="faq-support">admin@alphaff.gg</a>
-        <button class="button" type="button" data-goto="contact" data-commission-link data-i18n="commission.send">Send project request</button>
+        <button class="button" type="button" data-goto="contact" data-commission-link data-i18n="simple.email">Email me</button>
       </section>
     </section>
 
@@ -645,161 +543,20 @@
         <p data-i18n="contact.sub">Open for collaborations, commissions and animation work.</p>
       </div>
 
-      <section class="commission-block char-block" aria-labelledby="commissionTitle">
-        <div class="commission-intro">
-          <h3 id="commissionTitle" data-i18n="char.title">Get your character in 3D</h3>
-          <p data-i18n="char.sub">Send me pictures of your Free Fire character. I pick characters to model in 3D and add to the 3D Models page, and you can also ask for a private model or an animation.</p>
-          <a href="mailto:admin@alphaff.gg">admin@alphaff.gg</a>
+      <section class="email-card" aria-labelledby="emailTitle">
+        <span class="email-card-icon" aria-hidden="true"><img src="assets/icons/email.svg" width="28" height="28" alt=""></span>
+        <h3 id="emailTitle" data-i18n="simple.emailTitle">Have a project in mind?</h3>
+        <p class="email-lead" data-i18n="simple.emailLead">Send me a short, clear email about what you would like to create.</p>
+        <a class="email-address" href="mailto:admin@alphaff.gg">admin@alphaff.gg</a>
+        <div class="email-guidance">
+          <h4 data-i18n="simple.include">What to include</h4>
+          <p data-i18n="simple.details">Tell me which character or project you have in mind and what you need. For paid work, include your budget and preferred deadline.</p>
+          <p data-i18n="simple.references">Start with a description. If the project is a fit, I’ll reply and explain which reference files I need.</p>
         </div>
-        <!-- Sent straight to FormSubmit as a normal form post (their AJAX mode cannot carry files).
-             FormSubmit shows a quick "I'm not a robot" check, then returns the visitor here. -->
-        <form id="characterForm" class="commission-form" action="https://formsubmit.co/admin@alphaff.gg" method="POST" enctype="multipart/form-data">
-          <div class="commission-field">
-            <label for="commissionName" data-i18n="char.name">Your name or gamer tag</label>
-            <input class="fb-input" id="commissionName" name="name" autocomplete="nickname" maxlength="100" required>
-          </div>
-          <div class="commission-field">
-            <label for="charEmail" data-i18n="char.email">Your email</label>
-            <input class="fb-input" id="charEmail" name="email" type="email" autocomplete="email" maxlength="254" required>
-          </div>
-          <div class="commission-field">
-            <label for="charSocial" data-i18n="char.social">TikTok or Instagram (optional)</label>
-            <input class="fb-input" id="charSocial" name="social" maxlength="100" placeholder="@yourname" aria-describedby="charSocialHint">
-            <small id="charSocialHint" data-i18n="char.socialHint">So I can tag you when your character goes up.</small>
-          </div>
-          <div class="commission-field">
-            <label for="charCharacter" data-i18n="char.charName">Character name (optional)</label>
-            <input class="fb-input" id="charCharacter" name="character" maxlength="100">
-          </div>
-
-          <div class="commission-field commission-wide">
-            <span class="char-label" id="charPicsLabel" data-i18n="char.pics">Pictures of your character</span>
-            <div class="char-drop" id="charDrop">
-              <label class="button button-ghost char-pick" for="charPics" data-i18n="char.pick">Choose pictures</label>
-              <span class="char-drop-text" data-i18n="char.drop">or drag them here</span>
-              <input class="char-file" id="charPics" name="attachment" type="file" accept="image/jpeg,image/png,image/webp" multiple required aria-labelledby="charPicsLabel" aria-describedby="charPicsHint">
-            </div>
-            <small id="charPicsHint" data-i18n="char.picsHint">Up to 3 images (JPG, PNG or WebP). A clear front view works best — add the back or side if you can.</small>
-            <ul class="char-previews" id="charPreviews" aria-live="polite"></ul>
-          </div>
-
-          <fieldset class="commission-field commission-wide char-outfit" aria-describedby="charOutfitHint">
-            <legend data-i18n="char.outfit">Outfit items (names as shown in the game)</legend>
-            <small id="charOutfitHint" data-i18n="char.outfitHint">Copy each item’s name from your Vault in Free Fire. If a slot is empty, write “None”.</small>
-            <div class="char-outfit-grid">
-              <div class="commission-field">
-                <label for="charHead" data-i18n="char.head">Head (hair or headwear)</label>
-                <input class="fb-input" id="charHead" name="outfit_head" maxlength="120" required>
-              </div>
-              <div class="commission-field">
-                <label for="charMask" data-i18n="char.mask">Mask or face (optional)</label>
-                <input class="fb-input" id="charMask" name="outfit_mask_face" maxlength="120">
-              </div>
-              <div class="commission-field">
-                <label for="charTop" data-i18n="char.top">Top</label>
-                <input class="fb-input" id="charTop" name="outfit_top" maxlength="120" required>
-              </div>
-              <div class="commission-field">
-                <label for="charBottom" data-i18n="char.bottom">Bottom (pants)</label>
-                <input class="fb-input" id="charBottom" name="outfit_bottom" maxlength="120" required>
-              </div>
-              <div class="commission-field">
-                <label for="charShoes" data-i18n="char.shoes">Shoes (optional)</label>
-                <input class="fb-input" id="charShoes" name="outfit_shoes" maxlength="120">
-              </div>
-            </div>
-          </fieldset>
-
-          <fieldset class="commission-field commission-wide char-wants">
-            <legend data-i18n="char.want">What would you like?</legend>
-            <label class="char-choice"><input type="radio" name="request" value="Add to the free library" checked> <span data-i18n="char.wantFree">Add it to the free library on this site</span></label>
-            <label class="char-choice"><input type="radio" name="request" value="Private 3D model (paid)"> <span data-i18n="char.wantModel">A private 3D model just for me (paid — I'll reply with a quote)</span></label>
-            <label class="char-choice"><input type="radio" name="request" value="Animation or edit (paid)"> <span data-i18n="char.wantAnim">An animation or edit with my character (paid — I'll reply with a quote)</span></label>
-          </fieldset>
-
-          <div class="commission-field commission-wide">
-            <label for="charNotes" data-i18n="char.notes">Anything else? (optional)</label>
-            <textarea class="fb-input fb-textarea" id="charNotes" name="notes" rows="3" maxlength="3000"></textarea>
-          </div>
-
-          <label class="char-consent commission-wide">
-            <input type="checkbox" name="permission" value="Yes - may show the character and finished model on alphaff.gg and socials, with credit" required>
-            <span data-i18n="char.consent">This is my character, and ALPHA may show it and the finished 3D model on alphaff.gg and his socials, with credit to my name.</span>
-          </label>
-
-          <input class="fb-honey" name="_honey" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <input type="hidden" name="_subject" value="alphaff.gg - new character submission">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_next" value="https://alphaff.gg/?sent=character#contact">
-          <input type="hidden" name="page_language" value="en">
-
-          <p class="commission-wide commission-note" data-i18n="char.note">Not every character can be made. Free library picks are my choice, and I'll email you if I pick yours. Your details and pictures are sent to me by email through FormSubmit.</p>
-          <button class="button" id="charSend" type="submit" data-i18n="char.send">Send my character</button>
-          <p class="fb-status commission-wide" id="charStatus" role="status" hidden></p>
-        </form>
+        <a class="button" id="contactEmail" href="mailto:admin@alphaff.gg?subject=ALPHA%20project%20inquiry" data-i18n="simple.email">Email me</a>
+        <p class="email-hint" data-i18n="simple.emailHint">Opens your email app. You can also copy the address above.</p>
+        <p class="email-reply" data-i18n="simple.reply">I reply to requests I can take on. Sending an email does not guarantee a free model or a place in the library.</p>
       </section>
-
-      <div class="contact-grid">
-        <a class="contact-card"
-           href="https://www.tiktok.com/@alphaff.freefire"
-           target="_blank"
-           rel="noopener noreferrer">
-          <span class="contact-icon social-icon social-icon--tiktok" aria-hidden="true"><img src="assets/icons/tiktok.svg" width="24" height="24" alt=""></span>
-          <span class="contact-label">TikTok</span>
-          <span class="contact-value">@alphaff.freefire</span>
-        </a>
-
-        <a class="contact-card"
-           href="https://www.instagram.com/alphaff.freefire/"
-           target="_blank"
-           rel="noopener noreferrer">
-          <span class="contact-icon social-icon social-icon--instagram" aria-hidden="true"><img src="assets/icons/instagram.svg" width="24" height="24" alt=""></span>
-          <span class="contact-label">Instagram</span>
-          <span class="contact-value">@alphaff.freefire</span>
-        </a>
-
-        <a class="contact-card"
-           href="https://youtube.com/@alpha.blender3d"
-           target="_blank"
-           rel="noopener noreferrer">
-          <span class="contact-icon social-icon social-icon--youtube" aria-hidden="true"><img src="assets/icons/youtube.svg" width="24" height="24" alt=""></span>
-          <span class="contact-label">YouTube</span>
-          <span class="contact-value">@alpha.blender3d</span>
-        </a>
-
-        <a class="contact-card" href="mailto:admin@alphaff.gg">
-          <span class="contact-icon social-icon social-icon--email" aria-hidden="true"><img src="assets/icons/email.svg" width="24" height="24" alt=""></span>
-          <span class="contact-label">Email</span>
-          <span class="contact-value">admin@alphaff.gg</span>
-        </a>
-      </div>
-
-      <!-- ---------- Feedback form ---------- -->
-      <section class="fb-block">
-        <h3 class="fb-title" data-i18n="contact.fbTitle">Tell me what you think</h3>
-        <p class="fb-sub" data-i18n="contact.fbSub">Spotted something broken, or confusing on your phone? Tell me and I will fix it.</p>
-
-        <form class="fb-form" id="fbForm" novalidate>
-          <label class="fb-label" for="fbMsg" data-i18n="contact.fbMsgLabel">Your message</label>
-          <textarea class="fb-input fb-textarea" id="fbMsg" name="message" rows="5" required
-                    data-i18n-attr="placeholder:contact.fbMsgPh"
-                    placeholder="What worked, what did not"></textarea>
-
-          <label class="fb-label" for="fbEmail" data-i18n="contact.fbEmailLabel">Your email (optional)</label>
-          <input class="fb-input" id="fbEmail" name="email" type="email" autocomplete="email"
-                 data-i18n-attr="placeholder:contact.fbEmailPh"
-                 placeholder="So I can reply">
-
-          <!-- Spam trap. Real people never see this; bots fill it in. -->
-          <input class="fb-honey" id="fbHoney" type="text" name="_honey"
-                 tabindex="-1" autocomplete="off" aria-hidden="true">
-
-          <button class="button fb-send" id="fbSend" type="submit" data-i18n="contact.fbSend">Send</button>
-          <p class="fb-status" id="fbStatus" role="status" hidden></p>
-        </form>
-      </section>
-
-      <p class="contact-note" data-i18n="contact.note">Fastest reply is usually on TikTok.</p>
     </section>
 
   </main>
@@ -809,7 +566,6 @@
   </footer>
 
   <script src="model-search.js" defer></script>
-  <script src="app.js?v=20261009-intro2" defer></script>
-  <script src="forms.js?v=20261005-char2" defer></script>
+  <script src="app.js?v=20261010-simple" defer></script>
 </body>
 </html>

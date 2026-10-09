@@ -219,6 +219,31 @@ html.reduce-motion { scroll-behavior: auto; }
   .home-artwork figcaption { padding: 14px; }
 }
 
+/* A shorter home page and direct email contact. */
+.home-showcase .subtitle { font-size: 1.15rem; line-height: 1.7; color: var(--text-dim); }
+.home-showcase .hero-actions { max-width: none; margin-inline: 0; }
+.home-about { display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 30px 0; border-top: 1px solid var(--border); }
+.home-about h2 { margin: 0 0 10px; font-size: 1.3rem; }
+.home-about p { max-width: 65ch; margin: 0; color: var(--text-dim); line-height: 1.7; }
+.home-about > .button { flex-shrink: 0; }
+.email-card { max-width: 740px; margin: 28px auto 48px; padding: clamp(24px, 5vw, 48px); border: 1px solid var(--border); border-radius: 20px; background: var(--surface, #101c2c); }
+.email-card-icon { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 16px; background: #53c8ff15; margin-bottom: 24px; }
+.email-card h3 { font-size: clamp(1.5rem, 4vw, 2rem); margin: 0 0 12px; }
+.email-lead, .email-guidance p { color: var(--text-dim); line-height: 1.75; }
+.email-address { display: inline-block; color: var(--accent); font-size: clamp(1.3rem, 5vw, 1.9rem); margin: 12px 0 26px; overflow-wrap: anywhere; text-underline-offset: 6px; }
+.email-guidance { border-top: 1px solid var(--border); padding: 24px 0 10px; }
+.email-guidance h4 { margin: 0; font-size: 1rem; }
+.email-guidance p { margin: 12px 0; }
+.email-card > .button { margin-top: 12px; }
+.email-hint, .email-reply { font-size: .85rem; color: var(--text-dim); line-height: 1.65; }
+.email-hint { margin: 12px 0 22px; }
+.email-reply { border-top: 1px solid var(--border); padding-top: 20px; margin-bottom: 0; }
+@media (max-width: 640px) {
+  .home-about { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .email-card { margin-top: 20px; }
+  .email-card > .button { width: 100%; }
+}
+
 /* Transparent chrome wordmark, with the site name retained for context. */
 .brand-wordmark { align-items: center; gap: 4px; }
 .brand-wordmark img { display: block; width: 190px; height: auto; flex-shrink: 0; }

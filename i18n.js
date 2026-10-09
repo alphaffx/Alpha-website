@@ -1394,6 +1394,114 @@
     ['eyebrow', 'courses', 'note', 'edits'].forEach((key, i) => { STRINGS[code]['home.' + key] = values[i]; });
   });
 
+  const simplePages = {
+  "en": {
+    "simple.intro": "Download 3D characters, learn Blender, and bring your ideas to life.",
+    "simple.aboutTitle": "Made by ALPHA",
+    "simple.about": "I create Free Fire characters and animations in Blender. Have a project in mind? Tell me about it by email.",
+    "simple.emailTitle": "Have a project in mind?",
+    "simple.emailLead": "Send me a short, clear email about what you would like to create.",
+    "simple.include": "What to include",
+    "simple.details": "Tell me which character or project you have in mind and what you need. For paid work, include your budget and preferred deadline.",
+    "simple.references": "Start with a description. If the project is a fit, I’ll reply and explain which reference files I need.",
+    "simple.email": "Email me",
+    "simple.emailHint": "Opens your email app. You can also copy the address above.",
+    "simple.reply": "I reply to requests I can take on. Sending an email does not guarantee a free model or a place in the library."
+  },
+  "fr": {
+    "simple.intro": "Téléchargez des personnages 3D, apprenez Blender et donnez vie à vos idées.",
+    "simple.aboutTitle": "Créé par ALPHA",
+    "simple.about": "Je crée des personnages Free Fire et des animations dans Blender. Un projet en tête ? Parlez-m’en par e-mail.",
+    "simple.emailTitle": "Un projet en tête ?",
+    "simple.emailLead": "Envoyez-moi un e-mail court et clair pour expliquer ce que vous souhaitez créer.",
+    "simple.include": "Que faut-il préciser ?",
+    "simple.details": "Décrivez le personnage ou le projet et ce dont vous avez besoin. Pour un travail payant, indiquez votre budget et le délai souhaité.",
+    "simple.references": "Commencez par une description. Si le projet me convient, je vous répondrai en précisant les fichiers de référence nécessaires.",
+    "simple.email": "M’envoyer un e-mail",
+    "simple.emailHint": "Ouvre votre messagerie. Vous pouvez aussi copier l’adresse ci-dessus.",
+    "simple.reply": "Je réponds aux demandes que je peux accepter. Un e-mail ne garantit ni modèle gratuit ni ajout à la bibliothèque."
+  },
+  "pt": {
+    "simple.intro": "Baixe personagens 3D, aprenda Blender e dê vida às suas ideias.",
+    "simple.aboutTitle": "Criado por ALPHA",
+    "simple.about": "Crio personagens de Free Fire e animações no Blender. Tem um projeto em mente? Conte-me por e-mail.",
+    "simple.emailTitle": "Tem um projeto em mente?",
+    "simple.emailLead": "Envie um e-mail curto e claro sobre o que você gostaria de criar.",
+    "simple.include": "O que incluir",
+    "simple.details": "Descreva o personagem ou projeto e o que precisa. Para trabalhos pagos, inclua seu orçamento e o prazo desejado.",
+    "simple.references": "Comece com uma descrição. Se o projeto for adequado, responderei explicando quais arquivos de referência preciso.",
+    "simple.email": "Enviar e-mail",
+    "simple.emailHint": "Abre seu aplicativo de e-mail. Você também pode copiar o endereço acima.",
+    "simple.reply": "Respondo às solicitações que posso aceitar. Enviar um e-mail não garante um modelo gratuito nem inclusão na biblioteca."
+  },
+  "es": {
+    "simple.intro": "Descarga personajes 3D, aprende Blender y da vida a tus ideas.",
+    "simple.aboutTitle": "Creado por ALPHA",
+    "simple.about": "Creo personajes de Free Fire y animaciones en Blender. ¿Tienes un proyecto en mente? Cuéntamelo por correo.",
+    "simple.emailTitle": "¿Tienes un proyecto en mente?",
+    "simple.emailLead": "Envíame un correo breve y claro sobre lo que te gustaría crear.",
+    "simple.include": "Qué incluir",
+    "simple.details": "Describe el personaje o proyecto y lo que necesitas. Para trabajos de pago, incluye tu presupuesto y el plazo deseado.",
+    "simple.references": "Empieza con una descripción. Si el proyecto encaja, te responderé indicando qué archivos de referencia necesito.",
+    "simple.email": "Enviar correo",
+    "simple.emailHint": "Abre tu aplicación de correo. También puedes copiar la dirección de arriba.",
+    "simple.reply": "Respondo a las solicitudes que puedo aceptar. Enviar un correo no garantiza un modelo gratuito ni su inclusión en la biblioteca."
+  },
+  "id": {
+    "simple.intro": "Unduh karakter 3D, pelajari Blender, dan wujudkan idemu.",
+    "simple.aboutTitle": "Dibuat oleh ALPHA",
+    "simple.about": "Saya membuat karakter Free Fire dan animasi di Blender. Punya ide proyek? Ceritakan melalui email.",
+    "simple.emailTitle": "Punya ide proyek?",
+    "simple.emailLead": "Kirim email singkat dan jelas tentang apa yang ingin kamu buat.",
+    "simple.include": "Apa yang perlu disertakan",
+    "simple.details": "Jelaskan karakter atau proyek dan kebutuhanmu. Untuk pekerjaan berbayar, sertakan anggaran dan tenggat yang diinginkan.",
+    "simple.references": "Mulai dengan deskripsi. Jika proyeknya cocok, saya akan membalas dan menjelaskan file referensi yang dibutuhkan.",
+    "simple.email": "Kirim email",
+    "simple.emailHint": "Membuka aplikasi email. Kamu juga dapat menyalin alamat di atas.",
+    "simple.reply": "Saya membalas permintaan yang dapat saya terima. Mengirim email tidak menjamin model gratis atau penambahan ke koleksi."
+  },
+  "th": {
+    "simple.intro": "ดาวน์โหลดตัวละคร 3D เรียนรู้ Blender และทำไอเดียให้เป็นจริง",
+    "simple.aboutTitle": "สร้างโดย ALPHA",
+    "simple.about": "ฉันสร้างตัวละคร Free Fire และแอนิเมชันใน Blender มีโปรเจกต์ในใจไหม? เล่าให้ฟังทางอีเมลได้เลย",
+    "simple.emailTitle": "มีโปรเจกต์ในใจไหม?",
+    "simple.emailLead": "ส่งอีเมลสั้น ๆ และชัดเจนเกี่ยวกับสิ่งที่คุณต้องการสร้าง",
+    "simple.include": "ข้อมูลที่ควรระบุ",
+    "simple.details": "อธิบายตัวละครหรือโปรเจกต์และสิ่งที่ต้องการ สำหรับงานที่มีค่าจ้าง โปรดระบุงบประมาณและกำหนดเวลาที่ต้องการ",
+    "simple.references": "เริ่มด้วยคำอธิบาย หากโปรเจกต์เหมาะสม ฉันจะตอบกลับและแจ้งว่าต้องใช้ไฟล์อ้างอิงอะไรบ้าง",
+    "simple.email": "ส่งอีเมล",
+    "simple.emailHint": "เปิดแอปอีเมลของคุณ หรือคัดลอกที่อยู่อีเมลด้านบนได้",
+    "simple.reply": "ฉันจะตอบกลับคำขอที่สามารถรับได้ การส่งอีเมลไม่ได้รับประกันว่าจะได้โมเดลฟรีหรือเพิ่มในคลัง"
+  },
+  "vi": {
+    "simple.intro": "Tải nhân vật 3D, học Blender và biến ý tưởng thành hiện thực.",
+    "simple.aboutTitle": "Được tạo bởi ALPHA",
+    "simple.about": "Tôi tạo nhân vật Free Fire và hoạt hình trong Blender. Bạn có ý tưởng dự án? Hãy chia sẻ qua email.",
+    "simple.emailTitle": "Bạn có ý tưởng dự án?",
+    "simple.emailLead": "Gửi email ngắn gọn, rõ ràng về sản phẩm bạn muốn tạo.",
+    "simple.include": "Thông tin cần có",
+    "simple.details": "Mô tả nhân vật hoặc dự án và nhu cầu của bạn. Với công việc có trả phí, hãy nêu ngân sách và thời hạn mong muốn.",
+    "simple.references": "Bắt đầu bằng phần mô tả. Nếu dự án phù hợp, tôi sẽ phản hồi và cho biết cần những tệp tham khảo nào.",
+    "simple.email": "Gửi email",
+    "simple.emailHint": "Mở ứng dụng email của bạn. Bạn cũng có thể sao chép địa chỉ ở trên.",
+    "simple.reply": "Tôi phản hồi các yêu cầu có thể nhận. Gửi email không đảm bảo có mô hình miễn phí hoặc được thêm vào thư viện."
+  },
+  "ar": {
+    "simple.intro": "حمّل شخصيات ثلاثية الأبعاد، وتعلّم Blender، وحوّل أفكارك إلى واقع.",
+    "simple.aboutTitle": "من إبداع ALPHA",
+    "simple.about": "أصمّم شخصيات Free Fire وأصنع الرسوم المتحركة في Blender. لديك مشروع؟ أخبرني عنه عبر البريد الإلكتروني.",
+    "simple.emailTitle": "لديك مشروع في بالك؟",
+    "simple.emailLead": "أرسل لي رسالة قصيرة وواضحة تشرح ما ترغب في إنشائه.",
+    "simple.include": "ما الذي ينبغي ذكره؟",
+    "simple.details": "صف الشخصية أو المشروع وما تحتاجه. للأعمال المدفوعة، اذكر ميزانيتك والموعد المطلوب.",
+    "simple.references": "ابدأ بوصف للمشروع. إذا كان مناسبًا، سأرد وأوضح الملفات المرجعية التي أحتاجها.",
+    "simple.email": "راسلني عبر البريد",
+    "simple.emailHint": "يفتح تطبيق البريد لديك. يمكنك أيضًا نسخ العنوان أعلاه.",
+    "simple.reply": "أرد على الطلبات التي أستطيع قبولها. إرسال رسالة لا يضمن نموذجًا مجانيًا أو إضافته إلى المكتبة."
+  }
+};
+  Object.entries(simplePages).forEach(([code, values]) => Object.assign(STRINGS[code], values));
+
   const STORE_KEY = 'alpha.lang';
   let current = 'en';
 
