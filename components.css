@@ -202,10 +202,12 @@ html.reduce-motion { scroll-behavior: auto; }
 .home-visual-cards .card h3 { margin: 20px 24px 8px; }
 .home-visual-cards .card p { margin: 0 24px 20px; }
 .home-visual-cards .card .tool-link { margin: auto 24px 0; align-self: flex-start; }
+.home-visual-cards .card.card--text-only { padding: 24px; justify-content: center; }
+.home-visual-cards .card--text-only h3 { margin: 0 0 8px; }
+.home-visual-cards .card--text-only p { margin: 0 0 20px; }
+.home-visual-cards .card--text-only .tool-link { margin: 0; }
 .home-visual-cards button.tool-link, .home-project-link { border: 0; padding: 0; background: transparent; font: inherit; color: var(--accent); cursor: pointer; text-align: start; min-height: 44px; }
-.service-preview, .service-models { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-bottom: 1px solid var(--border); }
-.service-models { display: flex; align-items: center; justify-content: center; background: radial-gradient(ellipse at center, #204766, #081725 75%); overflow: hidden; }
-.service-models img { width: 30%; height: 100%; object-fit: contain; }
+.service-preview { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-bottom: 1px solid var(--border); }
 @media (max-width: 900px) {
   .home-showcase { grid-template-columns: 1fr; padding-top: 12px; gap: 28px; }
   .home-showcase .title { font-size: clamp(2.7rem, 8vw, 4.5rem); max-width: 18ch; }
