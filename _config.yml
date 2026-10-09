@@ -1,0 +1,4 @@
+# Keep video project sources and intermediate renders in Git, out of the site.
+# The homepage plays media/showreel.mp4, which remains published.
+exclude:
+  - video-intro

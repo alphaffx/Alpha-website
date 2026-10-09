@@ -58,7 +58,7 @@ function Get-ExistingEntries {
     $map = @{}
     if (Test-Path -LiteralPath $Manifest) {
         try {
-            $old = Get-Content -LiteralPath $Manifest -Raw | ConvertFrom-Json
+            $old = Get-Content -LiteralPath $Manifest -Raw -Encoding UTF8 | ConvertFrom-Json
             foreach ($m in $old.models) {
                 if ($m -and $m.id) { $map[[string]$m.id] = $m }
             }
@@ -153,7 +153,7 @@ function Write-PresetManifest {
     $previous = @{}
     if (Test-Path -LiteralPath $manifest) {
         try {
-            $old = Get-Content -LiteralPath $manifest -Raw | ConvertFrom-Json
+            $old = Get-Content -LiteralPath $manifest -Raw -Encoding UTF8 | ConvertFrom-Json
             foreach ($p in $old.presets) { if ($p -and $p.file) { $previous[[string]$p.file] = $p } }
         } catch { }
     }
@@ -205,7 +205,7 @@ function Write-StoreManifest {
     $manifest = Join-Path $Root 'store.json'
     if (-not (Test-Path -LiteralPath $manifest)) { return -1 }
 
-    try { $data = Get-Content -LiteralPath $manifest -Raw | ConvertFrom-Json } catch { return -1 }
+    try { $data = Get-Content -LiteralPath $manifest -Raw -Encoding UTF8 | ConvertFrom-Json } catch { return -1 }
     if (-not $data.items) { return -1 }
 
     $total = 0

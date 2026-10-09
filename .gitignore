@@ -14,3 +14,6 @@ review-auto-preview.webp
 backup-before-*/
 
 .waitlist-build/
+
+# Local character export staging, reports and original-file backups
+.character-import/

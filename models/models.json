@@ -1,18 +1,82 @@
 {
-  "generated": "2026-09-27T23:56:26",
+  "generated": "2026-10-09T16:14:52",
   "models": [
+    {
+      "id": "alice ff",
+      "name": "Alice Ff",
+      "kind": "3D model",
+      "glb": "13.2 MB",
+      "blend": "14.2 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 10,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "alicia",
+      "name": "Alicia",
+      "kind": "3D model",
+      "glb": "2.9 MB",
+      "blend": "4.1 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 9,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
     {
       "id": "alpha",
       "name": "Alpha",
       "kind": "3D model",
       "glb": "6.1 MB",
-      "blend": "6.6 MB",
+      "blend": "6.4 MB",
       "hasBlend": true,
       "tier": "free",
       "price": "",
       "glbDetails": {
         "rigged": false,
         "embeddedTextures": 7,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "astral",
+      "name": "Astral",
+      "kind": "3D model",
+      "glb": "1.5 MB",
+      "blend": "1.6 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 6,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "barbie",
+      "name": "Barbie",
+      "kind": "3D model",
+      "glb": "8.0 MB",
+      "blend": "9.1 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 9,
         "externalTextures": 0,
         "animations": []
       }
@@ -22,7 +86,7 @@
       "name": "Beesto",
       "kind": "3D model",
       "glb": "7.3 MB",
-      "blend": "9.5 MB",
+      "blend": "9.2 MB",
       "hasBlend": true,
       "tier": "free",
       "price": "",
@@ -34,11 +98,59 @@
       }
     },
     {
+      "id": "betty",
+      "name": "Betty",
+      "kind": "3D model",
+      "glb": "12.1 MB",
+      "blend": "11.6 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 12,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "blast",
+      "name": "Blast",
+      "kind": "3D model",
+      "glb": "7.4 MB",
+      "blend": "9.7 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 7,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "boy matha bee",
+      "name": "Boy Matha Bee",
+      "kind": "3D model",
+      "glb": "9.2 MB",
+      "blend": "9.8 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 9,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
       "id": "camy",
       "name": "Camy",
       "kind": "3D model",
       "glb": "2.7 MB",
-      "blend": "4.1 MB",
+      "blend": "3.8 MB",
       "hasBlend": true,
       "tier": "free",
       "price": "",
@@ -54,7 +166,7 @@
       "name": "Dms",
       "kind": "3D model",
       "glb": "1.2 MB",
-      "blend": "6.7 MB",
+      "blend": "1.3 MB",
       "hasBlend": true,
       "tier": "free",
       "price": "",
@@ -70,13 +182,125 @@
       "name": "Durento",
       "kind": "3D model",
       "glb": "8.0 MB",
-      "blend": "10.1 MB",
+      "blend": "9.8 MB",
       "hasBlend": true,
       "tier": "free",
       "price": "",
       "glbDetails": {
         "rigged": false,
         "embeddedTextures": 7,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "femal methah bee",
+      "name": "Femal Methah Bee",
+      "kind": "3D model",
+      "glb": "9.9 MB",
+      "blend": "10.8 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 9,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "female",
+      "name": "Female",
+      "kind": "3D model",
+      "glb": "12.1 MB",
+      "blend": "11.6 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 12,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "flepz",
+      "name": "Flepz",
+      "kind": "3D model",
+      "glb": "7.5 MB",
+      "blend": "8.2 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 8,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "football alpha",
+      "name": "Football Alpha",
+      "kind": "3D model",
+      "glb": "7.2 MB",
+      "blend": "9.6 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 9,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "football blast",
+      "name": "Football Blast",
+      "kind": "3D model",
+      "glb": "6.8 MB",
+      "blend": "9.2 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 8,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "free fire hinata",
+      "name": "Free Fire Hinata",
+      "kind": "3D model",
+      "glb": "480 KB",
+      "blend": "574 KB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 3,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "free fire naruto",
+      "name": "Free Fire Naruto",
+      "kind": "3D model",
+      "glb": "515 KB",
+      "blend": "563 KB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 5,
         "externalTextures": 0,
         "animations": []
       }
@@ -98,6 +322,54 @@
       }
     },
     {
+      "id": "hina",
+      "name": "Hina",
+      "kind": "3D model",
+      "glb": "12.8 MB",
+      "blend": "13.3 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 8,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "huyma",
+      "name": "Huyma",
+      "kind": "3D model",
+      "glb": "2.7 MB",
+      "blend": "3.5 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 8,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "jamille",
+      "name": "Jamille",
+      "kind": "3D model",
+      "glb": "6.2 MB",
+      "blend": "6.9 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 6,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
       "id": "Jaxmax",
       "name": "Jaxmax",
       "kind": "3D model",
@@ -114,11 +386,43 @@
       }
     },
     {
+      "id": "jessica",
+      "name": "Jessica",
+      "kind": "3D model",
+      "glb": "2.0 MB",
+      "blend": "2.0 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 7,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "jinx",
+      "name": "Jinx",
+      "kind": "3D model",
+      "glb": "2.2 MB",
+      "blend": "1.5 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 12,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
       "id": "jokkie",
       "name": "Jokkie",
       "kind": "3D model",
       "glb": "4.0 MB",
-      "blend": "4.8 MB",
+      "blend": "4.5 MB",
       "hasBlend": true,
       "tier": "free",
       "price": "",
@@ -134,7 +438,7 @@
       "name": "Kanzaki",
       "kind": "3D model",
       "glb": "518 KB",
-      "blend": "991 KB",
+      "blend": "672 KB",
       "hasBlend": true,
       "tier": "free",
       "price": "",
@@ -146,17 +450,81 @@
       }
     },
     {
+      "id": "kaysen",
+      "name": "Kaysen",
+      "kind": "3D model",
+      "glb": "6.0 MB",
+      "blend": "6.7 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 10,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "kingred.001",
+      "name": "Kingred.001",
+      "kind": "3D model",
+      "glb": "1.2 MB",
+      "blend": "1.2 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 5,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "kingred",
+      "name": "Kingred",
+      "kind": "3D model",
+      "glb": "1.3 MB",
+      "blend": "1.3 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 5,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
       "id": "le chris",
       "name": "Le Chris",
       "kind": "3D model",
       "glb": "7.8 MB",
-      "blend": "14.5 MB",
+      "blend": "8.4 MB",
       "hasBlend": true,
       "tier": "free",
       "price": "",
       "glbDetails": {
         "rigged": false,
         "embeddedTextures": 7,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "le christ wife",
+      "name": "Le Christ Wife",
+      "kind": "3D model",
+      "glb": "11.1 MB",
+      "blend": "11.6 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 8,
         "externalTextures": 0,
         "animations": []
       }
@@ -178,6 +546,102 @@
       }
     },
     {
+      "id": "male_fullbody_2",
+      "name": "Male Fullbody 2",
+      "kind": "3D model",
+      "glb": "6.0 MB",
+      "blend": "6.4 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 7,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "markush",
+      "name": "Markush",
+      "kind": "3D model",
+      "glb": "1.2 MB",
+      "blend": "1.2 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 6,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "marou friends",
+      "name": "Marou Friends",
+      "kind": "3D model",
+      "glb": "6.4 MB",
+      "blend": "6.9 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 7,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "marou wife",
+      "name": "Marou Wife",
+      "kind": "3D model",
+      "glb": "12.7 MB",
+      "blend": "13.9 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 10,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "marou",
+      "name": "Marou",
+      "kind": "3D model",
+      "glb": "8.7 MB",
+      "blend": "9.5 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 7,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "matah bee",
+      "name": "Matah Bee",
+      "kind": "3D model",
+      "glb": "8.0 MB",
+      "blend": "8.8 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 9,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
       "id": "maxxo",
       "name": "Maxxo",
       "kind": "3D model",
@@ -194,17 +658,49 @@
       }
     },
     {
+      "id": "methat bee boy 2",
+      "name": "Methat Bee Boy 2",
+      "kind": "3D model",
+      "glb": "7.1 MB",
+      "blend": "8.9 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 7,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
       "id": "miaou",
       "name": "Miaou",
       "kind": "3D model",
       "glb": "2.9 MB",
-      "blend": "3.7 MB",
+      "blend": "3.1 MB",
       "hasBlend": true,
       "tier": "free",
       "price": "",
       "glbDetails": {
         "rigged": false,
         "embeddedTextures": 14,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "mira",
+      "name": "Mira",
+      "kind": "3D model",
+      "glb": "9.9 MB",
+      "blend": "10.7 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 8,
         "externalTextures": 0,
         "animations": []
       }
@@ -226,11 +722,43 @@
       }
     },
     {
-      "id": "raynox",
-      "name": "Raynox",
+      "id": "moses ff",
+      "name": "Moses Ff",
       "kind": "3D model",
-      "glb": "4.3 MB",
-      "blend": "5.1 MB",
+      "glb": "6.2 MB",
+      "blend": "8.1 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 7,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "new marou",
+      "name": "New Marou",
+      "kind": "3D model",
+      "glb": "7.8 MB",
+      "blend": "8.2 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 7,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "new morrou wife",
+      "name": "New Morrou Wife",
+      "kind": "3D model",
+      "glb": "9.4 MB",
+      "blend": "9.9 MB",
       "hasBlend": true,
       "tier": "free",
       "price": "",
@@ -242,11 +770,171 @@
       }
     },
     {
+      "id": "presy",
+      "name": "Presy",
+      "kind": "3D model",
+      "glb": "4.1 MB",
+      "blend": "5.5 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 6,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "ramdom girl 1",
+      "name": "Ramdom Girl 1",
+      "kind": "3D model",
+      "glb": "12.0 MB",
+      "blend": "12.7 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 9,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "ramdom girl 2",
+      "name": "Ramdom Girl 2",
+      "kind": "3D model",
+      "glb": "8.8 MB",
+      "blend": "10.0 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 10,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "ramdom girl 3",
+      "name": "Ramdom Girl 3",
+      "kind": "3D model",
+      "glb": "12.6 MB",
+      "blend": "13.6 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 9,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "ramdom girl 4",
+      "name": "Ramdom Girl 4",
+      "kind": "3D model",
+      "glb": "13.6 MB",
+      "blend": "14.6 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 10,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "ramdom girl 5",
+      "name": "Ramdom Girl 5",
+      "kind": "3D model",
+      "glb": "9.3 MB",
+      "blend": "10.3 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 10,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "raynox",
+      "name": "Raynox",
+      "kind": "3D model",
+      "glb": "4.1 MB",
+      "blend": "4.8 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 8,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "rboy",
+      "name": "Rboy",
+      "kind": "3D model",
+      "glb": "8.4 MB",
+      "blend": "10.0 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 10,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "romero",
+      "name": "Romero",
+      "kind": "3D model",
+      "glb": "2.8 MB",
+      "blend": "3.0 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 15,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "rosa",
+      "name": "Rosa",
+      "kind": "3D model",
+      "glb": "12.7 MB",
+      "blend": "13.4 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 9,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
       "id": "rroli.n",
       "name": "Rroli.n",
       "kind": "3D model",
       "glb": "1.8 MB",
-      "blend": "2.0 MB",
+      "blend": "1.9 MB",
       "hasBlend": true,
       "tier": "free",
       "price": "",
@@ -274,11 +962,59 @@
       }
     },
     {
+      "id": "tung alpha",
+      "name": "Tung Alpha",
+      "kind": "3D model",
+      "glb": "6.1 MB",
+      "blend": "6.4 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 4,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "tung durento",
+      "name": "Tung Durento",
+      "kind": "3D model",
+      "glb": "8.3 MB",
+      "blend": "10.4 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 6,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
+      "id": "tung miaou",
+      "name": "Tung Miaou",
+      "kind": "3D model",
+      "glb": "8.6 MB",
+      "blend": "11.3 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 11,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
       "id": "tung tung sahur",
       "name": "Tung Tung Sahur",
       "kind": "3D model",
       "glb": "3.1 MB",
-      "blend": "3.0 MB",
+      "blend": "2.7 MB",
       "hasBlend": true,
       "tier": "free",
       "price": "",
@@ -293,14 +1029,14 @@
       "id": "zorro",
       "name": "Zorro",
       "kind": "3D model",
-      "glb": "1.5 MB",
-      "blend": "2.7 MB",
+      "glb": "5.5 MB",
+      "blend": "6.6 MB",
       "hasBlend": true,
       "tier": "free",
       "price": "",
       "glbDetails": {
         "rigged": false,
-        "embeddedTextures": 1,
+        "embeddedTextures": 7,
         "externalTextures": 0,
         "animations": []
       }
