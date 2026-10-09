@@ -98,18 +98,32 @@
        artwork once that file exists; data saver and reduced motion keep
        the still artwork. A missing file just leaves the artwork. */
     const reel = document.querySelector('.home-reel');
+    const reelSound = document.querySelector('.reel-sound');
     let reelReady = false;
+    if (reel && reelSound) {
+      reelSound.addEventListener('click', function () {
+        const turnOn = reel.muted;
+        reel.muted = !turnOn;
+        if (turnOn) { reel.currentTime = 0; const p = reel.play(); if (p && p.catch) p.catch(function () {}); }
+        reelSound.setAttribute('aria-pressed', turnOn ? 'true' : 'false');
+        reelSound.setAttribute('aria-label', turnOn ? 'Turn sound off' : 'Turn sound on');
+        reelSound.firstElementChild.textContent = turnOn ? '🔊' : '🔇';
+        reelSound.classList.toggle('is-on', turnOn);
+      });
+    }
     if (reel) {
       reel.addEventListener('loadeddata', function () { reelReady = true; applyReel(); }, { once: true });
       reel.addEventListener('error', function () { reelReady = false; reel.hidden = true; });
     }
     function applyReel() {
       if (!reel) return;
-      const art = reel.nextElementSibling;
+      const art = reel.parentElement.querySelector(':scope > img');
       const allowed = !settings.dataSaver && !settings.reduceMotion;
       if (allowed && !reelReady && reel.preload === 'none') { reel.preload = 'auto'; reel.load(); }
       const show = allowed && reelReady;
       reel.hidden = !show;
+      if (reelSound) reelSound.hidden = !show;
+      if (!show && !reel.muted) { reel.muted = true; if (reelSound) { reelSound.classList.remove('is-on'); reelSound.firstElementChild.textContent = '🔇'; reelSound.setAttribute('aria-pressed', 'false'); reelSound.setAttribute('aria-label', 'Turn sound on'); } }
       if (art) art.hidden = show;
       if (show) { const p = reel.play(); if (p && p.catch) p.catch(function () {}); }
       else reel.pause();

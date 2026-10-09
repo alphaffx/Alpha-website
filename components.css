@@ -192,7 +192,7 @@ html.reduce-motion { scroll-behavior: auto; }
 .home-eyebrow { color: var(--accent); font-size: .75rem; font-weight: 700; letter-spacing: .16em; }
 .home-course-note { color: var(--text-dim); font-size: .82rem; margin: 16px 0 8px; }
 .home-project-link { margin-top: 0; }
-.home-artwork { min-width: 0; margin: 0; overflow: hidden; border: 1px solid #31516b; border-radius: 20px; background: #071523; box-shadow: 0 24px 70px #0006; }
+.home-artwork { position: relative; min-width: 0; margin: 0; overflow: hidden; border: 1px solid #31516b; border-radius: 20px; background: #071523; box-shadow: 0 24px 70px #0006; }
 .home-artwork > img, .home-artwork > video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
 .home-artwork > [hidden] { display: none; }
 .home-artwork figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 20px; font-size: .8rem; }
@@ -302,3 +302,12 @@ html.high-contrast .card, html.high-contrast .tool, html.high-contrast .setting-
 .redeem-soon .button:disabled { opacity: .65; cursor: not-allowed; }
 .redeem-soon-note { font-size: .85rem; margin: 14px 0 0; }
 @media (max-width: 600px) { .redeem-soon-details { grid-template-columns: 1fr; gap: 14px; } .redeem-soon .button { width: 100%; } }
+
+/* Sound toggle on the home showreel */
+.reel-sound { position: absolute; top: 14px; right: 14px; z-index: 2; width: 48px; height: 48px; display: grid; place-items: center;
+  font-size: 1.3rem; line-height: 1; color: #dff8ff; background: rgba(3,10,22,.72); border: 1px solid #3984b4; border-radius: 50%;
+  cursor: pointer; box-shadow: 0 0 18px #008dff33; backdrop-filter: blur(6px); transition: transform .2s var(--ease), box-shadow .2s; }
+.reel-sound:hover { transform: scale(1.08); box-shadow: 0 0 26px #0095ff66; }
+.reel-sound:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.reel-sound.is-on { background: linear-gradient(135deg,#a6efff,#38b5ff); color: #031a29; border-color: #a6efff; }
+.reel-sound[hidden] { display: none; }
