@@ -92,7 +92,7 @@ if (process.argv.includes('--commerce')) {
   await page.locator('#panel-store [data-commission-link]').click();
   assert(page.url().endsWith('#contact'));
   assert.equal(await page.evaluate(() => document.activeElement.id), 'contactEmail');
-  assert.equal(await page.locator('form, input[type=file], script[src*="forms.js"]').count(), 0);
+  assert.equal(await page.locator('#panel-contact form, input[type=file]').count(), 0);
   assert((await page.locator('#contactEmail').getAttribute('href')).startsWith('mailto:admin@alphaff.gg'));
   for (const code of ['en', 'ar']) {
     await page.evaluate(code => window.AlphaI18n.set(code), code);

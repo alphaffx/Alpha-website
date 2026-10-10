@@ -219,6 +219,11 @@ html.reduce-motion { scroll-behavior: auto; }
   .home-artwork figcaption { padding: 14px; }
 }
 
+.course-sale { margin: 0 0 28px; overflow: hidden; border: 1px solid var(--border); border-radius: 18px; background: var(--surface); }
+.course-sale img { display: block; width: 100%; height: auto; }
+.course-sale figcaption { display: flex; flex-wrap: wrap; gap: 12px; padding: 18px; }
+@media (max-width: 640px) { .course-sale figcaption > a { width: 100%; white-space: normal; } }
+
 /* A shorter home page and direct email contact. */
 .home-showcase .subtitle { font-size: 1.15rem; line-height: 1.7; color: var(--text-dim); }
 .home-showcase .hero-actions { max-width: none; margin-inline: 0; }

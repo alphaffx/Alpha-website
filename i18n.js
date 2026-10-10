@@ -1598,6 +1598,52 @@
 };
   Object.entries(simplePages).forEach(([code, values]) => Object.assign(STRINGS[code], values));
 
+  const saleStrings = {
+  "en": [
+    "Complete Free Fire to Blender course: previously $84.99, now $19.99 USD. 76% off. Choose the English or French edition.",
+    "Complete course · English",
+    "Complete course · French"
+  ],
+  "fr": [
+    "Formation complète Free Fire vers Blender : auparavant 84,99 $, maintenant 19,99 $ US. Réduction de 76 %. Choisissez la version anglaise ou française.",
+    "Formation complète · Anglais",
+    "Formation complète · Français"
+  ],
+  "pt": [
+    "Curso completo Free Fire para Blender: de US$ 84,99 por US$ 19,99. 76% de desconto. Escolha a edição em inglês ou francês.",
+    "Curso completo · Inglês",
+    "Curso completo · Francês"
+  ],
+  "es": [
+    "Curso completo de Free Fire a Blender: antes 84,99 USD, ahora 19,99 USD. 76 % de descuento. Elige la edición en inglés o francés.",
+    "Curso completo · Inglés",
+    "Curso completo · Francés"
+  ],
+  "id": [
+    "Kursus lengkap Free Fire ke Blender: sebelumnya US$84,99, sekarang US$19,99. Diskon 76%. Pilih edisi bahasa Inggris atau Prancis.",
+    "Kursus lengkap · Inggris",
+    "Kursus lengkap · Prancis"
+  ],
+  "th": [
+    "คอร์สเต็ม Free Fire สู่ Blender จาก 84.99 เหลือ 19.99 ดอลลาร์สหรัฐ ลด 76% เลือกฉบับภาษาอังกฤษหรือฝรั่งเศส",
+    "คอร์สเต็ม · ภาษาอังกฤษ",
+    "คอร์สเต็ม · ภาษาฝรั่งเศส"
+  ],
+  "vi": [
+    "Khóa học đầy đủ Free Fire sang Blender: trước đây 84,99 USD, nay 19,99 USD. Giảm 76%. Chọn bản tiếng Anh hoặc tiếng Pháp.",
+    "Khóa học đầy đủ · Tiếng Anh",
+    "Khóa học đầy đủ · Tiếng Pháp"
+  ],
+  "ar": [
+    "دورة Free Fire إلى Blender الكاملة: سابقًا 84.99 دولارًا، الآن 19.99 دولارًا أمريكيًا. خصم 76٪. اختر النسخة الإنجليزية أو الفرنسية.",
+    "الدورة الكاملة · الإنجليزية",
+    "الدورة الكاملة · الفرنسية"
+  ]
+};
+  Object.entries(saleStrings).forEach(([code, values]) => {
+    ['offer', 'english', 'french'].forEach((key, i) => { STRINGS[code]['sale.' + key] = values[i]; });
+  });
+
   const STORE_KEY = 'alpha.lang';
   let current = 'en';
 
