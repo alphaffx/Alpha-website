@@ -80,12 +80,13 @@
   });
   bind({
     id: 'learnForm', buttonId: 'learnSend', statusId: 'learnStatus',
-    subject: 'alphaff.gg - class waitlist', success: 'learn.sent', error: 'learn.error',
+    subject: 'alphaff.gg - news signup', success: 'news.sent', error: 'news.error',
     payload: form => ({
       email: form.elements.email.value,
-      interest: 'Learn with ALPHA — English edition waitlist',
-      consent: 'Requested class launch emails; may opt out by replying.',
-      consent_at: new Date().toISOString()
+      interest: 'ALPHA news — course discounts, new courses, new store items, site updates',
+      consent: 'Requested ALPHA news emails (discounts, courses, store, site updates); may opt out by replying.',
+      consent_at: new Date().toISOString(),
+      _autoresponse: "Thanks for signing up to ALPHA's 3D Space news! You'll be the first to hear about course discounts, new maps and models, and site updates. To stop these emails at any time, just reply \"unsubscribe\". — ALPHA, alphaff.gg"
     })
   });
 

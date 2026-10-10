@@ -4,7 +4,7 @@
  * This endpoint accepts signups only. It never reads subscriber data to callers.
  */
 const WAITLIST_HEADERS = ['Email', 'Signed up (UTC)', 'Language', 'Consent', 'Consent recorded (UTC)', 'Status', 'Notes'];
-const WAITLIST_CONSENT = 'Requested class launch emails; may opt out by replying.';
+const WAITLIST_CONSENT = 'Requested ALPHA news emails (discounts, courses, store, site updates); may opt out by replying.';
 
 function doGet() {
   return waitlistResponse_(false); // No subscriber listing or email lookup endpoint.
@@ -18,7 +18,7 @@ function doPost(event) {
     const envelope = JSON.parse(raw);
     const data = envelope.form_data;
     if (!data || typeof data.email !== 'string' || data.consent !== WAITLIST_CONSENT ||
-        data.interest !== 'Learn with ALPHA — recorded classes') return waitlistResponse_(false);
+        data.interest !== 'ALPHA news — course discounts, new courses, new store items, site updates') return waitlistResponse_(false);
     const email = data.email.trim().toLowerCase();
     if (email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return waitlistResponse_(false);
     const languages = ['en', 'fr', 'pt', 'es', 'id', 'th', 'vi', 'ar'];

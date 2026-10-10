@@ -21,7 +21,10 @@ const server = http.createServer((req,res) => {
     const origin = `http://127.0.0.1:${server.address().port}`;
     await page.goto(origin);
     await page.waitForFunction(() => window.AlphaI18n && document.getElementById('year').textContent);
-    assert.equal(await page.locator('form, input[type=file], script[src*="forms.js"]').count(),0);
+    // Only the news sign-up form is allowed; no file uploads or other contact forms.
+    assert.equal(await page.locator('form').count(),1);
+    assert.equal(await page.locator('form#learnForm input[type=email]').count(),1);
+    assert.equal(await page.locator('input[type=file]').count(),0);
     assert.equal(await page.locator('#panel-home .hero-actions [data-goto]').count(),2);
     assert.equal(await page.locator('#panel-home iframe').count(),0);
     for (const lang of ['en','fr','pt','es','id','th','vi','ar']) {

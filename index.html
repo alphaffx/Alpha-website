@@ -80,9 +80,9 @@
           data-cf-beacon='{"token": "PASTE-YOUR-TOKEN-HERE"}'></script>
 
   <link rel="stylesheet" href="style.css?v=20261001e">
-  <link rel="stylesheet" href="components.css?v=20261010-simple">
+  <link rel="stylesheet" href="components.css?v=20261009-news">
 
-  <script src="i18n.js?v=20261010-simple"></script>
+  <script src="i18n.js?v=20261009-news"></script>
   <script>
     /* Apply reading settings before the page paints, so there is no flash. */
     (function () {
@@ -240,6 +240,33 @@
           <figcaption><span>ALPHA / 3D SPACE</span><a href="https://www.tiktok.com/@alphaff.freefire" target="_blank" rel="noopener noreferrer" data-i18n="home.edits">Watch my edits ↗</a></figcaption>
         </figure>
       </header>
+
+      <section class="home-news" id="news" aria-labelledby="newsTitle">
+        <div class="news-copy">
+          <p class="home-eyebrow" data-i18n="news.eyebrow">STAY IN THE LOOP</p>
+          <h2 id="newsTitle" data-i18n="news.title">Get ALPHA news first</h2>
+          <p class="news-lead" data-i18n="news.body">Be the first to know about course discounts, new maps and models in the store, and what's new on the site.</p>
+          <ul class="news-perks">
+            <li><span aria-hidden="true">🔻</span><span data-i18n="news.p1">Price drops &amp; discounts</span></li>
+            <li><span aria-hidden="true">🎓</span><span data-i18n="news.p2">New courses &amp; lessons</span></li>
+            <li><span aria-hidden="true">🗺️</span><span data-i18n="news.p3">New maps &amp; 3D models</span></li>
+            <li><span aria-hidden="true">✨</span><span data-i18n="news.p4">Site updates</span></li>
+          </ul>
+        </div>
+        <form class="news-form" id="learnForm" autocomplete="on">
+          <label class="news-label" for="newsEmail" data-i18n="news.email">Your email</label>
+          <div class="news-row">
+            <input class="news-input" id="newsEmail" name="email" type="email" required maxlength="254" autocomplete="email" inputmode="email" placeholder="you@example.com">
+            <button class="button news-send" id="learnSend" type="submit" data-i18n="news.button">Sign me up</button>
+          </div>
+          <label class="news-consent">
+            <input type="checkbox" name="news_consent" required>
+            <span data-i18n="news.consent">Yes, email me ALPHA news. I can unsubscribe anytime by replying “unsubscribe”.</span>
+          </label>
+          <input class="fb-honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <p class="fb-status" id="learnStatus" role="status" aria-live="polite" hidden></p>
+        </form>
+      </section>
 
       <section class="home-about" aria-labelledby="homeAboutTitle">
         <div>
@@ -567,5 +594,6 @@
 
   <script src="model-search.js" defer></script>
   <script src="app.js?v=20261010-simple" defer></script>
+  <script src="forms.js?v=20261009-news" defer></script>
 </body>
 </html>

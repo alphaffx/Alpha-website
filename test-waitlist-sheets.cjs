@@ -4,7 +4,7 @@ let held=false,releases=0;
 const sheet={getLastRow:()=>rows.length,getRange:(row,col,height,width)=>({getValues:()=>rows.slice(row-1,row-1+height).map(r=>r.slice(col-1,col-1+width)),setValues:values=>{assert(held);rows[row-1]=values[0];}})};
 const context={console:{error:()=>{}},PropertiesService:{getScriptProperties:()=>({getProperty:()=> 'private-sheet'})},LockService:{getScriptLock:()=>({waitLock:()=>{held=true;},hasLock:()=>held,releaseLock:()=>{held=false;releases++;}})},SpreadsheetApp:{openById:()=>({getSheetByName:()=>sheet}),flush:()=>{}},ContentService:{MimeType:{JSON:'json'},createTextOutput:text=>({setMimeType:()=>JSON.parse(text)})}};
 vm.createContext(context);vm.runInContext(fs.readFileSync('integrations/waitlist/Code.gs','utf8'),context);
-const data={email:'Person@Example.com',interest:'Learn with ALPHA — recorded classes',consent:'Requested class launch emails; may opt out by replying.',consent_at:'2026-09-24T12:00:00Z',page_language:'fr'};
+const data={email:'Person@Example.com',interest:'ALPHA news — course discounts, new courses, new store items, site updates',consent:'Requested ALPHA news emails (discounts, courses, store, site updates); may opt out by replying.',consent_at:'2026-09-24T12:00:00Z',page_language:'fr'};
 const submit=d=>context.doPost({postData:{contents:JSON.stringify({form_data:d})}});
 assert.equal(submit(data).success,true);assert.equal(rows.length,2);assert.equal(rows[1][0],'person@example.com');assert.equal(rows[1][2],'fr');
 rows[1][5]='Opted out';rows[1][6]='Requested by email';

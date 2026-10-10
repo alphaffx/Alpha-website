@@ -1,5 +1,7 @@
 # Private Google Sheets waitlist — connection pending
 
+> **Oct 9, 2026:** the sign-up is now the homepage **"Get ALPHA news first"** section (form `#learnForm`, `#news`). It collects general news consent: course discounts, new courses, new store items and site updates. Each sign-up is emailed to admin@alphaff.gg via FormSubmit, with an automatic thank-you reply to the subscriber.
+
 The existing inbox signup remains active. As checked on October 1, 2026, a private Google spreadsheet named **ALPHA class waitlist** exists, with a `Subscribers` tab and the headers below, but no subscriber rows. The live website has no webhook configured. The sheet's existence alone does not connect it to the signup form; setup steps 2–5 below remain necessary.
 
 ## Setup to finish after Google Drive is connected
