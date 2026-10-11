@@ -1644,6 +1644,68 @@
     ['offer', 'english', 'french'].forEach((key, i) => { STRINGS[code]['sale.' + key] = values[i]; });
   });
 
+  const newProductStrings = {
+  "en": [
+    "NEW IN THE STORE",
+    "Match poses and transfer mesh weights to a compatible Fortnite rig, right inside Blender.",
+    "Get ALPHA Auto Rig ↗",
+    "Browse the store",
+    "Requires a Mixamo-rigged character and a compatible Fortnite reference rig. Characters and rigs are not included."
+  ],
+  "fr": [
+    "NOUVEAU DANS LA BOUTIQUE",
+    "Aligne les poses et transfère les poids du maillage vers un rig Fortnite compatible, directement dans Blender.",
+    "Obtenir ALPHA Auto Rig ↗",
+    "Voir la boutique",
+    "Nécessite un personnage riggé avec Mixamo et un rig Fortnite de référence compatible. Personnages et rigs non inclus."
+  ],
+  "pt": [
+    "NOVO NA LOJA",
+    "Combine poses e transfira os pesos da malha para um rig Fortnite compatível, diretamente no Blender.",
+    "Obter ALPHA Auto Rig ↗",
+    "Explorar a loja",
+    "Requer um personagem com rig Mixamo e um rig Fortnite de referência compatível. Personagens e rigs não incluídos."
+  ],
+  "es": [
+    "NOVEDAD EN LA TIENDA",
+    "Ajusta poses y transfiere los pesos de la malla a un rig Fortnite compatible, directamente en Blender.",
+    "Conseguir ALPHA Auto Rig ↗",
+    "Explorar la tienda",
+    "Requiere un personaje con rig Mixamo y un rig Fortnite de referencia compatible. Personajes y rigs no incluidos."
+  ],
+  "id": [
+    "BARU DI TOKO",
+    "Cocokkan pose dan transfer bobot mesh ke rig Fortnite yang kompatibel, langsung di Blender.",
+    "Dapatkan ALPHA Auto Rig ↗",
+    "Jelajahi toko",
+    "Memerlukan karakter dengan rig Mixamo dan rig referensi Fortnite yang kompatibel. Karakter dan rig tidak disertakan."
+  ],
+  "th": [
+    "สินค้าใหม่ในร้าน",
+    "ปรับโพสให้ตรงกันและถ่ายโอนน้ำหนักเมชไปยังริก Fortnite ที่เข้ากันได้ โดยตรงใน Blender",
+    "รับ ALPHA Auto Rig ↗",
+    "ดูสินค้าในร้าน",
+    "ต้องมีตัวละครที่ริกด้วย Mixamo และริกอ้างอิง Fortnite ที่เข้ากันได้ ไม่รวมตัวละครและริก"
+  ],
+  "vi": [
+    "SẢN PHẨM MỚI",
+    "Khớp tư thế và chuyển trọng số lưới sang rig Fortnite tương thích, ngay trong Blender.",
+    "Mua ALPHA Auto Rig ↗",
+    "Khám phá cửa hàng",
+    "Cần nhân vật đã rig bằng Mixamo và rig tham chiếu Fortnite tương thích. Không bao gồm nhân vật và rig."
+  ],
+  "ar": [
+    "جديد في المتجر",
+    "طابق الوضعيات وانقل أوزان المجسم إلى هيكل Fortnite متوافق، مباشرةً داخل Blender.",
+    "احصل على ALPHA Auto Rig ↗",
+    "تصفح المتجر",
+    "يتطلب شخصية مجهزة بهيكل Mixamo وهيكل Fortnite مرجعيًا متوافقًا. الشخصيات والهياكل غير مشمولة."
+  ]
+};
+  Object.entries(newProductStrings).forEach(([code, values]) => {
+    ['badge', 'body', 'buy', 'store', 'note'].forEach((key, i) => { STRINGS[code]['newProduct.' + key] = values[i]; });
+  });
+
   const STORE_KEY = 'alpha.lang';
   let current = 'en';
 
