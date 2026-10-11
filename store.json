@@ -68,6 +68,17 @@
       "category": "classes"
     },
     {
+      "slug": "alpha-auto-rig",
+      "title": "ALPHA Auto Rig — Mixamo to Fortnite Rig Transfer",
+      "price": "$15",
+      "desc": "Match a Mixamo-rigged character to a compatible Fortnite reference, refine arms, fingers and legs, mirror bone rotations, and transfer mesh weights to the reference rig. Reversible previews and original-object backups. Requires an already rigged Mixamo character and a compatible Fortnite rig with a weighted reference mesh; characters and reference rigs are not included. Blender 4.2+; tested in 5.1.1. Manual pose or weight adjustments may be needed.",
+      "url": "https://alphaff.gumroad.com/l/fupwzw",
+      "images": [
+        "./media/store/alpha-auto-rig/1.webp"
+      ],
+      "category": "resources"
+    },
+    {
       "slug": "pro-hud",
       "title": "ALPHA'S PRO HUD: Layout + Sensitivity (Emulator)",
       "price": "$0.99",
@@ -91,6 +102,19 @@
         "./media/store/bermuda/3.webp",
         "./media/store/bermuda/4.webp",
         "./media/store/bermuda/5.webp"
+      ],
+      "category": "maps"
+    },
+    {
+      "slug": "peak-autumn",
+      "title": "Peak Autumn - Free Fire Map for Blender",
+      "price": "$15",
+      "desc": "An autumn Free Fire environment with colorful trees, flowers, buildings, roads and terrain. Includes an editable .blend file with 125 materials and 134 packed textures, camera and environment lighting, and setup instructions. Map only; characters and vehicles are not included. Tested in Blender 5.1.1.",
+      "url": "https://alphaff.gumroad.com/l/cuhcyj",
+      "images": [
+        "./media/store/peak-autumn/1.webp",
+        "./media/store/peak-autumn/2.webp",
+        "./media/store/peak-autumn/3.webp"
       ],
       "category": "maps"
     },

@@ -221,6 +221,7 @@ html.reduce-motion { scroll-behavior: auto; }
 
 .course-sale { margin: 0 0 28px; overflow: hidden; border: 1px solid var(--border); border-radius: 18px; background: var(--surface); }
 .course-sale img { display: block; width: 100%; height: auto; }
+.home-course-sale { max-width: 640px; margin: 0 auto 40px; }
 .course-sale figcaption { display: flex; flex-wrap: wrap; gap: 12px; padding: 18px; }
 @media (max-width: 640px) { .course-sale figcaption > a { width: 100%; white-space: normal; } }
 
