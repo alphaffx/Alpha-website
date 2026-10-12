@@ -610,6 +610,23 @@
       }
     },
     {
+      "id": "max pocher",
+      "name": "Max Pocher",
+      "kind": "3D model",
+      "glb": "1.5 MB",
+      "blend": "1.6 MB",
+      "hasBlend": true,
+      "tier": "free",
+      "price": "",
+      "blenderCompatibility": "5.1.1 — tested",
+      "glbDetails": {
+        "rigged": false,
+        "embeddedTextures": 7,
+        "externalTextures": 0,
+        "animations": []
+      }
+    },
+    {
       "id": "maxxo",
       "name": "Maxxo",
       "kind": "3D model",
