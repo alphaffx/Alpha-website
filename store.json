@@ -91,6 +91,21 @@
       "category": "resources"
     },
     {
+      "slug": "solara",
+      "title": "Solara – Free Fire Map for Blender",
+      "price": "$20",
+      "desc": "Explore Solara in Blender with packed textures and sky environment lighting, organized scene collections, three saved camera views, and an editable ALPHA signature. Includes the .blend scene, texture and sky resources, and preview images. Prepared in Blender 5.1. Game materials and shader effects are approximations. Original game/map assets: Free Fire / Garena; Blender preparation and presentation: ALPHA.",
+      "url": "https://alphaff.gumroad.com/l/cijtwh",
+      "images": [
+        "./media/store/solara/1.webp",
+        "./media/store/solara/2.webp",
+        "./media/store/solara/3.webp",
+        "./media/store/solara/4.webp",
+        "./media/store/solara/5.webp"
+      ],
+      "category": "maps"
+    },
+    {
       "slug": "bermuda",
       "title": "Full Bermuda Map",
       "price": "$20",
