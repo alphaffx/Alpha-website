@@ -543,23 +543,7 @@
       captionKind.textContent = m.kind ? m.kind : t('viewer.kind');
       viewer.setAttribute('alt', m.name);
 
-      const locked = isPaid(m);
-
-      dlGlb.href = locked ? '#' : srcFor(m);
-      dlGlb.setAttribute('download', m.id + '.glb');
-      glbSize.textContent = locked ? t('dl.locked') : (m.glb || '');
-
-      const hasBlend = m.hasBlend !== false;
-      dlBlend.href = (hasBlend && !locked) ? fileFor(m, '.blend') : '#';
-      dlBlend.setAttribute('download', m.id + '.blend');
-      blendSize.textContent = locked ? t('dl.locked')
-                            : (hasBlend ? (m.blend || '') : t('dl.missing'));
-
-      dlBlend.classList.toggle('is-missing', !hasBlend && !locked);
-      dlGlb.classList.toggle('is-locked', locked);
-      dlBlend.classList.toggle('is-locked', locked);
-      dlGlb.setAttribute('aria-disabled', locked ? 'true' : 'false');
-      dlBlend.setAttribute('aria-disabled', (locked || !hasBlend) ? 'true' : 'false');
+      // Model files are view-only on the site: no download links.
     }
 
     function finishSwap() {
@@ -764,7 +748,7 @@
     viewer.addEventListener('error', viewerFailed);
 
     // Premium models can be previewed but not downloaded yet.
-    [dlGlb, dlBlend].forEach(function (el) {
+    [dlGlb, dlBlend].filter(Boolean).forEach(function (el) {
       el.addEventListener('click', function (e) {
         if (el.classList.contains('is-locked') || el.classList.contains('is-missing')) {
           e.preventDefault();
