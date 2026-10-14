@@ -400,7 +400,7 @@
       name.innerHTML = highlight(m.name, query);
       btn.appendChild(name);
       const detail = document.createElement('small');
-      detail.textContent = 'GLB' + (m.hasBlend ? ' + BLEND' : '') + ' · ' + m.glb;
+      detail.textContent = m.kind || t('viewer.kind');
       btn.appendChild(detail);
 
       if (isPaid(m)) {
@@ -437,7 +437,7 @@
         card.classList.toggle('is-active', m.id === currentId);
         card.setAttribute('aria-pressed', String(m.id === currentId));
         card.querySelector('.model-card-name').innerHTML = highlight(m.name, query);
-        card.querySelector('small').textContent = 'GLB' + (m.hasBlend ? ' + BLEND' : '') + ' · ' + m.glb;
+        card.querySelector('small').textContent = m.kind || t('viewer.kind');
         if (!card.parentNode) grid.appendChild(card);
       });
       // Match keyboard order to visual rank without replacing the cards.
@@ -554,7 +554,6 @@
     function renderModelDetails(m) {
       const facts = m.glbDetails;
       const rows = [
-        [t('details.blender'), m.hasBlend === false ? t('dl.missing') : (m.blenderCompatibility || t('details.unverified'))],
         [t('details.rig'), facts ? t(facts.rigged ? 'details.rigged' : 'details.noRig') : t('details.unknown')],
         [t('details.textures'), facts ? t('details.textureCount', { n: facts.embeddedTextures, m: facts.externalTextures }) : t('details.unknown')],
         [t('details.animations'), facts ? (facts.animations.length ? t('details.clipCount', { n: facts.animations.length }) : t('details.noClips')) : t('details.unknown')]
