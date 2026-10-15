@@ -2,6 +2,19 @@
   "_comment": "Products shown on the Store tab. Each one needs a slug: that is the folder name under media/store/ where its pictures live. Drop pictures into media/store/<slug>/ and run watch-models.bat - the watcher fills in the images list below. Everything else here you edit by hand and the watcher leaves alone.",
   "items": [
     {
+      "slug": "alpha-character-studio",
+      "title": "ALPHA Character Studio — Free Fire to Blender",
+      "price": "$40",
+      "desc": "Customize Free Fire characters and outfits, preview supported animations, and prepare characters, pets, weapons, vehicles and other available assets for Blender. Includes the Windows app, ALPHA Blender add-ons and a step-by-step user guide. Requires Windows 64-bit, your own compatible game resources and Blender for imports. Game assets are not included; available items depend on your downloaded resources.",
+      "url": "https://alphaff.gumroad.com/l/sknqjq",
+      "images": [
+        "./media/store/alpha-character-studio/1.png",
+        "./media/store/alpha-character-studio/2.png",
+        "./media/store/alpha-character-studio/3.png"
+      ],
+      "category": "resources"
+    },
+    {
       "slug": "free-fire-blender-en",
       "title": "Free Fire to Blender — Complete Course (English)",
       "price": "$19.99",
