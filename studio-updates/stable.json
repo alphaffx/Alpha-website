@@ -1,0 +1,11 @@
+{
+  "app": "alpha-character-studio",
+  "channel": "stable",
+  "version": "1.4.2",
+  "downloadPage": "https://app.gumroad.com/library",
+  "notes": [
+    "Optional update notifications and a Check for updates button.",
+    "Customer downloads stay in your Gumroad library.",
+    "Studio continues working offline with your installed resources."
+  ]
+}
