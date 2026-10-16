@@ -1768,6 +1768,9 @@
     ['badge', 'body', 'buy', 'guide', 'note'].forEach((key, i) => { STRINGS[code]['studioLaunch.' + key] = values[i]; });
   });
 
+  const studioEnglishVideoLabels = {"en": "Watch tutorial · English ↗", "fr": "Voir le tutoriel · Anglais ↗", "pt": "Ver tutorial · Inglês ↗", "es": "Ver tutorial · Inglés ↗", "id": "Tonton tutorial · Bahasa Inggris ↗", "th": "ดูบทสอน · ภาษาอังกฤษ ↗", "vi": "Xem hướng dẫn · Tiếng Anh ↗", "ar": "شاهد الشرح · الإنجليزية ↗"};
+  Object.entries(studioEnglishVideoLabels).forEach(([code, label]) => { STRINGS[code]["studioLaunch.englishVideo"] = label; });
+
   const STORE_KEY = 'alpha.lang';
   let current = 'en';
 

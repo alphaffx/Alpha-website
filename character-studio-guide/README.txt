@@ -187,4 +187,5 @@ Email admin@alphaff.gg with your Studio version, emulator name, Blender version 
 
 VIDEO WALKTHROUGH
 -----------------
-ALPHA is preparing a video showing installation, the first library build, dressing and animating a character, and importing into Blender. The video will be linked here when it is available. You can follow all the written steps above now.
+English video tutorial: https://www.youtube.com/watch?v=U67lIrUD1kY
+You can also follow the written steps above.
