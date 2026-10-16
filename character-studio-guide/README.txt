@@ -1,5 +1,5 @@
 ALPHA CHARACTER STUDIO - USER GUIDE
-Windows | Version 1.4.2
+Windows | Version 1.4.3
 
 Online guide: https://alphaff.gg/character-studio-guide/
 Support: admin@alphaff.gg
@@ -19,7 +19,7 @@ BEFORE YOU INSTALL
 - A Windows 64-bit PC.
 - Free Fire or Free Fire MAX installed in an Android emulator, with the resources you want fully downloaded. The setup page looks for BlueStacks, MSI App Player, LDPlayer, MEmu and Nox; a detected installation still needs compatible, readable resources.
 - Allow at least 20 GB of free space while building a library. The setup screen shows an estimate for your selected installation. A finished library is typically around 3–4 GB, but sizes vary.
-- Blender installed if you want to import into Blender. Fortnite rig conversion also needs Blender installed.
+- Blender installed if you want to import into Blender.
 - Internet to download the installer, download game resources in the emulator, check app updates and view online catalog pictures. After setup, local models, local textures and Blender exports work on your PC.
 
 You do not need to install Python or Node.js separately. They are included with the installer.
@@ -100,9 +100,7 @@ Use Character export above the preview before preparing a character for Blender.
 
  | Free Fire rig | The available original game skeleton, skin weights and selected supported animation. | Keeping the source character rig and motion.
 
- | Fortnite rig | A fitted Fortnite deform-bone hierarchy, remapped skin weights and converted supported character motion. | Workflows using the Studio’s fitted Fortnite skeleton.
-
-Fortnite conversion requires Blender on your PC. It runs in a separate Blender worker and can take longer. It produces a deform rig, not Fortnite’s full Control Rig or an IK controller. Finger detail and movement depend on the source model; some manual pose or weight adjustments may be needed.
+Fortnite rig export is temporarily unavailable while its skeleton is repaired. Use the original Free Fire rig or Mesh only.
 
 8. IMPORT INTO THE BLENDER SCENE YOU CHOOSE
 -------------------------------------------
@@ -136,7 +134,7 @@ After updating Blender add-on files, save your Blender work and restart Blender,
 
 This applies character motion without replacing the outfit, materials or placement. It does not add the emote’s props or cameras. Restore previous animation can restore the prior action and NLA settings.
 
-Use compatible Free Fire or fitted Fortnite Studio rigs. Mixamo, custom rigs, different rest poses and constrained rigs need retargeting first. An armature shared across multiple scenes must be made separate before applying motion.
+Use compatible Free Fire Studio rigs. Mixamo, custom rigs, different rest poses and constrained rigs need retargeting first. An armature shared across multiple scenes must be made separate before applying motion.
 
 10. KEEP STUDIO UPDATED
 -----------------------
@@ -161,7 +159,7 @@ Check the search and category filters. Under Library, open outfit availability t
 
 The Blender button seems to do nothing
 
-Wait until preparation finishes, then import manually from Blender’s ALPHA sidebar. Check that the Inbox folder points to the same library as Studio and that the add-on is enabled. Fortnite conversion also needs Blender installed.
+Wait until preparation finishes, then import manually from Blender’s ALPHA sidebar. Check that the Inbox folder points to the same library as Studio and that the add-on is enabled.
 
 The model appears in the wrong place
 

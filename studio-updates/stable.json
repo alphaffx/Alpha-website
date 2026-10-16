@@ -1,11 +1,11 @@
 {
   "app": "alpha-character-studio",
   "channel": "stable",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "downloadPage": "https://alphaff.gumroad.com/l/sknqjq",
   "notes": [
-    "Optional update notifications and a Check for updates button.",
-    "Customer downloads stay in your Gumroad library.",
-    "Studio continues working offline with your installed resources."
+    "Outfits without thumbnails stay hidden while browsing and remain available through search.",
+    "Aero Flex shoes use a neutral finish while original texture mapping is verified.",
+    "Removed unreliable Fortnite rig export; Mesh only and Free Fire rig remain available."
   ]
 }
