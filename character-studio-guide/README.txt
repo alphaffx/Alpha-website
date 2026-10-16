@@ -188,4 +188,5 @@ Email admin@alphaff.gg with your Studio version, emulator name, Blender version 
 VIDEO WALKTHROUGH
 -----------------
 English video tutorial: https://www.youtube.com/watch?v=U67lIrUD1kY
+French video tutorial / Tutoriel français : https://www.youtube.com/watch?v=sjiSN67wIYM
 You can also follow the written steps above.
