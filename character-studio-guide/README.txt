@@ -107,7 +107,7 @@ Fortnite rig export is temporarily unavailable while its skeleton is repaired. U
 Enable the ALPHA Studio Link add-on
 
 1. In Blender, open Edit → Preferences → Add-ons and enable ALPHA Studio Link if the installer already copied it.
-2. If it is missing, use Install from Disk to install alpha_studio_link.py from the app’s blender-addon folder. Keep the companion files in that folder together. The custom material nodes also need game_shader_nodes.py.
+2. If it is missing, use Install from Disk to install the individual ALPHA-Studio-Link-VERSION.zip from the app folder or your Gumroad download. Keep it zipped; the material helper is included. For optional car controls, also install ALPHA-Vehicle-Tools-VERSION.zip. If Blender says "No module named", remove the broken entry, restart Blender, then install these ZIPs without renaming them. Do not install the outer add-on bundle ZIP.
 3. Set the add-on’s Inbox folder to YOUR_LIBRARY_FOLDER\exports\to-blender. Replace YOUR_LIBRARY_FOLDER with the library folder you chose during setup.
 
 Prepare, then import
