@@ -1,5 +1,5 @@
 ALPHA CHARACTER STUDIO - USER GUIDE
-Windows | Version 1.4.3
+Windows | Version 1.4.4
 
 Online guide: https://alphaff.gg/character-studio-guide/
 Support: admin@alphaff.gg

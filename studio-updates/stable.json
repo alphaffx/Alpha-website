@@ -1,11 +1,11 @@
 {
   "app": "alpha-character-studio",
   "channel": "stable",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "downloadPage": "https://alphaff.gumroad.com/l/sknqjq",
   "notes": [
-    "Outfits without thumbnails stay hidden while browsing and remain available through search.",
-    "Aero Flex shoes use a neutral finish while original texture mapping is verified.",
-    "Removed unreliable Fortnite rig export; Mesh only and Free Fire rig remain available."
+    "Updates close the Studio runtime before replacing files, fixing locked dxcompiler.dll errors.",
+    "Updates wait for active library builds to finish.",
+    "Includes individually installable Blender add-on ZIPs and clearer installation instructions."
   ]
 }
