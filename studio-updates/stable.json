@@ -1,11 +1,12 @@
 {
   "app": "alpha-character-studio",
   "channel": "stable",
-  "version": "1.4.4",
+  "version": "1.4.6",
   "downloadPage": "https://alphaff.gumroad.com/l/sknqjq",
   "notes": [
-    "Updates close the Studio runtime before replacing files, fixing locked dxcompiler.dll errors.",
-    "Updates wait for active library builds to finish.",
-    "Includes individually installable Blender add-on ZIPs and clearer installation instructions."
+    "A lighter outfit browser with smooth category zoom and a Full character button.",
+    "Fixes disappearing hairstyles, incorrect head entries in Hair, and saved-outfit recovery.",
+    "Improved outfit compatibility, resource integrity checks and supported face-paint textures.",
+    "Includes Blender import fixes and manual add-on packages. Rebuild a library separately to recover additional game resources."
   ]
 }

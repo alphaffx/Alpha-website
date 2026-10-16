@@ -1,5 +1,5 @@
 ALPHA CHARACTER STUDIO - USER GUIDE
-Windows | Version 1.4.4
+Windows | Version 1.4.6
 
 Online guide: https://alphaff.gg/character-studio-guide/
 Support: admin@alphaff.gg
@@ -50,11 +50,13 @@ The library stays separate from the app. Keep a backup of your saved project fil
 -------------------------------
 1. Open Choose character and search for the character by name.
 2. Choose an available character and wait for its 3D preview to load.
-3. Open Browse outfits. Search by name and use the part icons to filter heads, hair, masks, tops, pants, shoes, accessories or backpacks.
+3. Open Browse outfits. Search by name and use the part icons to filter hair, masks, face paint, tops, pants, shoes, accessories or backpacks.
 4. Select an item to inspect it, then use its equip control. Click Equip or Put on, depending on the section. Where the same button changes to Unequip, click it again to remove the item.
 5. Equipping another item in the same slot replaces that slot. Check the fit in the character preview. You can review your outfit under Equipped pieces.
 
 Preview controls: drag to rotate and scroll to zoom. Open Preview controls for Front, Back, Fit and Wireframe. Full character shows the assembled outfit; Single item inspects the selected piece.
+
+Selecting a clothing category smoothly focuses the preview on that part. Use Full character above the preview to see the whole outfit again. You can turn Smooth zoom off under Preview controls. Face paint changes the original face texture; styles without a verified local texture stay unavailable.
 
 A catalog picture does not guarantee a usable 3D model. Items marked missing or unavailable need additional matching resources. Different body types and outfits may need fit adjustments in Blender.
 
@@ -109,6 +111,8 @@ Enable the ALPHA Studio Link add-on
 1. In Blender, open Edit → Preferences → Add-ons and enable ALPHA Studio Link if the installer already copied it.
 2. If it is missing, use Install from Disk to install the individual ALPHA-Studio-Link-VERSION.zip from the app folder or your Gumroad download. Keep it zipped; the material helper is included. For optional car controls, also install ALPHA-Vehicle-Tools-VERSION.zip. If Blender says "No module named", remove the broken entry, restart Blender, then install these ZIPs without renaming them. Do not install the outer add-on bundle ZIP.
 3. Set the add-on’s Inbox folder to YOUR_LIBRARY_FOLDER\exports\to-blender. Replace YOUR_LIBRARY_FOLDER with the library folder you chose during setup.
+
+With Studio open, click Connect to Studio in Blender's ALPHA panel to select the correct export folder automatically. Import and Apply animation also connect to the running Studio. This avoids old paths from another PC. If Studio is closed or uses a custom port, set Inbox folder manually to your library's exports\to-blender folder.
 
 Prepare, then import
 
