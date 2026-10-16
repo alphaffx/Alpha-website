@@ -1706,6 +1706,68 @@
     ['badge', 'body', 'buy', 'store', 'note'].forEach((key, i) => { STRINGS[code]['newProduct.' + key] = values[i]; });
   });
 
+  const studioLaunchStrings = {
+  "en": [
+    "MEET YOUR NEW CREATIVE STUDIO",
+    "Choose a character, build an outfit, preview animations and bring your creation into Blender. Your workflow, together in one Windows app.",
+    "Get Character Studio ↗",
+    "How to use Studio",
+    "Windows 64-bit. Bring your own downloaded Free Fire resources. Game assets are not included. Includes Blender add-ons and updates through your Gumroad purchase."
+  ],
+  "fr": [
+    "DÉCOUVRE TON NOUVEAU STUDIO CRÉATIF",
+    "Choisis un personnage, compose une tenue, prévisualise les animations et importe ta création dans Blender. Tout ton flux de travail dans une application Windows.",
+    "Obtenir Character Studio ↗",
+    "Comment utiliser Studio",
+    "Windows 64 bits. Utilise tes propres ressources Free Fire téléchargées. Les fichiers du jeu ne sont pas inclus. Add-ons Blender et mises à jour inclus via ton achat Gumroad."
+  ],
+  "pt": [
+    "CONHEÇA SEU NOVO ESTÚDIO CRIATIVO",
+    "Escolha um personagem, monte um visual, visualize animações e leve sua criação ao Blender. Seu fluxo de trabalho em um único aplicativo para Windows.",
+    "Obter Character Studio ↗",
+    "Como usar o Studio",
+    "Windows 64 bits. Use seus próprios recursos baixados do Free Fire. Os arquivos do jogo não estão incluídos. Inclui complementos do Blender e atualizações pela sua compra no Gumroad."
+  ],
+  "es": [
+    "DESCUBRE TU NUEVO ESTUDIO CREATIVO",
+    "Elige un personaje, crea un conjunto, previsualiza animaciones y lleva tu creación a Blender. Todo tu flujo de trabajo en una aplicación para Windows.",
+    "Conseguir Character Studio ↗",
+    "Cómo usar Studio",
+    "Windows de 64 bits. Usa tus propios recursos descargados de Free Fire. No incluye archivos del juego. Incluye complementos de Blender y actualizaciones mediante tu compra en Gumroad."
+  ],
+  "id": [
+    "KENALI STUDIO KREATIF BARUMU",
+    "Pilih karakter, susun pakaian, pratinjau animasi, lalu bawa kreasimu ke Blender. Semua alur kerjamu dalam satu aplikasi Windows.",
+    "Dapatkan Character Studio ↗",
+    "Cara menggunakan Studio",
+    "Windows 64-bit. Gunakan sumber daya Free Fire yang kamu unduh sendiri. Aset game tidak disertakan. Termasuk add-on Blender dan pembaruan melalui pembelian Gumroad."
+  ],
+  "vi": [
+    "KHÁM PHÁ STUDIO SÁNG TẠO MỚI",
+    "Chọn nhân vật, phối trang phục, xem trước hoạt ảnh và đưa tác phẩm vào Blender. Toàn bộ quy trình trong một ứng dụng Windows.",
+    "Mua Character Studio ↗",
+    "Cách sử dụng Studio",
+    "Windows 64-bit. Sử dụng tài nguyên Free Fire bạn tự tải xuống. Không bao gồm tài nguyên game. Bao gồm tiện ích Blender và các bản cập nhật qua giao dịch mua trên Gumroad."
+  ],
+  "th": [
+    "พบกับสตูดิโอสร้างสรรค์ใหม่ของคุณ",
+    "เลือกตัวละคร จัดชุด ดูตัวอย่างแอนิเมชัน แล้วนำผลงานเข้า Blender รวมขั้นตอนการทำงานไว้ในแอป Windows เดียว",
+    "รับ Character Studio ↗",
+    "วิธีใช้ Studio",
+    "Windows 64 บิต ใช้ทรัพยากร Free Fire ที่คุณดาวน์โหลดเอง ไม่รวมไฟล์เกม รวมส่วนเสริม Blender และอัปเดตผ่านการซื้อบน Gumroad"
+  ],
+  "ar": [
+    "تعرّف على استوديو الإبداع الجديد",
+    "اختر شخصية ونسّق ملابسها وعاين الحركات ثم انقل عملك إلى Blender. خطوات عملك في تطبيق واحد لنظام Windows.",
+    "احصل على Character Studio ↗",
+    "كيفية استخدام Studio",
+    "Windows ‏64 بت. استخدم موارد Free Fire التي نزّلتها بنفسك. ملفات اللعبة غير مشمولة. يتضمن إضافات Blender والتحديثات عبر عملية شرائك على Gumroad."
+  ]
+};
+  Object.entries(studioLaunchStrings).forEach(([code, values]) => {
+    ['badge', 'body', 'buy', 'guide', 'note'].forEach((key, i) => { STRINGS[code]['studioLaunch.' + key] = values[i]; });
+  });
+
   const STORE_KEY = 'alpha.lang';
   let current = 'en';
 
