@@ -1,12 +1,12 @@
 {
   "app": "alpha-character-studio",
   "channel": "stable",
-  "version": "1.4.6",
+  "version": "1.4.7",
   "downloadPage": "https://alphaff.gumroad.com/l/sknqjq",
   "notes": [
-    "A lighter outfit browser with smooth category zoom and a Full character button.",
-    "Fixes disappearing hairstyles, incorrect head entries in Hair, and saved-outfit recovery.",
-    "Improved outfit compatibility, resource integrity checks and supported face-paint textures.",
-    "Includes Blender import fixes and manual add-on packages. Rebuild a library separately to recover additional game resources."
+    "Fixes setup crashes caused by missing gameplay animation controllers.",
+    "Open available library sections when another section fails, with clear warnings and resumable retries.",
+    "Profiles with favorites, saved looks, settings and backup.",
+    "Latest outfit mappings and Aero Flex texture reconstruction improvements."
   ]
 }
